@@ -17,6 +17,11 @@ Update-ExecutionPolicy Unrestricted
 # Enable-RemoteDesktop  # already enabled on Azure VMs and no thanks for my laptop.
 Disable-InternetExplorerESC  #Turns off IE Enhanced Security Configuration that is on by default on Server OS versions
 Disable-UAC  # until this is over
+
+if (Test-PendingReboot) { Invoke-Reboot }
+disable-computerrestore -drive "C:\"  # http://ss64.com/ps/disable-computerrestore.html  ** Goes >BANG< on Server 2012 but not fatal.
+if (Test-PendingReboot) { Invoke-Reboot }
+
 Disable-MicrosoftUpdate # until this is over
 Disable-BingSearch # forever
 Enable-RemoteDesktop
