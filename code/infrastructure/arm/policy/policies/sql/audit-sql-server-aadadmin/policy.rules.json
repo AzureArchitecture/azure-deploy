@@ -1,0 +1,12 @@
+{
+  "if": {
+    "field": "type",
+    "equals": "Microsoft.Sql/servers"
+  },
+  "then": {
+    "effect": "Audit",
+    "details": {
+      "type": "Microsoft.Sql/servers/administrators"
+    }
+  }
+}

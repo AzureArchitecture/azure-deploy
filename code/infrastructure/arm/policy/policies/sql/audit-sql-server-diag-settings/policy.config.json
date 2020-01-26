@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-server-diag-settings"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL Server Audit Setting"
+    },
+    "policyDescription": {
+      "value": "Audit SQL Server Audit Setting"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

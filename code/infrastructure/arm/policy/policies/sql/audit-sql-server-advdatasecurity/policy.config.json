@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-server-advdatasecurity"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL Server Advanced Data Security"
+    },
+    "policyDescription": {
+      "value": "Audit SQL Server Advanced Data Security"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

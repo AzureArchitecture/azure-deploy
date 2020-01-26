@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-subscription-min-owners"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Subscription Min Owners "
+    },
+    "policyDescription": {
+      "value": "Audit Subscription Min Owners"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

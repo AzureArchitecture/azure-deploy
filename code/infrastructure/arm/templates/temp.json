@@ -1,0 +1,84 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "East US"
+    },
+    "resourcegroupName": {
+      "type": "string",
+      "defaultValue": "rg-chp-shared-dev-eus"
+    },
+    "subscriptionId": {
+      "type": "string",
+      "defaultValue": "323241e8-df5e-434e-b1d4-a45c3576bf80"
+    },
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "la-chp-dev-eus"
+    },
+    "solutionTypes": {
+      "type": "array",
+      "defaultValue": [ "AzureActivity" ]
+    },
+    "subscriptions": {
+      "type": "array",
+      "defaultValue": [
+        {
+          "name": "323241e8df5e434eb1d4a45c3576bf80",
+          "value": "323241e8-df5e-434e-b1d4-a45c3576bf80"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "datasourceName": "[replace(parameters('subscriptionId'),'-','')]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-11-01-preview",
+      "type": "Microsoft.OperationsManagement/solutions",
+      "location": "[parameters('location')]",
+      "name": "[Concat(parameters('solutionTypes')[copyIndex()], '(', parameters('workspaceName'), ')')]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroupName'), '/providers/Microsoft.OperationsManagement/solutions/', parameters('solutionTypes')[copyIndex()], '(', parameters('workspaceName'), ')')]",
+      "properties": {
+        "workspaceResourceId": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroupName'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
+      },
+      "plan": {
+        "name": "[Concat(parameters('solutionTypes')[copyIndex()], '(', parameters('workspaceName'), ')')]",
+        "product": "[Concat('OMSGallery/', parameters('solutionTypes')[copyIndex()])]",
+        "promotionCode": "",
+        "publisher": "Microsoft"
+      },
+      "copy": {
+        "name": "solutionsCopy",
+        "count": "[length(parameters('solutionTypes'))]"
+      }
+    },
+    {
+      "apiVersion": "2015-11-01-preview",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "name": "[parameters('workspaceName')]",
+      "location": "[parameters('location')]"
+    },
+    {
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroupName'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'), '/datasources/', string(parameters('subscriptions')[copyIndex()].name))]",
+      "type": "Microsoft.OperationalInsights/workspaces/datasources",
+      "kind": "AzureActivityLog",
+      "name": "[Concat(parameters('workspaceName'), '/', string(parameters('subscriptions')[copyIndex()].name))]",
+      "apiVersion": "2015-11-01-preview",
+      "location": "[parameters('location')]",
+      "copy": {
+        "name": "subscriptionsCopy",
+        "count": "[length(parameters('subscriptions'))]"
+      },
+      "properties": {
+        "linkedResourceId": "[Concat('/subscriptions/', string(parameters('subscriptions')[copyIndex()].value), '/providers/microsoft.insights/eventTypes/management')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
+      ]
+    }
+  ]
+}

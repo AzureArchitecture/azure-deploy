@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "configuration": {
+      "type": "object",
+      "metadata": {
+        "description": "Configuration for this resource"
+      }
+    },
+    "alertName": {
+      "type": "string"
+    },
+    "alertDescription": {
+      "type": "string"
+    },
+    "primaryActionGroup": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "apiVersions": {
+      "activityLogAlerts": "2019-04-01"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/activityLogAlerts",
+      "apiVersion": "[variables( 'apiVersions' ).activityLogAlerts]",
+      "name": "[concat(parameters('alertName'),'-alert')]",
+      "location": "Global",
+      "tags": "[parameters('configuration')]",
+      "properties": {
+        "enabled": true,
+        "description": "[parameters('alertDescription')]",
+        "scopes": [ "[subscription().id]" ],
+        "condition": {
+          "allOf": [
+            {
+              "field": "category",
+              "equals": "ServiceHealth"
+            },
+            {
+              "field": "properties.stage",
+              "equals": "Active"
+            },
+            {
+              "anyOf": [
+                {
+                  "field": "properties.incidentType",
+                  "equals": "Incident"
+                },
+                {
+                  "field": "properties.incidentType",
+                  "equals": "Maintenance"
+                }
+              ]
+            }
+          ]
+        },
+        "actions": {
+          "actionGroups": [
+            {
+              "actionGroupId": "[resourceId('microsoft.insights/actionGroups', parameters('primaryActionGroup'))]",
+              "webhookProperties": {}
+            }
+          ]
+        }
+      },
+      "dependsOn": []
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-eventhub-namespace-auth-rules"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for EventHub Namespace Authorization Rules"
+    },
+    "policyDescription": {
+      "value": "Audit EventHub Namespace Authorization Rules"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Event Hub\"}"
+    }
+  }
+}

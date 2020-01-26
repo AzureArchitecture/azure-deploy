@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-eventhub-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for EventHub Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit EventHub Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Event Hub\"}"
+    }
+  }
+}

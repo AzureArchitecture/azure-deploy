@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-mi-advdatasecurity"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL Managed Instance Advanced Data Security"
+    },
+    "policyDescription": {
+      "value": "Audit Managed Instance Advanced Data Security"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

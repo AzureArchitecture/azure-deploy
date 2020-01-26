@@ -1,0 +1,17 @@
+{
+  "if": {
+    "field": "type",
+    "equals": "Microsoft.Sql/managedInstances"
+  },
+  "then": {
+    "effect": "Audit",
+    "details": {
+      "type": "Microsoft.Sql/managedInstances/securityAlertPolicies",
+      "name": "Default",
+      "existenceCondition": {
+        "field": "Microsoft.Sql/securityAlertPolicies.state",
+        "equals": "Enabled"
+      }
+    }
+  }
+}

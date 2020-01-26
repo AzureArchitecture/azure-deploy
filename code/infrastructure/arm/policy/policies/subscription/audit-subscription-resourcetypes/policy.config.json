@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-subscription-resourcetypes"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Subscription Resource Types"
+    },
+    "policyDescription": {
+      "value": "Audit Subscription Resource Types"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Subscription\"}"
+    }
+  }
+}

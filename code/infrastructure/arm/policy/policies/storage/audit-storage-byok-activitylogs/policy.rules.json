@@ -1,0 +1,37 @@
+{
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.Insights/logProfiles"
+      },
+      {
+        "field": "Microsoft.Insights/logProfiles/storageAccountId",
+        "exists": "true"
+      }
+    ]
+  },
+  "then": {
+    "effect": "[parameters('effect')]",
+    "details": {
+      "type": "Microsoft.Storage/storageAccounts",
+      "existenceScope": "subscription",
+      "existenceCondition": {
+        "allOf": [
+          {
+            "value": "[contains(field('Microsoft.Insights/logProfiles/storageAccountId'), subscription().Id)]",
+            "equals": "true"
+          },
+          {
+            "field": "name",
+            "equals": "[last(split(field('Microsoft.Insights/logProfiles/storageAccountId'),'/'))]"
+          },
+          {
+            "field": "Microsoft.Storage/storageAccounts/encryption.keySource",
+            "equals": "Microsoft.Keyvault"
+          }
+        ]
+      }
+    }
+  }
+}

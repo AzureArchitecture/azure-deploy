@@ -1,0 +1,23 @@
+{
+  "$schema": "https://tinyurl.com/arm-templates-metadata-schema#",
+  "dateUpdated": "2020-01-20",
+  "description": "This template creates an Azure Event Hub in the same resource group.",
+  "docUrl": "https://docs.microsoft.com/en-us/azure/event-hubs/",
+  "githubUsername": "AzureArchitecture",
+  "itemDisplayName": "Azure Event Hub Deployment",
+  "securityControls": "TBD",
+  "summary": "Creates and deploys an Azure Event Hub.",
+  "type": "SubscriptionDeployment",
+  "EventHubNamespaceName": {
+    "value": "ehns-chp-adap-test-eus"
+  },
+  "EventHubName": {
+    "value": "eh-chp-adap-dev-eus"
+  },
+  "messageRetentionInDays": {
+    "value": "1"
+  },
+  "partitionCount": {
+    "value": "10"
+  }
+}

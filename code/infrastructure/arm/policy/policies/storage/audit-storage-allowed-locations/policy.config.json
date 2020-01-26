@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit Storage Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

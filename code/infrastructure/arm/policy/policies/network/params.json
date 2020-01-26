@@ -1,0 +1,10 @@
+{
+    "approvedIps": {
+        "type": "Array",
+        "metadata": { "description": "List of approved external IP addresses" }
+    },
+    "approvedSubnets": {
+        "type": "Array",
+        "metadata": { "description": "List of resource IDs of approved subnets" }
+    }
+}

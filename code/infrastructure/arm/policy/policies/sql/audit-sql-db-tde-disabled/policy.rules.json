@@ -1,0 +1,29 @@
+{
+  "if": {
+     "allOf": [
+        {
+           "field": "type",
+           "equals": "Microsoft.Sql/servers/databases"
+        },
+        {
+           "field": "name",
+           "notEquals": "master"
+        }
+     ]
+  },
+  "then": {
+     "effect": "Audit",
+     "details": {
+        "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+        "name": "current",
+        "existenceCondition": {
+           "allOf": [
+              {
+                 "field": "Microsoft.Sql/transparentDataEncryption.status",
+                 "equals": "enabled"
+              }
+           ]
+        }
+     }
+  }
+}

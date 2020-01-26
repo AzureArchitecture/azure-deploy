@@ -1,0 +1,27 @@
+{
+  "Name": "ADAP PROD Read-Only",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Read-only access of assets in PROD.",
+  "Actions": [
+    "Microsoft.Insights/alertRules/*",
+    "Microsoft.ResourceHealth/availabilityStatuses/read",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.Sql/servers/databases/read",
+    "Microsoft.Sql/servers/read",
+    "Microsoft.Sql/locations/*/read",
+    "Microsoft.Support/*",
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Compute/availabilitySets/read",
+    "Microsoft.Compute/virtualMachines/*/read",
+    "Microsoft.Compute/virtualMachines/read",
+    "Microsoft.Storage/storageAccounts/read"
+  ],
+  "NotActions": [
+
+  ],
+  "AssignableScopes": [
+    "/subscriptions/_subscriptionId"
+  ]
+}

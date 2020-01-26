@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-automation-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Automation Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit Automation Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Automation\"}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-nsg-inbound-1521-internet"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for NSG Inbound 1521 Internet"
+    },
+    "policyDescription": {
+      "value": "Audit NSG Inbound 1521 Internet"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Network\"}"
+    }
+  }
+}

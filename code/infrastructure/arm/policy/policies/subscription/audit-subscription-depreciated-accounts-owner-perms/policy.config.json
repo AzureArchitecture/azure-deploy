@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-subscription-depreciated-accounts-owner-perms"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Subscription Depreciated Accounts Owner Permissions"
+    },
+    "policyDescription": {
+      "value": "Audit Subscription Depreciated Accounts Owner Permissions"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

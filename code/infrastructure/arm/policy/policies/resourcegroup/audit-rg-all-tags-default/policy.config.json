@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-rg-all-tags-default"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Resource Groups Default Tags"
+    },
+    "policyDescription": {
+      "value": "Audit Resource Groups Default Tags"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Resource Group\"}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-allowed-skus"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Account Allowed SKUs"
+    },
+    "policyDescription": {
+      "value": "Audit Storage Account for a set of storage account SKUs that your organization can deploy."
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

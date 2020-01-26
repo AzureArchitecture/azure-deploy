@@ -1,0 +1,165 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ResourceGroupName": {
+      "defaultValue": "rg-chp-adap-dev-eus",
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Resource Group."
+      }
+    },
+    "EventHubNamespaceName": {
+      "type": "String",
+      "defaultValue": "ehns-chp-adap-test-eus",
+      "metadata": {
+        "description": "The name of the Event Hub Namespace."
+      }
+    },
+    "LocationKey": {
+      "type": "String",
+      "metadata": {
+        "description": "The key of the Event Hub Namespace location."
+      }
+    },
+    "SkuName": {
+      "type": "String",
+      "metadata": {
+        "description": "The name of the Event Hub Namespace SKU."
+      }
+    },
+    "SkuTier": {
+      "type": "String",
+      "metadata": {
+        "description": "The service tier of the Event Hub Namespace SKU."
+      }
+    },
+    "SkuCapacity": {
+      "type": "String",
+      "metadata": {
+        "description": "The capacity of the Event Hub Namespace SKU."
+      }
+    },
+    "zoneRedundant": {
+      "type": "Bool",
+      "metadata": {
+        "description": "Is the Event Hub Namespace Zone Redundant?"
+      }
+    },
+    "ApplicationName": {
+      "defaultValue": "ADAP",
+      "type": "string",
+      "metadata": {
+        "description": "Name of the application, service, or workload the resource is associated with."
+      }
+    },
+    "Approver": {
+      "defaultValue": "approver@company.org",
+      "type": "string",
+      "metadata": {
+        "description": "Person responsible for approving costs related to this resource."
+      }
+    },
+    "BudgetAmount": {
+      "defaultValue": "0",
+      "type": "string",
+      "metadata": {
+        "description": "Money allocated for this application, service, or workload."
+      }
+    },
+    "BusinessUnit": {
+      "defaultValue": "CORP",
+      "type": "string",
+      "metadata": {
+        "description": "Top-level division of your company that owns the subscription or workload the resource belongs to. In smaller organizations, this tag might represent a single corporate or shared top-level organizational element."
+      }
+    },
+    "CostCenter": {
+      "defaultValue": "8675-309",
+      "type": "string",
+      "metadata": {
+        "description": "Business criticality of the application, workload, or service."
+      }
+    },
+    "DR": {
+      "defaultValue": "Mission-Critical",
+      "type": "string",
+      "metadata": {
+        "description": "Business criticality of the application, workload, or service."
+      }
+    },
+    "EndDate": {
+      "defaultValue": "9999-12-31",
+      "type": "string",
+      "metadata": {
+        "description": "Date when the application, workload, or service is scheduled for retirement."
+      }
+    },
+    "Env": {
+      "defaultValue": "dev",
+      "type": "string",
+      "metadata": {
+        "description": "Deployment environment of the application, workload, or service."
+      }
+    },
+    "Owner": {
+      "defaultValue": "owner@company.org",
+      "type": "string",
+      "metadata": {
+        "description": "Owner of the application, workload, or service."
+      }
+    },
+    "Requester": {
+      "defaultValue": "requester@company.org",
+      "type": "string",
+      "metadata": {
+        "description": "User who requested the creation of this application."
+      }
+    },
+    "ServiceClass": {
+      "defaultValue": "Gold",
+      "type": "string",
+      "metadata": {
+        "description": "Service level agreement level of the application, workload, or service."
+      }
+    },
+    "StartDate": {
+      "defaultValue": "2020-01-01",
+      "type": "string",
+      "metadata": {
+        "description": "Date when the application, workload, or service was first deployed."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.EventHub/namespaces",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[parameters('EventHubNamespaceName')]",
+      "location": "[parameters('LocationKey')]",
+      "sku": {
+        "name": "[parameters('SkuName')]",
+        "tier": "[parameters('SkuTier')]",
+        "capacity": "[parameters('SkuCapacity')]"
+      },
+      "tags": {
+        "Display Name": "event hub namespace: [parameters('EventHubNamespaceName')]",
+        "Application name": "[parameters('ApplicationName')]",
+        "Approver name": "[parameters('Approver')]",
+        "Budget required-approved": "[parameters('BudgetAmount')]",
+        "Business unit": "[parameters('BusinessUnit')]",
+        "Cost center": "[parameters('CostCenter')]",
+        "Disaster recovery": "[parameters('DR')]",
+        "End date of the project": "[parameters('EndDate')]",
+        "Environment": "[parameters('Env')]",
+        "Owner name": "[parameters('Owner')]",
+        "Requester name": "[parameters('Requester')]",
+        "Service class": "[parameters('ServiceClass')]",
+        "Start date of the project": "[parameters('StartDate')]"
+      },
+      "properties": {
+        "zoneRedundant": "[parameters('zoneRedundant')]"
+      }
+    }
+  ]
+}

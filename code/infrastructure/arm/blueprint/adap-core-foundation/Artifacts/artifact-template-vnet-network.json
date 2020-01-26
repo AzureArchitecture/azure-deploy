@@ -1,0 +1,888 @@
+{
+  "kind": "template",
+  "properties": {
+    "displayName": "Deploy Virtual Network",
+    "description": "Deploys Virtual Network, RouteTables and NSG's.",
+    "dependsOn": [],
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.1",
+      "parameters": {
+        "orgTag": {
+          "type": "string",
+          "metadata": {
+            "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
+            "description": "Organization Tag"
+          },
+          "defaultValue": "chp"
+        },
+        "suffix": {
+          "type": "string",
+          "metadata": {
+            "displayName": "Enter a string to be added to the end of all resources. can also be empty string.",
+            "description": "Suffix to add to labels."
+          },
+          "defaultValue": "eus"
+        },
+        "location": {
+          "type": "string"
+        },
+        "publicDataEndpointEnabled": {
+          "type": "bool",
+          "defaultValue": false
+        },
+        "nsgForPublicEndpoint": {
+          "type": "string",
+          "defaultValue": "allowFromAzureCloudTo3342NSG"
+        },
+        "ApplicationName": {
+          "defaultValue": "ADAP",
+          "type": "string",
+          "metadata": {
+            "description": "Name of the application, service, or workload the resource is associated with."
+          }
+        },
+        "Approver": {
+          "defaultValue": "approver@company.org",
+          "type": "string",
+          "metadata": {
+            "description": "Person responsible for approving costs related to this resource."
+          }
+        },
+        "BudgetAmount": {
+          "defaultValue": "0",
+          "type": "string",
+          "metadata": {
+            "description": "Money allocated for this application, service, or workload."
+          }
+        },
+        "BusinessUnit": {
+          "defaultValue": "CORP",
+          "type": "string",
+          "metadata": {
+            "description": "Top-level division of your company that owns the subscription or workload the resource belongs to. In smaller organizations, this tag might represent a single corporate or shared top-level organizational element."
+          }
+        },
+        "CostCenter": {
+          "defaultValue": "8675-309",
+          "type": "string",
+          "metadata": {
+            "description": "Business criticality of the application, workload, or service."
+          }
+        },
+        "DR": {
+          "defaultValue": "Mission-Critical",
+          "type": "string",
+          "metadata": {
+            "description": "Business criticality of the application, workload, or service."
+          }
+        },
+        "EndDate": {
+          "defaultValue": "9999-12-31",
+          "type": "string",
+          "metadata": {
+            "description": "Date when the application, workload, or service is scheduled for retirement."
+          }
+        },
+        "Env": {
+          "type": "string",
+          "metadata": {
+            "displayName": "Environment Tag",
+            "description": "Select the Azure environment tag: smoke, prod, uat, sandbox, dev, lab"
+          },
+          "defaultValue": "dev",
+          "allowedValues": [
+            "smoke",
+            "prod",
+            "uat",
+            "sandbox",
+            "dev",
+            "lab"
+          ]
+        },
+        "Owner": {
+          "defaultValue": "owner@company.org",
+          "type": "string",
+          "metadata": {
+            "description": "Owner of the application, workload, or service."
+          }
+        },
+        "Requester": {
+          "defaultValue": "requester@company.org",
+          "type": "string",
+          "metadata": {
+            "description": "User who requested the creation of this application."
+          }
+        },
+        "ServiceClass": {
+          "defaultValue": "Gold",
+          "type": "string",
+          "metadata": {
+            "description": "Service level agreement level of the application, workload, or service."
+          }
+        },
+        "StartDate": {
+          "defaultValue": "2020-01-01",
+          "type": "string",
+          "metadata": {
+            "description": "Date when the application, workload, or service was first deployed."
+          }
+        }
+      },
+      "variables": {
+        "deployment-prefix": "[toLower(concat(parameters('orgTag'), '-', parameters('Env')))]",
+        "virtualNetworkName": "[concat('vnet-', variables('deployment-prefix'))]",
+        "routeTableName": "[concat('rt-', variables('deployment-prefix'))]",
+        "networkSecurityGroupName": "[concat('nsg-', variables('deployment-prefix'))]",
+        "addressPrefix": "10.0.0.0/16",
+        "subnetName": "[concat('snet-',variables('deployment-prefix'),'-sqlmi')]",
+        "subnetPrefix": "10.0.0.0/24",
+        "locations": [
+          "eastus",
+          "eastus2",
+          "westus",
+          "westus2"
+        ],
+        "routesJumpboxes": [
+          {
+            "name": "SqlManagement_deployment",
+            "properties": {
+              "addressPrefix": "65.55.188.0/24",
+              "nextHopType": "Internet"
+            }
+          }
+        ],
+        "routesSAW": [
+          {
+            "name": "SqlManagement_supportability_1",
+            "properties": {
+              "addressPrefix": "207.68.190.32/27",
+              "nextHopType": "Internet"
+            }
+          },
+          {
+            "name": "SqlManagement_supportability_2",
+            "properties": {
+              "addressPrefix": "13.106.78.32/27",
+              "nextHopType": "Internet"
+            }
+          },
+          {
+            "name": "SqlManagement_supportability_3",
+            "properties": {
+              "addressPrefix": "13.106.174.32/27",
+              "nextHopType": "Internet"
+            }
+          },
+          {
+            "name": "SqlManagement_supportability_4",
+            "properties": {
+              "addressPrefix": "13.106.4.96/27",
+              "nextHopType": "Internet"
+            }
+          }
+        ],
+        "routesRunners": [
+          {
+            "name": "SqlManagement_automation_global",
+            "properties": {
+              "addressPrefix": "104.214.108.80/32",
+              "nextHopType": "Internet"
+            }
+          }
+        ],
+        "routesDSMS": [
+          {
+            "name": "SqlManagement_security_global_1",
+            "properties": {
+              "addressPrefix": "52.179.184.76/32",
+              "nextHopType": "Internet"
+            }
+          },
+          {
+            "name": "SqlManagement_security_global_2",
+            "properties": {
+              "addressPrefix": "52.187.116.202/32",
+              "nextHopType": "Internet"
+            }
+          },
+          {
+            "name": "SqlManagement_security_global_3",
+            "properties": {
+              "addressPrefix": "52.177.202.6/32",
+              "nextHopType": "Internet"
+            }
+          }
+        ],
+        "EastUS": {
+          "controlPlane": [
+            {
+              "name": "SqlManagement_controlPlane_primary",
+              "properties": {
+                "addressPrefix": "191.238.6.43/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_backup1",
+              "properties": {
+                "addressPrefix": "40.121.158.30/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_backup2",
+              "properties": {
+                "addressPrefix": "40.79.153.12/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "controlPlane_SqlManagementTag": [
+            {
+              "name": "SqlManagement_controlPlane_az01",
+              "properties": {
+                "addressPrefix": "40.71.10.224/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az02",
+              "properties": {
+                "addressPrefix": "40.78.226.224/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az03",
+              "properties": {
+                "addressPrefix": "40.79.154.0/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az04",
+              "properties": {
+                "addressPrefix": "40.79.154.224/27",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "runners": [
+            {
+              "name": "SqlManagement_automation_backup",
+              "properties": {
+                "addressPrefix": "13.64.155.40/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_automation_primary",
+              "properties": {
+                "addressPrefix": "40.71.215.148/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "DSMS": [
+            {
+              "name": "SqlManagement_security_primary",
+              "properties": {
+                "addressPrefix": "23.96.103.225/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_security_backup",
+              "properties": {
+                "addressPrefix": "52.170.92.194/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ]
+        },
+        "EastUS2": {
+          "controlPlane": [
+            {
+              "name": "SqlManagement_controlPlane_primary",
+              "properties": {
+                "addressPrefix": "191.239.224.107/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_backup1",
+              "properties": {
+                "addressPrefix": "40.79.84.180/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_backup2",
+              "properties": {
+                "addressPrefix": "52.177.185.181/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_backup3",
+              "properties": {
+                "addressPrefix": "52.167.104.0/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "controlPlane_SqlManagementTag": [
+            {
+              "name": "SqlManagement_controlPlane_az01",
+              "properties": {
+                "addressPrefix": "104.208.144.96/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az02",
+              "properties": {
+                "addressPrefix": "52.167.106.96/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az03",
+              "properties": {
+                "addressPrefix": "40.70.146.96/27",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "runners": [
+            {
+              "name": "SqlManagement_automation_backup",
+              "properties": {
+                "addressPrefix": "52.173.243.204/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_automation_primary",
+              "properties": {
+                "addressPrefix": "52.225.130.171/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "DSMS": [
+            {
+              "name": "SqlManagement_security_primary",
+              "properties": {
+                "addressPrefix": "191.236.199.225/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_security_backup",
+              "properties": {
+                "addressPrefix": "104.209.149.14/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ]
+        },
+        "EastUS2euap": {
+          "controlPlane": [
+            {
+              "name": "SqlManagement_controlPlane_primary",
+              "properties": {
+                "addressPrefix": "52.225.188.46/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_backup1",
+              "properties": {
+                "addressPrefix": "52.138.89.3/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "controlPlane_SqlManagementTag": [
+            {
+              "name": "SqlManagement_controlPlane_az01",
+              "properties": {
+                "addressPrefix": "40.75.34.64/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az02",
+              "properties": {
+                "addressPrefix": "40.74.147.0/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az03",
+              "properties": {
+                "addressPrefix": "52.138.90.96/27",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "runners": [
+            {
+              "name": "SqlManagement_automation_backup",
+              "properties": {
+                "addressPrefix": "52.173.243.204/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_automation_primary",
+              "properties": {
+                "addressPrefix": "40.79.32.162/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "DSMS": [
+            {
+              "name": "SqlManagement_security_primary",
+              "properties": {
+                "addressPrefix": "52.225.186.89/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_security_backup",
+              "properties": {
+                "addressPrefix": "52.225.191.250/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ]
+        },
+        "WestUS": {
+          "controlPlane": [
+            {
+              "name": "SqlManagement_controlPlane_primary",
+              "properties": {
+                "addressPrefix": "23.99.34.75/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_backup1",
+              "properties": {
+                "addressPrefix": "104.42.238.205/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "controlPlane_SqlManagementTag": [
+            {
+              "name": "SqlManagement_controlPlane_az00",
+              "properties": {
+                "addressPrefix": "40.112.243.128/27",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "runners": [
+            {
+              "name": "SqlManagement_automation_backup",
+              "properties": {
+                "addressPrefix": "13.92.242.41/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_automation_primary",
+              "properties": {
+                "addressPrefix": "104.42.96.175/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "DSMS": [
+            {
+              "name": "SqlManagement_security_primary",
+              "properties": {
+                "addressPrefix": "104.42.23.250/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_security_backup",
+              "properties": {
+                "addressPrefix": "13.64.66.183/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ]
+        },
+        "WestUS2": {
+          "controlPlane": [
+            {
+              "name": "SqlManagement_controlPlane_primary",
+              "properties": {
+                "addressPrefix": "13.66.226.202/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "controlPlane_SqlManagementTag": [
+            {
+              "name": "SqlManagement_controlPlane_az01",
+              "properties": {
+                "addressPrefix": "13.66.140.96/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az02",
+              "properties": {
+                "addressPrefix": "40.78.242.192/27",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_controlPlane_az03",
+              "properties": {
+                "addressPrefix": "40.78.250.128/27",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "runners": [
+            {
+              "name": "SqlManagement_automation_backup",
+              "properties": {
+                "addressPrefix": "13.78.181.246/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_automation_primary",
+              "properties": {
+                "addressPrefix": "40.65.124.161/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ],
+          "DSMS": [
+            {
+              "name": "SqlManagement_security_primary",
+              "properties": {
+                "addressPrefix": "13.66.230.240/32",
+                "nextHopType": "Internet"
+              }
+            },
+            {
+              "name": "SqlManagement_security_backup",
+              "properties": {
+                "addressPrefix": "104.40.19.34/32",
+                "nextHopType": "Internet"
+              }
+            }
+          ]
+        },
+        "routesUnion": "[if(contains(variables('locations'), tolower(parameters('location'))), union(variables('routesJumpboxes'), variables('routesSAW'), variables('routesRunners'), variables('routesDSMS'), variables(parameters('location')).controlPlane, variables(parameters('location')).controlPlane_SqlManagementTag, variables(parameters('location')).runners, variables(parameters('location')).DSMS), union(variables('routesJumpboxes'), variables('routesSAW'), variables('routesRunners')))]",
+        "defaultNSGs": [
+          {
+            "name": "allow_tds_inbound",
+            "properties": {
+              "description": "Allow access to data",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "1433",
+              "sourceAddressPrefix": "VirtualNetwork",
+              "destinationAddressPrefix": "[variables('subnetPrefix')]",
+              "access": "Allow",
+              "priority": 1000,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "allow_redirect_inbound",
+            "properties": {
+              "description": "Allow inbound redirect traffic to Managed Instance inside the virtual network",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "11000-11999",
+              "sourceAddressPrefix": "VirtualNetwork",
+              "destinationAddressPrefix": "[variables('subnetPrefix')]",
+              "access": "Allow",
+              "priority": 1100,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "allow_geodr_inbound",
+            "properties": {
+              "description": "Allow inbound geodr traffic inside the virtual network",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "5022",
+              "sourceAddressPrefix": "VirtualNetwork",
+              "destinationAddressPrefix": "[variables('subnetPrefix')]",
+              "access": "Allow",
+              "priority": 1200,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "deny_all_inbound",
+            "properties": {
+              "description": "Deny all other inbound traffic",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Deny",
+              "priority": 4096,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "allow_linkedserver_outbound",
+            "properties": {
+              "description": "Allow outbound linkedserver traffic inside the virtual network",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "1433",
+              "sourceAddressPrefix": "[variables('subnetPrefix')]",
+              "destinationAddressPrefix": "VirtualNetwork",
+              "access": "Allow",
+              "priority": 1000,
+              "direction": "Outbound"
+            }
+          },
+          {
+            "name": "allow_redirect_outbound",
+            "properties": {
+              "description": "Allow outbound redirect traffic to Managed Instance inside the virtual network",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "11000-11999",
+              "sourceAddressPrefix": "[variables('subnetPrefix')]",
+              "destinationAddressPrefix": "VirtualNetwork",
+              "access": "Allow",
+              "priority": 1100,
+              "direction": "Outbound"
+            }
+          },
+          {
+            "name": "allow_geodr_outbound",
+            "properties": {
+              "description": "Allow outbound geodr traffic inside the virtual network",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "5022",
+              "sourceAddressPrefix": "[variables('subnetPrefix')]",
+              "destinationAddressPrefix": "VirtualNetwork",
+              "access": "Allow",
+              "priority": 1200,
+              "direction": "Outbound"
+            }
+          },
+          {
+            "name": "deny_all_outbound",
+            "properties": {
+              "description": "Deny all other outbound traffic",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Deny",
+              "priority": 4096,
+              "direction": "Outbound"
+            }
+          }
+        ],
+        "allowFromInternetTo3342NSG": [
+          {
+            "name": "public_endpoint_inbound",
+            "properties": {
+              "description": "Allow inbound traffic to Managed Instance through public endpoint",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "3342",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1300,
+              "direction": "Inbound"
+            }
+          }
+        ],
+        "allowFromAzureCloudTo3342NSG": [
+          {
+            "name": "public_endpoint_inbound",
+            "properties": {
+              "description": "Allow inbound traffic to Managed Instance through public endpoint",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "3342",
+              "sourceAddressPrefix": "AzureCloud",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1300,
+              "direction": "Inbound"
+            }
+          }
+        ],
+        "disallowTrafficTo3342NSG": [
+          {
+            "name": "public_endpoint_inbound",
+            "properties": {
+              "description": "Deny inbound traffic to Managed Instance through public endpoint",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "3342",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Deny",
+              "priority": 1300,
+              "direction": "Inbound"
+            }
+          }
+        ],
+        "unionNSGs": "[if(and(parameters('publicDataEndpointEnabled'), not(empty(parameters('nsgForPublicEndpoint')))), union(variables('defaultNSGs'), variables(parameters('nsgForPublicEndpoint'))), variables('defaultNSGs'))]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2017-10-01",
+          "type": "Microsoft.Network/networkSecurityGroups",
+          "name": "[variables('networkSecurityGroupName')]",
+          "location": "[parameters('location')]",
+          "properties": {
+            "copy": [
+              {
+                "name": "securityRules",
+                "count": "[length(variables('unionNSGs'))]",
+                "input": {
+                  "name": "[variables('unionNSGs')[copyIndex('securityRules')].name]",
+                  "properties": "[variables('unionNSGs')[copyIndex('securityRules')].properties]"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "Microsoft.Network/routeTables",
+          "name": "[variables('routeTableName')]",
+          "apiVersion": "2018-02-01",
+          "location": "[parameters('location')]",
+          "properties": {
+            "disableBgpRoutePropagation": false,
+            "copy": [
+              {
+                "name": "routes",
+                "count": "[length(variables('routesUnion'))]",
+                "input": {
+                  "name": "[concat('SqlManagement_', copyIndex('routes'))]",
+                  "properties": "[variables('routesUnion')[copyIndex('routes')].properties]"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "[variables('virtualNetworkName')]",
+          "type": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2018-04-01",
+          "dependsOn": [
+            "[variables('routeTableName')]",
+            "[variables('networkSecurityGroupName')]"
+          ],
+          "location": "[parameters('location')]",
+          "properties": {
+            "addressSpace": {
+              "addressPrefixes": [
+                "[variables('addressPrefix')]"
+              ]
+            },
+            "subnets": [
+              {
+                "name": "[variables('subnetName')]",
+                "properties": {
+                  "addressPrefix": "[variables('subnetPrefix')]",
+                  "routeTable": {
+                    "id": "[resourceId('Microsoft.Network/routeTables', variables('routeTableName'))]"
+                  },
+                  "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+                  },
+                  "delegations": [
+                    {
+                      "name": "[concat('dlg-', variables('deployment-prefix'))]",
+                      "properties": {
+                        "serviceName": "Microsoft.Sql/managedInstances"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "resourceGroup": "NETWORK-RG",
+    "parameters": {
+      "orgTag": {
+        "value": "chp"
+      },
+      "suffix": {
+        "value": "[parameters('suffix')]"
+      },
+      "location": {
+        "value": "eastus"
+      },
+      "publicDataEndpointEnabled": {
+        "value": false
+      },
+      "nsgForPublicEndpoint": {
+        "value": "allowFromAzureCloudTo3342NSG"
+      },
+      "ApplicationName": {
+        "value": "ADAP"
+      },
+      "Approver": {
+        "value": "approver@company.org"
+      },
+      "BudgetAmount": {
+        "value": "0 per month"
+      },
+      "BusinessUnit": {
+        "value": "CORP"
+      },
+      "CostCenter": {
+        "value": "8675-309"
+      },
+      "DR": {
+        "value": "Mission-Critical"
+      },
+      "EndDate": {
+        "value": "9999-12-31"
+      },
+      "Env": {
+        "value": "dev"
+      },
+      "Owner": {
+        "value": "owner@company.org"
+      },
+      "Requester": {
+        "value": "requester@company.org"
+      },
+      "ServiceClass": {
+        "value": "Gold"
+      },
+      "StartDate": {
+        "value": "2020-01-01"
+      }
+    }
+  }
+}

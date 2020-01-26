@@ -1,0 +1,433 @@
+{
+  "properties": {
+    "displayName": "ADAP Core Foundation",
+    "description": "Azure core foundation deployment for the Azure Data & Analytics Platform (ADAP)",
+    "targetScope": "subscription",
+    "parameters": {
+      "orgTag": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
+          "description": "Organization Tag"
+        },
+        "defaultValue": "chp"
+      },
+      "suffix": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Enter a string to be added to the end of all resources. can also be empty string.",
+          "description": "Suffix to add to labels."
+        },
+        "defaultValue": "eus"
+      },
+      "LogAnalytics_DataRetention": {
+        "type": "int",
+        "metadata": {
+          "displayName": "Number of days data will be retained in Log Analytics",
+          "description": "LogAnalytics_DataRetention"
+        },
+        "defaultValue": 365,
+        "allowedValues": [
+          30,
+          60,
+          90,
+          120,
+          180,
+          365
+        ]
+      },
+      "LogAnalytics_Location": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Azure Region used when establishing the Log Analytics workspace",
+          "description": "LogAnalytics_Location"
+        },
+        "defaultValue": "East US",
+        "allowedValues": [
+          "East US",
+          "East US 2",
+          "West US",
+          "West US 2"
+        ]
+      },
+      "deployADAPResourceGroupStorageAccount_accountType": {
+        "type": "string",
+        "metadata": {
+          "displayName": "accountType (Deploy ADAP Resource Group Storage Account)"
+        },
+        "defaultValue": "Standard_LRS",
+        "allowedValues": [
+          "Standard_LRS",
+          "Standard_GRS",
+          "Standard_RAGRS",
+          "Premium_LRS"
+        ]
+      },
+      "deployADAPResourceGroupStorageAccount_accessTier": {
+        "type": "string",
+        "metadata": {
+          "displayName": "accessTier (Deploy ADAP Resource Group Storage Account)",
+          "description": "This setting is required if using BlobStorage as the storageKind, otherwise can be left blank"
+        },
+        "defaultValue": "Hot",
+        "allowedValues": [
+          "Hot",
+          "Cool"
+        ]
+      },
+      "deployADAPResourceGroupStorageAccount_storageKind": {
+        "type": "string",
+        "metadata": {
+          "displayName": "storageKind (Deploy ADAP Resource Group Storage Account)"
+        },
+        "defaultValue": "StorageV2",
+        "allowedValues": [
+          "Storage",
+          "StorageV2",
+          "BlobStorage"
+        ]
+      },
+      "Auto_skuName": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Sku for Azure Automation Account",
+          "description": "Sku Name"
+        },
+        "defaultValue": "Basic",
+        "allowedValues": [
+          "Basic",
+          "Free"
+        ]
+      },
+      "logAnalyticsResourceGroup": {
+        "defaultValue": "rg-chp-shared-dev-eus",
+        "type": "string",
+        "metadata": {
+          "description": "Log Analytics Resource Group Name"
+        }
+      },
+      "logAnalytics": {
+        "defaultValue": "la-chp-dev-eus",
+        "type": "string",
+        "metadata": {
+          "description": "Log Analytics Name"
+        }
+      },
+      "ApplicationName": {
+        "defaultValue": "ADAP",
+        "type": "string",
+        "metadata": {
+          "description": "Name of the application, service, or workload the resource is associated with."
+        }
+      },
+      "Approver": {
+        "defaultValue": "approver@company.org",
+        "type": "string",
+        "metadata": {
+          "description": "Person responsible for approving costs related to this resource."
+        }
+      },
+      "BudgetAmount": {
+        "defaultValue": "0",
+        "type": "string",
+        "metadata": {
+          "description": "Money allocated for this application, service, or workload."
+        }
+      },
+      "BusinessUnit": {
+        "defaultValue": "CORP",
+        "type": "string",
+        "metadata": {
+          "description": "Top-level division of your company that owns the subscription or workload the resource belongs to. In smaller organizations, this tag might represent a single corporate or shared top-level organizational element."
+        }
+      },
+      "CostCenter": {
+        "defaultValue": "8675-309",
+        "type": "string",
+        "metadata": {
+          "description": "Business criticality of the application, workload, or service."
+        }
+      },
+      "DR": {
+        "defaultValue": "Mission-Critical",
+        "type": "string",
+        "metadata": {
+          "description": "Business criticality of the application, workload, or service."
+        }
+      },
+      "EndDate": {
+        "defaultValue": "9999-12-31",
+        "type": "string",
+        "metadata": {
+          "description": "Date when the application, workload, or service is scheduled for retirement."
+        }
+      },
+      "Env": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Environment Tag",
+          "description": "Select the Azure environment tag: smoke, prod, uat, sandbox, dev, lab"
+        },
+        "defaultValue": "dev",
+        "allowedValues": [
+          "smoke",
+          "prod",
+          "uat",
+          "sandbox",
+          "dev",
+          "lab"
+        ]
+      },
+      "Owner": {
+        "defaultValue": "owner@company.org",
+        "type": "string",
+        "metadata": {
+          "description": "Owner of the application, workload, or service."
+        }
+      },
+      "Requester": {
+        "defaultValue": "requester@company.org",
+        "type": "string",
+        "metadata": {
+          "description": "User who requested the creation of this application."
+        }
+      },
+      "ServiceClass": {
+        "defaultValue": "Gold",
+        "type": "string",
+        "metadata": {
+          "description": "Service level agreement level of the application, workload, or service."
+        }
+      },
+      "StartDate": {
+        "defaultValue": "2020-01-01",
+        "type": "string",
+        "metadata": {
+          "description": "Date when the application, workload, or service was first deployed."
+        }
+      },
+      "AzureRegion": {
+        "type": "string",
+        "metadata": {
+          "description": "Select the Azure Region to deploy the Resources",
+          "displayName": "Azure Region",
+          "strongType": "location"
+        },
+        "defaultValue": "eastus"
+      },
+      "vnet_vnet-address-prefix": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Virtual Network address prefix"
+        },
+        "defaultValue": "10.0.0.0/16",
+        "allowedValues": []
+      },
+      "vnet_enable-ddos-protection": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Enable Virtual Network DDoS protection",
+          "description": "Determines whether or not DDoS Protection is enabled in the Virtual Network"
+        },
+        "defaultValue": "true"
+      },
+      "vnet_sharedsvcs-subnet-address-prefix": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Shared services subnet address prefix",
+          "description": "Value used in Virtual Network / Route Table, Jumpbox and Active Directory Domain Services templates"
+        },
+        "defaultValue": "10.0.0.0/24",
+        "allowedValues": []
+      },
+      "vnet_adap-subnet-address-prefix": {
+        "type": "string",
+        "metadata": {
+          "displayName": "ADAP subnet address prefix"
+        },
+        "defaultValue": "10.0.1.0/24",
+        "allowedValues": []
+      },
+      "vnet_app-gateway-subnet-address-prefix": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Application Gateway subnet address prefix"
+        },
+        "defaultValue": "10.0.2.0/24",
+        "allowedValues": []
+      },
+      "vnet_gateway-subnet-address-prefix": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Virtual Network Gateway subnet address prefix"
+        },
+        "defaultValue": "10.0.3.0/24",
+        "allowedValues": []
+      },
+      "vnet_azure-firewall-subnet-address-prefix": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Azure Firewall subnet address prefix"
+        },
+        "defaultValue": "10.0.4.0/24",
+        "allowedValues": []
+      },
+      "vnet_logs-retention-in-days": {
+        "type": "int",
+        "metadata": {
+          "displayName": "Log retention in days",
+          "description": "Specifies the number of days that logs will be kept for; a value of 0 will retain data indefinitely"
+        },
+        "defaultValue": 365
+      },
+      "nsg_logs-retention-in-days": {
+        "type": "int",
+        "metadata": {
+          "displayName": "Log retention in days",
+          "description": "Specifies the number of days that logs will be kept for; a value of 0 will retain data indefinitely"
+        },
+        "defaultValue": 365
+      }
+    },
+    "resourceGroups": {
+      "SHARED-RG": {
+        "name": "[concat('rg-',parameters('orgTag'),'-shared-',parameters('Env'),parameters('suffix'))]",
+        "location": "[parameters('AzureRegion')]",
+        "metadata": {
+          "displayName": "Resource Group for Shared Services"
+        },
+        "dependsOn": [],
+        "tags": {
+          "Application name": "[parameters('ApplicationName')]",
+          "Approver name": "[parameters('Approver')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Business unit": "[parameters('BusinessUnit')]",
+          "Cost center": "[parameters('CostCenter')]",
+          "Disaster recovery": "[parameters('DR')]",
+          "End date of the project": "[parameters('EndDate')]",
+          "Environment": "[parameters('Env')]",
+          "Owner name": "[parameters('Owner')]",
+          "Requester name": "[parameters('Requester')]",
+          "Service class": "[parameters('ServiceClass')]",
+          "Start date of the project": "[parameters('StartDate')]",
+          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-shared-',parameters('Env'),parameters('suffix'))]"
+        }
+      },
+      "ADAP-RG": {
+        "name": "[concat('rg-',parameters('orgTag'),'-adap-',parameters('Env'),parameters('suffix'))]",
+        "location": "[parameters('AzureRegion')]",
+        "metadata": {
+          "displayName": "Resource Group for ADAP"
+        },
+        "dependsOn": [],
+        "tags": {
+          "Application name": "[parameters('ApplicationName')]",
+          "Approver name": "[parameters('Approver')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Business unit": "[parameters('BusinessUnit')]",
+          "Cost center": "[parameters('CostCenter')]",
+          "Disaster recovery": "[parameters('DR')]",
+          "End date of the project": "[parameters('EndDate')]",
+          "Environment": "[parameters('Env')]",
+          "Owner name": "[parameters('Owner')]",
+          "Requester name": "[parameters('Requester')]",
+          "Service class": "[parameters('ServiceClass')]",
+          "Start date of the project": "[parameters('StartDate')]",
+          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-adap-',parameters('Env'),parameters('suffix'))]"
+        }
+      },
+      "SMOKE-RG": {
+        "name": "rg-smoke",
+        "location": "[parameters('AzureRegion')]",
+        "metadata": {
+          "displayName": "Resource Group for smoke tests"
+        },
+        "dependsOn": [],
+        "tags": {
+          "Application name": "[parameters('ApplicationName')]",
+          "Approver name": "[parameters('Approver')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Business unit": "[parameters('BusinessUnit')]",
+          "Cost center": "[parameters('CostCenter')]",
+          "Disaster recovery": "[parameters('DR')]",
+          "End date of the project": "[parameters('EndDate')]",
+          "Environment": "smoke",
+          "Owner name": "[parameters('Owner')]",
+          "Requester name": "[parameters('Requester')]",
+          "Service class": "[parameters('ServiceClass')]",
+          "Start date of the project": "[parameters('StartDate')]",
+          "Display Name": "resource group name: smoke tests"
+        }
+      },
+      "MGMT-RG": {
+        "name": "[concat('rg-',parameters('orgTag'),'-mgmt-',parameters('Env'),parameters('suffix'))]",
+        "location": "[parameters('AzureRegion')]",
+        "metadata": {
+          "displayName": "Resource Group for Management"
+        },
+        "dependsOn": [],
+        "tags": {
+          "Application name": "[parameters('ApplicationName')]",
+          "Approver name": "[parameters('Approver')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Business unit": "[parameters('BusinessUnit')]",
+          "Cost center": "[parameters('CostCenter')]",
+          "Disaster recovery": "[parameters('DR')]",
+          "End date of the project": "[parameters('EndDate')]",
+          "Environment": "[parameters('Env')]",
+          "Owner name": "[parameters('Owner')]",
+          "Requester name": "[parameters('Requester')]",
+          "Service class": "[parameters('ServiceClass')]",
+          "Start date of the project": "[parameters('StartDate')]",
+          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-mgmt-',parameters('Env'),parameters('suffix'))]"
+        }
+      },
+      "NETWORK-RG": {
+        "name": "[concat('rg-',parameters('orgTag'),'-network-',parameters('Env'),parameters('suffix'))]",
+        "location": "[parameters('AzureRegion')]",
+        "metadata": {
+          "displayName": "Resource Group for Network"
+        },
+        "dependsOn": [],
+        "tags": {
+          "Application name": "[parameters('ApplicationName')]",
+          "Approver name": "[parameters('Approver')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Business unit": "[parameters('BusinessUnit')]",
+          "Cost center": "[parameters('CostCenter')]",
+          "Disaster recovery": "[parameters('DR')]",
+          "End date of the project": "[parameters('EndDate')]",
+          "Environment": "[parameters('Env')]",
+          "Owner name": "[parameters('Owner')]",
+          "Requester name": "[parameters('Requester')]",
+          "Service class": "[parameters('ServiceClass')]",
+          "Start date of the project": "[parameters('StartDate')]",
+          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-network-',parameters('Env'),parameters('suffix'))]"
+        }
+      },
+      "ONPREM-RG": {
+        "name": "[concat('rg-',parameters('orgTag'),'-onprem-',parameters('Env'),parameters('suffix'))]",
+        "location": "[parameters('AzureRegion')]",
+        "metadata": {
+          "displayName": "Resource Group for On-premise assets"
+        },
+        "dependsOn": [],
+        "tags": {
+          "Application name": "[parameters('ApplicationName')]",
+          "Approver name": "[parameters('Approver')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Business unit": "[parameters('BusinessUnit')]",
+          "Cost center": "[parameters('CostCenter')]",
+          "Disaster recovery": "[parameters('DR')]",
+          "End date of the project": "[parameters('EndDate')]",
+          "Environment": "[parameters('Env')]",
+          "Owner name": "[parameters('Owner')]",
+          "Requester name": "[parameters('Requester')]",
+          "Service class": "[parameters('ServiceClass')]",
+          "Start date of the project": "[parameters('StartDate')]",
+          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-onprem-',parameters('Env'),parameters('suffix'))]"
+        }
+      }
+    }
+  }
+}

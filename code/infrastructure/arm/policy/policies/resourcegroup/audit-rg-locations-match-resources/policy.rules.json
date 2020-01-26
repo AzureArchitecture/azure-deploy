@@ -1,0 +1,12 @@
+{
+  "if": {
+    "field": "location",
+    "notIn": [
+      "[resourcegroup().location]",
+      "global"
+    ]
+  },
+  "then": {
+    "effect": "audit"
+  }
+}

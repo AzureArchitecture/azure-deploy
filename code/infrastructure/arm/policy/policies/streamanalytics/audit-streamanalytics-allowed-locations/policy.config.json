@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-streamanalytics-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for StreamAnalytics Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit StreamAnalytics Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Stream Analytics\"}"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "Name": "ADAP NONPROD SQL Admin",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Lets you access SQL Assets in NONPROD.",
+  "Actions": [
+    "Microsoft.Insights/alertRules/*",
+    "Microsoft.ResourceHealth/availabilityStatuses/read",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.Sql/servers/databases/read",
+    "Microsoft.Sql/servers/read",
+    "Microsoft.Sql/locations/*/read",
+    "Microsoft.Support/*",
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Compute/availabilitySets/read",
+    "Microsoft.Compute/virtualMachines/*/read",
+    "Microsoft.Compute/virtualMachines/read",
+    "Microsoft.Storage/storageAccounts/read",
+    "Microsoft.Storage/storageAccounts/*",
+    "Microsoft.Logic/*",
+    "Microsoft.ServiceBus/*",
+    "Microsoft.Web/connections/*"
+  ],
+  "NotActions": [
+
+  ],
+  "AssignableScopes": [
+    "/subscriptions/_subscriptionId"
+  ]
+}

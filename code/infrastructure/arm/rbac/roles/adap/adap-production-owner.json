@@ -1,0 +1,29 @@
+{
+  "Name": "ADAP PROD Owner",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Owner of assets in PROD.",
+  "Actions": [
+    "Microsoft.Insights/alertRules/*",
+    "Microsoft.ResourceHealth/availabilityStatuses/read",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.DataFactory/dataFactories/*",
+    "Microsoft.Sql/servers/databases/*",
+    "Microsoft.Sql/servers/*",
+    "Microsoft.Support/*",
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Compute/availabilitySets/*",
+    "Microsoft.Compute/virtualMachines/*",
+    "Microsoft.Storage/storageAccounts/*",
+    "Microsoft.Logic/*",
+    "Microsoft.ServiceBus/*",
+    "Microsoft.Web/connections/*"
+  ],
+  "NotActions": [
+
+  ],
+  "AssignableScopes": [
+    "/subscriptions/_subscriptionId"
+  ]
+}

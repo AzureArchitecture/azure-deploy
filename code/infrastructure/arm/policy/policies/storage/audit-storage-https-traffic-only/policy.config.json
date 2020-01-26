@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-https-traffic-only"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage HTTPS Traffic Only"
+    },
+    "policyDescription": {
+      "value": "Audit Storage HTTPS Traffic Only"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

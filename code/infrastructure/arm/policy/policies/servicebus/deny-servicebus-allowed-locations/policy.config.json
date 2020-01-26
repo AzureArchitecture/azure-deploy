@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-servicebus-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for ServiceBus Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny ServiceBus Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Service Bus\"}"
+    }
+  }
+}

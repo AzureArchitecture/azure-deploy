@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-subscription-external-reader"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Subscription External Reader"
+    },
+    "policyDescription": {
+      "value": "Audit Subscription External Reader"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

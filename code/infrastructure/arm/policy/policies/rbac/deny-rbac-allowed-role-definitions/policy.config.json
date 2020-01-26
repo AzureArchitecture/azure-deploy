@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-rbac-allowed-role-definitions"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for RBAC Allowed Role Definitions"
+    },
+    "policyDescription": {
+      "value": "Deny RBAC Allowed Role Definitions"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

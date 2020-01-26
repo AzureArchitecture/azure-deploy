@@ -1,0 +1,97 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "networkSecurityGroupRules": {
+      "value": [
+        {
+          "name": "RDP",
+          "properties": {
+            "priority": 1010,
+            "protocol": "TCP",
+            "access": "Allow",
+            "direction": "Inbound",
+            "sourceApplicationSecurityGroups": [],
+            "destinationApplicationSecurityGroups": [],
+            "sourceAddressPrefix": "*",
+            "sourcePortRange": "*",
+            "destinationAddressPrefix": "*",
+            "destinationPortRange": "3389"
+          }
+        },
+        {
+          "name": "SSH",
+          "properties": {
+            "priority": 1020,
+            "protocol": "TCP",
+            "access": "Allow",
+            "direction": "Inbound",
+            "sourceApplicationSecurityGroups": [],
+            "destinationApplicationSecurityGroups": [],
+            "sourceAddressPrefix": "*",
+            "sourcePortRange": "*",
+            "destinationAddressPrefix": "*",
+            "destinationPortRange": "22"
+          }
+        }
+      ]
+    },
+    "virtualNetworkId": {
+      "value": "vnet-chp-dev"
+    },
+    "virtualMachineName": {
+      "value": "vm-chp-ds-eus"
+    },
+    "subnetName": {
+      "value": "snet-chp-dev-dsvm"
+    },
+    "virtualNetworkRG": {
+      "value": "rg-chp-network-dev-eus"
+    },
+    "adminUsername": {
+      "value": "vmAdmin"
+    },
+    "adminPassword": {
+      "value": "Z1!xcvbnmnbvcxzz"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ResourceGroupName": {
+      "value": "rg-smoke"
+    },
+    "Env": {
+      "value": "dev"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    }
+  }
+}

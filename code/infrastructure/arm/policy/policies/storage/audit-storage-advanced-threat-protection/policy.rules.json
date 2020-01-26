@@ -1,0 +1,17 @@
+  {
+	"if": {
+		"allOf": [
+			{
+				"field": "type",
+				"equals": "Microsoft.Storage/storageAccounts"
+			},
+			{
+				"field": "Microsoft.Security/advancedThreatProtectionSettings/isEnabled",
+				"equals": "false"
+			}
+		]
+	},
+	"then": {
+		"effect": "Audit"
+	}
+}

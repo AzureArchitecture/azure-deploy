@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-trusted-microsoft-services"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Trusted Microsoft Services"
+    },
+    "policyDescription": {
+      "value": "Audit Storage Trusted Microsoft Services"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

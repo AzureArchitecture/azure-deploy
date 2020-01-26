@@ -1,0 +1,67 @@
+{
+    "if": {
+        "anyOf": [
+            {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.EventHub/namespaces"
+                    },
+                    {
+                        "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.defaultAction",
+                        "exists": true
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.defaultAction",
+                            "equals": "Deny"
+                        }
+                    }
+                ]
+            },
+            {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.EventHub/namespaces"
+                    },
+                    {
+                        "anyOf": [
+                            {
+                                "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.ipRules[*]",
+                                "exists": true
+                            }
+                        ]
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.ipRules[*]",
+                            "in": "[parameters('approvedIps')]"
+                        }
+                    }
+                ]
+            },
+            {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.EventHub/namespaces"
+                    },
+                    {
+                        "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.virtualNetworkRules[*].subnet.id",
+                        "exists": true
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.virtualNetworkRules[*].subnet.id",
+                            "in": "[parameters('approvedSubnets')]"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.ServiceBus/namespaces"
+      },
+      {
+        "field": "location",
+        "notIn": "[parameters('AllowedLocations')]"
+      }
+    ]
+  },
+  "then": {
+    "effect": "Audit"
+  }
+}

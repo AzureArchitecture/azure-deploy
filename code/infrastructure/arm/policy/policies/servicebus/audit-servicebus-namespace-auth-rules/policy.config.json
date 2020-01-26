@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-servicebus-namespace-auth-rules"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for ServiceBus Namespace Authorization Rules"
+    },
+    "policyDescription": {
+      "value": "Audit ServiceBus Namespace Authorization Rules"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Service Bus\"}"
+    }
+  }
+}

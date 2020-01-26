@@ -1,0 +1,35 @@
+{
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Sql/servers"
+        },
+        {
+          "not": {
+            "field": "Microsoft.Sql/servers/firewallRules/startIpAddress",
+            "in": "[parameters('approvedSqlStartingIps')]"
+          }
+        },
+        {
+          "not": {
+            "field": "Microsoft.Sql/servers/firewallRules/endIpAddress",
+            "in": "[parameters('approvedsSqlEndingIps')]"
+          }      
+        }
+      ]
+    },
+    "then": { "effect": "deny" }
+  },
+  "parameters": {
+    "approvedSqlStartingIps": {
+      "type": "Array",
+      "metadata": { "description": "List of approved starting IP addresses for Azure SQL DB" }
+    },
+    "approvedsSqlEndingIps": {
+        "type": "Array",
+        "metadata": { "description": "List of approved ending IP addresses for Azure SQL DB" }
+      }
+  }
+}

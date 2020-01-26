@@ -1,0 +1,53 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Network/networkSecurityGroups/securityRules"
+            },
+            {
+                "allOf": [
+                    {
+                        "field": "Microsoft.Network/networkSecurityGroups/securityRules/access",
+                        "equals": "Allow"
+                    },
+                    {
+                        "field": "Microsoft.Network/networkSecurityGroups/securityRules/direction",
+                        "equals": "Outbound"
+                    },
+                    {
+                        "anyOf": [
+                            {
+                                "anyOf": [
+                                    {
+                                        "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange",
+                                        "equals": "*"
+                                    },
+                                    {
+                                        "not": {
+                                            "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]",
+                                            "notEquals": "*"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "anyOf": [
+                                    {
+                                        "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationAddressPrefix",
+                                        "in": ["*", "Internet"]
+                                    },
+                                    {
+                                        "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationAddressPrefix",
+                                        "in": [ "*", "Internet" ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "then": { "effect": "deny" }
+}

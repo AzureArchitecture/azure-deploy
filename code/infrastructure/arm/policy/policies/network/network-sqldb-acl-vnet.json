@@ -1,0 +1,25 @@
+{
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Sql/servers"
+        },
+        {
+          "not": {
+            "field": "Microsoft.Sql/servers/virtualNetworkRules/virtualNetworkSubnetId",
+            "in": "[parameters('approvedSqlDbSubnets')]"
+          }
+        }
+      ]
+    },
+    "then": { "effect": "deny" }
+  },
+  "parameters": {
+    "approvedSqlDbSubnets": {
+      "type": "Array",
+      "metadata": { "description": "List of subnets IDs for access to Azure SQL DB" }
+    }
+  }
+}

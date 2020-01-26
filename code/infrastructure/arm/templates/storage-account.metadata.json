@@ -1,0 +1,11 @@
+{
+  "$schema": "https://tinyurl.com/arm-templates-metadata-schema#",
+  "dateUpdated": "2020-01-20",
+  "description": "This template creates an Azure Storage Account in the same resource group.",
+  "docUrl": "https://docs.microsoft.com/en-us/azure/storage/",
+  "githubUsername": "AzureArchitecture",
+  "itemDisplayName": "Azure Storage Account Deployment",
+  "securityControls": "CP-6.a, CP-6.b, CP-6 (1), CP-6 (2).",
+  "summary": "Creates and deploys an Azure Storage Account.",
+  "type": "SubscriptionDeployment"
+}

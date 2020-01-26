@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-keyvault-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for KeyVault Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny KeyVault Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Key Vault\"}"
+    }
+  }
+}

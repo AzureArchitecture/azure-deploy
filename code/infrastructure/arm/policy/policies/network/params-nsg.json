@@ -1,0 +1,10 @@
+{
+    "approvedNsgTags": {
+        "type": "Array",
+        "metadata": { "description": "List of approved NSG tags" }
+    },
+    "approvedDestinationCidrs": {
+        "type": "Array",
+        "metadata": { "description": "List of approved CIDR ranges" }
+    }
+}

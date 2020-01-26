@@ -1,0 +1,10 @@
+{
+  "AllowedLocations": {
+    "type": "Array",
+    "metadata": {
+      "description": "The list of locations to audit against.",
+      "strongType": "location",
+      "displayName": "Allowed locations"
+    }
+  }
+}

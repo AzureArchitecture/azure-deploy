@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-server-aadadmin"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL Server Azure Active Directory Administrator"
+    },
+    "policyDescription": {
+      "value": "Audit SQL Server Azure Active Directory Administrator"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

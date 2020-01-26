@@ -1,0 +1,15 @@
+{
+  "kind": "policyAssignment",
+  "properties": {
+    "displayName": "[afc] Apply Diagnostic Settings for Azure Resources",
+    "dependsOn": [
+      "artifact-template-loganalytics"
+    ],
+    "policyDefinitionId": "/subscriptions/323241e8-df5e-434e-b1d4-a45c3576bf80/providers/Microsoft.Authorization/policySetDefinitions/afc-diagnostic-settings-initiative",
+    "parameters": {
+      "logAnalytics": {
+        "value": "la-chp-dev-eus"
+      }
+    }
+  }
+}

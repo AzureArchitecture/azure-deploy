@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-storage-https-traffic-only"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for Storage HTTPS Traffic Only"
+    },
+    "policyDescription": {
+      "value": "Deny Storage HTTPS Traffic Only"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

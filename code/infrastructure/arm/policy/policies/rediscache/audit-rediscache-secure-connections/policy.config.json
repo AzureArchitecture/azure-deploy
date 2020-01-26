@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-rediscache-secure-connections"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for RedisCache Secure Connections"
+    },
+    "policyDescription": {
+      "value": "Audit RedisCache Secure Connections"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Cache\"}"
+    }
+  }
+}

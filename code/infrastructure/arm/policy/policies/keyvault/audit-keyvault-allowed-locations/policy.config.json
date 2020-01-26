@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-keyvault-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for KeyVault Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit KeyVault Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Key Vault\"}"
+    }
+  }
+}

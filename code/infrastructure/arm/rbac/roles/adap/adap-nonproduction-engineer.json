@@ -1,0 +1,34 @@
+{
+  "Name": "ADAP NONPROD Engineer",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Lets you edit, monitor, and manage Assets in NONPROD.",
+  "Actions": [
+    "Microsoft.Insights/alertRules/*",
+    "Microsoft.ResourceHealth/availabilityStatuses/read",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.DataFactory/dataFactories/*",
+    "Microsoft.Sql/servers/databases/*",
+    "Microsoft.Sql/servers/read",
+    "Microsoft.Sql/locations/*/read",
+    "Microsoft.Support/*",
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Compute/availabilitySets/read",
+    "Microsoft.Compute/virtualMachines/*/read",
+    "Microsoft.Compute/virtualMachines/deallocate/action",
+    "Microsoft.Compute/virtualMachines/read",
+    "Microsoft.Compute/virtualMachines/restart/action",
+    "Microsoft.Compute/virtualMachines/start/action",
+    "Microsoft.Storage/storageAccounts/*",
+    "Microsoft.Logic/*",
+    "Microsoft.ServiceBus/*",
+    "Microsoft.Web/connections/*"
+  ],
+  "NotActions": [
+
+  ],
+  "AssignableScopes": [
+    "/subscriptions/_subscriptionId"
+  ]
+}

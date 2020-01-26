@@ -1,0 +1,96 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "timezoneId": {
+      "value": "UTC"
+    },
+    "hardwareFamily": {
+      "value": "Gen5"
+    },
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "administratorLoginPassword": {
+      "value": "Z1!xcvbnmnbvcxz"
+    },
+    "collation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "SQLManagedInstanceName": {
+      "value": "sql-chp-adap-dev-eus"
+    },
+    "dnsZonePartner": {
+      "value": null
+    },
+    "virtualNetworkName": {
+      "value": "vnet-chp-dev"
+    },
+    "subnetName": {
+      "value": "snet-chp-dev-sqlmi"
+    },
+    "licenseType": {
+      "value": "LicenseIncluded"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "Env": {
+      "value": "dev"
+    },
+    "proxyOverride": {
+      "value": null
+    },
+    "skuEdition": {
+      "value": "GeneralPurpose"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "vCores": {
+      "value": 4
+    },
+    "storageSizeGb": {
+      "value": 32
+    },
+    "virtualNetworkResourceGroupName": {
+      "value": "rg-chp-network-dev-eus"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "publicDataEndpointEnabled": {
+      "value": false
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "ResourceGroupName": {
+      "value": "rg-chp-adap-dev-eus"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    },
+    "skuName": {
+      "value": "GP_Gen5"
+    },
+    "administratorLogin": {
+      "value": "sqlAdmin"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    }
+  }
+}

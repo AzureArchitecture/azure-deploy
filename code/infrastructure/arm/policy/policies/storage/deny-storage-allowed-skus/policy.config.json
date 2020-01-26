@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-storage-allowed-skus"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for Storage Allowed SKUs"
+    },
+    "policyDescription": {
+      "value": "Deny Storage Allowed SKUs"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

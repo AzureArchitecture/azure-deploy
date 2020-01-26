@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-automation-account-variables-encryption"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Automation Account Variables Encryption"
+    },
+    "policyDescription": {
+      "value": "Audit Automation Account Variables Encryption"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Automation\"}"
+    }
+  }
+}

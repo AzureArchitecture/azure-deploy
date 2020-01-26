@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "configuration": {
+      "value": {
+        "Display Name": "afc-Policy Alert",
+        "ApplicationName": "ADAP",
+        "Approver": "approver@company.org",
+        "BudgetAmount": "5.00",
+        "BusinessUnit": "CORP",
+        "CostCenter": "8675-309",
+        "DR": "Mission-Critical",
+        "EndDate": "12-31-9999",
+        "Env": "Global",
+        "Owner": "owner@company.org",
+        "Requester": "requester@company.org",
+        "ServiceClass": "Gold",
+        "StartDate": "1-1-2020"
+      }
+    },
+    "alertName": {
+      "value": "afc-azure-servicehealth"
+    },
+    "alertDescription": {
+      "value": "Alert - Azure Service Health"
+    },
+    "primaryActionGroup": {
+      "value": "ag-critical-infrastructure"
+    }
+  }
+}

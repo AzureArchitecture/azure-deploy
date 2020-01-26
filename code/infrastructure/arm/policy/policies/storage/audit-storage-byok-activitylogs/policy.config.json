@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-audit-storage-byok-activitylogs"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Account BYOK for Azure Activity Logs"
+    },
+    "policyDescription": {
+      "value": "This policy audits if the Storage account containing the container with activity logs is encrypted with BYOK. The policy works only if the storage account lies on the same subscription as activity logs by design. More information on Azure Storage encryption at rest can be found here https://aka.ms/azurestoragebyok."
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

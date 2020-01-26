@@ -1,0 +1,22 @@
+{
+  "if": {
+    "field": "type",
+    "equals": "Microsoft.Resources/subscriptions"
+  },
+  "then": {
+    "effect": "Audit",
+    "details": {
+      "type": "Microsoft.Security/complianceResults",
+      "name": "EnableMFAForOwnerPermissions",
+      "existenceCondition": {
+        "field": "Microsoft.Security/complianceResults/resourceStatus",
+        "in": [
+          "Monitored",
+          "NotApplicable",
+          "OffByPolicy",
+          "Healthy"
+        ]
+      }
+    }
+  }
+}

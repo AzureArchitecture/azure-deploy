@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-rbac-allowed-role-definitions"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for RBAC Allowed Role Definitions"
+    },
+    "policyDescription": {
+      "value": "Audit RBAC Allowed Role Definitions"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

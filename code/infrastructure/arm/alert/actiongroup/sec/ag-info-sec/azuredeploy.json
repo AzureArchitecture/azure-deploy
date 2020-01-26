@@ -1,0 +1,92 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "actionGroupName": {
+      "type": "string",
+      "minLength": 1,
+      "metadata": {
+        "description": "Name for the Action group."
+      }
+    },
+    "actionGroupShortName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12,
+      "metadata": {
+        "description": "Short name for the Action group."
+      }
+    },
+    "smsPhoneNumber": {
+      "type": "string",
+      "minLength": 0,
+      "maxLength": 10,
+      "metadata": {
+        "description": "SMS Phone number."
+      }
+    },
+    "voicePhoneNumber": {
+      "type": "string",
+      "minLength": 0,
+      "maxLength": 10,
+      "metadata": {
+        "description": "Voice Phone number."
+      }
+    },
+    "emailAddress": {
+      "type": "string",
+      "metadata": {
+        "description": "Email address."
+      }
+    },
+    "azAppPushId": {
+      "type": "string",
+      "metadata": {
+        "description": "Email address logon for Azure App Push."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "microsoft.insights/actionGroups",
+      "apiVersion": "2018-03-01",
+      "name": "[parameters('actionGroupName')]",
+      "location": "Global",
+      "properties": {
+        "groupShortName": "[parameters('actionGroupShortName')]",
+        "enabled": true,
+        "emailReceivers": [
+          {
+            "name": "[concat(parameters('actionGroupName'), '-action-EmailAction')]",
+            "emailAddress": "[parameters('emailAddress')]"
+          }
+        ],
+        "smsReceivers": [
+          {
+            "name": "[concat(parameters('actionGroupName'), '-action-SMSAction')]",
+            "countryCode": "1",
+            "phoneNumber": "[parameters('smsPhoneNumber')]"
+          }
+        ],
+        "webhookReceivers": [],
+        "itsmReceivers": [],
+        "azureAppPushReceivers": [
+          {
+            "name": "[concat(parameters('actionGroupName'), '-action-AzureAppAction')]",
+            "emailAddress": "[parameters('emailAddress')]"
+          }
+        ],
+        "automationRunbookReceivers": [],
+        "voiceReceivers": [
+          {
+            "name": "[concat(parameters('actionGroupName'), '-action-VoiceAction')]",
+            "countryCode": "1",
+            "phoneNumber": "[parameters('voicePhoneNumber')]"
+          }
+        ],
+        "logicAppReceivers": [],
+        "azureFunctionReceivers": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-logicapp-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for LogicApp Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit LogicApp Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Logic Apps\"}"
+    }
+  }
+}

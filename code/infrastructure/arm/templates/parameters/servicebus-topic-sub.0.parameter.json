@@ -1,0 +1,54 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "ServiceBusNamespaceName": {
+      "value": "sb-chp-adap-dev-eus"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "ServiceBusTopicSubName": {
+      "value": "sbt-adap-message-sub"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ServiceBusTopicName": {
+      "value": "sbt-adap-message"
+    },
+    "ResourceGroupName": {
+      "value": "rg-chp-adap-dev-eus"
+    },
+    "Env": {
+      "value": "dev"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    }
+  }
+}

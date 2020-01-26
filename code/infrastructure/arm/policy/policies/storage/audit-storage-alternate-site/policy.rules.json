@@ -1,0 +1,20 @@
+{
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "in": [
+          "Microsoft.Resources/subscriptions",
+          "Microsoft.Resources/subscriptions/resourceGroups"
+        ]
+      },
+      {
+        "value": "false",
+        "equals": "true"
+      }
+    ]
+  },
+  "then": {
+    "effect": "audit"
+  }
+}

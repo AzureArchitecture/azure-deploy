@@ -1,0 +1,71 @@
+{
+    "if": {
+        "anyOf": [
+            {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Keyvault/vaults"
+                    },
+                    {
+                        "field": "Microsoft.Keyvault/vaults/networkAcls.defaultAction",
+                        "exists": true
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Keyvault/vaults/networkAcls.defaultAction",
+                            "equals": "Deny"
+                        }
+                    }
+                ]
+            },
+            {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Keyvault/vaults"
+                    },
+                    {
+                        "anyOf": [
+                            {
+                                "field": "Microsoft.Keyvault/vaults/networkAcls.ipRules[*].value",
+                                "exists": true
+                            },
+                            {
+                                "field": "Microsoft.KeyVault/vaults/enabledForDeployment",
+                                "exists": true
+                            }
+                        ]
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Keyvault/vaults/networkAcls.ipRules[*].value",
+                            "in": "[parameters('approvedIps')]"
+                        }
+                    }
+                ]
+            },
+            {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Keyvault/vaults"
+                    },
+                    {
+                        "field": "Microsoft.Keyvault/vaults/networkAcls.virtualNetworkRules[*].id",
+                        "exists": true
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Keyvault/vaults/networkAcls.virtualNetworkRules[*].id",
+                            "in": "[parameters('approvedSubnets')]"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

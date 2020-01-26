@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {
+    "singleQuote": "'",
+    "location": "[concat('[parameters(', variables('singleQuote'), 'location', variables('singleQuote'), ')]')]",
+    "defaultafcInitiativeName": "afc-Baseline-Initiative"
+  },
+  "resources": [
+
+    {
+      "type": "Microsoft.Authorization/policySetDefinitions",
+      "name": "[variables('defaultafcInitiativeName')]",
+      "apiVersion": "2018-05-01",
+      "dependsOn": [],
+      "properties": {
+        "displayName": "[afc] Deploy Baseline Controls for Azure Resources",
+        "description": "This initiative is part of the Azure Foundational Controls Library.",
+        "metadata": {
+          "category": "Regulatory Compliance"
+        },
+        "parameters": {
+          "location": {
+            "type": "Array",
+            "metadata": {
+              "displayName": "Allowed Locations",
+              "description": "The list of locations to audit against.",
+              "strongType": "location"
+            }
+          }
+        },
+        "policyDefinitions": [
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-account-access-tier')]" },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-advanced-threat-protection')]" },
+          {
+            "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-allowedlocations')]",
+            "parameters": { "allowedLocations": { "value": "[variables('location')]" } }
+          },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-https-traffic-only')]" },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-trusted-microsoft-services')]" },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-geo-redundant')]" },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-unrestricted-network-access')]" },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-deny-storage-account-file-encryption')]" },
+          {
+            "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-deny-storage-allowed-locations')]",
+            "parameters": { "allowedLocations": { "value": "[variables('location')]" } }
+          },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-deny-storage-https-traffic-only')]" }
+        ]
+      }
+    }
+  ],
+  "outputs": {}
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-unrestricted-network-access"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Unrestricted Network Access"
+    },
+    "policyDescription": {
+      "value": "Audit Storage Unrestricted Network Access"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

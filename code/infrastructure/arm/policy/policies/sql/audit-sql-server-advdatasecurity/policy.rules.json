@@ -1,0 +1,17 @@
+{
+  "if": {
+    "field": "type",
+    "equals": "Microsoft.Sql/servers"
+  },
+  "then": {
+    "effect": "Audit",
+    "details": {
+      "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+      "name": "Default",
+      "existenceCondition": {
+        "field": "Microsoft.Sql/securityAlertPolicies.state",
+        "equals": "Enabled"
+      }
+    }
+  }
+}

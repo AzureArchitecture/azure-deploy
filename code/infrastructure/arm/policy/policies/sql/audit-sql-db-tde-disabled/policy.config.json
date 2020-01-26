@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-db-tde-disabled"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL DB TDE"
+    },
+    "policyDescription": {
+      "value": "Audit SQL DB TDE"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

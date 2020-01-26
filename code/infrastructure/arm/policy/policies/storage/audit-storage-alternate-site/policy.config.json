@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-alternate-site"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Alternate Site for Storage"
+    },
+    "policyDescription": {
+      "value": "This policy audits if the Storage account is accessible in an alternate location for regulatory compliance."
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Regulatory Compliance\"}"
+    }
+  }
+}

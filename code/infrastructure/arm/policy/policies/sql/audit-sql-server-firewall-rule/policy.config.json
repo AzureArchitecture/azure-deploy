@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-server-firewall-rule"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL Server Firewall Rules"
+    },
+    "policyDescription": {
+      "value": "Audit SQL Server Firewall Rules"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

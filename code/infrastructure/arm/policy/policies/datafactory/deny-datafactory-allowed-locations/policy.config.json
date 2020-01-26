@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-datafactory-allowedlocation"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for DataFactory Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny DataFactory Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Data Factory\"}"
+    }
+  }
+}

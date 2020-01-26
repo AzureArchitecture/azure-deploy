@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-server-allowed-locations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL Server Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit Server Allowed Locations for SQL databases"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

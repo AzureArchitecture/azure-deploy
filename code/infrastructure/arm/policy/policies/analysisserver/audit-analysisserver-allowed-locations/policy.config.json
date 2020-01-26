@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-analysisserver-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for AnalysisServer Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit AnalysisServer Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Analysis Services\"}"
+    }
+  }
+}

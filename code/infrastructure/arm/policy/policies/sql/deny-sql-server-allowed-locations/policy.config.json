@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-sql-server-allowed-locations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for SQL Server Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny SQL Server Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

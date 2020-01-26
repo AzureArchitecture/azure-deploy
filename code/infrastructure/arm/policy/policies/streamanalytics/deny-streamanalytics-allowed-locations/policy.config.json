@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-streamanalytics-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for StreamAnalytics Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny StreamAnalytics Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Stream Analytics\"}"
+    }
+  }
+}

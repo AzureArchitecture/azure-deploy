@@ -1,0 +1,214 @@
+{
+  "kind": "template",
+  "properties": {
+    "displayName": "Deploy Azure Automation Account",
+    "description": "Azure Automation Account",
+    "dependsOn": [],
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "skuName": {
+          "type": "string",
+          "defaultValue": "Basic",
+          "allowedValues": [
+            "Free",
+            "Basic"
+          ],
+          "metadata": {
+            "description": "The pricing tier of the automation account"
+          }
+        },
+        "orgTag": {
+          "type": "string",
+          "metadata": {
+            "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
+            "description": "Organization Tag"
+          },
+          "defaultValue": "chp"
+        },
+        "suffix": {
+          "type": "string",
+          "metadata": {
+            "displayName": "Enter a string to be added to the end of all resources. can also be empty string.",
+            "description": "Suffix to add to labels."
+          },
+          "defaultValue": "eus"
+        },
+        "ApplicationName": {
+          "defaultValue": "MGMT",
+          "type": "string",
+          "metadata": {
+            "description": "Name of the application, service, or workload the resource is associated with."
+          }
+        },
+        "Approver": {
+          "defaultValue": "approver@company.org",
+          "type": "string",
+          "metadata": {
+            "description": "Person responsible for approving costs related to this resource."
+          }
+        },
+        "BudgetAmount": {
+          "defaultValue": "0",
+          "type": "string",
+          "metadata": {
+            "description": "Money allocated for this application, service, or workload."
+          }
+        },
+        "BusinessUnit": {
+          "defaultValue": "CORP",
+          "type": "string",
+          "metadata": {
+            "description": "Top-level division of your company that owns the subscription or workload the resource belongs to. In smaller organizations, this tag might represent a single corporate or shared top-level organizational element."
+          }
+        },
+        "CostCenter": {
+          "defaultValue": "8675-309",
+          "type": "string",
+          "metadata": {
+            "description": "Business criticality of the application, workload, or service."
+          }
+        },
+        "DR": {
+          "defaultValue": "Mission-Critical",
+          "type": "string",
+          "metadata": {
+            "description": "Business criticality of the application, workload, or service."
+          }
+        },
+        "EndDate": {
+          "defaultValue": "9999-12-31",
+          "type": "string",
+          "metadata": {
+            "description": "Date when the application, workload, or service is scheduled for retirement."
+          }
+        },
+        "Env": {
+          "type": "string",
+          "metadata": {
+            "displayName": "Environment Tag",
+            "description": "Select the Azure environment tag: smoke, prod, uat, sandbox, dev, lab"
+          },
+          "defaultValue": "dev",
+          "allowedValues": [
+            "smoke",
+            "prod",
+            "uat",
+            "sandbox",
+            "dev",
+            "lab"
+          ]
+        },
+        "Owner": {
+          "defaultValue": "owner@company.org",
+          "type": "string",
+          "metadata": {
+            "description": "Owner of the application, workload, or service."
+          }
+        },
+        "Requester": {
+          "defaultValue": "requester@company.org",
+          "type": "string",
+          "metadata": {
+            "description": "User who requested the creation of this application."
+          }
+        },
+        "ServiceClass": {
+          "defaultValue": "Gold",
+          "type": "string",
+          "metadata": {
+            "description": "Service level agreement level of the application, workload, or service."
+          }
+        },
+        "StartDate": {
+          "defaultValue": "2020-01-01",
+          "type": "string",
+          "metadata": {
+            "description": "Date when the application, workload, or service was first deployed."
+          }
+        }
+      },
+      "variables": {
+        "automationAccountName": "[concat('auto-',parameters('orgTag'),'-shared-',parameters('Env'),parameters('suffix'))]"
+      },
+      "resources": [
+        {
+          "name": "[variables('automationAccountName')]",
+          "type": "Microsoft.Automation/automationAccounts",
+          "apiVersion": "2015-10-31",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "Display Name": "azure automation account name: [variables('automationAccountName')]",
+            "Application name": "[parameters('ApplicationName')]",
+            "Approver name": "[parameters('Approver')]",
+            "Budget required-approved": "[parameters('BudgetAmount')]",
+            "Business unit": "[parameters('BusinessUnit')]",
+            "Cost center": "[parameters('CostCenter')]",
+            "Disaster recovery": "[parameters('DR')]",
+            "End date of the project": "[parameters('EndDate')]",
+            "Environment": "[parameters('Env')]",
+            "Owner name": "[parameters('Owner')]",
+            "Requester name": "[parameters('Requester')]",
+            "Service class": "[parameters('ServiceClass')]",
+            "Start date of the project": "[parameters('StartDate')]"
+          },
+          "properties": {
+            "sku": {
+              "name": "[parameters('skuName')]"
+            }
+          }
+        }
+      ],
+      "outputs": {}
+    },
+    "resourceGroup": "SHARED-RG",
+    "parameters": {
+      "skuName": {
+        "value": "[parameters('Auto_skuName')]"
+      },
+      "orgTag": {
+        "value": "[parameters('orgTag')]"
+      },
+      "suffix": {
+        "value": "[parameters('suffix')]"
+      },
+      "ApplicationName": {
+        "value": "[parameters('ApplicationName')]"
+      },
+      "Approver": {
+        "value": "[parameters('Approver')]"
+      },
+      "BudgetAmount": {
+        "value": "[parameters('BudgetAmount')]"
+      },
+      "BusinessUnit": {
+        "value": "[parameters('BusinessUnit')]"
+      },
+      "CostCenter": {
+        "value": "[parameters('CostCenter')]"
+      },
+      "DR": {
+        "value": "[parameters('DR')]"
+      },
+      "EndDate": {
+        "value": "[parameters('EndDate')]"
+      },
+      "Env": {
+        "value": "[parameters('Env')]"
+      },
+      "Owner": {
+        "value": "[parameters('Owner')]"
+      },
+      "Requester": {
+        "value": "[parameters('Requester')]"
+      },
+      "ServiceClass": {
+        "value": "[parameters('ServiceClass')]"
+      },
+      "StartDate": {
+        "value": "[parameters('StartDate')]"
+      }
+    }
+  }
+}

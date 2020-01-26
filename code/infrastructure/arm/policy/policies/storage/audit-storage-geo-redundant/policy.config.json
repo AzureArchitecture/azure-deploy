@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-geo-redundant"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Geo-redundant"
+    },
+    "policyDescription": {
+      "value": "Audit Storage Storage Geo-redundant"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

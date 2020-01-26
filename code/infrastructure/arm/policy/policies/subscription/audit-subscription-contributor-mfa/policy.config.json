@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-subscription-contributor-mfa"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Subscription Contributor MFA"
+    },
+    "policyDescription": {
+      "value": "Audit Subscription Contributor MFA"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

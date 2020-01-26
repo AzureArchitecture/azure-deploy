@@ -1,0 +1,51 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DataFactoryName": {
+      "value": "adf-chp-adap-test-eus"
+    },
+    "apiVersion": {
+      "value": "2018-06-01"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ResourceGroupName": {
+      "value": "rg-smoke"
+    },
+    "Env": {
+      "value": "test"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    }
+  }
+}

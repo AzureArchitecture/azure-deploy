@@ -1,0 +1,17 @@
+{
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.StreamAnalaytics/streamingjobs"
+      },
+      {
+        "field": "location",
+        "notIn": "[parameters('AllowedLocations')]"
+      }
+    ]
+  },
+  "then": {
+    "effect": "Audit"
+  }
+}

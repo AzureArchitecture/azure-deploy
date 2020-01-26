@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-subscription-max-owners"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Subscription Max Owners"
+    },
+    "policyDescription": {
+      "value": "Audit Subscription Max Owners"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

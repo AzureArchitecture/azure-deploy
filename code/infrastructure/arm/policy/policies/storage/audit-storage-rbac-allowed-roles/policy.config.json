@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-rbac-allowed-role-definitions"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage RBAC Allowed Role Definitions"
+    },
+    "policyDescription": {
+      "value": "Audit Storage RBAC Allowed Role Definitions"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

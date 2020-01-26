@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-datalakestore-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for DataLakeStore Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit DataLakeStore Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Data Lake\"}"
+    }
+  }
+}

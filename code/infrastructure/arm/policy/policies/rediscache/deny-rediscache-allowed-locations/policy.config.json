@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-rediscache-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for RedisCache Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny RedisCache Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Cache\"}"
+    }
+  }
+}

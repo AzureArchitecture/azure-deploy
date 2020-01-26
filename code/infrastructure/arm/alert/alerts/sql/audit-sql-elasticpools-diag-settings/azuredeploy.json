@@ -1,0 +1,85 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "configuration": {
+      "type": "object",
+      "metadata": {
+        "description": "Configuration for this resource"
+      }
+    },
+    "policyName": {
+      "type": "string"
+    },
+    "laWorkspaceName": {
+      "type": "string"
+    },
+    "laResourceGroupName": {
+      "type": "string"
+    },
+    "alertFrequency": {
+      "type": "int"
+    },
+    "alertTime": {
+      "type": "int"
+    },
+    "alertSeverity": {
+      "type": "int"
+    },
+    "primaryActionGroup": {
+      "type": "string"
+    },
+    "secondaryActionGroup": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "singleQuote": "'",
+    "apiVersions": {
+      "scheduledQueryRules": "2018-04-16",
+      "workspaces": "2015-11-01-preview"
+    },
+    "policyQuery": "[concat('AzureActivity \r\n| where OperationName contains ',variables('singleQuote'), 'policies',variables('singleQuote'), ' and Properties contains ', variables('singleQuote'), '', parameters('policyName'), '', variables('singleQuote'), ' and Level contains ', variables('singleQuote'), 'Warning', variables('singleQuote') )]"
+  },
+  "resources": [
+    {
+      "name": "[concat(parameters('policyName'),'-alert')]",
+      "type": "Microsoft.Insights/scheduledQueryRules",
+      "apiVersion": "2018-04-16",
+      "location": "[resourceGroup().location]",
+      "tags": "[parameters('configuration')]",
+      "properties": {
+        "description": "[concat('Policy Alert for ', parameters('policyName'))]",
+        "enabled": "true",
+        "source": {
+          "query": "[variables( 'policyQuery' )]",
+          "dataSourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', parameters('laResourceGroupName'), '/providers/microsoft.operationalinsights/workspaces/', parameters('laWorkspaceName'))]",
+          "queryType": "ResultCount"
+        },
+        "schedule": {
+          "frequencyInMinutes": "[parameters( 'alertFrequency' )]",
+          "timeWindowInMinutes": "[parameters( 'alertTime' )]"
+        },
+        "action": {
+          "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.Microsoft.AppInsights.Nexus.DataContracts.Resources.ScheduledQueryRules.AlertingAction",
+          "severity": "[parameters( 'alertSeverity' )]",
+          "throttlingInMin": 0,
+          "aznsAction": {
+            "actionGroup": [
+              "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/microsoft.insights/actionGroups/', parameters('primaryActionGroup'))]",
+              "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/microsoft.insights/actionGroups/', parameters('secondaryActionGroup'))]"
+            ],
+            "emailSubject": "[concat('Policy Alert - ', parameters('policyName'))]",
+            "customWebhookPayload": "{}"
+          },
+          "trigger": {
+            "thresholdOperator": "GreaterThan",
+            "threshold": 0
+          }
+        }
+      }
+    }
+
+  ],
+  "outputs": {}
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-sql-server-threat-detection"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for SQL Server Level Threat Detection"
+    },
+    "policyDescription": {
+      "value": "Audit SQL Server Level Threat Detection"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

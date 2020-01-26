@@ -1,0 +1,86 @@
+{
+    "properties": {
+        "displayName": "Audit existence of network rules on Event Hub entities",
+        "description": "Enforces Event Hubs are in a private configuration with network-level access only to approved IP addresses and Azure subnets",
+        "metadata": {
+            "category": "Event Hub"
+        },
+        "mode": "Indexed",
+        "parameters": {
+            "approvedEventHubIps": {
+              "type": "Array",
+              "metadata": { "description": "List of approved external IP addresses" }
+            },
+            "approvedEventHubSubnets": {
+                "type": "Array",
+                "metadata": { "description": "List of resource IDs of approved subnets" }
+            }
+        },
+        "policyRule": {
+            "if": {
+              "anyOf": [
+                {
+                  "allOf": [
+                    {
+                      "field": "type",
+                      "equals": "Microsoft.EventHub/namespaces"
+                    },
+                    {
+                      "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.defaultAction",
+                      "exists": true
+                    },
+                    {
+                      "not": {
+                        "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.defaultAction",
+                        "equals": "Deny"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "field": "type",
+                      "equals": "Microsoft.EventHub/namespaces"
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.ipRules[*].value",
+                          "exists": true
+                        }
+                      ]
+                    },
+                    {
+                      "not":
+                      {
+                        "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.ipRules[*].value",
+                        "in": "[parameters('approvedEventHubIps')]"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "field": "type",
+                      "equals": "Microsoft.EventHub/namespaces"
+                    },
+                    {
+                      "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.virtualNetworkRules[*].subnet.id",
+                      "exists": true
+                    },
+                    {
+                      "not": {
+                        "field": "Microsoft.EventHub/namespaces/networkRuleSets/default.virtualNetworkRules[*].subnet.id",
+                        "in": "[parameters('approvedEventHubSubnets')]"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "then": { "effect": "deny" }
+        }
+    }
+}

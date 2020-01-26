@@ -1,0 +1,20 @@
+{
+  "Name": "ADAP Billing Reader",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Allows read access to billing data",
+  "Actions": [
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Billing/*/read",
+    "Microsoft.Consumption/*/read",
+    "Microsoft.Commerce/*/read",
+    "Microsoft.Management/managementGroups/read",
+    "Microsoft.Support/*"
+  ],
+  "NotActions": [
+
+  ],
+  "AssignableScopes": [
+    "/subscriptions/_subscriptionId"
+  ]
+}

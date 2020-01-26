@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-sql-db-tde-disabled"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for SQL DB TDE"
+    },
+    "policyDescription": {
+      "value": "Deny SQL DB TDE"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"SQL\"}"
+    }
+  }
+}

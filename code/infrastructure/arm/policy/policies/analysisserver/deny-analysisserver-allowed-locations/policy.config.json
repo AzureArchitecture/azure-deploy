@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-analysisserver-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for AnalysisServer Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny AnalysisServer Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Analysis Services\"}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-subscription-external-contributor"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Subscription External Contributor"
+    },
+    "policyDescription": {
+      "value": "Audit Subscription External Contributor"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"RBAC\"}"
+    }
+  }
+}

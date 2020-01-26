@@ -1,0 +1,11 @@
+{
+  "$schema": "https://tinyurl.com/arm-templates-metadata-schema#",
+  "dateUpdated": "2020-01-20",
+  "description": "This template creates an Azure Service Bus Topic in the provided Azure Service Bus Namespace.",
+  "docUrl": "https://docs.microsoft.com/en-us/azure/service-bus/",
+  "githubUsername": "AzureArchitecture",
+  "itemDisplayName": "Azure Service Bus Topic Deployment",
+  "securityControls": "TBD",
+  "summary": "Creates and deploys an Azure Service Bus Topic.",
+  "type": "SubscriptionDeployment"
+}

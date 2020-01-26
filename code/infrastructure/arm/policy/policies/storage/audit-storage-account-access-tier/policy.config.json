@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-account-access-tier"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Account Access Tier"
+    },
+    "policyDescription": {
+      "value": "Audit Storage Account Access Tier"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

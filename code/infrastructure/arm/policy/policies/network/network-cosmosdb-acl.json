@@ -1,0 +1,63 @@
+{
+  "if": {
+    "anyOf": [
+      {
+        "allOf" : [
+          {
+            "field": "type",
+            "equals": "Microsoft.DocumentDB/databaseAccounts"
+          },
+          {
+            "field": "Microsoft.DocumentDB/databaseAccounts/isVirtualNetworkFilterEnabled",
+            "exists": true
+          },
+          {
+            "not": {
+              "field": "Microsoft.DocumentDB/databaseAccounts/isVirtualNetworkFilterEnabled",
+              "equals": "true"
+            }
+          }
+        ]
+      },
+      {
+        "allOf" : [
+          {
+            "field": "type",
+            "equals": "Microsoft.DocumentDB/databaseAccounts"
+          },
+          {
+            "field": "Microsoft.DocumentDB/databaseAccounts/ipRangeFilter",
+            "exists": true
+          },
+          {
+            "not": {
+              "field": "Microsoft.DocumentDB/databaseAccounts/ipRangeFilter",
+              "equals": "[parameters('approvedIpsCosmosDb')]"
+            }
+          }
+        ]
+      },
+      {
+        "allOf" : [
+          {
+            "field": "type",
+            "equals": "Microsoft.DocumentDB/databaseAccounts"
+          },
+          {
+            "field": "Microsoft.DocumentDB/databaseAccounts/virtualNetworkRules[*]",
+            "exists": true
+          },
+          {
+            "not": {
+              "field": "Microsoft.DocumentDB/databaseAccounts/virtualNetworkRules[*].id",
+              "in": "[parameters('approvedSubnets')]"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "Name": "MSP NONPROD Engineer",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Lets you edit, monitor, and manage Assets in NONPROD.",
+  "Actions": [
+    "Microsoft.Insights/*",
+    "Microsoft.ResourceHealth/*",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/subscriptions/*",
+    "Microsoft.DataFactory/*",
+    "Microsoft.Sql/servers/databases/*",
+    "Microsoft.Sql/servers/*",
+    "Microsoft.Support/*",
+    "Microsoft.Authorization/*",
+    "Microsoft.Compute/*",
+    "Microsoft.Storage/*",
+    "Microsoft.Logic/*",
+    "Microsoft.ServiceBus/*",
+    "Microsoft.Web/*"
+  ],
+  "NotActions": [
+
+  ],
+  "AssignableScopes": [
+    "/subscriptions/_subscriptionId"
+  ]
+}

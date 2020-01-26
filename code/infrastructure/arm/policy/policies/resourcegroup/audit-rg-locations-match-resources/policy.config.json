@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-rg-locations-match-resources"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for RG Locations Match Resources"
+    },
+    "policyDescription": {
+      "value": "Audit RG Locations Match Resources"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Resource Group\"}"
+    }
+  }
+}

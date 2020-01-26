@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-dataFactory-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for DataFactory Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Audit DataFactory Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Data Factory\"}"
+    }
+  }
+}

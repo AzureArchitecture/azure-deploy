@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-streamanalytics-rbac-allowed-role-definitions"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for StreamAnalytics RBAC Allowed Role Definitions"
+    },
+    "policyDescription": {
+      "value": "Audit StreamAnalytics RBAC Allowed Role Definitions"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Stream Analytics\"}"
+    }
+  }
+}

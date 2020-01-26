@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-datalakestore-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for DataLakeStore Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny DataLakeStore Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Data Lake\"}"
+    }
+  }
+}

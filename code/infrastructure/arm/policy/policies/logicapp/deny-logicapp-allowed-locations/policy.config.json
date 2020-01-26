@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-logicapp-allowedlocations"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for LogicApp Allowed Locations"
+    },
+    "policyDescription": {
+      "value": "Deny LogicApp Allowed Locations"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Logic Apps\"}"
+    }
+  }
+}

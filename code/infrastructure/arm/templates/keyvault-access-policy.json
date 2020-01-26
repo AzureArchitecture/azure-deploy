@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "keyVaultName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of keyvault to add permissions to"
+            }
+        },
+        "servicePrincipalObjectId": {
+            "type": "string",
+            "metadata": {
+                "description": "ObjectId of the ServicePrincipal"
+            }
+        },
+        "keyPermissions": {
+            "type": "array",
+            "defaultValue": []
+        },
+        "secretPermissions": {
+            "type": "array",
+            "defaultValue": [ "get" ]
+        },
+        "certificatePermissions": {
+            "type": "array",
+            "defaultValue": []
+        },
+        "storagePermissions": {
+            "type": "array",
+            "defaultValue": []
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults/accessPolicies",
+            "name": "[concat(parameters('keyVaultName'), '/add')]",
+            "apiVersion": "2018-02-14",
+            "properties": {
+                "accessPolicies": [
+                    {
+                        "tenantId": "[subscription().tenantId]",
+                        "objectId": "[parameters('servicePrincipalObjectId')]",
+                        "permissions": {
+                            "keys": "[parameters('keyPermissions')]",
+                            "secrets": "[parameters('secretPermissions')]",
+                            "certificates": "[parameters('certificatePermissions')]",
+                            "storage": "[parameters('storagePermissions')]"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

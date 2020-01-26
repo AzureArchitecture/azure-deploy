@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-deny-storage-account-file-encryption"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Deny Policy for Storage Account File Encryption"
+    },
+    "policyDescription": {
+      "value": "Deny Storage Account File Encryption"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}
