@@ -1,5 +1,3 @@
-
-
 #--- Enable developer mode on the system ---
 Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
 
@@ -16,7 +14,7 @@ Set-TaskbarOptions -Dock Bottom -Combine Always -AlwaysShowIconsOn
 # disabled bing search in start menu
 Write-Output "Disabling Bing Search in start menu"
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
-If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search")) {  
+If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search")) {
     New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Force | Out-Null
 }
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -Type DWord -Value 1
@@ -43,7 +41,6 @@ If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDe
 }
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -Type DWord -Value 0
 
-
 # Disable Cortana
 Write-Output "Disabling Cortana"
 If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Personalization\Settings")) {
@@ -64,7 +61,6 @@ If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search")) {
 }
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "AllowCortana" -Type DWord -Value 0
 
-
 # Hide taskbar search box
 Write-Output "Hiding task bar search box"
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
@@ -79,7 +75,6 @@ If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanc
     New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
 }
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
-
 
 #--- Setup Environment ---
 
@@ -96,44 +91,39 @@ $WshShell = New-Object -comObject WScript.Shell
 # $Shortcut.Save()
 
 Write-Output "Modifying Quick Access" # quick access - https://gallery.technet.microsoft.com/scriptcenter/Set-QuickAccess-117e9a89
-$QuickAccess = New-Object -ComObject shell.application 
+$QuickAccess = New-Object -ComObject shell.application
 
 ## Pin items to home
 $TargetObject = $QuickAccess.Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() | Where-Object {$_.Path -eq "$home"}
-if ($TargetObject -eq $null -And (Test-Path $home)) 
+if ($TargetObject -eq $null -And (Test-Path $home))
 {
     $QuickAccess.Namespace("$home").Self.InvokeVerb("pintohome")
 }
 
 $TargetObject = $QuickAccess.Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() | Where-Object {$_.Path -eq "$home\code"}
-if ($TargetObject -eq $null -And (Test-Path "$home\code")) 
+if ($TargetObject -eq $null -And (Test-Path "$home\code"))
 {
     $QuickAccess.Namespace("$home\code").Self.InvokeVerb("pintohome")
 }
 
 ## Unpin items from home
 $TargetObject = $QuickAccess.Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() | Where-Object {$_.Path -eq "$home\Pictures"}
-if ($TargetObject -ne $null) 
+if ($TargetObject -ne $null)
 {
-    $TargetObject.InvokeVerb("unpinfromhome") 
+    $TargetObject.InvokeVerb("unpinfromhome")
 }
 
 $TargetObject = $QuickAccess.Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() | Where-Object {$_.Path -eq "$home\Documents"}
-if ($TargetObject -ne $null) 
+if ($TargetObject -ne $null)
 {
-    $TargetObject.InvokeVerb("unpinfromhome") 
+    $TargetObject.InvokeVerb("unpinfromhome")
 }
 
 $TargetObject = $QuickAccess.Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() | Where-Object {$_.Path -eq "$home\Downloads"}
-if ($TargetObject -ne $null) 
+if ($TargetObject -ne $null)
 {
-    $TargetObject.InvokeVerb("unpinfromhome") 
+    $TargetObject.InvokeVerb("unpinfromhome")
 }
-
-## Create taskbar shortcuts
-Write-Output "Creating taskbar shortcuts"
-Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Google\Chrome\Application\chrome.exe"
-Install-ChocolateyPinnedTaskBarItem "$home\AppData\Local\Programs\Microsoft VS Code\Code.exe"
 
 ## Create PROVISIONING_README.txt
 Write-Output "Creating PROVISIONING_README.txt"
@@ -159,9 +149,3 @@ if (Test-Path "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\
 }
 '@ | Out-File $profile -Append;
 }
-
-
-# windows updates
-Write-Output "Installing Windows Updates"
-Install-WindowsUpdate -AcceptEula -GetUpdatesFromMS
-

@@ -7,63 +7,71 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "arm", "arm", "{DFFA9BE8-D36
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "arm", "arm\arm.deployproj", "{17A77420-05A5-4E88-AE45-3369067351D0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{2FA7C670-9963-492C-879D-3CDC7F191D85}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{31FD6E4A-2A30-477F-8567-A6D9FEB41761}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ps", "ps", "{9108AA84-4796-4F46-B8DB-4DB01C3587CA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ps", "ps", "{C9A28607-0A2C-4945-A660-F61A32069FEC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{0207CD38-0FDE-45EE-B200-A5581A8AFE91}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{1DEDFBA5-F158-4322-8767-3999E74DB0E4}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\ps\azure\create-adap-platform-docs.ps1 = scripts\ps\azure\create-adap-platform-docs.ps1
 		scripts\ps\azure\deploy-adap-platform.ps1 = scripts\ps\azure\deploy-adap-platform.ps1
+		scripts\ps\azure\deploy-devops-project.ps1 = scripts\ps\azure\deploy-devops-project.ps1
 		scripts\ps\azure\readme.md = scripts\ps\azure\readme.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ad", "ad", "{906B33F6-E199-4E47-BB60-D1F8A6026F59}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ad", "ad", "{3C9C6B2B-CEC1-4AA7-9296-6CF171032651}"
 	ProjectSection(SolutionItems) = preProject
+		scripts\ps\azure\ad\deploy-azure-ad-groups.ps1 = scripts\ps\azure\ad\deploy-azure-ad-groups.ps1
 		scripts\ps\azure\ad\deploy-azure-ad-users.ps1 = scripts\ps\azure\ad\deploy-azure-ad-users.ps1
 		scripts\ps\azure\ad\deploy-azure-service-principal.ps1 = scripts\ps\azure\ad\deploy-azure-service-principal.ps1
 		scripts\ps\azure\ad\import-azure-ad-groups.ps1 = scripts\ps\azure\ad\import-azure-ad-groups.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "alert", "alert", "{6D3479AB-EA5F-4437-96B0-E695A4D99130}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "alert", "alert", "{573D1A26-A32A-4E84-906F-A68FDE7A479A}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\alert\deploy-azure-action-group-defs.ps1 = scripts\ps\azure\alert\deploy-azure-action-group-defs.ps1
 		scripts\ps\azure\alert\deploy-azure-alert-defs.ps1 = scripts\ps\azure\alert\deploy-azure-alert-defs.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "arm", "arm", "{CF28897D-C77D-479B-9FF2-60033FD84944}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "arm", "arm", "{4661834F-40F2-41CC-932F-18F606220771}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\arm\arm-template.doc.ps1 = scripts\ps\azure\arm\arm-template.doc.ps1
 		scripts\ps\azure\arm\create-arm-template-parameter-files.ps1 = scripts\ps\azure\arm\create-arm-template-parameter-files.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "automation", "automation", "{875E31D7-3925-4BB6-8ABF-DC4316DEA45E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "automation", "automation", "{5D66DBBA-792D-42DE-A05E-E5A4FB066B58}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\automation\export-azure-auto-runbooks.ps1 = scripts\ps\azure\automation\export-azure-auto-runbooks.ps1
 		scripts\ps\azure\automation\import-azure-auto-runbooks.ps1 = scripts\ps\azure\automation\import-azure-auto-runbooks.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blueprint", "blueprint", "{E550F169-BF3E-4837-84A0-861826B3D9B8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blueprint", "blueprint", "{529B411C-6BA0-4057-B744-D535FA81B8BF}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\blueprint\deploy-azure-blueprint-definitions.ps1 = scripts\ps\azure\blueprint\deploy-azure-blueprint-definitions.ps1
 		scripts\ps\azure\blueprint\export-azure-blueprint-definitions.ps1 = scripts\ps\azure\blueprint\export-azure-blueprint-definitions.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{5B6AE73D-4E90-4153-B5BA-BC56FFCAD577}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{5AB1429C-ED10-4FFB-B3B3-481EC9FABDFA}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\ps\azure\common\azure-common.psd1 = scripts\ps\azure\common\azure-common.psd1
 		scripts\ps\azure\common\azure-common.psm1 = scripts\ps\azure\common\azure-common.psm1
+		scripts\ps\azure\common\devops-common.ps1 = scripts\ps\azure\common\devops-common.ps1
+		scripts\ps\azure\common\install-module.ps1 = scripts\ps\azure\common\install-module.ps1
 		scripts\ps\azure\common\remove-azure-all.ps1 = scripts\ps\azure\common\remove-azure-all.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{D3795CD4-48BA-46C3-8A13-DBA14005F813}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{4DFB010D-008E-45E1-8025-B3792AE0A8A6}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\ps\azure\config\adap-cmdb.txt = scripts\ps\azure\config\adap-cmdb.txt
 		scripts\ps\azure\config\adap-cmdb.xlsm = scripts\ps\azure\config\adap-cmdb.xlsm
-		scripts\ps\azure\config\adap-configuration.psm1 = scripts\ps\azure\config\adap-configuration.psm1
+		scripts\ps\azure\config\devops-cmdb.xlsx = scripts\ps\azure\config\devops-cmdb.xlsx
+		scripts\ps\azure\config\variable-group-dev-vars.csv = scripts\ps\azure\config\variable-group-dev-vars.csv
+		scripts\ps\azure\config\variable-group-features.csv = scripts\ps\azure\config\variable-group-features.csv
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "policy", "policy", "{8140826B-CBB2-46D3-B5DF-FF5374047757}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devops", "devops", "{1775A63E-6319-44A2-BB7A-433671D11E28}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\azure\devops\import-devops-project.ps1 = scripts\ps\azure\devops\import-devops-project.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "policy", "policy", "{827E605E-6FB3-442C-BA3E-4BDBF9715E2F}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\policy\arm-policy.doc.ps1 = scripts\ps\azure\policy\arm-policy.doc.ps1
 		scripts\ps\azure\policy\assign-azure-policies.ps1 = scripts\ps\azure\policy\assign-azure-policies.ps1
@@ -74,28 +82,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "policy", "policy", "{814082
 		scripts\ps\azure\policy\export-azure-policy-initiatives.ps1 = scripts\ps\azure\policy\export-azure-policy-initiatives.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reports", "reports", "{EF1A1C13-5CD3-448F-9B8E-5E25D7C80352}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reports", "reports", "{B19DD828-6876-4FBC-A802-4006F061DBE9}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\reports\auto-azure-access.ps1 = scripts\ps\azure\reports\auto-azure-access.ps1
 		scripts\ps\azure\reports\auto-azure-rbac.ps1 = scripts\ps\azure\reports\auto-azure-rbac.ps1
 		scripts\ps\azure\reports\auto-azure-sql-backup.ps1 = scripts\ps\azure\reports\auto-azure-sql-backup.ps1
 		scripts\ps\azure\reports\auto-azure-tags.ps1 = scripts\ps\azure\reports\auto-azure-tags.ps1
 		scripts\ps\azure\reports\auto-azure-vm-backup.ps1 = scripts\ps\azure\reports\auto-azure-vm-backup.ps1
+		scripts\ps\azure\reports\create-adap-platform-docs.ps1 = scripts\ps\azure\reports\create-adap-platform-docs.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "role", "role", "{F721019B-E3A8-4D10-8C91-3BF8D6D7B444}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "role", "role", "{CF6F2AEE-52E7-46F0-9C82-D8F845FF775C}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\role\assign-azure-roles.ps1 = scripts\ps\azure\role\assign-azure-roles.ps1
 		scripts\ps\azure\role\deploy-azure-role-definitions.ps1 = scripts\ps\azure\role\deploy-azure-role-definitions.ps1
 		scripts\ps\azure\role\export-azure-roles.ps1 = scripts\ps\azure\role\export-azure-roles.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "security", "security", "{0D550510-9C92-4D17-AAA7-ED93A751553C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "security", "security", "{00F9CBE3-D3F1-420A-ADA4-8A1D61765F89}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\security\execute-azure-security-tests.ps1 = scripts\ps\azure\security\execute-azure-security-tests.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{46118AD2-427F-4D7F-9479-0ED55650655B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1FC0A479-7732-4994-A15E-B410D473996E}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\test\arm-test.xml = scripts\ps\azure\test\arm-test.xml
 		scripts\ps\azure\test\data-factory.tests.ps1 = scripts\ps\azure\test\data-factory.tests.ps1
@@ -105,6 +114,184 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{46118AD2-4
 		scripts\ps\azure\test\sql-server.tests.ps1 = scripts\ps\azure\test\sql-server.tests.ps1
 		scripts\ps\azure\test\storage-account.tests.ps1 = scripts\ps\azure\test\storage-account.tests.ps1
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{CF17CB03-37C4-414A-99E1-1C3829B40071}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Az.DevOps", "Az.DevOps", "{A63BA1E0-9265-43EC-B359-CED93626CC09}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\Az.DevOps.psd1 = scripts\ps\modules\Az.DevOps\Az.DevOps.psd1
+		scripts\ps\modules\Az.DevOps\Import-Az.DevOpsModules.ps1 = scripts\ps\modules\Az.DevOps\Import-Az.DevOpsModules.ps1
+		scripts\ps\modules\Az.DevOps\README.md = scripts\ps\modules\Az.DevOps\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".vs", ".vs", "{7D1F607F-C98E-4111-89DB-0F8A0B7095CE}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\.vs\ProjectSettings.json = scripts\ps\modules\Az.DevOps\.vs\ProjectSettings.json
+		scripts\ps\modules\Az.DevOps\.vs\slnx.sqlite = scripts\ps\modules\Az.DevOps\.vs\slnx.sqlite
+		scripts\ps\modules\Az.DevOps\.vs\VSWorkspaceState.json = scripts\ps\modules\Az.DevOps\.vs\VSWorkspaceState.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Az.DevOps", "Az.DevOps", "{D15E7671-54E4-4FC1-85C1-454AB57E8EF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v16", "v16", "{B10EB6F6-193B-4541-9153-8379C88BDFCC}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\.vs\Az.DevOps\v16\.suo = scripts\ps\modules\Az.DevOps\.vs\Az.DevOps\v16\.suo
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{AF8D8AAB-7B13-4919-8D36-EF10DB9D7DF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builds", "Builds", "{19E98CA1-AD6C-43D6-A57D-526D75C84347}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\Builds\Add-AzDoBuildPipelineVariable.psm1 = scripts\ps\modules\Az.DevOps\modules\Builds\Add-AzDoBuildPipelineVariable.psm1
+		scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuildDefinition.psm1 = scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuildDefinition.psm1
+		scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuildPipelineVariables.psm1 = scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuildPipelineVariables.psm1
+		scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuilds.psm1 = scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuilds.psm1
+		scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuildWorkItems.psm1 = scripts\ps\modules\Az.DevOps\modules\Builds\Get-AzDoBuildWorkItems.psm1
+		scripts\ps\modules\Az.DevOps\modules\Builds\Remove-AzDoBuildPipelineVariable.psm1 = scripts\ps\modules\Az.DevOps\modules\Builds\Remove-AzDoBuildPipelineVariable.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{A8918062-464F-4B32-8A08-6F72E4A67349}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Add-AzDoLibrarySecurityRole.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Add-AzDoLibrarySecurityRole.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Add-AzDoVariableGroupResourceAssignment.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Add-AzDoVariableGroupResourceAssignment.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Add-AzDoVariableGroupVariable.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Add-AzDoVariableGroupVariable.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Get-AzDoVariableGroupResourceAssignments.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Get-AzDoVariableGroupResourceAssignments.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Get-AzDoVariableGroupRoleDefinitions.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Get-AzDoVariableGroupRoleDefinitions.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Get-AzDoVariableGroups.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Get-AzDoVariableGroups.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Import-AzDoVariableGroupVariables.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Import-AzDoVariableGroupVariables.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\New-AzDoVariableGroup.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\New-AzDoVariableGroup.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoLibrarySecurityRole.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoLibrarySecurityRole.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoVariableGroup.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoVariableGroup.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoVariableGroupResourceAssignment.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoVariableGroupResourceAssignment.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoVariableGroupVariable.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Remove-AzDoVariableGroupVariable.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Reset-AzDoVariableGroup.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Reset-AzDoVariableGroup.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Set-AzDoVariableGroupPermissionInheritance.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Set-AzDoVariableGroupPermissionInheritance.psm1
+		scripts\ps\modules\Az.DevOps\modules\Libraries\Set-AzDoVariableGroupVariable.psm1 = scripts\ps\modules\Az.DevOps\modules\Libraries\Set-AzDoVariableGroupVariable.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{17EDE1E1-2D86-4770-81D2-1338784BD56C}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\Projects\Get-AzDoProjectDetails.psm1 = scripts\ps\modules\Az.DevOps\modules\Projects\Get-AzDoProjectDetails.psm1
+		scripts\ps\modules\Az.DevOps\modules\Projects\Get-AzDoProjects.psm1 = scripts\ps\modules\Az.DevOps\modules\Projects\Get-AzDoProjects.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{48EED5E9-41C5-4A95-94A2-4DB744F75335}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\Releases\Add-AzDoReleasePipelineVaraibleGroup.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Add-AzDoReleasePipelineVaraibleGroup.psm1
+		scripts\ps\modules\Az.DevOps\modules\Releases\Add-AzDoReleasePipelineVariable.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Add-AzDoReleasePipelineVariable.psm1
+		scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoRelease.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoRelease.psm1
+		scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleaseDefinition.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleaseDefinition.psm1
+		scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleasePipelineVariableGroups.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleasePipelineVariableGroups.psm1
+		scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleasePipelineVariables.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleasePipelineVariables.psm1
+		scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleaseWorkItems.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Get-AzDoReleaseWorkItems.psm1
+		scripts\ps\modules\Az.DevOps\modules\Releases\Remove-AzDoReleasePipelineVariable.psm1 = scripts\ps\modules\Az.DevOps\modules\Releases\Remove-AzDoReleasePipelineVariable.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repos", "Repos", "{DE09C406-0DB1-4052-B34A-BA981C689548}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\Repos\Add-AzDoGitRepoBranch.psm1 = scripts\ps\modules\Az.DevOps\modules\Repos\Add-AzDoGitRepoBranch.psm1
+		scripts\ps\modules\Az.DevOps\modules\Repos\Get-AzDoGitRepoBranches.psm1 = scripts\ps\modules\Az.DevOps\modules\Repos\Get-AzDoGitRepoBranches.psm1
+		scripts\ps\modules\Az.DevOps\modules\Repos\Get-AzDoGitRepos.psm1 = scripts\ps\modules\Az.DevOps\modules\Repos\Get-AzDoGitRepos.psm1
+		scripts\ps\modules\Az.DevOps\modules\Repos\New-AzDoGitRepo.psm1 = scripts\ps\modules\Az.DevOps\modules\Repos\New-AzDoGitRepo.psm1
+		scripts\ps\modules\Az.DevOps\modules\Repos\Remove-AzDoGitRepo.psm1 = scripts\ps\modules\Az.DevOps\modules\Repos\Remove-AzDoGitRepo.psm1
+		scripts\ps\modules\Az.DevOps\modules\Repos\Remove-AzDoGitRepoBranch.psm1 = scripts\ps\modules\Az.DevOps\modules\Repos\Remove-AzDoGitRepoBranch.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{11DAB150-12BB-43B1-8B5F-50196B13B8F4}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\Security\Add-AzDoSecurityGroupMember.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Add-AzDoSecurityGroupMember.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoIdentities.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoIdentities.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoSecurityGroupMemebers.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoSecurityGroupMemebers.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoSecurityGroups.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoSecurityGroups.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoSubjectLookup.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoSubjectLookup.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoTeamMembers.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoTeamMembers.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoTeams.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoTeams.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoUserDetails.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoUserDetails.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoUserEntitlements.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoUserEntitlements.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoUsers.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Get-AzDoUsers.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\New-AzDoSecurityGroup.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\New-AzDoSecurityGroup.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\New-AzDoTeam.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\New-AzDoTeam.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Remove-AzDoSecurityGroup.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Remove-AzDoSecurityGroup.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Remove-AzDoSecurityGroupMember.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Remove-AzDoSecurityGroupMember.psm1
+		scripts\ps\modules\Az.DevOps\modules\Security\Remove-AzDoTeam.psm1 = scripts\ps\modules\Az.DevOps\modules\Security\Remove-AzDoTeam.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceEndpoints", "ServiceEndpoints", "{BA6FFB94-28D8-45CF-85A0-7AC52C28BF5E}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\ServiceEndpoints\Add-AzDoServiceEndpointSecurityRole.psm1 = scripts\ps\modules\Az.DevOps\modules\ServiceEndpoints\Add-AzDoServiceEndpointSecurityRole.psm1
+		scripts\ps\modules\Az.DevOps\modules\ServiceEndpoints\Get-AzDoServiceEndpoints.psm1 = scripts\ps\modules\Az.DevOps\modules\ServiceEndpoints\Get-AzDoServiceEndpoints.psm1
+		scripts\ps\modules\Az.DevOps\modules\ServiceEndpoints\Get-AzDoServiceEndpointSecurityRoles.psm1 = scripts\ps\modules\Az.DevOps\modules\ServiceEndpoints\Get-AzDoServiceEndpointSecurityRoles.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{6EC70347-7248-46F8-BEBF-37208F6041B2}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\modules\Utilities\Connect-AzDo.psm1 = scripts\ps\modules\Az.DevOps\modules\Utilities\Connect-AzDo.psm1
+		scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoActiveConnection.psm1 = scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoActiveConnection.psm1
+		scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoApiUrl.psm1 = scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoApiUrl.psm1
+		scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoDescriptors.psm1 = scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoDescriptors.psm1
+		scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoHttpHeader.psm1 = scripts\ps\modules\Az.DevOps\modules\Utilities\Get-AzDoHttpHeader.psm1
+		scripts\ps\modules\Az.DevOps\modules\Utilities\Set-AzDoGlobalVariables.psm1 = scripts\ps\modules\Az.DevOps\modules\Utilities\Set-AzDoGlobalVariables.psm1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B8437E99-1EAD-4B68-A2DC-CC80430E2589}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\src\do-build.ps1 = scripts\ps\modules\Az.DevOps\src\do-build.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".vs", ".vs", "{A55741DA-16E3-47E1-B44A-0B546C41C642}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Az.DevOps", "Az.DevOps", "{0AF27CDB-A26E-46DA-AD9D-9D60F34B759A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignTimeBuild", "DesignTimeBuild", "{83B4AFC5-C99F-4D29-A119-ACD3F7E18A4F}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\DesignTimeBuild\.dtbcache = scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\DesignTimeBuild\.dtbcache
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v16", "v16", "{489156FC-52A5-44E4-93BF-BCA9BED50ED5}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\.suo = scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\.suo
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{AB48752B-4E39-44A2-AEC7-7F0FFC6A142F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite3", "sqlite3", "{5A80C596-70FA-4076-9656-077D7B6529CD}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\Server\sqlite3\db.lock = scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\Server\sqlite3\db.lock
+		scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\Server\sqlite3\storage.ide = scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\Server\sqlite3\storage.ide
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestStore", "TestStore", "{864AD2E9-39EC-4A77-A045-7ED6244F9987}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0", "0", "{A021ED96-53E0-4E75-AED6-B3590B1CA17A}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\TestStore\0\000-0000.testlog = scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\TestStore\0\000-0000.testlog
+		scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\TestStore\0\testlog.manifest = scripts\ps\modules\Az.DevOps\src\.vs\Az.DevOps\v16\TestStore\0\testlog.manifest
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{B78FC962-67E9-4DF8-98C5-6F3347D78B40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "netstandard2.0", "netstandard2.0", "{7F331CA7-838B-440B-A173-30FE87BDF4EE}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\src\bin\netstandard2.0\Az.DevOpsClasses.deps.json = scripts\ps\modules\Az.DevOps\src\bin\netstandard2.0\Az.DevOpsClasses.deps.json
+		scripts\ps\modules\Az.DevOps\src\bin\netstandard2.0\Az.DevOpsClasses.dll = scripts\ps\modules\Az.DevOps\src\bin\netstandard2.0\Az.DevOpsClasses.dll
+		scripts\ps\modules\Az.DevOps\src\bin\netstandard2.0\Az.DevOpsClasses.pdb = scripts\ps\modules\Az.DevOps\src\bin\netstandard2.0\Az.DevOpsClasses.pdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{3B71FB49-2028-4D95-9A77-38F7201B5ADB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes.UnitTests", "Classes.UnitTests", "{577E2347-EA65-444E-9C4D-B77A2C3D072D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{15B68404-18F4-49EB-94CF-F0D1D07F5B4E}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\ps\modules\Az.DevOps\tests\Test-Script.csv = scripts\ps\modules\Az.DevOps\tests\Test-Script.csv
+		scripts\ps\modules\Az.DevOps\tests\Test-Scripts.ps1 = scripts\ps\modules\Az.DevOps\tests\Test-Scripts.ps1
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Az.DevOpsClasses", "scripts\ps\modules\Az.DevOps\src\Classes\Az.DevOpsClasses.csproj", "{995DC932-D44E-405D-ABCB-3464828693D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes.UnitTests", "scripts\ps\modules\Az.DevOps\src\Classes.UnitTests\Classes.UnitTests.csproj", "{792126BB-4FCA-4355-A2D3-AA9423E5AE57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,26 +303,66 @@ Global
 		{17A77420-05A5-4E88-AE45-3369067351D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17A77420-05A5-4E88-AE45-3369067351D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17A77420-05A5-4E88-AE45-3369067351D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{995DC932-D44E-405D-ABCB-3464828693D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995DC932-D44E-405D-ABCB-3464828693D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995DC932-D44E-405D-ABCB-3464828693D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995DC932-D44E-405D-ABCB-3464828693D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{792126BB-4FCA-4355-A2D3-AA9423E5AE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{792126BB-4FCA-4355-A2D3-AA9423E5AE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{792126BB-4FCA-4355-A2D3-AA9423E5AE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{792126BB-4FCA-4355-A2D3-AA9423E5AE57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{17A77420-05A5-4E88-AE45-3369067351D0} = {DFFA9BE8-D36A-4D21-BDAB-EE77E841AB93}
-		{9108AA84-4796-4F46-B8DB-4DB01C3587CA} = {2FA7C670-9963-492C-879D-3CDC7F191D85}
-		{0207CD38-0FDE-45EE-B200-A5581A8AFE91} = {9108AA84-4796-4F46-B8DB-4DB01C3587CA}
-		{906B33F6-E199-4E47-BB60-D1F8A6026F59} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{6D3479AB-EA5F-4437-96B0-E695A4D99130} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{CF28897D-C77D-479B-9FF2-60033FD84944} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{875E31D7-3925-4BB6-8ABF-DC4316DEA45E} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{E550F169-BF3E-4837-84A0-861826B3D9B8} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{5B6AE73D-4E90-4153-B5BA-BC56FFCAD577} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{D3795CD4-48BA-46C3-8A13-DBA14005F813} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{8140826B-CBB2-46D3-B5DF-FF5374047757} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{EF1A1C13-5CD3-448F-9B8E-5E25D7C80352} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{F721019B-E3A8-4D10-8C91-3BF8D6D7B444} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{0D550510-9C92-4D17-AAA7-ED93A751553C} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
-		{46118AD2-427F-4D7F-9479-0ED55650655B} = {0207CD38-0FDE-45EE-B200-A5581A8AFE91}
+		{C9A28607-0A2C-4945-A660-F61A32069FEC} = {31FD6E4A-2A30-477F-8567-A6D9FEB41761}
+		{1DEDFBA5-F158-4322-8767-3999E74DB0E4} = {C9A28607-0A2C-4945-A660-F61A32069FEC}
+		{3C9C6B2B-CEC1-4AA7-9296-6CF171032651} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{573D1A26-A32A-4E84-906F-A68FDE7A479A} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{4661834F-40F2-41CC-932F-18F606220771} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{5D66DBBA-792D-42DE-A05E-E5A4FB066B58} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{529B411C-6BA0-4057-B744-D535FA81B8BF} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{5AB1429C-ED10-4FFB-B3B3-481EC9FABDFA} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{4DFB010D-008E-45E1-8025-B3792AE0A8A6} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{1775A63E-6319-44A2-BB7A-433671D11E28} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{827E605E-6FB3-442C-BA3E-4BDBF9715E2F} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{B19DD828-6876-4FBC-A802-4006F061DBE9} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{CF6F2AEE-52E7-46F0-9C82-D8F845FF775C} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{00F9CBE3-D3F1-420A-ADA4-8A1D61765F89} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{1FC0A479-7732-4994-A15E-B410D473996E} = {1DEDFBA5-F158-4322-8767-3999E74DB0E4}
+		{CF17CB03-37C4-414A-99E1-1C3829B40071} = {C9A28607-0A2C-4945-A660-F61A32069FEC}
+		{A63BA1E0-9265-43EC-B359-CED93626CC09} = {CF17CB03-37C4-414A-99E1-1C3829B40071}
+		{7D1F607F-C98E-4111-89DB-0F8A0B7095CE} = {A63BA1E0-9265-43EC-B359-CED93626CC09}
+		{D15E7671-54E4-4FC1-85C1-454AB57E8EF2} = {7D1F607F-C98E-4111-89DB-0F8A0B7095CE}
+		{B10EB6F6-193B-4541-9153-8379C88BDFCC} = {D15E7671-54E4-4FC1-85C1-454AB57E8EF2}
+		{AF8D8AAB-7B13-4919-8D36-EF10DB9D7DF3} = {A63BA1E0-9265-43EC-B359-CED93626CC09}
+		{0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C} = {A63BA1E0-9265-43EC-B359-CED93626CC09}
+		{19E98CA1-AD6C-43D6-A57D-526D75C84347} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{A8918062-464F-4B32-8A08-6F72E4A67349} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{17EDE1E1-2D86-4770-81D2-1338784BD56C} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{48EED5E9-41C5-4A95-94A2-4DB744F75335} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{DE09C406-0DB1-4052-B34A-BA981C689548} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{11DAB150-12BB-43B1-8B5F-50196B13B8F4} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{BA6FFB94-28D8-45CF-85A0-7AC52C28BF5E} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{6EC70347-7248-46F8-BEBF-37208F6041B2} = {0A08E111-CEAA-4CCC-B8A1-9FE964C91D6C}
+		{B8437E99-1EAD-4B68-A2DC-CC80430E2589} = {A63BA1E0-9265-43EC-B359-CED93626CC09}
+		{A55741DA-16E3-47E1-B44A-0B546C41C642} = {B8437E99-1EAD-4B68-A2DC-CC80430E2589}
+		{0AF27CDB-A26E-46DA-AD9D-9D60F34B759A} = {A55741DA-16E3-47E1-B44A-0B546C41C642}
+		{83B4AFC5-C99F-4D29-A119-ACD3F7E18A4F} = {0AF27CDB-A26E-46DA-AD9D-9D60F34B759A}
+		{489156FC-52A5-44E4-93BF-BCA9BED50ED5} = {0AF27CDB-A26E-46DA-AD9D-9D60F34B759A}
+		{AB48752B-4E39-44A2-AEC7-7F0FFC6A142F} = {489156FC-52A5-44E4-93BF-BCA9BED50ED5}
+		{5A80C596-70FA-4076-9656-077D7B6529CD} = {AB48752B-4E39-44A2-AEC7-7F0FFC6A142F}
+		{864AD2E9-39EC-4A77-A045-7ED6244F9987} = {489156FC-52A5-44E4-93BF-BCA9BED50ED5}
+		{A021ED96-53E0-4E75-AED6-B3590B1CA17A} = {864AD2E9-39EC-4A77-A045-7ED6244F9987}
+		{B78FC962-67E9-4DF8-98C5-6F3347D78B40} = {B8437E99-1EAD-4B68-A2DC-CC80430E2589}
+		{7F331CA7-838B-440B-A173-30FE87BDF4EE} = {B78FC962-67E9-4DF8-98C5-6F3347D78B40}
+		{3B71FB49-2028-4D95-9A77-38F7201B5ADB} = {B8437E99-1EAD-4B68-A2DC-CC80430E2589}
+		{577E2347-EA65-444E-9C4D-B77A2C3D072D} = {B8437E99-1EAD-4B68-A2DC-CC80430E2589}
+		{15B68404-18F4-49EB-94CF-F0D1D07F5B4E} = {A63BA1E0-9265-43EC-B359-CED93626CC09}
+		{995DC932-D44E-405D-ABCB-3464828693D1} = {3B71FB49-2028-4D95-9A77-38F7201B5ADB}
+		{792126BB-4FCA-4355-A2D3-AA9423E5AE57} = {577E2347-EA65-444E-9C4D-B77A2C3D072D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3314A87-2B67-4F28-BE74-663D67245E73}

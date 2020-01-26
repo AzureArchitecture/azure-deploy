@@ -1,7 +1,7 @@
 $ConfirmPreference = "None"
-Install-PackageProvider -Name NuGet -Force -Confirm:0 -ErrorVariable Continue 
-Install-Module -Name NuGet -Force -AllowClobber -Confirm:0 -ErrorVariable Continue 
-Install-Module -Name PowerShellGet -Force -AllowClobber -Confirm:0 -ErrorVariable Continue 
+Install-PackageProvider -Name NuGet -Force -Confirm:0 -ErrorVariable Continue
+Install-Module -Name NuGet -Force -AllowClobber -Confirm:0 -ErrorVariable Continue
+Install-Module -Name PowerShellGet -Force -AllowClobber -Confirm:0 -ErrorVariable Continue
 Install-Module -Name Az -Force -AllowClobber -Confirm:0 -ErrorVariable Continue
 Install-Module -Name PSDocs -Force  -AllowClobber -Confirm:0 -ErrorVariable Continue
 Install-Module -Name ImportExcel -Force  -AllowClobber -Confirm:0 -ErrorVariable Continue
@@ -14,4 +14,3 @@ Install-Module -Name Pester -force -confirm:0 -AllowClobber -ErrorVariable Conti
 
 #enable azure alias
 Enable-AzureRmAlias -Scope LocalMachine
-

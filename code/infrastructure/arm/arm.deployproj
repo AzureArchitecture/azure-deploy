@@ -366,6 +366,7 @@
     <None Include="blueprint\adap-core-foundation\Blueprint.json" />
     <None Include="blueprint\adap-core-foundation\README.md" />
     <None Include="Deploy-AzTemplate.ps1" />
+    <None Include="Deploy-AzureResourceGroup.ps1" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
@@ -769,15 +770,16 @@
     <Content Include="workstation\dev-vm\azuredeploy.json" />
     <Content Include="workstation\dev-vm\azuredeploy.parameters.json" />
     <Content Include="workstation\dev-vm\DSC\buildvm.ps1" />
-    <Content Include="workstation\dev-vm\files\change-desktop-icon-size.psm1" />
     <Content Include="workstation\dev-vm\files\dpi30.ico" />
-    <Content Include="workstation\dev-vm\files\InstallVSCExtensions.bat" />
-    <Content Include="workstation\dev-vm\files\set-rv-short.psm1" />
-    <Content Include="workstation\dev-vm\files\task-bar.vbs" />
-    <Content Include="workstation\dev-vm\files\UninstallVSCExtensions.bat" />
-    <Content Include="workstation\dev-vm\files\use-small.psm1" />
     <None Include="workstation\dev-vm\README.md" />
     <None Include="workstation\dev-vm\resources\dev.md" />
+    <None Include="workstation\scripts\clone-azure-arm.ps1" />
+    <None Include="workstation\scripts\install-browsers.ps1" />
+    <None Include="workstation\scripts\install-devtools.ps1" />
+    <None Include="workstation\scripts\install-ps-modules.ps1" />
+    <None Include="workstation\scripts\install-vsix.ps1" />
+    <None Include="workstation\scripts\settings-file-explorer.ps1" />
+    <None Include="workstation\scripts\settings-system.ps1" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
   <ProjectExtensions>
