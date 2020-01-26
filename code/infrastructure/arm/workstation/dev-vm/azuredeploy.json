@@ -140,7 +140,10 @@
     "vnetId": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('virtualNetworkRG'),'/providers/Microsoft.Network/virtualNetworks/',parameters('virtualNetworkId'))]",
     "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
     "publicIpAddressName": "[concat(parameters('virtualMachineName'),'-ip')]",
-    "networkInterfaceName": "[concat(parameters('virtualMachineName'),'-nic')]"
+    "networkInterfaceName": "[concat(parameters('virtualMachineName'),'-nic')]",
+    "boxstarterbuildVmFileScriptFolder": ".",
+    "boxstarterbuildVmFile": "buildvm.ps1.ps1",
+    "boxstarterbuildVmFileURL": "https://raw.githubusercontent.com/deltadan/CountChocula/master/InstallCountChocula.ps1"
   },
   "resources": [
     {
@@ -225,17 +228,35 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
             }
           ]
-        },
-        "osProfile": {
-          "computerName": "[parameters('virtualMachineName')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]",
-          "windowsConfiguration": {
-            "enableAutomaticUpdates": true,
-            "provisionVmAgent": true
+        }
+      },
+      "resources": [
+        {
+          "name": "SetupDevEnvironment",
+          "type": "extensions",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2017-12-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]"
+          ],
+          "tags": {
+            "displayName": "Install Developer Tools"
+          },
+          "properties": {
+            "publisher": "Microsoft.Compute",
+            "type": "CustomScriptExtension",
+            "typeHandlerVersion": "1.8",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "fileUris": [
+                "[concat(uri(variables('_artifactsLocation'), 'DSC/buildvm.ps1'))]",
+                "[concat(uri(variables('_artifactsLocation'), 'files/dpi30.ico'))]"
+              ],
+              "commandToExecute": "[concat('powershell -ExecutionPolicy unrestricted -File ', 'buildvm.ps1', ' -rdpPort ', parameters('rdpPort'))]"
+            }
           }
         }
-      }
+      ]
     }
   ],
   "outputs": {
