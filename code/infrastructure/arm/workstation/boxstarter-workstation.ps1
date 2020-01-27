@@ -30,69 +30,159 @@ try {
   # https://github.com/chocolatey/choco/issues/52
   choco feature enable allowInsecureConfirmation
 
-  ######################################################
-  # General Apps
-  ######################################################
-  Write-Host "Installing applications from Chocolatey"
-  choco install DotNet3.5 # not installed by default on Windows Server 2012
   if (Test-PendingReboot) { Invoke-Reboot }
-
-  # Get the base URI path from the ScriptToCall value
-  $bstrappackage = "-bootstrapPackage"
-  $helperUri = $Boxstarter['ScriptToCall']
-  $strpos = $helperUri.IndexOf($bstrappackage)
-  $helperUri = $helperUri.Substring($strpos + $bstrappackage.Length)
-  $helperUri = $helperUri.TrimStart("'", " ")
-  $helperUri = $helperUri.TrimEnd("'", " ")
-  $helperUri = $helperUri.Substring(0, $helperUri.LastIndexOf("/"))
-  $helperUri += "/scripts"
-  write-host "helper script base URI is $helperUri"
-
-  function executeScript {
-      Param ([string]$script)
-      write-host "executing $helperUri/$script ..."
-	  iex ((new-object net.webclient).DownloadString("$helperUri/$script"))
-  }
-
   ######################################################
   # settings-system.ps1
   ######################################################
-  Write-Host "executing settings-system.ps1"
-  executeScript "settings-system.ps1";
-  RefreshEnvironment
-  Write-Host
+  #--- Enable developer mode on the system ---
+  Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
+
+  #--- Windows Settings ---
+  Write-Output "--Modifying Windows Settings--"
+
+  Write-Output "Modifying Explorer options"
+  Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions -EnableShowFullPathInTitleBar
+  Set-WindowsExplorerOptions -DisableShowRecentFilesInQuickAccess -DisableShowFrequentFoldersInQuickAccess
+
+  Write-Output "Modifying taskbar options"
+  Set-TaskbarOptions -Dock Bottom -Combine Always -AlwaysShowIconsOn
+
+  # disabled bing search in start menu
+  Write-Output "Disabling Bing Search in start menu"
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
+  If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search")) {
+      New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -Type DWord -Value 1
+
+  # show this pc on desktop
+  Write-Output "Showing 'This PC' on desktop"
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Type DWord -Value 0
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Type DWord -Value 0
+
+  # show user folder on desktop
+  Write-Output "Showing user home on desktop"
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -Type DWord -Value 0
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -Type DWord -Value 0
+
+  # Disable Cortana
+  Write-Output "Disabling Cortana"
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Personalization\Settings")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Personalization\Settings" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Personalization\Settings" -Name "AcceptedPrivacyPolicy" -Type DWord -Value 0
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization" -Name "RestrictImplicitTextCollection" -Type DWord -Value 1
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization" -Name "RestrictImplicitInkCollection" -Type DWord -Value 1
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -Type DWord -Value 0
+  If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search")) {
+      New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Force | Out-Null
+  }
+  Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "AllowCortana" -Type DWord -Value 0
+
+  # Hide taskbar search box
+  Write-Output "Hiding task bar search box"
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
+
+  # Hide Task View
+  Write-Output "Hiding task view"
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Type DWord -Value 0
+
+  # Hide task Bar People icon
+  Write-Output "Hiding task bar people icon"
+  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
+      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
+  }
+  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
 
   ######################################################
   # settings-file-explorer.ps1
   ######################################################
-  Write-Host "executing settings-file-explorer.ps1"
-  executeScript "settings-file-explorer.ps1";
-  RefreshEnvironment
+  #--- Configuring Windows properties ---
+  #--- Windows Features ---
+  # Show hidden files, Show protected OS files, Show file extensions
+  Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+
+  #--- File Explorer Settings ---
+  # will expand explorer to the actual folder you're in
+  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Value 1
+  #adds things back in your left pane like recycle bin
+  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneShowAllFolders -Value 1
+  #opens PC to This PC, not quick access
+  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name LaunchTo -Value 1
+  #taskbar where window is open for multi-monitor
+  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
+
+  ######################################################
+  # Taskbar icons
+  ######################################################
+  Write-Host "Adding Chrome to the TaskBar"
+  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
   Write-Host
 
   ######################################################
-  # install-browsers.ps1
+  # Taskbar icons
   ######################################################
-  Write-Host "executing install-browsers.ps1"
-  executeScript "install-browsers.ps1";
-  RefreshEnvironment
+  Write-Host "DevTools to the TaskBar"
+  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
+  Install-ChocolateyPinnedTaskBarItem "%windir%\system32\WindowsPowerShell\v1.0\PowerShell_ISE.exe"
+  Install-ChocolateyPinnedTaskBarItem "C:\Windows\explorer.exe"
+  Install-ChocolateyPinnedTaskBarItem "C:\Program Files\console\console.exe"
+  Write-Host
+
+  #add the AZCOPY path to the path variable
+  ######################################################
+  # Add AZCOPY path to the path variable
+  ######################################################
+  Write-Host "Adding Git\bin to the path"
+  Add-Path "C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy"
   Write-Host
 
   ######################################################
-  # install-devtools.ps1
+  # Add Git to the path
   ######################################################
-  Write-Host "executing install-devtools.ps1"
-  executeScript "install-devtools.ps1";
-  RefreshEnvironment
+  Write-Host "Adding Git\bin to the path"
+  Add-Path "C:\Program Files (x86)\Git\bin"
   Write-Host
 
-  ######################################################
-  # install-vsix.ps1
-  ######################################################
-  Write-Host "executing install-vsix.ps1"
-  executeScript "install-vsix.ps1";
-  RefreshEnvironment
-  Write-Host
+  #
+  # Function to create a path if it does not exist
+  #
+  function CreatePathIfNotExists($pathName) {
+    if(!(Test-Path -Path $pathName)) {
+        New-Item -ItemType directory -Path $pathName
+    }
+  }
+
+  #
+  # Creating my code directories
+  #
+  $repoCoreDir = "C:\repos"
+  CreatePathIfNotExists -pathName "$repoCoreDir"
+  CreatePathIfNotExists -pathName "$repoCoreDir\github"
+  CreatePathIfNotExists -pathName "$repoCoreDir\azdo"
+  CreatePathIfNotExists -pathName "$repoCoreDir\github\AzureArchitecture"
+
+  cd "$repoCoreDir\github\AzureArchitecture"
+  git clone https://github.com/AzureArchitecture/azure-deploy.git
+  git clone https://github.com/AzureArchitecture/azure-data-services.git
 
   ######################################################
   # installing windows updates

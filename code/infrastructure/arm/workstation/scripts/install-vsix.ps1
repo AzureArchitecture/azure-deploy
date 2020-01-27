@@ -59,4 +59,4 @@
     }
  }
 
-Install-VSExtension -extensionUrl "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/AdamRDriscoll/vsextensions/PowerShellToolsforVisualStudio2017-18561/5.3.1/vspackage" -extensionFileName "PowerShellTools.5.3.1.vsix"
+Install-VSExtension -extensionUrl "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/GitHub/vsextensions/GitHubExtensionforVisualStudio/2.10.8.8132/vspackage" -extensionFileName "GitHub.VisualStudio-v2.10.8.8132.vsix"
