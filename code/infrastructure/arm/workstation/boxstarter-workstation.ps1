@@ -3,14 +3,6 @@
 ######################################################
 # instructions at http://boxstarter.org/Learn/WebLauncher
 
-# Description: Boxstarter Script
-# Author: Quisitive
-# Common settings for azure devops
-CreatePathIfNotExists -pathName "C:\temp"
-$Boxstarter.Log="C:\temp\boxstarter.log"
-$Boxstarter.SuppressLogging=$false
-
-
 # Boxstarter Options
 $Boxstarter.RebootOk=$true # Allow reboots?
 $Boxstarter.NoPassword=$false # Is this a machine with no login password?
@@ -31,6 +23,11 @@ Enable-RemoteDesktop
 try {
   # https://github.com/chocolatey/choco/issues/52
   choco feature enable allowInsecureConfirmation
+
+  CreatePathIfNotExists -pathName "C:\temp"
+  $Boxstarter.Log="C:\temp\boxstarter.log"
+  $Boxstarter.SuppressLogging=$false
+
 
   ######################################################
   # settings-system.ps1
