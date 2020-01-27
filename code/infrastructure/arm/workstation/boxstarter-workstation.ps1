@@ -24,7 +24,14 @@ try {
   # https://github.com/chocolatey/choco/issues/52
   choco feature enable allowInsecureConfirmation
 
-  CreatePathIfNotExists -pathName "C:\temp"
+  mkdir c:\temp -Confirm:0 -ErrorAction Ignore
+
+  $repoCoreDir = "C:\repos"
+  mkdir "$repoCoreDir" -Confirm:0 -ErrorAction Ignore
+  mkdir "$repoCoreDir\github" -Confirm:0 -ErrorAction Ignore
+  mkdir "$repoCoreDir\azdo" -Confirm:0 -ErrorAction Ignore
+  mkdir "$repoCoreDir\github\AzureArchitecture" -Confirm:0 -ErrorAction Ignore
+
   $Boxstarter.Log="C:\temp\boxstarter.log"
   $Boxstarter.SuppressLogging=$false
 
@@ -133,23 +140,6 @@ try {
   Add-Path "C:\Program Files (x86)\Git\bin"
   Write-Host
 
-  #
-  # Function to create a path if it does not exist
-  #
-  function CreatePathIfNotExists($pathName) {
-    if(!(Test-Path -Path $pathName)) {
-        New-Item -ItemType directory -Path $pathName
-    }
-  }
-
-  #
-  # Creating my code directories
-  #
-  $repoCoreDir = "C:\repos"
-  CreatePathIfNotExists -pathName "$repoCoreDir"
-  CreatePathIfNotExists -pathName "$repoCoreDir\github"
-  CreatePathIfNotExists -pathName "$repoCoreDir\azdo"
-  CreatePathIfNotExists -pathName "$repoCoreDir\github\AzureArchitecture"
 
   cd "$repoCoreDir\github\AzureArchitecture"
   git clone https://github.com/AzureArchitecture/azure-deploy.git
