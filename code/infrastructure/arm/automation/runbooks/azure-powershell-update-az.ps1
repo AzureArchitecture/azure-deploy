@@ -36,7 +36,7 @@ Function Update-AzAutomationModule {
                 SkuName = 'Standard_LRS'
             }
             $StorageAccount = New-AzStorageAccount @StorageAccountSplat
-            $StorageKey = (get-AzStorageAccountKey -ResourceGroupName $StorageAccount.ResourceGroupName -StorageAccountName $StorageAccount.StorageAccountName)[0].Value
+            $StorageKey = (Get-AzStorageAccountKey -ResourceGroupName $StorageAccount.ResourceGroupName -StorageAccountName $StorageAccount.StorageAccountName)[0].Value
             $StorageContext = New-AzStorageContext -StorageAccountName $StorageAccount.StorageAccountName -StorageAccountKey $StorageKey
             $StorageContainer = New-AzStorageContainer -Name $(Get-Random) -Context $StorageContext -Permission Blob
             $AzModuleList = Find-Module 'Az.*'
@@ -63,7 +63,7 @@ Function Update-AzAutomationModule {
                     File = $CompressSplat.DestinationPath
                     Confirm = $false
                 }
-                $FileUpload = set-AzStorageBlobContent @UploadSplat
+                $FileUpload = Set-AzStorageBlobContent @UploadSplat
                 $ImportSplat = @{
                     Name = $($Module.Name)
                     ResourceGroupName = $FindAccount.ResourceGroupName

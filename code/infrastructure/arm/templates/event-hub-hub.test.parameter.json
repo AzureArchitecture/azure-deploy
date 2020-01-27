@@ -30,7 +30,7 @@
       "value": "Mission-Critical"
     },
     "EventHubName": {
-      "value": "eh-chp-adap-test-eus"
+      "value": "eh-azs-adap-test-eus"
     },
     "CostCenter": {
       "value": "8675-309"
@@ -42,7 +42,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-chp-adap-test-eus"
+      "value": "ehns-azs-adap-test-eus"
     },
     "Env": {
       "value": "test"

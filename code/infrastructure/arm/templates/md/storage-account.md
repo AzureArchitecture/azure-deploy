@@ -19,8 +19,8 @@ Test Parameters File: [storage-account.test.parameter.json](C:\AzureDevOps\Repos
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg-chp-adap-dev-eus
-StorageAccountName | string | The name of the storage account. | stgchpadapdeveus
+ResourceGroupName | string | The name of the Resource Group. | rg-azs-adap-dev-eus
+StorageAccountName | string | The name of the storage account. | stgazsadapdeveus
 AccountType    | string | The type of storage account. | Standard_LRS
 StorageKind    | string | The kind of storage account. | StorageV2
 AccessTier     | string | This setting is required if using Blob Storage as the storageKind, otherwise can be left blank | Hot

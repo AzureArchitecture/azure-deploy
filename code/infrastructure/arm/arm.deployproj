@@ -23,15 +23,15 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
-    <None Include="Deploy-AzTemplate.ps1" />
+    <Content Include="Deploy-AzTemplate.ps1" />
     <Content Include="Deploy-AzureResourceGroup.ps1" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
-    <Content Include="templates\analysis-services.test.parameter.json" />
     <Content Include="templates\analysis-services.json" />
-    <None Include="templates\analysis-services.metadata.json" />
+    <None Include="templates\md\bastion-host.md" />
     <None Include="templates\md\event-hub-namespace.md" />
+    <None Include="templates\md\ip-address.md" />
     <None Include="templates\md\servicebus-firewall-vnetrule.md" />
     <None Include="templates\md\servicebus-namespace.md" />
     <None Include="templates\md\servicebus-topic-authrule.md" />
@@ -47,15 +47,10 @@
     <Content Include="workstation\dev-vm\azuredeploy.parameters.json" />
     <Content Include="workstation\dev-vm\DSC\buildvm.ps1" />
     <Content Include="workstation\dev-vm\files\dpi30.ico" />
-    <None Include="workstation\boxstarter-workstation.ps1" />
+    <Content Include="templates\sql-server.json" />
+    <Content Include="templates\sql-server.test.parameter.json" />
     <None Include="workstation\dev-vm\README.md" />
     <None Include="workstation\dev-vm\resources\dev.md" />
-    <None Include="workstation\scripts\install-browsers.ps1" />
-    <None Include="workstation\scripts\install-devtools.ps1" />
-    <None Include="workstation\scripts\install-ps-modules.ps1" />
-    <None Include="workstation\scripts\install-vsix.ps1" />
-    <None Include="workstation\scripts\settings-file-explorer.ps1" />
-    <None Include="workstation\scripts\settings-system.ps1" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
   <ProjectExtensions>

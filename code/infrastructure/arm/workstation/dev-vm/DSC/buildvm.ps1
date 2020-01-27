@@ -31,47 +31,4 @@ Process {
     #enable azure alias
     Enable-AzureRmAlias -Scope LocalMachine
 
-  ######################################################
-  # Installing Browsers
-  ######################################################
-  Write-Host "Installing Browsers"
-  choco install googlechrome -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" -force
-  choco install firefox -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" -force
-  Write-Host
-
-  ######################################################
-  # Installing Dev Tools
-  ######################################################
-  choco install git.install -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019community --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019-workload-databuildtools --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019-workload-datascience --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019-workload-data --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019-workload-azure --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install PowerShell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnetfx -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnet4.5 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnet4.6.2 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnet4.7 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install netfx-4.7.1-devpack -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnetcore-sdk -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnetcore -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install powershell-core -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install azure-cli -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install microsoftazurestorageexplorer -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install vscode -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install sysinternals -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install office365business -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install sql-server-management-studio -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install ssis-vs2019 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install azure-data-studio -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install azuredatastudio-powershell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install github-desktop -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install azcopy -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install rdcman -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install cosmosdbexplorer -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install ignorefiles -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
 }

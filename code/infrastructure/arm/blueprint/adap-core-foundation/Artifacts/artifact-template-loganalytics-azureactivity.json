@@ -14,7 +14,7 @@
         },
         "resourcegroupName": {
           "type": "string",
-          "defaultValue": "rg-chp-shared-dev-eus"
+          "defaultValue": "rg-azs-shared-dev-eus"
         },
         "subscriptionId": {
           "type": "string",
@@ -22,7 +22,7 @@
         },
         "workspaceName": {
           "type": "string",
-          "defaultValue": "la-chp-dev-eus"
+          "defaultValue": "la-azs-dev-eus"
         },
         "solutionTypes": {
           "type": "array",
@@ -96,13 +96,13 @@
         "value": "East US"
       },
       "resourcegroupName": {
-        "value": "rg-chp-shared-dev-eus"
+        "value": "rg-azs-shared-dev-eus"
       },
       "subscriptionId": {
         "value": "323241e8-df5e-434e-b1d4-a45c3576bf80"
       },
       "workspaceName": {
-        "value": "la-chp-dev-eus"
+        "value": "la-azs-dev-eus"
       },
       "solutionTypes": {
         "value": [

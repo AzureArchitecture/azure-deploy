@@ -106,7 +106,7 @@ if ($UploadArtifacts -Or $ArtifactsLocationParameter -ne $null) {
         $StorageAccountName = 'stage' + ((Get-AzContext).Subscription.Id).Replace('-', '').substring(0, 19)
     }
 
-    $StorageAccount = (get-AzStorageAccount | Where-Object { $_.StorageAccountName -eq $StorageAccountName })
+    $StorageAccount = (Get-AzStorageAccount | Where-Object { $_.StorageAccountName -eq $StorageAccountName })
 
     # Create the storage account if it doesn't already exist
     if ($StorageAccount -eq $null) {
@@ -141,7 +141,7 @@ if ($UploadArtifacts -Or $ArtifactsLocationParameter -ne $null) {
         if ($SourcePath -like "$DSCSourceFolder*" -and $SourcePath -like "*.zip" -or !($SourcePath -like "$DSCSourceFolder*")) {
             #When using DSC, just copy the DSC archive, not all the modules and source files
             $blobName = ($SourcePath -ireplace [regex]::Escape($ArtifactestagingDirectory), "").TrimStart("/").TrimStart("\")
-            set-AzStorageBlobContent -File $SourcePath -Blob $blobName -Container $StorageContainerName -Context $StorageAccount.Context -Force
+            Set-AzStorageBlobContent -File $SourcePath -Blob $blobName -Container $StorageContainerName -Context $StorageAccount.Context -Force
         }
     }
     # Generate a 4 hour SAS token for the artifacts location if one was not provided in the parameters file

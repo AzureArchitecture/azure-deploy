@@ -10,7 +10,7 @@
           "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
           "description": "Organization Tag"
         },
-        "defaultValue": "chp"
+        "defaultValue": "azs"
       },
       "suffix": {
         "type": "string",
@@ -100,14 +100,14 @@
         ]
       },
       "logAnalyticsResourceGroup": {
-        "defaultValue": "rg-chp-shared-dev-eus",
+        "defaultValue": "rg-azs-shared-dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Resource Group Name"
         }
       },
       "logAnalytics": {
-        "defaultValue": "la-chp-dev-eus",
+        "defaultValue": "la-azs-dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Name"

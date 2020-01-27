@@ -19,7 +19,7 @@ Test Parameters File: [sql-managed-instance.test.parameter.json](C:\AzureDevOps\
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg-chp-adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-azs-adap-dev-eus
 administratorLogin | string | SQL Managed Instance Administrator name. | -
 administratorLoginPassword | securestring | SQL Managed Instance Administrator password. | -
 managedInstanceName | string | SQL Managed Instance name. | -

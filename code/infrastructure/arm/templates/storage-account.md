@@ -18,10 +18,10 @@ The following security controls can be met through configuration of this templat
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "stgchpadapdeveus"
+      "value": "stgazsadapdeveus"
     },    
     "ResourceGroupName": {
-      "value": "rg-chp-adap-dev-eus"
+      "value": "rg-azs-adap-dev-eus"
     },
 	"AccessTier": {
       "value": "Hot"

@@ -19,10 +19,10 @@ Test Parameters File: [bastion-host.test.parameter.json](C:\AzureDevOps\Repos\Qu
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-SharedResourceGroupName | string | The name of the Resource Group. | rg-chp-shared-dev-eus
-NetworkResourceGroupName | string | The name of the Resource Group. | rg-chp-network-dev-eus
-virtualNetworkName | string | The name of the virtual network for the Bastion Host. | vnet-chp-dev
-bastionHostName | string | The name of the Bastion Host. | bast-chp-shared-dev-eus
+SharedResourceGroupName | string | The name of the Resource Group. | rg-azs-shared-dev-eus
+NetworkResourceGroupName | string | The name of the Resource Group. | rg-azs-network-dev-eus
+virtualNetworkName | string | The name of the virtual network for the Bastion Host. | vnet-azs-dev
+bastionHostName | string | The name of the Bastion Host. | bast-azs-shared-dev-eus
 subnetName     | string | The id of the Bastion Host subnet. | AzureBastionSubnet
 publicIpAddressName | string | The name of the Bastion Host public IP address. | -
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP

@@ -18,16 +18,16 @@
       "value": "SQL_Latin1_General_CP1_CI_AS"
     },
     "SQLManagedInstanceName": {
-      "value": "sql-chp-adap-dev-eus"
+      "value": "sql-azs-adap-dev-eus"
     },
     "dnsZonePartner": {
       "value": null
     },
     "virtualNetworkName": {
-      "value": "vnet-chp-dev"
+      "value": "vnet-azs-dev"
     },
     "subnetName": {
-      "value": "snet-chp-dev-sqlmi"
+      "value": "snet-azs-dev-sqlmi"
     },
     "licenseType": {
       "value": "LicenseIncluded"
@@ -54,7 +54,7 @@
       "value": 32
     },
     "virtualNetworkResourceGroupName": {
-      "value": "rg-chp-network-dev-eus"
+      "value": "rg-azs-network-dev-eus"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -66,7 +66,7 @@
       "value": "requester@company.org"
     },
     "ResourceGroupName": {
-      "value": "rg-chp-adap-dev-eus"
+      "value": "rg-azs-adap-dev-eus"
     },
     "DR": {
       "value": "Mission-Critical"

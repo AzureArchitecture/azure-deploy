@@ -23,7 +23,7 @@
       "value": "afc-audit-storage-https-traffic-only"
     },
     "laWorkspaceName": {
-      "value": "la-chp-dev-eus"
+      "value": "la-azs-dev-eus"
     },
     "laResourceGroupName": {
       "value": "adap"

@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "DataFactoryName": {
-      "value": "adf-chp-adap-test-eus"
+      "value": "adf-azs-adap-test-eus"
     },
     "apiVersion": {
       "value": "2018-06-01"

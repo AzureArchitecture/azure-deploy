@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-chp-adap-test-eus"
+      "value": "sb-azs-adap-test-eus"
     },
     "Approver": {
       "value": "approver@company.org"

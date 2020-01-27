@@ -19,8 +19,8 @@ Test Parameters File: [event-hub-namespace.test.parameter.json](C:\AzureDevOps\R
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg-chp-adap-dev-eus
-EventHubNamespaceName | String | The name of the Event Hub Namespace. | ehns-chp-adap-test-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-azs-adap-dev-eus
+EventHubNamespaceName | String | The name of the Event Hub Namespace. | ehns-azs-adap-test-eus
 LocationKey    | String | The key of the Event Hub Namespace location. | -
 SkuName        | String | The name of the Event Hub Namespace SKU. | -
 SkuTier        | String | The service tier of the Event Hub Namespace SKU. | -

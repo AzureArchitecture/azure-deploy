@@ -1,51 +1,24 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "Owner": {
-      "value": "owner@company.org"
-    },
-    "StartDate": {
-      "value": "1-1-2020"
-    },
-    "ApplicationName": {
-      "value": "ADAP"
-    },
-    "Approver": {
-      "value": "approver@company.org"
-    },
-    "AnalysisServicesAdmin": {
-      "value": "mtad@azuresecurity.net"
-    },
-    "ServiceClass": {
-      "value": "Gold"
-    },
-    "EndDate": {
-      "value": "12-31-9999"
-    },
-    "DR": {
-      "value": "Mission-Critical"
-    },
-    "CostCenter": {
-      "value": "8675-309"
-    },
-    "BusinessUnit": {
-      "value": "CORP"
-    },
-    "analysisServicesName": {
+    "name": {
       "value": "aasazsadapdeveus"
     },
-    "ResourceGroupName": {
-      "value": "rg-azs-adap-dev-eus"
+    "location": {
+      "value": "eastus"
     },
-    "Env": {
-      "value": "dev"
+    "sku": {
+      "value": "D1"
     },
-    "Requester": {
-      "value": "requester@company.org"
+    "admin": {
+      "value": "mtad@azuresecurity.net"
     },
-    "BudgetAmount": {
-      "value": "$200-Month"
+    "backupBlobContainerUri": {
+      "value": ""
+    },
+    "managedMode": {
+      "value": 1
     }
   }
 }

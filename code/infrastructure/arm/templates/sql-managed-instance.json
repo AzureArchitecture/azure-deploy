@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.1",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-chp-adap-dev-eus",
+      "defaultValue": "rg-azs-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -28,14 +28,14 @@
       }
     },
     "virtualNetworkResourceGroupName": {
-      "defaultValue": "rg-chp-network-dev-eus",
+      "defaultValue": "rg-azs-network-dev-eus",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network Resource Group name."
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet-chp-dev",
+      "defaultValue": "vnet-azs-dev",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network name."

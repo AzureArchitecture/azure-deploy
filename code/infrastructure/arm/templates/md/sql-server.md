@@ -19,8 +19,8 @@ Test Parameters File: [sql-server.test.parameter.json](C:\AzureDevOps\Repos\Quis
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg-chp-adap-dev-eus
-sqlServerName  | string | The name of the Logical SQL Server. | sql-chp-adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-azs-adap-dev-eus
+sqlServerName  | string | The name of the Logical SQL Server. | sql-azs-adap-dev-eus
 sqlServerAdminUserName | string | The Azure SQL Server Administrator (SA) username  | sqlAdmin
 sqlServerAdminPassword | string | The Azure SQL Server Administrator (SA) password | Z1!xcvbnmnbvcxz
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP

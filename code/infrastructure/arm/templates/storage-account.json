@@ -8,14 +8,14 @@
   },
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-chp-adap-dev-eus",
+      "defaultValue": "rg-azs-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "StorageAccountName": {
-      "defaultValue": "stgchpadapdeveus",
+      "defaultValue": "stgazsadapdeveus",
       "type": "string",
       "metadata": {
         "description": "The name of the storage account."

@@ -36,10 +36,10 @@
       "value": "CORP"
     },
     "StorageAccountName": {
-      "value": "stgchpadaptesteus"
+      "value": "stgazsadaptesteus"
     },
     "ResourceGroupName": {
-      "value": "rg-chp-adap-test-eus"
+      "value": "rg-azs-adap-test-eus"
     },
     "Env": {
       "value": "test"

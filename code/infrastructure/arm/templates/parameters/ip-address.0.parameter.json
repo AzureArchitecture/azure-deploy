@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "publicIpAddressName": {
-      "value": "bast-chp-shared-dev-eus-ip"
+      "value": "bast-azs-shared-dev-eus-ip"
     },
     "StartDate": {
       "value": "1-1-2020"
@@ -33,7 +33,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-chp-network-dev-eus"
+      "value": "rg-azs-network-dev-eus"
     },
     "Env": {
       "value": "dev"

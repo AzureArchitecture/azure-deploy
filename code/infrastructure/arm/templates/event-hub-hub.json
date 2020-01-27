@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-chp-adap-dev-eus",
+      "defaultValue": "rg-azs-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -11,14 +11,14 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns-chp-adap-dev-eus",
+      "defaultValue": "ehns-azs-adap-dev-eus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }
     },
     "EventHubName": {
       "type": "String",
-      "defaultValue": "eh-chp-adap-dev-eus",
+      "defaultValue": "eh-azs-adap-dev-eus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }

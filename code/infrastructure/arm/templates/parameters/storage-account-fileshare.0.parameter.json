@@ -36,10 +36,10 @@
                                             "value":  "CORP"
                                         },
                        "StorageAccountName":  {
-                                                  "value":  "stgquiadapdeveus01"
+                                                  "value":  "stgazsadapdeveus"
                                               },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-qui-adap-dev-eus"
+                                                 "value":  "rg-azs-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"

@@ -21,7 +21,7 @@ Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
 ServiceBusNamespaceName | string | Name of the Service Bus namespace. | -
 ServiceBusSku  | string | The messaging tier for service Bus namespace. | Standard
-ResourceGroupName | string | The name of the Resource Group. | rg-chp-adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-azs-adap-dev-eus
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0
