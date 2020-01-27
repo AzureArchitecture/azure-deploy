@@ -114,30 +114,13 @@ try {
   choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install rdcman -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   Write-Host
-  ######################################################
-  # Taskbar icons
-  ######################################################
-  Write-Host "Adding icons to the TaskBar"
-  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
-  Install-ChocolateyPinnedTaskBarItem "%windir%\system32\WindowsPowerShell\v1.0\PowerShell_ISE.exe"
-  Install-ChocolateyPinnedTaskBarItem "C:\Windows\explorer.exe"
-  Install-ChocolateyPinnedTaskBarItem "C:\Program Files\console\console.exe"
-  Write-Host
 
-  #add the AZCOPY path to the path variable
-  ######################################################
-  # Add AZCOPY path to the path variable
-  ######################################################
-  Write-Host "Adding Git\bin to the path"
-  Add-Path "C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy"
-  Write-Host
 
   ######################################################
-  # Add Git to the path
+  # Add to the path
   ######################################################
   Write-Host "Adding Git\bin to the path"
-  Add-Path "C:\Program Files (x86)\Git\bin"
+  $ENV:PATH="$ENV:PATH;C:\Program Files\Git\bin;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy;"
   Write-Host
 
 
