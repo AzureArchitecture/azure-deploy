@@ -18,13 +18,13 @@ Update-ExecutionPolicy Unrestricted
 Disable-InternetExplorerESC  #Turns off IE Enhanced Security Configuration that is on by default on Server OS versions
 Disable-UAC  # until this is over
 
-if (Test-PendingReboot) { Invoke-Reboot }
 disable-computerrestore -drive "C:\"  # http://ss64.com/ps/disable-computerrestore.html  ** Goes >BANG< on Server 2012 but not fatal.
-if (Test-PendingReboot) { Invoke-Reboot }
 
 Disable-MicrosoftUpdate # until this is over
 Disable-BingSearch # forever
 Enable-RemoteDesktop
+
+if (Test-PendingReboot) { Invoke-Reboot }
 
 try {
   # https://github.com/chocolatey/choco/issues/52
