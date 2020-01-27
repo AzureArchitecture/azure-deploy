@@ -8,7 +8,7 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This template allows you to deploy an Azure Development Windows VM using the latest patched Windows Visual Studio 2019 Marketplace image. This will deploy a D8s_v3 size VM in the resource group location and return the fully qualified domain name of the VM. The VM will have all the necessary tools installed to start deploying Azure components & services.
+This template allows you to deploy an Azure Development Windows VM using the latest patched Windows Visual Studio 2019 Marketplace image. This will deploy a D16s_v3 size VM in the resource group location and return the fully qualified domain name of the VM. The VM will have all the necessary tools installed to start deploying Azure components & services.
 
 After the VM is deployed. Open a browser with this link to complete the workstations setup. 
 
