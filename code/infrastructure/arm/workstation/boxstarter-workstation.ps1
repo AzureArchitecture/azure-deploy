@@ -24,13 +24,10 @@ Disable-MicrosoftUpdate # until this is over
 Disable-BingSearch # forever
 Enable-RemoteDesktop
 
-if (Test-PendingReboot) { Invoke-Reboot }
-
 try {
   # https://github.com/chocolatey/choco/issues/52
   choco feature enable allowInsecureConfirmation
 
-  if (Test-PendingReboot) { Invoke-Reboot }
   ######################################################
   # settings-system.ps1
   ######################################################
@@ -98,6 +95,7 @@ try {
   ######################################################
   # Installing Dev Tools
   ######################################################
+  Write-Host "Installing Dev Tools"
   choco install git.install -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install visualstudio2019community --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install visualstudio2019-workload-azure --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
@@ -113,18 +111,12 @@ try {
   choco install azcopy -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install rdcman -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-
-  ######################################################
-  # Taskbar icons
-  ######################################################
-  Write-Host "Adding Chrome to the TaskBar"
-  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
   Write-Host
-
   ######################################################
   # Taskbar icons
   ######################################################
-  Write-Host "DevTools to the TaskBar"
+  Write-Host "Adding icons to the TaskBar"
+  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
   Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
   Install-ChocolateyPinnedTaskBarItem "%windir%\system32\WindowsPowerShell\v1.0\PowerShell_ISE.exe"
   Install-ChocolateyPinnedTaskBarItem "C:\Windows\explorer.exe"
