@@ -79,14 +79,6 @@ try {
   Write-Host
 
   ######################################################
-  # install-ps-modules.ps1
-  ######################################################
-  Write-Host "executing install-ps-modules.ps1"
-  executeScript "install-ps-modules.ps1";
-  RefreshEnvironment
-  Write-Host
-
-  ######################################################
   # install-devtools.ps1
   ######################################################
   Write-Host "executing install-devtools.ps1"
@@ -99,14 +91,6 @@ try {
   ######################################################
   Write-Host "executing install-vsix.ps1"
   executeScript "install-vsix.ps1";
-  RefreshEnvironment
-  Write-Host
-
-  ######################################################
-  # clone-repos.ps1
-  ######################################################
-  Write-Host "executing clone-repos.ps1"
-  executeScript "clone-repos.ps1";
   RefreshEnvironment
   Write-Host
 

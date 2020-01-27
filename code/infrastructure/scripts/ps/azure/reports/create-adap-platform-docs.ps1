@@ -159,3 +159,8 @@ $templateName = "bastion-host"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+
+$templateName = "analysis-services"
+$env:ARM_TEMPLATE_CURRENT = $templateName
+Set-Location -Path "$rootDirectory"
+Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory

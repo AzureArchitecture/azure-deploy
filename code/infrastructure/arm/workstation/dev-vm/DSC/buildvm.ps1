@@ -1,38 +1,55 @@
+param(
+    [Parameter(Mandatory = $false)][string]$rdpPort = "3389"
+)
 Process {
   Write-Host "hello world"
-  <#
-  $temptime = Get-Date -f yyyy-MM-dd--HH:mm:ss
-  New-Item -Path $env:UserProfile\AppData\Local\ChocoCache -ItemType directory -force
 
-  Update-ExecutionPolicy Unrestricted
-  $ConfirmPreference = "None" #ensure installing powershell modules don't prompt on needed dependencies
-  Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+    #Add RDP listening ports if needed
+    if ($rdpPort -ne 3389) {
+        netsh.exe interface portproxy add v4tov4 listenport=$rdpPort connectport=3389 connectaddress=127.0.0.1
+        netsh.exe advfirewall firewall add rule name="Open Port $rdpPort" dir=in action=allow protocol=TCP localport=$rdpPort
+    }
 
-  Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-  . choco.exe feature enable -n=allowGlobalConfirmation
+      Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    . choco.exe feature enable -n=allowGlobalConfirmation
 
-  $scriptPath = "."
-  $deploylogfile = "$scriptPath\deploymentlog.log"
-  if ($PSScriptRoot) {
-      $scriptPath = $PSScriptRoot
-  }
-  else {
-      $scriptPath = Split-Path -parent $MyInvocation.MyCommand.Definition
-  }
+    #install Powershell AZ module
+    $ConfirmPreference = "None"
+    Install-PackageProvider -Name NuGet -Force -Confirm:0 -ErrorVariable Continue
+    Install-Module -Name NuGet -Force -AllowClobber -Confirm:0 -ErrorVariable Continue
+    Install-Module -Name PowerShellGet -Force -AllowClobber -Confirm:0 -ErrorVariable Continue
+    Install-Module -Name Az -Force -AllowClobber -Confirm:0 -ErrorVariable Continue
+    Install-Module -Name PSDocs -Force  -AllowClobber -Confirm:0 -ErrorVariable Continue
+    Install-Module -Name ImportExcel -Force  -AllowClobber -Confirm:0 -ErrorVariable Continue
+    install-module -Name Az.Blueprint -force -confirm:0 -AllowClobber -ErrorVariable Continue
+    install-module -Name AzureAD -force -confirm:0 -AllowClobber -ErrorVariable Continue
+    Install-Module -Name AzSK -force -confirm:0 -AllowClobber -ErrorVariable Continue
+    Install-Module -Name SqlServer -force -confirm:0 -AllowClobber -ErrorVariable Continue
+    Install-Module -Name PsISEProjectExplorer -force -confirm:0 -AllowClobber -ErrorVariable Continue
+    Install-Module -Name Pester -force -confirm:0 -AllowClobber -ErrorVariable Continue
 
-  #Install stuff
+    #enable azure alias
+    Enable-AzureRmAlias -Scope LocalMachine
 
-  $temptime = Get-Date -f yyyy-MM-dd--HH:mm:ss
-  "Starting deployment script - $temptime" | Out-File $deploylogfile
-  Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-  . choco.exe feature enable -n=allowGlobalConfirmation
+    #
+    # Function to create a path if it does not exist
+    #
+    function CreatePathIfNotExists($pathName) {
+      if(!(Test-Path -Path $pathName)) {
+          New-Item -ItemType directory -Path $pathName
+      }
+    }
 
-  Import-Module Boxstarter.Chocolatey -Force -Confirm:0 -ErrorVariable Continue
-  CINST Boxstarter.Azure
+    #
+    # Creating my code directories
+    #
+    $repoCoreDir = "C:\repos"
+    CreatePathIfNotExists -pathName "$repoCoreDir"
+    CreatePathIfNotExists -pathName "$repoCoreDir\github"
+    CreatePathIfNotExists -pathName "$repoCoreDir\azdo"
+    CreatePathIfNotExists -pathName "$repoCoreDir\github\AzureArchitecture"
 
-  $temptime = Get-Date -f yyyy-MM-dd--HH:mm:ss
-  "Ending deployment script - $temptime" | Out-File $deploylogfile -Append
-  Copy-Item -Path $deploylogfile -Destination "C:\repos\deploymentlog.log"
-
-  #>
+    cd "$repoCoreDir\github\AzureArchitecture"
+    git clone https://github.com/AzureArchitecture/azure-deploy.git
+    git clone https://github.com/AzureArchitecture/azure-data-services.git
 }

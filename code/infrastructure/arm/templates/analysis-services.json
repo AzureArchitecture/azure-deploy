@@ -1,18 +1,12 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "analysisServicesName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Analysis Services."
-      }
+      "type": "string"
     },
     "AnalysisServicesAdmin": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Analysis Services Admin."
-      }
+      "type": "string"
     },
     "ApplicationName": {
       "defaultValue": "ADAP",
@@ -99,8 +93,8 @@
       }
     }
   },
-  "variables": {},
-  "functions": [],
+  "variables": {
+  },
   "resources": [
     {
       "apiVersion": "2017-08-01",
@@ -108,7 +102,7 @@
       "location": "[resourceGroup().location]",
       "type": "Microsoft.AnalysisServices/servers",
       "tags": {
-        "Display Name": "sql server: [parameters('sqlServerName')]",
+        "Display Name": "analysis services: [parameters('analysisServicesName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
         "Budget required-approved": "[parameters('BudgetAmount')]",
@@ -134,6 +128,5 @@
         "managedMode": 1
       }
     }
-  ],
-  "outputs": {}
+  ]
 }

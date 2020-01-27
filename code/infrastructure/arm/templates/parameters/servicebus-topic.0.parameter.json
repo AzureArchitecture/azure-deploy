@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-chp-adap-dev-eus"
+                                                       "value":  "sb-qui-adap-dev-eus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -39,10 +39,10 @@
                                             "value":  "CORP"
                                         },
                        "ServiceBusTopicName":  {
-                                                   "value":  "sbt-adap-message"
+                                                   "value":  "sbt-qui-adap-dev-eus"
                                                },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-chp-adap-dev-eus"
+                                                 "value":  "rg-qui-adap-dev-eus"
                                              },
                        "topicMaxSizeMb":  {
                                               "value":  "1024"

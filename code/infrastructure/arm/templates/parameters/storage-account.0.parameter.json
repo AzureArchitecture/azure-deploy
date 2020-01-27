@@ -36,10 +36,10 @@
                                             "value":  "CORP"
                                         },
                        "StorageAccountName":  {
-                                                  "value":  "stgchpadapdeveus"
+                                                  "value":  "stgquiadapdeveus01"
                                               },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-chp-adap-dev-eus"
+                                                 "value":  "rg-qui-adap-dev-eus"
                                              },
                        "AccountType":  {
                                            "value":  "Standard_LRS"

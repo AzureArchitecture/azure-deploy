@@ -211,7 +211,7 @@
 
   # Logon to Azure
   Write-Information 'Logon to Azure...'
-  Initialize-Subscription -
+  Initialize-Subscription
   $subscriptionId = Get-SubscriptionId
   Set-AzContext -SubscriptionId $subscriptionId
   $subscriptionName = (Get-AzContext).Subscription.SubscriptionName
