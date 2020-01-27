@@ -61,9 +61,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{4DFB010D-008E-45E1-8025-B3792AE0A8A6}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\ps\azure\config\adap-cmdb.xlsm = scripts\ps\azure\config\adap-cmdb.xlsm
+		E:\20200126\AzureDevOps\Repos\TheCrosbyGroup\code\infrastructure\scripts\ps\azure\config\adap-configuration.psm1 = E:\20200126\AzureDevOps\Repos\TheCrosbyGroup\code\infrastructure\scripts\ps\azure\config\adap-configuration.psm1
 		scripts\ps\azure\config\devops-cmdb.xlsx = scripts\ps\azure\config\devops-cmdb.xlsx
-		scripts\ps\azure\config\variable-group-dev-vars.csv = scripts\ps\azure\config\variable-group-dev-vars.csv
-		scripts\ps\azure\config\variable-group-features.csv = scripts\ps\azure\config\variable-group-features.csv
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devops", "devops", "{1775A63E-6319-44A2-BB7A-433671D11E28}"

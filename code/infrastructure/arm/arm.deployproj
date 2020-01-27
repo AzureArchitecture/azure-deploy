@@ -628,6 +628,7 @@
     <None Include="rbac\roles\msp\msp-nonproduction-sqladmin.json" />
     <None Include="rbac\roles\msp\msp-production-engineer.json" />
     <None Include="rbac\roles\msp\msp-production-sqladmin.json" />
+    <None Include="templates\analysis-services.json" />
     <None Include="templates\app-gateway-v2.json" />
     <None Include="templates\app-gateway-v2.md" />
     <None Include="templates\app-service-envionment.json" />

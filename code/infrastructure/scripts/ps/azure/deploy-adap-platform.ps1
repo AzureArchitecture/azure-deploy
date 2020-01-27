@@ -80,11 +80,11 @@
     #AzRoleAssignments
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azRoleAssignments=$false,
-   
+
     # azActionGroups
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azActionGroups=$false,
-    
+
     # azAlerts
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azAlerts=$false,
@@ -189,19 +189,19 @@
     $PSCmdlet.ThrowTerminatingError($_)
     Exit
   }
-  
+
   # Set variabls from config file
   $automationAccountName = $config.laAutomationAccount
   $logAnalytics = $config.laWorkspaceName
   $alertResourceGroup = $config.alertResourceGroup
   $orgTag = $config.orgTag
   $env = $config.evTag
-  $location = $config.primaryLocation  
+  $location = $config.primaryLocation
   $username = $config.azureAdmin
   $password = $config.azureAdminPwd
-  $subname = $config.subscriptionname 
+  $subname = $config.subscriptionname
   $adOUPath = $config.adOUPath
-  
+
   $secpasswd = ConvertTo-SecureString $password -AsPlainText -Force
   $cred = New-Object System.Management.Automation.PSCredential ($userName, $secpasswd)
   Connect-AzAccount  -Credential $cred
@@ -239,7 +239,7 @@
   if($adUsers -or $azAll){
     Write-Information '  Starting deployment of Azure Active Directory Users'
     Set-Location -Path "$psAzureDirectory"
-    .\ad\deploy-azure-ad-users.ps1 -adapCMDB "$adapCMDB" -action $deployAction # purge or create
+    .\ad\deploy-azure-ad-users.ps1 -adapCMDB "$adapCMDB" -action $deployAction -orgTag $orgTag
   }
   else
   {
@@ -267,7 +267,7 @@
   {
     Write-Information '  Deployment of Azure Active Roles is disabled.'
   }
-  
+
   # Deploy Azure Policies
   if($azPolicies -or $azAll){
     Write-Information '  Starting deployment of Azure Policies'
@@ -312,7 +312,7 @@
   {
     Write-Information '  Deployment of Azure Active Role Assignments is disabled.'
   }
-  
+
   # Deploy Azure Action Groups
   if($azActionGroups -or $azAll){
     Write-Information '  Starting deployment of Azure Action Groups...'
@@ -334,7 +334,7 @@
   {
     Write-Information '  Deployment of Azure Alerts is disabled.'
   }
-  
+
   # Deploy Runbooks
   if($azRunbooks -or $azAll){
     Write-Information '  Starting deployment of Azure Runbooks...'
@@ -345,7 +345,6 @@
   {
     Write-Information '  Deployment of Azure Alerts is disabled.'
   }
-  
 
   # Deploy Azure ARM Parameter Files
   if($azParameterFiles -or $azAll){
