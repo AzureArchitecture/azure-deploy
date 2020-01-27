@@ -37,13 +37,10 @@ try {
   #--- Enable developer mode on the system ---
   Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
 
-  #--- Windows Settings ---
-  Write-Output "--Modifying Windows Settings--"
 
   Write-Output "Modifying Explorer options"
-  Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions -EnableShowFullPathInTitleBar
-  Set-WindowsExplorerOptions -DisableShowRecentFilesInQuickAccess -DisableShowFrequentFoldersInQuickAccess
-
+  Set-WindowsExplorerOptions -EnableShowFileExtensions -EnableShowFullPathInTitleBar
+ 
   Write-Output "Modifying taskbar options"
   Set-TaskbarOptions -Dock Bottom -Combine Always -AlwaysShowIconsOn
 
@@ -54,28 +51,6 @@ try {
       New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Force | Out-Null
   }
   Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -Type DWord -Value 1
-
-  # show this pc on desktop
-  Write-Output "Showing 'This PC' on desktop"
-  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu")) {
-      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Force | Out-Null
-  }
-  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Type DWord -Value 0
-  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel")) {
-      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Force | Out-Null
-  }
-  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Type DWord -Value 0
-
-  # show user folder on desktop
-  Write-Output "Showing user home on desktop"
-  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu")) {
-      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Force | Out-Null
-  }
-  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -Type DWord -Value 0
-  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel")) {
-      New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Force | Out-Null
-  }
-  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -Type DWord -Value 0
 
   # Disable Cortana
   Write-Output "Disabling Cortana"
@@ -113,24 +88,6 @@ try {
   Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
 
   ######################################################
-  # settings-file-explorer.ps1
-  ######################################################
-  #--- Configuring Windows properties ---
-  #--- Windows Features ---
-  # Show hidden files, Show protected OS files, Show file extensions
-  Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
-
-  #--- File Explorer Settings ---
-  # will expand explorer to the actual folder you're in
-  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Value 1
-  #adds things back in your left pane like recycle bin
-  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneShowAllFolders -Value 1
-  #opens PC to This PC, not quick access
-  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name LaunchTo -Value 1
-  #taskbar where window is open for multi-monitor
-  Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
-
-  ######################################################
   # Installing Browsers
   ######################################################
   Write-Host "Installing Browsers"
@@ -143,29 +100,14 @@ try {
   ######################################################
   choco install git.install -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install visualstudio2019community --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019-workload-databuildtools --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019-workload-datascience --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install visualstudio2019-workload-data --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install visualstudio2019-workload-azure --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install PowerShell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnetfx -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnet4.5 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnet4.6.2 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnet4.7 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install netfx-4.7.1-devpack -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnetcore-sdk -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install dotnetcore -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install powershell-core -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install azure-cli -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install microsoftazurestorageexplorer -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install vscode -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install sysinternals -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install office365business -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install sql-server-management-studio -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install ssis-vs2019 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install azure-data-studio -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
-  choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install azuredatastudio-powershell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install github-desktop -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install azcopy -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
