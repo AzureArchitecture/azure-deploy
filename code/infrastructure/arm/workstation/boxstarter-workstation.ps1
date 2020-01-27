@@ -6,6 +6,10 @@
 # Description: Boxstarter Script
 # Author: Quisitive
 # Common settings for azure devops
+CreatePathIfNotExists -pathName "C:\temp"
+$Boxstarter.Log="C:\temp\boxstarter.log"
+$Boxstarter.SuppressLogging=$false
+
 
 # Boxstarter Options
 $Boxstarter.RebootOk=$true # Allow reboots?
@@ -84,18 +88,12 @@ try {
   }
   Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
 
-  ######################################################
-  # Installing Browsers
-  ######################################################
-  Write-Host "Installing Browsers"
-  choco install googlechrome -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" -force
-  choco install firefox -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" -force
-  Write-Host
 
   ######################################################
   # Installing Dev Tools
   ######################################################
   Write-Host "Installing Dev Tools"
+  choco install googlechrome -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" -force
   choco install git.install -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install visualstudio2019community --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
   choco install visualstudio2019-workload-azure --All -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" --Force
