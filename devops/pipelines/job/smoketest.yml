@@ -1,0 +1,73 @@
+parameters:
+  AzureSubscription: ''
+  resource-group: ''
+  armTemplateRoot: ''
+  armParameterTemplateRoot: ''
+  armOutput: ''
+  location: ''
+
+  jobs:
+  - job: smoketestjob
+    displayName: 'deploy smoke test'
+    steps:
+    - template: ../step/arm-storage-account.yml
+      parameters:
+        armTemplateFile: '${{ parameters.armTemplateRoot }}/storage-account.json'
+        armParameterTemplateFile: '${{ parameters.armParameterTemplateRoot }}/storage-account.test.parameter.json'
+        location: '${{ parameters.location }}'
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        resourceGroup: '${{ parameters.resource-group }}'
+        ev: '${{ parameters.ev }}'
+    - template: ../step/arm-outputs.yml
+      parameters:
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        armOutput: '${{ parameters.armOutput }}'
+    - template: ../step/arm-storage-account-container.yml
+      parameters:
+        armTemplateFile: '${{ parameters.armTemplateRoot }}/storage-account-container.json'
+        armParameterTemplateFile: '${{ parameters.armParameterTemplateRoot }}/storage-account-container.test.parameter.json'
+        location: '${{ parameters.location }}'
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        resourceGroup: '${{ parameters.resource-group }}'
+        ev: '${{ parameters.ev }}'
+        storage-account-name: '$(storage-account-name)'
+    - template: ../step/arm-outputs.yml
+      parameters:
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        armOutput: '${{ parameters.armOutput }}'
+    - template: ../step/arm-sql-server.yml
+      parameters:
+        armTemplateFile: '${{ parameters.armTemplateRoot }}/sql-server.json'
+        armParameterTemplateFile: '${{ parameters.armParameterTemplateRoot }}/sql-server.test.parameter.json'
+        location: '${{ parameters.location }}'
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        resourceGroup: '${{ parameters.resource-group }}'
+        ev: '${{ parameters.ev }}'
+    - template: ../step/arm-outputs.yml
+      parameters:
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        armOutput: '${{ parameters.armOutput }}'
+    - template: ../step/arm-event-hub-namespace.yml
+      parameters:
+        armTemplateFile: '${{ parameters.armTemplateRoot }}/event-hub-namespace.json'
+        armParameterTemplateFile: '${{ parameters.armParameterTemplateRoot }}/event-hub-namespace.test.parameter.json'
+        location: '${{ parameters.location }}'
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        resourceGroup: '${{ parameters.resource-group }}'
+        ev: '${{ parameters.ev }}'
+    - template: ../step/arm-outputs.yml
+      parameters:
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        armOutput: '${{ parameters.armOutput }}'
+    - template: ../step/arm-event-hub-hub.yml
+      parameters:
+        armTemplateFile: '${{ parameters.armTemplateRoot }}/event-hub-hub.json'
+        armParameterTemplateFile: '${{ parameters.armParameterTemplateRoot }}/event-hub-hub.test.parameter.json'
+        location: '${{ parameters.location }}'
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        resourceGroup: '${{ parameters.resource-group }}'
+        ev: '${{ parameters.ev }}'
+    - template: ../step/arm-outputs.yml
+      parameters:
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        armOutput: '${{ parameters.armOutput }}'

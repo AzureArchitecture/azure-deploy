@@ -1,0 +1,21 @@
+parameters:
+  armTemplateFile: ''
+  armParameterTemplateFile: ''
+  location: ''
+  ev: ''
+  AzureSubscription: 'azure-coe-service-connection'
+  resourceGroup: ''
+
+steps:
+- task: AzureResourceGroupDeployment@2
+  displayName: 'deploy-storage-account'
+  inputs:
+    AzureSubscription: ${{ parameters.AzureSubscription }}
+    resourceGroupName: ${{ parameters.resourceGroup }}
+    location: ${{ parameters.location }}
+    csmFile: '${{ parameters.armTemplateFile }}'
+    csmParametersFile: '${{ parameters.armParameterTemplateFile }}'
+    overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
+    deploymentName: 'deployment-storage-account'
+    deploymentOutputs: 'armOutput'
+  condition: and(succeeded(), eq(variables['storage-account-flag'], '1'))

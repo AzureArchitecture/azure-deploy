@@ -1,0 +1,8 @@
+variables:
+-group: 'azure-shared'
+- name: 'deploy-dev'
+  value: '1'
+- name: 'deploy-prod'
+  value: '1'
+- name: 'deploy-smoke'
+  value: '1'

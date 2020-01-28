@@ -1,0 +1,42 @@
+parameters:
+  AzureSubscription: ''
+
+steps:
+
+    - task: NuGetToolInstaller@1
+
+    - task: NuGetCommand@2
+      inputs:
+        restoreSolution: '$(solution)'
+    - task: VSBuild@1
+      displayName: 'Build Solution'
+      inputs:
+        solution: '$(solution)'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+        clean: true
+    - task: AzurePowerShell@5
+      displayName: 'Run ARM Pester Tests'
+      inputs:
+        azureSubscription: '${{ parameters.AzureSubscription }}'
+        ScriptType: 'FilePath'
+        ScriptPath: '$(System.DefaultWorkingDirectory)\code\infrastructure\scripts\ps\azure\test\execute-tests.ps1'
+        azurePowerShellVersion: 'LatestVersion'
+    - task: PublishTestResults@2
+      displayName: 'Publish Test Results **/arm-test*.xml '
+      inputs:
+        testResultsFormat: NUnit
+        testResultsFiles: |
+         **/arm-test*.xml
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Build Artifacts'
+      inputs:
+        PathtoPublish:
+    - task: CopyFiles@2
+      inputs:
+        Contents: '**'
+        TargetFolder: '$(Build.ArtifactestagingDirectory)'
+        CleanTargetFolder: true
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+        OverWrite: true

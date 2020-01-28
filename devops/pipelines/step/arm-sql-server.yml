@@ -1,0 +1,21 @@
+parameters:
+  armTemplateFile: ''
+  armParameterTemplateFile: ''
+  location: ''
+  ev: ''
+  azureSubscription: ''
+  resourceGroup: ''
+
+steps:
+- task: AzureResourceGroupDeployment@2
+  displayName: 'deploy-sql-server'
+  inputs:
+    azureSubscription: 'azure-coe-service-connection'
+    resourceGroupName: ${{ parameters.resourceGroup }}
+    location: ${{ parameters.location }}
+    csmFile: '${{ parameters.armTemplateFile }}'
+    csmParametersFile: '${{ parameters.armParameterTemplateFile }}'
+    overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
+    deploymentName: 'deployment-sql-server'
+    deploymentOutputs: armOutput
+  condition: and(succeeded(), eq(variables['sql-server-flag'], '1'))

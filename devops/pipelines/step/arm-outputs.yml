@@ -1,0 +1,13 @@
+parameters:
+  AzureSubscription: ''
+  armOutput: ''
+
+steps:
+- task: AzurePowerShell@5
+  displayName: 'set arm output variables'
+  inputs:
+    azureSubscription: '${{ parameters.AzureSubscription }}'
+    ScriptType: 'FilePath'
+    ScriptPath: '$(System.DefaultWorkingDirectory)\devops\scripts\Set-TemplateOutputVars.ps1'
+    ScriptArguments: '-ArmOutput ${{ parameters.armOutput }}'
+    azurePowerShellVersion: 'LatestVersion'

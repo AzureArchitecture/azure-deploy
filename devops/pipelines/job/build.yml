@@ -1,0 +1,10 @@
+parameters:
+  AzureSubscription: ''
+
+  jobs:
+  - job: buildjob
+    displayName: 'build azure-deploy'
+    steps:
+    - template: ../step/arm-build.yml
+      parameters:
+        azureSubscription: '$(azureSubscription)'

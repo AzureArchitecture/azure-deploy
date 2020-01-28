@@ -1,0 +1,113 @@
+name: $(Build.DefinitionName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+- master
+
+pool:
+  vmImage: windows-2019
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  armTemplateRoot: '$(System.DefaultWorkingDirectory)\code\infrastructure\arm\templates'
+  armParameterTemplateRoot: '$(System.DefaultWorkingDirectory)\code\infrastructure\arm\templates\parameters'
+  azureSubscription: 'azure-coe-service-connection'
+
+stages:
+
+# -----------------------------------------------------------------------------
+# Stage 1 - Continuous Integration (CI)
+# -----------------------------------------------------------------------------
+- stage: build
+  jobs:
+  - job: buildjob
+    displayName: 'build azure-deploy'
+    steps:
+
+    - task: NuGetToolInstaller@1
+
+# -----------------------------------------------------------------------------
+# Stage 2 - Continuous Testing (CT)
+# -----------------------------------------------------------------------------
+- stage: smoketest
+  dependsOn: build
+  variables:
+  - template: devops/pipelines/variables/smoke-variables.yml
+  - template: devops/pipelines/variables/smoke-features.yml
+  jobs:
+  - job: smoketestjob
+    pool:
+      vmImage: windows-2019
+    steps:
+    - template: devops/pipelines/step/arm-storage-account.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/storage-account.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account.test.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+    - template: devops/pipelines/step/arm-storage-account-container.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/storage-account-container.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account-container.test.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+        storage-account-name: '$(storage-account-name)'
+    - template: devops/pipelines/step/arm-sql-server.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/sql-server.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/sql-server.test.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+    - template: devops/pipelines/step/arm-event-hub-namespace.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/event-hub-namespace.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/event-hub-namespace.test.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+    - template: devops/pipelines/step/arm-event-hub-hub.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/event-hub-hub.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/event-hub-hub.test.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+
+# -----------------------------------------------------------------------------
+# Stage 3 - Continuous Delivery (CD)
+# -----------------------------------------------------------------------------
+- stage: development
+  dependsOn: smoketest
+  variables:
+  - template: devops/pipelines/variables/development-variables.yml
+  - template: devops/pipelines/variables/development-features.yml
+  jobs:
+  - job: developmentjob
+    pool:
+      vmImage: windows-2019
+    steps:
+    - template: devops/pipelines/step/arm-storage-account.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/storage-account.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account.0.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+    - template: devops/pipelines/step/arm-sql-server.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/sql-server.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/sql-server.0.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
