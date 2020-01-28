@@ -16,12 +16,6 @@
         "description": "The name of the Event Hub Namespace."
       }
     },
-    "LocationKey": {
-      "type": "String",
-      "metadata": {
-        "description": "The key of the Event Hub Namespace location."
-      }
-    },
     "SkuName": {
       "type": "String",
       "metadata": {
@@ -136,7 +130,7 @@
       "type": "Microsoft.EventHub/namespaces",
       "apiVersion": "2018-01-01-preview",
       "name": "[parameters('EventHubNamespaceName')]",
-      "location": "[parameters('LocationKey')]",
+      "location": "[resourceGroup().location]",
       "sku": {
         "name": "[parameters('SkuName')]",
         "tier": "[parameters('SkuTier')]",

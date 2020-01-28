@@ -1,58 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="4" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2020-01-20" time="17:33:06">
-  <environment clr-version="4.0.30319.42000" user-domain="AzureAD" cwd="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\arm\templates" platform="Microsoft Windows 10 Enterprise|C:\Windows|\Device\Harddisk0\Partition3" machine-name="X1-GALLUCCI" nunit-version="2.5.8.0" os-version="10.0.18363" user="PatrickGallucci" />
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="4" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2020-01-27" time="21:51:57">
+  <environment clr-version="4.0.30319.42000" user-domain="AzureAD" cwd="C:\Windows\system32" platform="Microsoft Windows 10 Enterprise|C:\Windows|\Device\Harddisk0\Partition3" machine-name="X1-GALLUCCI" nunit-version="2.5.8.0" os-version="10.0.18363" user="PatrickGallucci" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="5.0225" asserts="0" description="Pester">
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Failure" success="False" time="5.6207" asserts="0" description="Pester">
     <results>
-      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\data-factory.tests.ps1" executed="True" result="Success" success="True" time="0.9922" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\data-factory.tests.ps1">
+      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\data-factory.tests.ps1" executed="True" result="Success" success="True" time="1.3404" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\data-factory.tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="Data Factory Deployment Tests" executed="True" result="Success" success="True" time="0.9766" asserts="0" description="Data Factory Deployment Tests">
+          <test-suite type="TestFixture" name="Data Factory Deployment Tests" executed="True" result="Success" success="True" time="1.3314" asserts="0" description="Data Factory Deployment Tests">
             <results>
-              <test-suite type="TestFixture" name="When a Data Factory is deployed" executed="True" result="Success" success="True" time="0.9292" asserts="0" description="When a Data Factory is deployed">
+              <test-suite type="TestFixture" name="When a Data Factory is deployed" executed="True" result="Success" success="True" time="1.2909" asserts="0" description="When a Data Factory is deployed">
                 <results>
-                  <test-case description="Should be deployed successfully" name="Data Factory Deployment Tests.When a Data Factory is deployed.Should be deployed successfully" time="0.0031" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should be deployed successfully" name="Data Factory Deployment Tests.When a Data Factory is deployed.Should be deployed successfully" time="0.0027" asserts="0" success="True" result="Success" executed="True" />
                 </results>
               </test-suite>
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\event-hub-namespace.tests.ps1" executed="True" result="Success" success="True" time="0.8647" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\event-hub-namespace.tests.ps1">
+      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\event-hub-namespace.tests.ps1" executed="True" result="Success" success="True" time="0.9746" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\event-hub-namespace.tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="Event Hub Namespace Deployment Tests" executed="True" result="Success" success="True" time="0.8553" asserts="0" description="Event Hub Namespace Deployment Tests">
+          <test-suite type="TestFixture" name="Event Hub Namespace Deployment Tests" executed="True" result="Success" success="True" time="0.9639" asserts="0" description="Event Hub Namespace Deployment Tests">
             <results>
-              <test-suite type="TestFixture" name="When an Event Hub Namespace is deployed" executed="True" result="Success" success="True" time="0.812" asserts="0" description="When an Event Hub Namespace is deployed">
+              <test-suite type="TestFixture" name="When an Event Hub Namespace is deployed" executed="True" result="Success" success="True" time="0.9264" asserts="0" description="When an Event Hub Namespace is deployed">
                 <results>
-                  <test-case description="Should be deployed successfully" name="Event Hub Namespace Deployment Tests.When an Event Hub Namespace is deployed.Should be deployed successfully" time="0.0027" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should be deployed successfully" name="Event Hub Namespace Deployment Tests.When an Event Hub Namespace is deployed.Should be deployed successfully" time="0.0026" asserts="0" success="True" result="Success" executed="True" />
                 </results>
               </test-suite>
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\service-bus-namespace.tests.ps1" executed="True" result="Success" success="True" time="0.0053" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\service-bus-namespace.tests.ps1">
+      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\service-bus-namespace.tests.ps1" executed="True" result="Success" success="True" time="0.008" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\service-bus-namespace.tests.ps1">
         <results />
       </test-suite>
-      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\sql-server.tests.ps1" executed="True" result="Success" success="True" time="1.2334" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\sql-server.tests.ps1">
+      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\sql-server.tests.ps1" executed="True" result="Success" success="True" time="1.2914" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\sql-server.tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="SQL Server Deployment Tests" executed="True" result="Success" success="True" time="1.219" asserts="0" description="SQL Server Deployment Tests">
+          <test-suite type="TestFixture" name="SQL Server Deployment Tests" executed="True" result="Success" success="True" time="1.2835" asserts="0" description="SQL Server Deployment Tests">
             <results>
-              <test-suite type="TestFixture" name="When a SQL Server is deployed" executed="True" result="Success" success="True" time="1.1711" asserts="0" description="When a SQL Server is deployed">
+              <test-suite type="TestFixture" name="When a SQL Server is deployed" executed="True" result="Success" success="True" time="1.2476" asserts="0" description="When a SQL Server is deployed">
                 <results>
-                  <test-case description="Should be deployed successfully" name="SQL Server Deployment Tests.When a SQL Server is deployed.Should be deployed successfully" time="0.0028" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should be deployed successfully" name="SQL Server Deployment Tests.When a SQL Server is deployed.Should be deployed successfully" time="0.0025" asserts="0" success="True" result="Success" executed="True" />
                 </results>
               </test-suite>
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\storage-account.tests.ps1" executed="True" result="Success" success="True" time="1.9269" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\storage-account.tests.ps1">
+      <test-suite type="TestFixture" name="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\storage-account.tests.ps1" executed="True" result="Failure" success="False" time="2.0063" asserts="0" description="C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\storage-account.tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="Storage Account Deployment Tests" executed="True" result="Success" success="True" time="1.912" asserts="0" description="Storage Account Deployment Tests">
+          <test-suite type="TestFixture" name="Storage Account Deployment Tests" executed="True" result="Failure" success="False" time="1.9882" asserts="0" description="Storage Account Deployment Tests">
             <results>
-              <test-suite type="TestFixture" name="When a storage account deployed" executed="True" result="Success" success="True" time="1.8642" asserts="0" description="When a storage account deployed">
+              <test-suite type="TestFixture" name="When a storage account deployed" executed="True" result="Failure" success="False" time="1.949" asserts="0" description="When a storage account deployed">
                 <results>
-                  <test-case description="Should be deployed successfully" name="Storage Account Deployment Tests.When a storage account deployed.Should be deployed successfully" time="0.0028" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should be deployed successfully" name="Storage Account Deployment Tests.When a storage account deployed.Should be deployed successfully" time="0.0124" asserts="0" success="False" result="Failure" executed="True">
+                    <failure>
+                      <message>Expected $null, but got @(9:51:56 PM - TestAzureResourceGroupDeploymentCmdlet begin processing with ParameterSet 'ByTemplateFileAndParameterFile'., 9:51:56 PM - using account id 'mtad@azuresecurity.net'..., [Common.Authentication]: Authenticating using Account: 'mtad@azuresecurity.net', environment: 'AzureCloud', tenant: '3ae449e7-25e5-4e5d-b705-7a39e1ad16f0', [Common.Authentication]: Authenticating using configuration values: Domain: '3ae449e7-25e5-4e5d-b705-7a39e1ad16f0', Endpoint: 'https://login.microsoftonline.com/', ClientId: '1950a258-227b-4e31-a9cf-717495945fc2', ClientRedirect: 'urn:ietf:wg:oauth:2.0:oob', ResourceClientUri: 'https://management.core.windows.net/', ValidateAuthority: 'True', [Common.Authentication]: Acquiring token using context with Authority 'https://login.microsoftonline.com/3ae449e7-25e5-4e5d-b705-7a39e1ad16f0/', CorrelationId: '00000000-0000-0000-0000-000000000000', ValidateAuthority: 'True', [Common.Authentication]: Acquiring token using AdalConfiguration with Domain: '3ae449e7-25e5-4e5d-b705-7a39e1ad16f0', AdEndpoint: 'https://login.microsoftonline.com/', ClientId: '1950a258-227b-4e31-a9cf-717495945fc2', ClientRedirectUri: urn:ietf:wg:oauth:2.0:oob, [ADAL]: Information: 2020-01-28T03:51:56.0035961Z: b3eb89f4-2828-4277-ba05-e277b4730c6c - LoggerBase.cs: ADAL PCL.Desktop with assembly version '3.19.2.6005', file version '3.19.50302.0130' and informational version '2a8bec6c4c76d0c1ef819b55bdc3cda2d2605056' is running...
+, [ADAL]: Information: 2020-01-28T03:51:56.0035961Z: b3eb89f4-2828-4277-ba05-e277b4730c6c - LoggerBase.cs: ADAL PCL.Desktop with assembly version '3.19.2.6005', file version '3.19.50302.0130' and informational version '2a8bec6c4c76d0c1ef819b55bdc3cda2d2605056' is running...
+, [ADAL]: Information: 2020-01-28T03:51:56.0035961Z: b3eb89f4-2828-4277-ba05-e277b4730c6c - LoggerBase.cs: === Token Acquisition started: 
+	CacheType: null
+	Authentication Target: User
+	, Authority Host: login.microsoftonline.com
+, [ADAL]: Information: 2020-01-28T03:51:56.0035961Z: b3eb89f4-2828-4277-ba05-e277b4730c6c - LoggerBase.cs: === Token Acquisition started:
+	Authority: https://login.microsoftonline.com/3ae449e7-25e5-4e5d-b705-7a39e1ad16f0/
+	Resource: https://management.core.windows.net/
+	ClientId: 1950a258-227b-4e31-a9cf-717495945fc2
+	CacheType: null
+	Authentication Target: User
+	
+).</message>
+                      <stack-trace>at &lt;ScriptBlock&gt;, C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\test\storage-account.tests.ps1: line 34
+34:       $output | Should Be $null</stack-trace>
+                    </failure>
+                  </test-case>
                 </results>
               </test-suite>
             </results>

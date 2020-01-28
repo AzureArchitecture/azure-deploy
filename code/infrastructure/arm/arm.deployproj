@@ -48,7 +48,10 @@
     <Content Include="workstation\dev-vm\DSC\buildvm.ps1" />
     <Content Include="workstation\dev-vm\files\dpi30.ico" />
     <Content Include="templates\sql-server.json" />
-    <Content Include="templates\sql-server.test.parameter.json" />
+    <Content Include="templates\parameters\storage-account.0.parameter.json" />
+    <Content Include="templates\parameters\storage-account.test.parameter.json" />
+    <Content Include="templates\parameters\analysis-services.test.parameter.json" />
+    <None Include="templates\storage-account.json" />
     <None Include="workstation\dev-vm\README.md" />
     <None Include="workstation\dev-vm\resources\dev.md" />
   </ItemGroup>

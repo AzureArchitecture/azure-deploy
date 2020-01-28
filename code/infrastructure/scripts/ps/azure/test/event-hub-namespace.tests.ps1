@@ -3,7 +3,7 @@ $ResourceGroupName = "rg-test"
 $template = "event-hub-namespace"
 
 $TemplateFile = "$PSScriptRoot\..\..\..\..\arm\templates\$template.json"
-$TemplateParameterFile = "$PSScriptRoot\..\..\..\..\arm\templates\$template.test.parameter.json"
+$TemplateParameterFile = "$PSScriptRoot\..\..\..\..\arm\templates\parameters\$template.test.parameter.json"
 $TemplateMetadataFile = "$PSScriptRoot\..\..\..\..\arm\templates\$template.metadata.json"
 
 Describe 'Metadata Test' {

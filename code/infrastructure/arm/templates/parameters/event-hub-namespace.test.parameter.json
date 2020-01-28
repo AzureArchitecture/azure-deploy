@@ -53,9 +53,6 @@
     "SkuCapacity": {
       "value": "1"
     },
-    "LocationKey": {
-      "value": "eastus"
-    },
     "BudgetAmount": {
       "value": "$200-Month"
     }
