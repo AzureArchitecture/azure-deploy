@@ -244,5 +244,10 @@
       ]
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "sql-database-name": {
+      "type": "string",
+      "value": "[parameters('databaseName')]"
+    }
+  }
 }

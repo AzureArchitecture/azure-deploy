@@ -292,6 +292,39 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Az.DevOpsClasses", "scripts
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes.UnitTests", "scripts\ps\modules\Az.DevOps\src\Classes.UnitTests\Classes.UnitTests.csproj", "{792126BB-4FCA-4355-A2D3-AA9423E5AE57}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devops", "devops", "{1DB4FC73-6CB8-41F7-8F53-6A7384E61DAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{CD3C67A0-ADB2-4F46-B8C0-CAB1F472FB39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "job", "job", "{B25FB7EB-C35C-46D7-9F6D-573F4CC20FC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{FD4159CD-5904-499F-AB7F-0BBB737B9B71}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\devops\pipelines\scripts\Set-TemplateOutputVars.ps1 = ..\..\devops\pipelines\scripts\Set-TemplateOutputVars.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stage", "stage", "{70CA6783-F070-405F-A9DB-B78D1EE1D62C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "step", "step", "{39159919-0D51-4CF2-A10D-DA5D904E3FF4}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\devops\pipelines\step\arm-event-hub-hub.yml = ..\..\devops\pipelines\step\arm-event-hub-hub.yml
+		..\..\devops\pipelines\step\arm-event-hub-namespace.yml = ..\..\devops\pipelines\step\arm-event-hub-namespace.yml
+		..\..\devops\pipelines\step\arm-sql-server.yml = ..\..\devops\pipelines\step\arm-sql-server.yml
+		..\..\devops\pipelines\step\arm-storage-account-container.yml = ..\..\devops\pipelines\step\arm-storage-account-container.yml
+		..\..\devops\pipelines\step\arm-storage-account.yml = ..\..\devops\pipelines\step\arm-storage-account.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "variables", "variables", "{2C9F2C23-06CC-413B-A4CF-8C3ECC99F272}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\devops\pipelines\variables\azure-shared.yml = ..\..\devops\pipelines\variables\azure-shared.yml
+		..\..\devops\pipelines\variables\development-features.yml = ..\..\devops\pipelines\variables\development-features.yml
+		..\..\devops\pipelines\variables\development-variables.yml = ..\..\devops\pipelines\variables\development-variables.yml
+		..\..\devops\pipelines\variables\production-features.yml = ..\..\devops\pipelines\variables\production-features.yml
+		..\..\devops\pipelines\variables\production-variables.yml = ..\..\devops\pipelines\variables\production-variables.yml
+		..\..\devops\pipelines\variables\smoke-features.yml = ..\..\devops\pipelines\variables\smoke-features.yml
+		..\..\devops\pipelines\variables\smoke-variables.yml = ..\..\devops\pipelines\variables\smoke-variables.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -362,6 +395,12 @@ Global
 		{15B68404-18F4-49EB-94CF-F0D1D07F5B4E} = {A63BA1E0-9265-43EC-B359-CED93626CC09}
 		{995DC932-D44E-405D-ABCB-3464828693D1} = {3B71FB49-2028-4D95-9A77-38F7201B5ADB}
 		{792126BB-4FCA-4355-A2D3-AA9423E5AE57} = {577E2347-EA65-444E-9C4D-B77A2C3D072D}
+		{CD3C67A0-ADB2-4F46-B8C0-CAB1F472FB39} = {1DB4FC73-6CB8-41F7-8F53-6A7384E61DAD}
+		{B25FB7EB-C35C-46D7-9F6D-573F4CC20FC9} = {CD3C67A0-ADB2-4F46-B8C0-CAB1F472FB39}
+		{FD4159CD-5904-499F-AB7F-0BBB737B9B71} = {CD3C67A0-ADB2-4F46-B8C0-CAB1F472FB39}
+		{70CA6783-F070-405F-A9DB-B78D1EE1D62C} = {CD3C67A0-ADB2-4F46-B8C0-CAB1F472FB39}
+		{39159919-0D51-4CF2-A10D-DA5D904E3FF4} = {CD3C67A0-ADB2-4F46-B8C0-CAB1F472FB39}
+		{2C9F2C23-06CC-413B-A4CF-8C3ECC99F272} = {CD3C67A0-ADB2-4F46-B8C0-CAB1F472FB39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3314A87-2B67-4F28-BE74-663D67245E73}

@@ -138,5 +138,11 @@
       "properties": {}
     }
 
-  ]
+  ],
+  "outputs": {
+    "service-bus-topic-sub-name": {
+      "type": "string",
+      "value": "[parameters('ServiceBusTopicSubName')]"
+    }
+  }
 }

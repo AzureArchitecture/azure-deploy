@@ -160,11 +160,11 @@
     }
   ],
   "outputs": {
-    "sqlServerName": {
+    "sql-server-name": {
       "type": "string",
       "value": "[parameters('sqlServerName')]"
     },
-    "sqlServerFqdn": {
+    "sql-server-fqdn": {
       "type": "string",
       "value": "[reference(concat('Microsoft.Sql/servers/', parameters('sqlServerName'))).fullyQualifiedDomainName]"
     }

@@ -2,7 +2,7 @@
   "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "name": {
+    "analysisServicesName": {
       "type": "string"
     },
     "location": {
@@ -37,7 +37,7 @@
   "resources": [
     {
       "apiVersion": "2017-08-01",
-      "name": "[parameters('name')]",
+      "name": "[parameters('analysisServicesName')]",
       "location": "[parameters('location')]",
       "type": "Microsoft.AnalysisServices/servers",
       "sku": {
@@ -52,5 +52,11 @@
         "managedMode": "[parameters('managedMode')]"
       }
     }
-  ]
+  ],
+  "outputs": {
+    "analysis-services-name": {
+      "type": "string",
+      "value": "[parameters('analysisServicesName')]"
+    }
+  }
 }

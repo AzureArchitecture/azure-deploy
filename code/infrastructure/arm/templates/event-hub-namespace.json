@@ -155,5 +155,11 @@
         "zoneRedundant": "[parameters('zoneRedundant')]"
       }
     }
-  ]
+  ],
+  "outputs": {
+    "event-hub-namespace-name": {
+      "type": "string",
+      "value": "[parameters('EventHubNamespaceName')]"
+    }
+  }
 }

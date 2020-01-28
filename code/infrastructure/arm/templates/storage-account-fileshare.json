@@ -143,5 +143,9 @@
     }
   ],
   "outputs": {
+    "storage-account-fileshare-name": {
+      "type": "string",
+      "value": "[parameters('fileShareName')]"
+    }
   }
 }

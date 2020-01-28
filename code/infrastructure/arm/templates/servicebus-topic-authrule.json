@@ -126,7 +126,7 @@
       "apiVersion": "2017-04-01",
       "location": "[resourceGroup().location]",
       "tags": {
-        "Display Name": "service bus topic: [parameters('ServiceBusTopicName')]",
+        "Display Name": "service bus topic auth rule name: [parameters('ServiceBusTopicAuthRuleName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
         "Budget required-approved": "[parameters('BudgetAmount')]",
@@ -145,5 +145,10 @@
       }
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "service-bus-topic-auth-rule-name": {
+      "type": "string",
+      "value": "[parameters('ServiceBusTopicAuthRuleName')]"
+    }
+  }
 }

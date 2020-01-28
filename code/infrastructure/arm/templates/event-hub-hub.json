@@ -180,6 +180,10 @@
     }
   ],
   "outputs": {
+    "event-hub-hub-name": {
+      "type": "string",
+      "value": "[parameters('EventHubName')]"
+    },
     "HubEndpoint": {
       "type": "string",
       "value": "[listkeys(resourceId('Microsoft.EventHub/namespaces/eventhubs/AuthorizationRules', parameters('EventHubNamespaceName'), parameters('EventHubName'), 'ReadWrite'), '2017-04-01').primaryConnectionString]"

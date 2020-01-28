@@ -177,6 +177,10 @@
     "ServiceBusEndpointReadOnly": {
       "type": "string",
       "value": "[listkeys(resourceId('Microsoft.ServiceBus/namespaces/AuthorizationRules', parameters('ServiceBusNamespaceName'), 'Read'), '2017-04-01').primaryConnectionString]"
+    },
+    "servicebus-namespace-name": {
+      "type": "string",
+      "value": "[parameters('ServiceBusNamespaceName')]"
     }
   }
 }

@@ -186,11 +186,15 @@
     }
   ],
   "outputs": {
-    "storageKey": {
+    "storage-account-key": {
       "type": "string",
       "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
     },
-    "storageConnectionString": {
+    "storage-account-name": {
+      "type": "string",
+      "value": "[parameters('StorageAccountName')]"
+    },
+    "storage-account-connection-string": {
       "type": "string",
       "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('StorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value, ';EndpointSuffix=core.windows.net')]"
     }

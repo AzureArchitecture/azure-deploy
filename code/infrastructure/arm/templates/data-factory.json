@@ -115,7 +115,7 @@
         "type": "SystemAssigned"
       },
       "tags": {
-        "Display Name": "data factory: [parameters('sqlServerName')]",
+        "Display Name": "data factory: [parameters('DataFactoryName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
         "Budget required-approved": "[parameters('BudgetAmount')]",
@@ -131,5 +131,11 @@
       },
       "properties": {}
     }
-  ]
+  ],
+  "outputs": {
+    "data-factory-name": {
+      "type": "string",
+      "value": "[parameters('DataFactoryName')]"
+    }
+  }
 }

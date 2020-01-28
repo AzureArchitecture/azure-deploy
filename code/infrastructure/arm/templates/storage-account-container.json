@@ -125,7 +125,7 @@
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2019-04-01",
       "tags": {
-        "Display Name": "storage container: [parameters('StorageAccountName')]",
+        "Display Name": "storage container: [parameters('containerName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
         "Budget required-approved": "[parameters('BudgetAmount')]",
@@ -144,5 +144,10 @@
       }
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "storage-account-container-name": {
+      "type": "string",
+      "value": "[parameters('containerName')]"
+    }
+  }
 }
