@@ -18,7 +18,7 @@
       "value": "requester@company.org"
     },
     "ResourceGroupName": {
-      "value": "rg-azs-adap-dev-eus"
+      "value": "rg-ger-adap-dev-eus"
     },
     "ServiceClass": {
       "value": "Gold"
@@ -27,7 +27,10 @@
       "value": "approver@company.org"
     },
     "zoneRedundant": {
-      "value": false
+      "value": "false"
+    },
+    "isAutoInflateEnabled": {
+      "value": "true"
     },
     "DR": {
       "value": "Mission-Critical"
@@ -48,10 +51,16 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-azs-adap-dev-eus"
+      "value": "ehns-ger-adap-dev-eus"
     },
     "SkuCapacity": {
       "value": "1"
+    },
+    "maximumThroughputUnits": {
+      "value": "6"
+    },
+    "LocationKey": {
+      "value": "eastus"
     },
     "BudgetAmount": {
       "value": "$200-Month"

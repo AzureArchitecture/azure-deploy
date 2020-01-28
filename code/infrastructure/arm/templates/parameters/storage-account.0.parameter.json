@@ -36,10 +36,10 @@
       "value": "CORP"
     },
     "StorageAccountName": {
-      "value": "stgazsadapdeveus"
+      "value": "stggeradapdeveus01"
     },
     "ResourceGroupName": {
-      "value": "rg-azs-adap-dev-eus"
+      "value": "rg-ger-adap-dev-eus"
     },
     "AccountType": {
       "value": "Standard_LRS"

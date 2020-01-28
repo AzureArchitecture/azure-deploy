@@ -1,96 +1,96 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "timezoneId": {
-      "value": "UTC"
-    },
-    "hardwareFamily": {
-      "value": "Gen5"
-    },
-    "Owner": {
-      "value": "owner@company.org"
-    },
-    "administratorLoginPassword": {
-      "value": "Z1!xcvbnmnbvcxz"
-    },
-    "collation": {
-      "value": "SQL_Latin1_General_CP1_CI_AS"
-    },
-    "dnsZonePartner": {
-      "value": ""
-    },
-    "virtualNetworkName": {
-      "value": "vnet-azs-dev"
-    },
-    "subnetName": {
-      "value": "snet-azs-dev-sqlmi"
-    },
-    "licenseType": {
-      "value": "LicenseIncluded"
-    },
-    "CostCenter": {
-      "value": "8675-309"
-    },
-    "Env": {
-      "value": "dev"
-    },
-    "proxyOverride": {
-      "value": "Redirect"
-    },
-    "skuEdition": {
-      "value": "GeneralPurpose"
-    },
-    "ServiceClass": {
-      "value": "Gold"
-    },
-    "vCores": {
-      "value": 4
-    },
-    "storageSizeGb": {
-      "value": 32
-    },
-    "virtualNetworkResourceGroupName": {
-      "value": "rg-azs-network-dev-eus"
-    },
-    "Approver": {
-      "value": "approver@company.org"
-    },
-    "publicDataEndpointEnabled": {
-      "value": false
-    },
-    "Requester": {
-      "value": "requester@company.org"
-    },
-    "ResourceGroupName": {
-      "value": "rg-azs-adap-dev-eus"
-    },
-    "DR": {
-      "value": "Mission-Critical"
-    },
-    "BusinessUnit": {
-      "value": "CORP"
-    },
-    "managedInstanceName": {
-      "value": "sql-azs-adap-dev-eus"
-    },
-    "StartDate": {
-      "value": "1-1-2020"
-    },
-    "BudgetAmount": {
-      "value": "$200-Month"
-    },
-    "skuName": {
-      "value": "GP_Gen5"
-    },
-    "administratorLogin": {
-      "value": "sqlAdmin"
-    },
-    "EndDate": {
-      "value": "12-31-9999"
-    },
-    "ApplicationName": {
-      "value": "ADAP"
-    }
-  }
+    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "timezoneId":  {
+                                          "value":  "UTC"
+                                      },
+                       "hardwareFamily":  {
+                                              "value":  "Gen5"
+                                          },
+                       "Owner":  {
+                                     "value":  "owner@company.org"
+                                 },
+                       "administratorLoginPassword":  {
+                                                          "value":  "Z1!xcvbnmnbvcxz"
+                                                      },
+                       "collation":  {
+                                         "value":  "SQL_Latin1_General_CP1_CI_AS"
+                                     },
+                       "dnsZonePartner":  {
+                                              "value":  null
+                                          },
+                       "virtualNetworkName":  {
+                                                  "value":  "vnet-azs-dev"
+                                              },
+                       "subnetName":  {
+                                          "value":  "snet-azs-dev-sqlmi"
+                                      },
+                       "licenseType":  {
+                                           "value":  "LicenseIncluded"
+                                       },
+                       "CostCenter":  {
+                                          "value":  "8675-309"
+                                      },
+                       "Env":  {
+                                   "value":  "dev"
+                               },
+                       "proxyOverride":  {
+                                             "value":  "Redirect"
+                                         },
+                       "skuEdition":  {
+                                          "value":  "GeneralPurpose"
+                                      },
+                       "ServiceClass":  {
+                                            "value":  "Gold"
+                                        },
+                       "vCores":  {
+                                      "value":  4
+                                  },
+                       "storageSizeGb":  {
+                                             "value":  32
+                                         },
+                       "virtualNetworkResourceGroupName":  {
+                                                               "value":  "rg-qui-network-dev-eus"
+                                                           },
+                       "Approver":  {
+                                        "value":  "approver@company.org"
+                                    },
+                       "publicDataEndpointEnabled":  {
+                                                         "value":  false
+                                                     },
+                       "Requester":  {
+                                         "value":  "requester@company.org"
+                                     },
+                       "ResourceGroupName":  {
+                                                 "value":  "rg-ger-adap-dev-eus"
+                                             },
+                       "DR":  {
+                                  "value":  "Mission-Critical"
+                              },
+                       "BusinessUnit":  {
+                                            "value":  "CORP"
+                                        },
+                       "managedInstanceName":  {
+                                                   "value":  "sqlmi-ger-adap-dev-eus-01"
+                                               },
+                       "StartDate":  {
+                                         "value":  "1-1-2020"
+                                     },
+                       "BudgetAmount":  {
+                                            "value":  "$200-Month"
+                                        },
+                       "skuName":  {
+                                       "value":  "GP_Gen5"
+                                   },
+                       "administratorLogin":  {
+                                                  "value":  "sqlAdmin"
+                                              },
+                       "EndDate":  {
+                                       "value":  "12-31-9999"
+                                   },
+                       "ApplicationName":  {
+                                               "value":  "ADAP"
+                                           }
+                   }
 }
