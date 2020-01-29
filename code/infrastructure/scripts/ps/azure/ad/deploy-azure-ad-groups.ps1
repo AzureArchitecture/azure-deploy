@@ -21,7 +21,7 @@ param(
     [string]$adapCMDB = $adapCMDB,
     [Parameter(Mandatory=$true,HelpMessage='Action to take.')]
     [ValidateSet("create","purge")]$action= "create",
-    [Switch]$adOnPrem = $true
+    [Switch]$adOnPrem = $false
 )
 
 # ====================

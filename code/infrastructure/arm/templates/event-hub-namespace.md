@@ -19,10 +19,10 @@ The following security controls can be met through configuration of this templat
   "contentVersion": "1.0.0.0",
   "parameters": {
     "EventHubNamespaceName": {
-      "value": "ehns-azs-adap-test-eus"
+      "value": "ehns-xazx-adap-test-eus"
     },
     "ResourceGroupName": {
-      "value": "rg-azs-adap-dev-eus"
+      "value": "rg-xazx-adap-dev-eus"
     },
     "SkuName": {
       "value": "Basic"

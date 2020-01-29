@@ -9,7 +9,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-azs-adap-test-eus"
+      "value": "sb-xazx-adap-tst-eus"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -42,7 +42,7 @@
       "value": "rg-smoke"
     },
     "Env": {
-      "value": "dev"
+      "value": "tst"
     },
     "Requester": {
       "value": "requester@company.org"

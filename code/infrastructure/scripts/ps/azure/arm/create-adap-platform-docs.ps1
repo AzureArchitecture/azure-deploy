@@ -4,48 +4,10 @@
 # A function to break out parameters from an ARM template
  [CmdletBinding()]
   param(
-    # debugAction
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Switch]$debugAction = $false,
+)
 
-    # verbosePreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$verbosePreferenceVariable = 'SilentlyContinue',
 
-    # errorActionPreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$errorActionPreferenceVariable = 'Stop',
 
-    # debugPreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$debugPreferenceVariable = 'SilentlyContinue',
-
-    # informationPreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue')]
-    [string]$informationPreferenceVariable = 'Continue'
-
-  )
-  Clear-Host
-  $DefaultVariables = $(Get-Variable).Name
-
-  Set-Location -Path $PSScriptRoot
-
-  #$null = "$actionErrorVariable"
-  $VerbosePreference = $verbosePreferenceVariable
-  $DebugPreference = $debugPreferenceVariable
-  $ErrorActionPreference = $errorActionPreferenceVariable
-  $InformationPreference = $informationPreferenceVariable
-  $psscriptsRoot = $PSScriptRoot
-
-  Set-PSDebug -Off
-  if($debugAction){
-    Set-PSDebug -Trace 1
-  }
-Import-Module PSDocs -Force
 
 $psscriptsRoot = $PSScriptRoot
 #Folder Locations
@@ -161,6 +123,11 @@ Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
 
 $templateName = "analysis-services"
+$env:ARM_TEMPLATE_CURRENT = $templateName
+Set-Location -Path "$rootDirectory"
+Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+
+$templateName = "logic-app"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory

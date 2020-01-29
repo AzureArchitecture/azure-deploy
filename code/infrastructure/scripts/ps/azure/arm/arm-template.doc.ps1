@@ -76,8 +76,8 @@ document 'arm-template' {
     $metadata = GetTemplateMetadata -Path $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.metadata.json;
     $parameters = GetTemplateParameter -Path $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.json;
     $resources = GetTemplateResources -Path  $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.json;
-    $testParameters = GetTemplateParameterValues -Path $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.test.parameter.json;
-    $jsonParameters = Get-Content -Path $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.test.parameter.json;
+    $testParameters = GetTemplateParameterValues -Path $env:ARM_TEMPLATE_PATH/parameters/$env:ARM_TEMPLATE_CURRENT.test.parameter.json;
+    $jsonParameters = Get-Content -Path $env:ARM_TEMPLATE_PATH/parameters/$env:ARM_TEMPLATE_CURRENT.test.parameter.json;
 
     # Set document title
     Title $metadata.itemDisplayName

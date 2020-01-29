@@ -33,13 +33,13 @@
       "value": "CORP"
     },
     "analysisServicesName": {
-      "value": "aasazsadaptesteus"
+      "value": "aasazsadaptsteus"
     },
     "ResourceGroupName": {
       "value": "rg-smoke"
     },
     "Env": {
-      "value": "test"
+      "value": "tst"
     },
     "Requester": {
       "value": "requester@company.org"

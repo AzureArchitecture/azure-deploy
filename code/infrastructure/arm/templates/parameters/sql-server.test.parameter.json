@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "sqlServerName": {
-      "value": "sql-azs-adap-test-eus"
+      "value": "sql-xazx-adap-tst-eus"
     },
     "StartDate": {
       "value": "1-1-2020"
@@ -42,7 +42,7 @@
       "value": "rg-smoke"
     },
     "Env": {
-      "value": "test"
+      "value": "tst"
     },
     "Requester": {
       "value": "requester@company.org"

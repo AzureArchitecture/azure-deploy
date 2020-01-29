@@ -33,10 +33,10 @@
                                             "value":  "CORP"
                                         },
                        "analysisServicesName":  {
-                                                    "value":  "aas-ger-adap-dev-eus"
+                                                    "value":  "aas-xazx-adap-dev-eus"
                                                 },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ger-adap-dev-eus"
+                                                 "value":  "rg-xazx-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"

@@ -63,7 +63,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ger-adap-dev-eus"
+                                                 "value":  "rg-xazx-adap-dev-eus"
                                              },
                        "DR":  {
                                   "value":  "Mission-Critical"
@@ -72,7 +72,7 @@
                                             "value":  "CORP"
                                         },
                        "managedInstanceName":  {
-                                                   "value":  "sqlmi-ger-adap-dev-eus-01"
+                                                   "value":  "sqlmi-xazx-adap-dev-eus-01"
                                                },
                        "StartDate":  {
                                          "value":  "1-1-2020"

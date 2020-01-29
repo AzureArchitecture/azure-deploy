@@ -21,7 +21,7 @@ The following security controls can be met through configuration of this templat
       "value": "stgazsadapdeveus"
     },    
     "ResourceGroupName": {
-      "value": "rg-azs-adap-dev-eus"
+      "value": "rg-xazx-adap-dev-eus"
     },
 	"AccessTier": {
       "value": "Hot"

@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ger-adap-dev-eus"
+                                                 "value":  "rg-xazx-adap-dev-eus"
                                              },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -27,7 +27,7 @@
                                   "value":  "Mission-Critical"
                               },
                        "EventHubName":  {
-                                            "value":  "eh-ger-adap-dev-eus"
+                                            "value":  "eh-xazx-adap-dev-eus"
                                         },
                        "CostCenter":  {
                                           "value":  "8675-309"
@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "EventHubNamespaceName":  {
-                                                     "value":  "ehns-ger-adap-dev-eus"
+                                                     "value":  "ehns-xazx-adap-dev-eus"
                                                  },
                        "Env":  {
                                    "value":  "dev"

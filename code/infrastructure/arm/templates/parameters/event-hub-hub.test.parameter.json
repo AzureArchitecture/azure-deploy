@@ -30,7 +30,7 @@
       "value": "Mission-Critical"
     },
     "EventHubName": {
-      "value": "eh-azs-adap-test-eus"
+      "value": "eh-xazx-adap-tst-eus"
     },
     "CostCenter": {
       "value": "8675-309"
@@ -42,10 +42,10 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-azs-adap-test-eus"
+      "value": "ehns-xazx-adap-tst-eus"
     },
     "Env": {
-      "value": "test"
+      "value": "tst"
     },
     "BudgetAmount": {
       "value": "$200-Month"

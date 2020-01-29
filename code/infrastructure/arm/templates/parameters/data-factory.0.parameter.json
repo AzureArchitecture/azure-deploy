@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "DataFactoryName":  {
-                                               "value":  "dfa-ger-adap-dev-eus-01"
+                                               "value":  "dfa-xazx-adap-dev-eus-01"
                                            },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -36,7 +36,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ger-adap-dev-eus"
+                                                 "value":  "rg-xazx-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"

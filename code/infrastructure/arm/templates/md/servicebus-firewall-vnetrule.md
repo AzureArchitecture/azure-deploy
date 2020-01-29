@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [servicebus-firewall-vnetrule.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/servicebus-firewall-vnetrule.json + )
+Resource File: [servicebus-firewall-vnetrule.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-firewall-vnetrule.json + )
 
-Metadata File: [servicebus-firewall-vnetrule.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/servicebus-firewall-vnetrule.metadata.json + )
+Metadata File: [servicebus-firewall-vnetrule.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-firewall-vnetrule.metadata.json + )
 
-Test Parameters File: [servicebus-firewall-vnetrule.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/servicebus-firewall-vnetrule.test.parameter.json + )
+Test Parameters File: [servicebus-firewall-vnetrule.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-firewall-vnetrule.test.parameter.json + )
 
 ## Parameters
 

@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "sqlServerName":  {
-                                             "value":  "sql-ger-adap-dev-eus-01"
+                                             "value":  "sql-xazx-adap-dev-eus-01"
                                          },
                        "StartDate":  {
                                          "value":  "1-1-2020"
@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ger-adap-dev-eus"
+                                                 "value":  "rg-xazx-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"

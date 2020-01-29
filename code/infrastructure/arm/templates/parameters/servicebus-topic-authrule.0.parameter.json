@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-ger-adap-dev-eus"
+                                                       "value":  "sb-xazx-adap-dev-eus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -33,10 +33,10 @@
                                             "value":  "CORP"
                                         },
                        "ServiceBusTopicName":  {
-                                                   "value":  "sbt-ger-adap-dev-eus"
+                                                   "value":  "sbt-xazx-adap-dev-eus"
                                                },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ger-adap-dev-eus"
+                                                 "value":  "rg-xazx-adap-dev-eus"
                                              },
                        "Rights":  {
                                       "value":  "Manage"
@@ -51,7 +51,7 @@
                                             "value":  "$200-Month"
                                         },
                        "ServiceBusTopicAuthRuleName":  {
-                                                           "value":  "sbtar-ger-adap-dev-eus"
+                                                           "value":  "sbtar-xazx-adap-dev-eus"
                                                        }
                    }
 }

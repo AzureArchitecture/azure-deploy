@@ -9,17 +9,17 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [storage-account-fileshare.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/storage-account-fileshare.json + )
+Resource File: [storage-account-fileshare.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.json + )
 
-Metadata File: [storage-account-fileshare.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/storage-account-fileshare.metadata.json + )
+Metadata File: [storage-account-fileshare.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.metadata.json + )
 
-Test Parameters File: [storage-account-fileshare.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/storage-account-fileshare.test.parameter.json + )
+Test Parameters File: [storage-account-fileshare.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg-azs-adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0

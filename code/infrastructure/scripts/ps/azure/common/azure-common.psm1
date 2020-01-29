@@ -1,52 +1,30 @@
-﻿
-
-function Check-ModuleUpdate
-{
-  [cmdletbinding()]
-Param()
-
-Write-Host "Getting installed modules" -ForegroundColor Yellow
-$modules = Get-Module -ListAvailable
-
-#group to identify modules with multiple versions installed
-$g = $modules | group name -NoElement | where count -gt 1
-
-Write-Host "Filter to modules from the PSGallery" -ForegroundColor Yellow
-$gallery = $modules.where({$_.repositorysourcelocation})
-
-Write-Host "Comparing to online versions" -ForegroundColor Yellow
-foreach ($module in $gallery) {
-
-     #find the current version in the gallery
-     Try {
-        $online = Find-Module -Name $module.name -Repository PSGallery -ErrorAction Stop
-     }
-     Catch {
-        Write-Warning "Module $($module.name) was not found in the PSGallery"
-     }
-
-     #compare versions
-     if ($online.version -gt $module.version) {
-        $UpdateAvailable = $True
-     }
-     else {
-        $UpdateAvailable = $False
-     }
-
-     #write a custom object to the pipeline
-     [pscustomobject]@{
-        Name = $module.name
-        MultipleVersions = ($g.name -contains $module.name)
-        InstalledVersion = $module.version
-        OnlineVersion = $online.version
-        Update = $UpdateAvailable
-        Path = $module.modulebase
-     }
- 
-} #foreach
-
-
-Write-Host "Check complete" -ForegroundColor Green
+﻿<#
+    .SYNOPSIS
+    Checmks if a module is loaded and does just that...
+#>
+function Load-Module ($m) {
+    # If module is imported say that and do nothing
+    if (Get-Module | Where-Object {$_.Name -eq $m}) {
+        write-host "Module $m is already imported."
+    }
+    else {
+        # If module is not imported, but available on disk then import
+        if (Get-Module -ListAvailable | Where-Object {$_.Name -eq $m}) {
+            Import-Module $m
+        }
+        else {
+            # If module is not imported, not available on disk, but is in on-line gallery then install and import
+            if (Find-Module -Name $m | Where-Object {$_.Name -eq $m}) {
+                Install-Module -Name $m -Force -Verbose -Scope CurrentUser -InformationVariable Ignore
+                Import-Module $m
+            }
+            else {
+                # If module is not imported, not available and not in online gallery then abort
+                write-host "Module $m not imported, not available and not in online gallery, exiting."
+                EXIT 1
+            }
+        }
+    }
 }
 
 <#
@@ -2989,6 +2967,7 @@ Export-ModuleMember -Function 'Export-*'
 Export-ModuleMember -Function 'Deploy-*'
 Export-ModuleMember -Function 'Get-*'
 Export-ModuleMember -Function 'Import-*'
+Export-ModuleMember -Function 'Load-*'
 Export-ModuleMember -Function 'New-*'
 Export-ModuleMember -Function 'Open-*'
 Export-ModuleMember -Function 'Read-*'

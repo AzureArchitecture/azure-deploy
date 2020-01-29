@@ -3,28 +3,28 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "SharedResourceGroupName": {
-      "defaultValue": "rg-azs-shared-dev-eus",
+      "defaultValue": "rg-xazx-shared-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "NetworkResourceGroupName": {
-      "defaultValue": "rg-azs-network-dev-eus",
+      "defaultValue": "rg-xazx-network-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet-azs-dev",
+      "defaultValue": "vnet-xazx-dev",
       "type": "string",
       "metadata": {
         "description": "The name of the virtual network for the Bastion Host."
       }
     },
     "bastionHostName": {
-      "defaultValue": "bast-azs-shared-dev-eus",
+      "defaultValue": "bast-xazx-shared-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Bastion Host."

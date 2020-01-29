@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-ger-adap-dev-eus"
+                                                       "value":  "sb-xazx-adap-dev-eus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -36,7 +36,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ger-adap-dev-eus"
+                                                 "value":  "rg-xazx-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"

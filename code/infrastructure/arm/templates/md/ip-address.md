@@ -9,18 +9,18 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [ip-address.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/ip-address.json + )
+Resource File: [ip-address.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.json + )
 
-Metadata File: [ip-address.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/ip-address.metadata.json + )
+Metadata File: [ip-address.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.metadata.json + )
 
-Test Parameters File: [ip-address.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/ip-address.test.parameter.json + )
+Test Parameters File: [ip-address.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
 publicIpAddressName | string | The name of the Bastion Host public IP address. | -
-ResourceGroupName | string | The name of the Resource Group. | rg-azs-network-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-network-dev-eus
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0

@@ -9,20 +9,20 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [bastion-host.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/bastion-host.json + )
+Resource File: [bastion-host.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/bastion-host.json + )
 
-Metadata File: [bastion-host.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/bastion-host.metadata.json + )
+Metadata File: [bastion-host.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/bastion-host.metadata.json + )
 
-Test Parameters File: [bastion-host.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/bastion-host.test.parameter.json + )
+Test Parameters File: [bastion-host.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/bastion-host.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-SharedResourceGroupName | string | The name of the Resource Group. | rg-azs-shared-dev-eus
-NetworkResourceGroupName | string | The name of the Resource Group. | rg-azs-network-dev-eus
-virtualNetworkName | string | The name of the virtual network for the Bastion Host. | vnet-azs-dev
-bastionHostName | string | The name of the Bastion Host. | bast-azs-shared-dev-eus
+SharedResourceGroupName | string | The name of the Resource Group. | rg-xazx-shared-dev-eus
+NetworkResourceGroupName | string | The name of the Resource Group. | rg-xazx-network-dev-eus
+virtualNetworkName | string | The name of the virtual network for the Bastion Host. | vnet-xazx-dev
+bastionHostName | string | The name of the Bastion Host. | bast-xazx-shared-dev-eus
 subnetName     | string | The id of the Bastion Host subnet. | AzureBastionSubnet
 publicIpAddressName | string | The name of the Bastion Host public IP address. | -
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP

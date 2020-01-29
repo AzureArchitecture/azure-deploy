@@ -43,96 +43,82 @@
       .\deploy-adap-platform.ps1 -azBlueprints -location "centralus" -env "dev" -actionVerboseVariable "Continue" -actionDebugVariable "Continue" -actionErrorVariable "Stop" -deployAction create
 
   #>
-  [CmdletBinding()]
   param(
+    # useMFA
+    [Switch]$useMFA=$false,
+
     # azAll
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azAll=$false,
 
     # adUsers
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$adUsers=$false,
 
     # adGroups
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$adGroups=$false,
 
     # adServicePrincipals
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$adServicePrincipals=$false,
 
     # azPolicies
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azPolicies=$false,
 
     # azInitiatives
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azInitiatives=$false,
 
     #azRoles
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azRoles=$false,
 
     #azBlueprints
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azBlueprints=$false,
 
     #AzRoleAssignments
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azRoleAssignments=$false,
 
     # azActionGroups
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azActionGroups=$false,
 
     # azAlerts
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azAlerts=$false,
 
     # azRunbooks
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azRunbooks=$false,
 
     # azParameterFiles
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$azParameterFiles=$true,
 
     # debugAction
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Switch]$debugAction = $false,
 
-    # verbosePreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$verbosePreferenceVariable = 'SilentlyContinue',
-
-    # errorActionPreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$errorActionPreferenceVariable = 'Stop',
-
-    # debugPreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$debugPreferenceVariable = 'SilentlyContinue',
-
-    # informationPreferenceVariable
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset('Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue')]
-    [string]$informationPreferenceVariable = 'Continue',
-
     # deployAction
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [validateset('create','purge')]
     [string]$deployAction = 'create',
 
     # adapCMDB
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [string]$adapCMDBfile = 'adap-cmdb.xlsm',
 
     # removeRG
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch]$removeRG=$false
+    [switch]$removeRG=$false,
+
+
+    # verbosePreferenceVariable
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
+    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
+    [string]$verbosePreferenceVariable = 'SilentlyContinue',
+
+    # errorActionPreferenceVariable
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
+    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
+    [string]$errorActionPreferenceVariable = 'Stop',
+
+    # debugPreferenceVariable
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
+    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
+    [string]$debugPreferenceVariable = 'SilentlyContinue',
+
+    # informationPreferenceVariable
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
+    [validateset('Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue')]
+    [string]$informationPreferenceVariable = 'Continue'
 
   )
   Clear-Host
@@ -190,48 +176,69 @@
     Exit
   }
 
-  # Set variabls from config file
-  $automationAccountName = $config.laAutomationAccount
-  $logAnalytics = $config.laWorkspaceName
-  $alertResourceGroup = $config.alertResourceGroup
-  $orgTag = $config.orgTag
-  $env = $config.evTag
-  $location = $config.primaryLocation
-  $username = $config.azureAdmin
-  $password = $config.azureAdminPwd
-  $subname = $config.subscriptionname
-  $adOUPath = $config.adOUPath
+  # Only run this the first time through.
+  if (!$modCheck) {  
+    # load PS modules
+    Load-Module "Az"
+    Load-Module "Az.Blueprint"
+    Load-Module "Azure.Storage"
+    Load-Module "Pester"
+    Load-Module "PSDocs"
+    Load-Module "PsISEProjectExplorer"
+    $modCheck = $true
 
-  $secpasswd = ConvertTo-SecureString $password -AsPlainText -Force
-  $cred = New-Object System.Management.Automation.PSCredential ($userName, $secpasswd)
-  Connect-AzAccount  -Credential $cred
-  $sub = get-AzSubscription -SubscriptionName $subname
-  Connect-AzAccount -Credential $cred -Tenant $sub.TenantId -SubscriptionId $sub.SubscriptionId
-  Set-AzContext -SubscriptionName $subname
+    # Set variabls from config file
+    $automationAccountName = $config.laAutomationAccount
+    $logAnalytics = $config.laWorkspaceName
+    $alertResourceGroup = $config.alertResourceGroup
+    $orgTag = $config.orgTag
+    $env = $config.evTag
+    $location = $config.primaryLocation
+    $username = $config.azureAdmin
+    $password = $config.azureAdminPwd
+    $subname = $config.subscriptionname
+    $adOUPath = $config.adOUPath
+    $suffix = $config.suffix
+  
+    # Multi-Factor Authentication
+    if($useMFA){
+      Connect-AzAccount -Force
+      Exit
+    }
+    else
+    {
+      $secpasswd = ConvertTo-SecureString $password -AsPlainText -Force
+      $cred = New-Object System.Management.Automation.PSCredential ($userName, $secpasswd)
+      Connect-AzAccount  -Credential $cred
+      $sub = get-AzSubscription -SubscriptionName $subname
+      Connect-AzAccount -Credential $cred -Tenant $sub.TenantId -SubscriptionId $sub.SubscriptionId
+      Set-AzContext -SubscriptionName $subname
+    }
 
-  # Logon to Azure
-  Write-Information 'Logon to Azure...'
-  Initialize-Subscription
-  $subscriptionId = Get-SubscriptionId
-  Set-AzContext -SubscriptionId $subscriptionId
-  $subscriptionName = (Get-AzContext).Subscription.SubscriptionName
-  try{
-    if($adGroups -or $adServicePrincipals -or $adUsers){
-      # Logon to Azure AD with values from config file
-      Write-Information 'Logon to Azure Active Directory...'
-      $currentAzureContext = Get-AzContext
-      Write-Information "Logon to Azure AD with values from config file: $configurationFile"
-      $tenantId = $currentAzureContext.Tenant.Id
-      $accountId = $currentAzureContext.Account.Id
-      Connect-AzureAD -TenantId $tenantId -AccountId $accountId
+    # Logon to Azure
+    Write-Information 'Logon to Azure...'
+    Initialize-Subscription
+    $subscriptionId = Get-SubscriptionId
+    Set-AzContext -SubscriptionId $subscriptionId
+    $subscriptionName = (Get-AzContext).Subscription.SubscriptionName
+    
+    try{
+      if($adGroups -or $adServicePrincipals -or $adUsers){
+        # Logon to Azure AD with values from config file
+        Write-Information 'Logon to Azure Active Directory...'
+        $currentAzureContext = Get-AzContext
+        Write-Information "Logon to Azure AD with values from config file: $configurationFile"
+        $tenantId = $currentAzureContext.Tenant.Id
+        $accountId = $currentAzureContext.Account.Id
+        Connect-AzureAD -TenantId $tenantId -AccountId $accountId
+      }
+    }
+    catch{
+      Write-Host 'Logon to Azure Active Directory Failed'
+      Write-Host -Message 'Press any key to exit...'
+      Exit
     }
   }
-  catch{
-    Write-Host 'Logon to Azure Active Directory Failed'
-    Write-Host -Message 'Press any key to exit...'
-    Exit
-  }
-
   # Start Deployment of Azure Assets
   Write-Information 'Starting deployment of Azure Assets'
 
@@ -351,12 +358,17 @@
     Write-Information '  Starting deployment of Azure ARM Parameter Files...'
     Set-Location -Path "$psAzureDirectory"
     .\arm\create-arm-template-parameter-files.ps1 -adapCMDB "$adapCMDB" -paramDirectory "$armTemplatesDirectory\parameters"
+    Set-Location -Path "$psAzureDirectory"
+    Write-Information '  updating arm markdown docs...'
+  .\arm\create-adap-platform-docs.ps1 
   }
   else
   {
     Write-Information '  Creation of Azure ARM Template Files is disabled.'
   }
 
+
+  
   Set-Location -Path $psscriptsRoot
   # Completing Deployment of Azure Assets
   Write-Information 'Completing deployment of Azure Assets'

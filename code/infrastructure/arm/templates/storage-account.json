@@ -8,7 +8,7 @@
   },
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-azs-adap-dev-eus",
+      "defaultValue": "rg-xazx-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."

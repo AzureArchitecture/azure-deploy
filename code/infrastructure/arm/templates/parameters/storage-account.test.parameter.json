@@ -36,7 +36,7 @@
       "value": "CORP"
     },
     "StorageAccountName": {
-      "value": "stgazsadaptesteus"
+      "value": "stgazsadaptsteus"
     },
     "ResourceGroupName": {
       "value": "rg-smoke"
@@ -45,7 +45,7 @@
       "value": "Standard_LRS"
     },
     "Env": {
-      "value": "test"
+      "value": "tst"
     },
     "StorageKind": {
       "value": "StorageV2"

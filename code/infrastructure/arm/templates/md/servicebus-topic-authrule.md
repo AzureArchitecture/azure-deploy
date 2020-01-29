@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [servicebus-topic-authrule.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/servicebus-topic-authrule.json + )
+Resource File: [servicebus-topic-authrule.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.json + )
 
-Metadata File: [servicebus-topic-authrule.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/servicebus-topic-authrule.metadata.json + )
+Metadata File: [servicebus-topic-authrule.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.metadata.json + )
 
-Test Parameters File: [servicebus-topic-authrule.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\reports\..\..\..\..\arm\templates/servicebus-topic-authrule.test.parameter.json + )
+Test Parameters File: [servicebus-topic-authrule.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.test.parameter.json + )
 
 ## Parameters
 
@@ -23,7 +23,7 @@ ServiceBusTopicAuthRuleName | string | Name of the Authorization Rule (shared ac
 ServiceBusTopicName | string | Topic to apply the rule (policy) to | -
 Rights         | array | Array of rights to be assigned to the rule.  Rights are limited to Manage, Send, Listen | -
 ServiceBusNamespaceName | string | Name of Service Bus namespace the topic attached to | -
-ResourceGroupName | string | The name of the Resource Group. | rg-azs-adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0
