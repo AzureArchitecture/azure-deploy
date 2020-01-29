@@ -22,10 +22,10 @@ function Get-Configuration
 
     subscriptionname = 'AzureArch'
     subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
-    azureAdmin = "mtad@azuresecurity.net"
-    azureAdminPwd = 'Z3#xcvbnmnbvcxz'# (Get-AzKeyVaultSecret -VaultName 'adap-deploy-rg-kv' -Name 'azureAdminPwd' -).SecretValueText
+    azureAdmin = "deploy@azuresecurity.net"
+    azureAdminPwd = 'M0)nbvcxz'# (Get-AzKeyVaultSecret -VaultName 'adap-deploy-rg-kv' -Name 'azureAdminPwd' -).SecretValueText
 
-    securityEmails = "p@gallucci.us"
+    securityEmails = "user@domain.com"
     securityPhoneNo = "88886753909"
 
     adOUPath = 'OU=Azure,'

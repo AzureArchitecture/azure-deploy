@@ -113,6 +113,7 @@ try {
   choco install azcopy -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install rdcman -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install office365business  -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   Write-Host
 
 

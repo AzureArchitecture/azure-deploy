@@ -108,7 +108,7 @@
     # errorActionPreferenceVariable
     [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
     [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$errorActionPreferenceVariable = 'Stop',
+    [string]$errorActionPreferenceVariable = 'Continue',
 
     # debugPreferenceVariable
     [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
@@ -121,8 +121,17 @@
     [string]$informationPreferenceVariable = 'Continue'
 
   )
+
   Clear-Host
-  $DefaultVariables = $(Get-Variable).Name
+  Set-Location -Path "$PSScriptRoot"
+  Get-ChildItem C:\repos -recurse | Unblock-File 
+  try{
+    Set-ExecutionPolicy Unrestricted -Confirm:0 -Force -ErrorAction SilentlyContinue
+
+    }
+    Catch
+    {}
+  
 
   #$null = "$actionErrorVariable"
   $VerbosePreference = $verbosePreferenceVariable
@@ -162,12 +171,12 @@
   }
 
   try{
-    $azureCommon = ('{0}\{1}' -f  $psCommonDirectory, 'azure-common')
-    Import-Module -Name $azureCommon -Force
+    $azureCommon = ('{0}\{1}' -f  $psCommonDirectory, 'azure-common.psm1')
+    Import-Module -Name $azureCommon -Force 
 
     #Set Config Values
-    $configurationFile = ('{0}\{1}' -f  $psConfigDirectory, 'adap-configuration')
-    Import-Module -Name $configurationFile -Force
+    $configurationFile = ('{0}\{1}' -f  $psConfigDirectory, 'adap-configuration.psm1')
+    Import-Module -Name $configurationFile -Force 
     $config = Get-Configuration
   }
   catch {
@@ -185,6 +194,8 @@
     Load-Module "Pester"
     Load-Module "PSDocs"
     Load-Module "PsISEProjectExplorer"
+    Load-Module "PSExcel"
+    Load-Module "ImportExcel"
     $modCheck = $true
 
     # Set variabls from config file
@@ -360,7 +371,7 @@
     .\arm\create-arm-template-parameter-files.ps1 -adapCMDB "$adapCMDB" -paramDirectory "$armTemplatesDirectory\parameters"
     Set-Location -Path "$psAzureDirectory"
     Write-Information '  updating arm markdown docs...'
-  .\arm\create-adap-platform-docs.ps1 
+    .\arm\create-adap-platform-docs.ps1 
   }
   else
   {

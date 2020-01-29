@@ -10,13 +10,13 @@ function Load-Module ($m) {
     else {
         # If module is not imported, but available on disk then import
         if (Get-Module -ListAvailable | Where-Object {$_.Name -eq $m}) {
-            Import-Module $m
+            Import-Module $m -Force
         }
         else {
             # If module is not imported, not available on disk, but is in on-line gallery then install and import
             if (Find-Module -Name $m | Where-Object {$_.Name -eq $m}) {
-                Install-Module -Name $m -Force -Verbose -Scope CurrentUser -InformationVariable Ignore
-                Import-Module $m
+                Install-Module -Name $m -Force -Verbose -Scope CurrentUser -InformationVariable Ignore -AllowClobber -Confirm:0
+                Import-Module $m -Force
             }
             else {
                 # If module is not imported, not available and not in online gallery then abort
