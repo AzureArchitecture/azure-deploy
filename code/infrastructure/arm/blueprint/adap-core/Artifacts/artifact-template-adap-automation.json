@@ -25,7 +25,7 @@
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "azs"
+          "defaultValue": "xazx"
         },
         "suffix": {
           "type": "string",
@@ -130,7 +130,7 @@
         }
       },
       "variables": {
-        "automationAccountName": "[concat('auto-',parameters('orgTag'),'-shared-',parameters('Env'),parameters('suffix'))]"
+        "automationAccountName": "[concat('auto-',parameters('orgTag'),'-adap-',parameters('Env'),'-',parameters('suffix'))]"
       },
       "resources": [
         {
@@ -162,7 +162,7 @@
       ],
       "outputs": {}
     },
-    "resourceGroup": "SHARED-RG",
+    "resourceGroup": "ADAP-RG",
     "parameters": {
       "skuName": {
         "value": "[parameters('Auto_skuName')]"

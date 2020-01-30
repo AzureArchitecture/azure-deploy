@@ -54,6 +54,27 @@ param(
     [Parameter(Mandatory = $true)]
     [string] $suffix,
 
+    [Parameter(Mandatory = $true)]
+    [string] $testRG,
+
+    [Parameter(Mandatory = $true)]
+    [string] $smokeRG,
+
+    [Parameter(Mandatory = $true)]
+    [string] $adapRG,
+
+    [Parameter(Mandatory = $true)]
+    [string] $mgmtRG,
+
+    [Parameter(Mandatory = $true)]
+    [string] $networkRG,
+
+    [Parameter(Mandatory = $true)]
+    [string] $onpremRG,
+
+    [Parameter(Mandatory = $true)]
+    [string] $sharedRG,
+
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $removeRG,
 
@@ -81,7 +102,7 @@ if ($action -eq 'purge')
       if($removeRG)
       {
         # loop through each rg in a sub
-      $rgs = Get-AzResourceGroup  
+      $rgs = Get-AzResourceGroup | Where ResourceGroupName -like *$orgTag* 
       Get-AzResourceLock | Remove-AzResourceLock -Force   -ErrorAction Continue
         foreach ($rg in $rgs) {
           if($rg.ResourceGroupName.StartsWith("rg-"))
@@ -102,19 +123,16 @@ if ($action -eq 'purge')
       Exit
   }
 
-# Import Modules for Blueprint
-Import-Module Azure.Storage  
-Import-Module Az.Blueprint  
-
 # parameters are listed in a single hashtable, with a key/value pair for each parameter
-$parameters = @{ Env=$env; orgTag=$orgTag; logAnalytics=$logAnalytics; suffix=$suffix}
+$parameters = @{ Env=$env; orgTag=$orgTag; logAnalytics=$logAnalytics; suffix=$suffix; testRG=$testRG; smokeRG=$smokeRG; mgmtRG=$mgmtRG; networkRG=$networkRG; sharedRG=$sharedRG; adapRG=$adapRG ;onpremRG=$onpremRG}
 
 $BPFolders = Get-ChildItem $rootDirectory  
 foreach($BPFolder in $BPFolders) {
   $BPName = $BPFolder.Name
   $temp = "    Deploying Azure Blueprint: {0}" -f $BPName
   Write-Information $temp  
-  Import-AzBlueprintWithArtifact -Name $BPName -InputPath $BPFolder.FullName -SubscriptionId $subscriptionId -Force 
+  #write-host Import-AzBlueprintWithArtifact -Name "$BPName" -InputPath $BPFolder.FullName -SubscriptionId "$subscriptionId"
+  Import-AzBlueprintWithArtifact -Name $BPName -InputPath $BPFolder.FullName -SubscriptionId "$subscriptionId" -Force 
   # success
   if ($?) {
     $temp = "    Azure Blueprint imported successfully: {0}" -f $BPName

@@ -1,6 +1,4 @@
-﻿Clear-Host
-  
-#Folder Locations
+﻿#Folder Locations
 Set-Location -Path $PSScriptRoot  
 $psCommonDirectory = "$PSScriptRoot\..\common"
 $psConfigDirectory = "$PSScriptRoot\..\config"

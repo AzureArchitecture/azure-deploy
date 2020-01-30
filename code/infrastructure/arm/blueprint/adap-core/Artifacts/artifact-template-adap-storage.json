@@ -14,7 +14,7 @@
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "azs"
+          "defaultValue": "xazx"
         },
         "suffix": {
           "type": "string",
@@ -213,13 +213,13 @@
         "value": "[parameters('suffix')]"
       },
       "accountType": {
-        "value": "[parameters('deployADAPResourceGroupStorageAccount_accountType')]"
+        "value": "[parameters('adapRgStorageAccount_accountType')]"
       },
       "accessTier": {
-        "value": "[parameters('deployADAPResourceGroupStorageAccount_accessTier')]"
+        "value": "[parameters('adapRgStorageAccount_accessTier')]"
       },
       "storageKind": {
-        "value": "[parameters('deployADAPResourceGroupStorageAccount_storageKind')]"
+        "value": "[parameters('adapRgStorageAccount_storageKind')]"
       },
       "ApplicationName": {
         "value": "[parameters('ApplicationName')]"

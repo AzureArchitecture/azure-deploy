@@ -12,7 +12,7 @@ variables:
   buildConfiguration: 'Release'
   armTemplateRoot: '$(System.DefaultWorkingDirectory)\code\infrastructure\arm\templates'
   armParameterTemplateRoot: '$(System.DefaultWorkingDirectory)\code\infrastructure\arm\templates\parameters'
-  azureSubscription: 'azure-coe-service-connection'
+  azureSubscription: 'azure-devops-service-connection'
 
 stages:
 

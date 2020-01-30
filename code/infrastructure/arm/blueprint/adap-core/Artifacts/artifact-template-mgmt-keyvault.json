@@ -14,7 +14,7 @@
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "azs"
+          "defaultValue": "xazx"
         },
         "suffix": {
           "type": "string",
@@ -119,7 +119,7 @@
         }
       },
       "variables": {
-        "keyVaultName": "[concat('kv-',parameters('orgTag'),'-mgmt-',parameters('Env'),parameters('suffix'))]"
+        "keyVaultName": "[concat('kv-',parameters('orgTag'),'-mgmt-',parameters('Env'),'-',parameters('suffix'))]"
       },
       "resources": [
         {

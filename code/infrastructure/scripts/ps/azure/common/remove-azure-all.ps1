@@ -13,6 +13,13 @@
       Remove-AzPolicySetDefinition -Name $policySetDefinition.Name -Force -ErrorAction $actionErrorVariable  -InformationAction $informationPreferenceVariable
     }
 
+  # Get and delete all of the policy definitions. Skip over the built in policy definitions.
+  $policyDefinitions = Get-AzPolicyDefinition -Custom
+  foreach ($policyDefinition in $policyDefinitions) {
+    Write-Information "    Removing Policy Definition "
+    Remove-AzPolicyDefinition -Name $policyDefinition.Name -Force -ErrorAction SilentlyContinue
+  }
+
 # remove all blueprint assignments
 $bps = Get-AzBlueprintAssignment -SubscriptionId $subcriptionId
 foreach ($bp in $bps) {
@@ -22,13 +29,14 @@ foreach ($bp in $bps) {
 }
 
 # loop through each rg in a sub
-$rgs = Get-AzResourceGroup
-foreach ($rg in $rgs) {
-    $temp = "Deleting {0}..." -f $rg.ResourceGroupName
-    Write-Host $temp
-    Remove-AzResourceGroup -Name $rg.ResourceGroupName -Force # delete the current rg
-    # some output on a good result
-}
+$filter = 'xazx'
+$rgs = Get-AzResourceGroup | Where ResourceGroupName -like *$filter* 
+Get-AzResourceLock | Remove-AzResourceLock -Force   -ErrorAction Continue
+  foreach ($rg in $rgs) {
+        $temp = "    Deleting {0}..." -f $rg.ResourceGroupName
+        Write-Information $temp  
+        Remove-AzResourceGroup -Name $rg.ResourceGroupName -Force   -ErrorAction Continue
+        }
 
 # get-azroleassignment returns assignments at current OR parent scope`
 # will need to do a check on the scope property

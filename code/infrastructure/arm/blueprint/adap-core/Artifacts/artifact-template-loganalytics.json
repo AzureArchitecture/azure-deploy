@@ -1,8 +1,8 @@
 {
   "kind": "template",
   "properties": {
-    "displayName": "Deploy ADAP Resource Group Storage Account",
-    "description": "The Data and Analytics Platform Default Storage Account for the Resource Group",
+    "displayName": "Deploy Log Analytics",
+    "description": "Deploy Log Analytics for Diagnostics",
     "dependsOn": [],
     "template": {
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -14,7 +14,7 @@
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "azs"
+          "defaultValue": "xazx"
         },
         "suffix": {
           "type": "string",
@@ -24,38 +24,32 @@
           },
           "defaultValue": "eus"
         },
-        "accountType": {
-          "type": "string",
-          "defaultValue": "Standard_LRS",
-          "allowedValues": [
-            "Standard_LRS",
-            "Standard_GRS",
-            "Standard_RAGRS",
-            "Premium_LRS"
-          ]
-        },
-        "accessTier": {
-          "type": "string",
-          "defaultValue": "Hot",
-          "allowedValues": [
-            "Hot",
-            "Cool"
-          ],
+        "data-retention": {
+          "type": "int",
+          "defaultValue": 365,
+          "minValue": 0,
+          "maxValue": 365,
           "metadata": {
-            "description": "This setting is required if using BlobStorage as the storageKind, otherwise can be left blank"
+            "displayName": "Log retention in days",
+            "description": "Number of days data will be retained for"
           }
         },
-        "storageKind": {
+        "location": {
           "type": "string",
-          "defaultValue": "StorageV2",
+          "defaultvalue": "East US",
+          "metadata": {
+            "displayName": "Location",
+            "description": "Region used when establishing the workspace"
+          },
           "allowedValues": [
-            "StorageV2",
-            "Storage",
-            "BlobStorage"
+            "East US",
+            "East US 2",
+            "West US",
+            "West US 2"
           ]
         },
         "ApplicationName": {
-          "defaultValue": "MGMT",
+          "defaultValue": "ADAP",
           "type": "string",
           "metadata": {
             "description": "Name of the application, service, or workload the resource is associated with."
@@ -149,35 +143,27 @@
         }
       },
       "variables": {
-        "StorageAccountName": "[replace(concat('stg',parameters('orgTag'),'diagmgmt',parameters('Env'),parameters('suffix')),'-','')]"
+        "deployment-prefix": "[toLower(concat(parameters('orgTag'), '-', parameters('Env'),'-',parameters('suffix')))]",
+        "storageAccountName": "[concat('stg',parameters('orgTag'),'diagshared',parameters('Env'),parameters('suffix'))]",
+        "oms-workspace-name": "[concat('la-',variables('deployment-prefix'))]"
       },
       "resources": [
         {
-          "apiVersion": "2018-02-01",
-          "name": "[variables('StorageAccountName')]",
+          "comments": "----DIAGNOSTICS STORAGE ACCOUNT-----",
           "type": "Microsoft.Storage/storageAccounts",
+          "name": "[variables('storageAccountName')]",
+          "apiVersion": "2018-07-01",
           "location": "[resourceGroup().location]",
+          "kind": "StorageV2",
           "sku": {
-            "name": "[parameters('accountType')]"
+            "name": "Standard_LRS"
           },
-          "kind": "[parameters('storageKind')]",
           "tags": {
-            "Display Name": "storage account name: [variables('StorageAccountName')]",
-            "Application name": "[parameters('ApplicationName')]",
-            "Approver name": "[parameters('Approver')]",
-            "Budget required-approved": "[parameters('BudgetAmount')]",
-            "Business unit": "[parameters('BusinessUnit')]",
-            "Cost center": "[parameters('CostCenter')]",
-            "Disaster recovery": "[parameters('DR')]",
-            "End date of the project": "[parameters('EndDate')]",
-            "Environment": "[parameters('Env')]",
-            "Owner name": "[parameters('Owner')]",
-            "Requester name": "[parameters('Requester')]",
-            "Service class": "[parameters('ServiceClass')]",
-            "Start date of the project": "[parameters('StartDate')]"
+            "displayName": "Storage Account"
           },
           "properties": {
             "encryption": {
+              "keySource": "Microsoft.Storage",
               "services": {
                 "blob": {
                   "enabled": true
@@ -185,41 +171,78 @@
                 "file": {
                   "enabled": true
                 }
-              },
-              "keySource": "Microsoft.Storage"
+              }
             },
-            "accessTier": "[parameters('accessTier')]",
             "supportsHttpsTrafficOnly": true
+          }
+        },
+        {
+          "type": "Microsoft.Storage/storageAccounts/providers/locks",
+          "apiVersion": "2016-09-01",
+          "name": "[concat(variables('storageAccountName'), '/Microsoft.Authorization/storageDoNotDelete')]",
+          "dependsOn": [
+            "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
+          ],
+          "comments": "Resource lock on diagnostic storage account",
+          "properties": {
+            "level": "CannotDelete"
+          }
+        },
+        {
+          "type": "Microsoft.OperationalInsights/workspaces",
+          "name": "[variables('oms-workspace-name')]",
+          "apiVersion": "2017-03-15-preview",
+          "location": "[parameters('location')]",
+          "tags": {
+            "Application name": "parameters('ApplicationName')",
+            "Approver name": "parameters('Approver')",
+            "Budget required-approved": "parameters('BudgetAmount')",
+            "Business unit": "parameters('BusinessUnit')",
+            "Cost center": "parameters('CostCenter')",
+            "Disaster recovery": "parameters('DR')",
+            "End date of the project": "parameters('EndDate')",
+            "Environment": "parameters('Env')",
+            "Owner name": "parameters('Owner')",
+            "Requester name": "parameters('Requester')",
+            "Service class": "parameters('ServiceClass')",
+            "Start date of the project": "parameters('StartDate')",
+            "Display Name": "log analytics name: [variables('oms-workspace-name')]"
+          },
+          "properties": {
+            "sku": {
+              "Name": "pergb2018"
+            },
+            "retention": "[parameters('data-retention')]"
+          }
+        },
+        {
+          "type": "Microsoft.OperationalInsights/workspaces/providers/locks",
+          "apiVersion": "2016-09-01",
+          "name": "[concat(variables('oms-workspace-name'), '/Microsoft.Authorization/logAnalyticsDoNotDelete')]",
+          "dependsOn": [
+            "[variables('oms-workspace-name')]"
+          ],
+          "comments": "Resource lock on Log Analytics",
+          "properties": {
+            "level": "CannotDelete"
           }
         }
       ],
-      "outputs": {
-        "storageKey": {
-          "type": "string",
-          "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',variables('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
-        },
-        "storageConnectionString": {
-          "type": "string",
-          "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('StorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts',variables('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value, ';EndpointSuffix=core.windows.net')]"
-        }
-      }
+      "outputs": {}
     },
-    "resourceGroup": "MGMT-RG",
+    "resourceGroup": "SHARED-RG",
     "parameters": {
       "orgTag": {
         "value": "[parameters('orgTag')]"
       },
+      "data-retention": {
+        "value": "[parameters('LogAnalytics_DataRetention')]"
+      },
       "suffix": {
-        "value": "[parameters('suffix')]"
+        "value": "[parameters('Suffix')]"
       },
-      "accountType": {
-        "value": "[parameters('deployADAPResourceGroupStorageAccount_accountType')]"
-      },
-      "accessTier": {
-        "value": "[parameters('deployADAPResourceGroupStorageAccount_accessTier')]"
-      },
-      "storageKind": {
-        "value": "[parameters('deployADAPResourceGroupStorageAccount_storageKind')]"
+      "location": {
+        "value": "[parameters('LogAnalytics_Location')]"
       },
       "ApplicationName": {
         "value": "[parameters('ApplicationName')]"

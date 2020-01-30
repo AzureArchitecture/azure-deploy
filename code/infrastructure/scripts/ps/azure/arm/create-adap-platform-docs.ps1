@@ -46,88 +46,106 @@ $templateName = "storage-account"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "storage-account-container"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "storage-account-fileshare"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "sql-database"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 # Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "sql-managed-instance"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "sql-server"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "servicebus-namespace"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "event-hub-namespace"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "servicebus-topic"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "servicebus-topic-authrule"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "servicebus-topic-sub"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "servicebus-queue-authrule"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 # Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "servicebus-ipfilter"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 # Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "servicebus-firewall-vnetrule"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "ip-address"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "bastion-host"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "analysis-services"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
 
 $templateName = "logic-app"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/arm-template.doc.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."

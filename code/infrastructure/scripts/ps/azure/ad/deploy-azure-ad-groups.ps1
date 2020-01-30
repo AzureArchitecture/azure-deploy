@@ -20,15 +20,12 @@ param(
     [Parameter(Mandatory=$true,HelpMessage='Excel Spreadsheet with Configuration Information.')]
     [string]$adapCMDB = $adapCMDB,
     [Parameter(Mandatory=$true,HelpMessage='Action to take.')]
-    [ValidateSet("create","purge")]$action= "create",
-    [Switch]$adOnPrem = $false
+    [ValidateSet("create","purge")]$action= "create"
 )
 
 # ====================
 # Begin Script
 # ====================
-
-import-module ActiveDirectory
 
 ## Process Worksheet
 # Load list of Groups from Worksheet
@@ -36,9 +33,6 @@ $cmdbExcel = Open-Excel
 $wb = Get-Workbook -ObjExcel $cmdbExcel -Path "$adapCMDB"
 $ws = Get-Worksheet -Workbook $wb -SheetName "ADGroups"
 $ListofGroups = Get-WorksheetData -Worksheet $ws
-
-$rootDN = (Get-ADDomain).DistinguishedName
-$ouPath = "$adOUPath,$rootDN"
 
 foreach ($U in $ListofGroups)
 {
@@ -58,16 +52,8 @@ foreach ($U in $ListofGroups)
       {
         if (-not $ThisGroup)
         {
-            if($adOnPrem)
-            {
-              Write-Information  "    Creating OnPrem AD Group $($Groupname)..."
-              $ThisGroup = New-ADGroup -Name $GroupName -GroupScope Global -GroupCategory Security -Description $GDescription -DisplayName $GDisplayName -Path $ouPath
-            }
-            else
-            {
               Write-Information  "    Creating Azure AD Group $($Groupname)..."
               $ThisGroup = New-AzureADGroup -displayname  $GroupName -description $Gdescription -MailEnabled $GMailEnabled  -SecurityEnabled $GSecEnabled -mailnickname $mailNickName
-            }
         }
         else
         {

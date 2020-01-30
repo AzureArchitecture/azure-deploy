@@ -79,7 +79,6 @@ for ($w=0; $w -lt $worksheets.length; $w++) {
           $jsonFile = $worksheetName.Remove(0,3)
           $TemplateParametersFilePath = "$paramDirectory\$jsonFile.$f.parameter.json"
           Write-Information "    Creating $jsonFile.$f.parameter.json parameter files."
-          Write-Verbose -Message ($file)
           Set-Content -Path $TemplateParametersFilePath -Value ([Regex]::Unescape(($file | ConvertTo-Json -Depth 10))) -Force
           $f++
         #}

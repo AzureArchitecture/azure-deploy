@@ -26,7 +26,7 @@
           "displayName": "Number of days data will be retained in Log Analytics",
           "description": "LogAnalytics_DataRetention"
         },
-        "defaultValue": 365,
+        "defaultValue": 30,
         "allowedValues": [
           30,
           60,
@@ -50,7 +50,7 @@
           "West US 2"
         ]
       },
-      "deployADAPResourceGroupStorageAccount_accountType": {
+      "adapRgStorageAccount_accountType": {
         "type": "string",
         "metadata": {
           "displayName": "accountType (Deploy ADAP Resource Group Storage Account)"
@@ -63,7 +63,7 @@
           "Premium_LRS"
         ]
       },
-      "deployADAPResourceGroupStorageAccount_accessTier": {
+      "adapRgStorageAccount_accessTier": {
         "type": "string",
         "metadata": {
           "displayName": "accessTier (Deploy ADAP Resource Group Storage Account)",
@@ -75,7 +75,7 @@
           "Cool"
         ]
       },
-      "deployADAPResourceGroupStorageAccount_storageKind": {
+      "adapRgStorageAccount_storageKind": {
         "type": "string",
         "metadata": {
           "displayName": "storageKind (Deploy ADAP Resource Group Storage Account)"
@@ -287,11 +287,74 @@
           "description": "Specifies the number of days that logs will be kept for; a value of 0 will retain data indefinitely"
         },
         "defaultValue": 365
+      },
+      "sharedRG": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of the Shared Services Resource Group",
+          "displayName": "SHARED-RG",
+          "type": "string"
+        },
+        "defaultValue": "rg-xazx-shared-dev-eus"
+      },
+      "adapRG": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of the Data Services Resource Group",
+          "displayName": "ADAP-RG",
+          "type": "string"
+        },
+        "defaultValue": "rg-xazx-adap-dev-eus"
+      },
+      "mgmtRG": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of the Management Resource Group",
+          "displayName": "ADAP-RG",
+          "type": "string"
+        },
+        "defaultValue": "rg-xazx-mgmt-dev-eus"
+      },
+      "networkRG": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of the Network Resource Group",
+          "displayName": "NETWORK-RG",
+          "type": "string"
+        },
+        "defaultValue": "rg-xazx-network-dev-eus"
+      },
+      "onpremRG": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of the On-Premise Resource Group",
+          "displayName": "ONPREM-RG",
+          "type": "string"
+        },
+        "defaultValue": "rg-xazx-onprem-dev-eus"
+      },
+      "smokeRG": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of the Smoke Test Resource Group",
+          "displayName": "SMOKE-RG",
+          "type": "string"
+        },
+        "defaultValue": "rg-xazx-smoke-dev-eus"
+      },
+      "testRG": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of the Test Resource Group",
+          "displayName": "TEST-RG",
+          "type": "string"
+        },
+        "defaultValue": "rg-xazx-test-dev-eus"
       }
     },
     "resourceGroups": {
       "SHARED-RG": {
-        "name": "[concat('rg-',parameters('orgTag'),'-shared-',parameters('Env'),parameters('suffix'))]",
+        "name": "[parameters('sharedRG')]",
         "location": "[parameters('AzureRegion')]",
         "metadata": {
           "displayName": "Resource Group for Shared Services"
@@ -310,11 +373,11 @@
           "Requester name": "[parameters('Requester')]",
           "Service class": "[parameters('ServiceClass')]",
           "Start date of the project": "[parameters('StartDate')]",
-          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-shared-',parameters('Env'),parameters('suffix'))]"
+          "Display Name": "resource group: SHARED"
         }
       },
       "ADAP-RG": {
-        "name": "[concat('rg-',parameters('orgTag'),'-adap-',parameters('Env'),parameters('suffix'))]",
+        "name": "[parameters('adapRG')]",
         "location": "[parameters('AzureRegion')]",
         "metadata": {
           "displayName": "Resource Group for ADAP"
@@ -333,11 +396,11 @@
           "Requester name": "[parameters('Requester')]",
           "Service class": "[parameters('ServiceClass')]",
           "Start date of the project": "[parameters('StartDate')]",
-          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-adap-',parameters('Env'),parameters('suffix'))]"
+          "Display Name": "resource group: ADAP"
         }
       },
-      "SMOKE-RG": {
-        "name": "rg-smoke",
+      "TEST-RG": {
+        "name": "[parameters('testRG')]",
         "location": "[parameters('AzureRegion')]",
         "metadata": {
           "displayName": "Resource Group for smoke tests"
@@ -356,11 +419,34 @@
           "Requester name": "[parameters('Requester')]",
           "Service class": "[parameters('ServiceClass')]",
           "Start date of the project": "[parameters('StartDate')]",
-          "Display Name": "resource group name: smoke tests"
+          "Display Name": "resource group: TEST"
+        }
+      },
+      "SMOKE-RG": {
+        "name": "[parameters('smokeRG')]",
+        "location": "[parameters('AzureRegion')]",
+        "metadata": {
+          "displayName": "Resource Group for smoke tests"
+        },
+        "dependsOn": [],
+        "tags": {
+          "Application name": "[parameters('ApplicationName')]",
+          "Approver name": "[parameters('Approver')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Business unit": "[parameters('BusinessUnit')]",
+          "Cost center": "[parameters('CostCenter')]",
+          "Disaster recovery": "[parameters('DR')]",
+          "End date of the project": "[parameters('EndDate')]",
+          "Environment": "smoke",
+          "Owner name": "[parameters('Owner')]",
+          "Requester name": "[parameters('Requester')]",
+          "Service class": "[parameters('ServiceClass')]",
+          "Start date of the project": "[parameters('StartDate')]",
+          "Display Name": "resource group: SMOKE"
         }
       },
       "MGMT-RG": {
-        "name": "[concat('rg-',parameters('orgTag'),'-mgmt-',parameters('Env'),parameters('suffix'))]",
+        "name": "[parameters('mgmtRG')]",
         "location": "[parameters('AzureRegion')]",
         "metadata": {
           "displayName": "Resource Group for Management"
@@ -379,11 +465,11 @@
           "Requester name": "[parameters('Requester')]",
           "Service class": "[parameters('ServiceClass')]",
           "Start date of the project": "[parameters('StartDate')]",
-          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-mgmt-',parameters('Env'),parameters('suffix'))]"
+          "Display Name": "resource group: MGMT"
         }
       },
       "NETWORK-RG": {
-        "name": "[concat('rg-',parameters('orgTag'),'-network-',parameters('Env'),parameters('suffix'))]",
+        "name": "[parameters('networkRG')]",
         "location": "[parameters('AzureRegion')]",
         "metadata": {
           "displayName": "Resource Group for Network"
@@ -402,11 +488,11 @@
           "Requester name": "[parameters('Requester')]",
           "Service class": "[parameters('ServiceClass')]",
           "Start date of the project": "[parameters('StartDate')]",
-          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-network-',parameters('Env'),parameters('suffix'))]"
+          "Display Name": "resource group: NETWORK"
         }
       },
       "ONPREM-RG": {
-        "name": "[concat('rg-',parameters('orgTag'),'-onprem-',parameters('Env'),parameters('suffix'))]",
+        "name": "[parameters('onpremRG')]",
         "location": "[parameters('AzureRegion')]",
         "metadata": {
           "displayName": "Resource Group for On-premise assets"
@@ -425,7 +511,7 @@
           "Requester name": "[parameters('Requester')]",
           "Service class": "[parameters('ServiceClass')]",
           "Start date of the project": "[parameters('StartDate')]",
-          "Display Name": "resource group name: [concat('rg-',parameters('orgTag'),'-onprem-',parameters('Env'),parameters('suffix'))]"
+          "Display Name": "resource group: ONPREM"
         }
       }
     }

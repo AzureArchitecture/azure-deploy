@@ -1,31 +1,20 @@
 {
   "kind": "template",
   "properties": {
-    "displayName": "Deploy Azure Automation Account",
-    "description": "Azure Automation Account",
+    "displayName": "Deploy ADAP Resource Group Storage Account",
+    "description": "The Data and Analytics Platform Default Storage Account for the Resource Group",
     "dependsOn": [],
     "template": {
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
       "contentVersion": "1.0.0.0",
       "parameters": {
-        "skuName": {
-          "type": "string",
-          "defaultValue": "Basic",
-          "allowedValues": [
-            "Free",
-            "Basic"
-          ],
-          "metadata": {
-            "description": "The pricing tier of the automation account"
-          }
-        },
         "orgTag": {
           "type": "string",
           "metadata": {
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "azs"
+          "defaultValue": "xazx"
         },
         "suffix": {
           "type": "string",
@@ -34,6 +23,36 @@
             "description": "Suffix to add to labels."
           },
           "defaultValue": "eus"
+        },
+        "accountType": {
+          "type": "string",
+          "defaultValue": "Standard_LRS",
+          "allowedValues": [
+            "Standard_LRS",
+            "Standard_GRS",
+            "Standard_RAGRS",
+            "Premium_LRS"
+          ]
+        },
+        "accessTier": {
+          "type": "string",
+          "defaultValue": "Hot",
+          "allowedValues": [
+            "Hot",
+            "Cool"
+          ],
+          "metadata": {
+            "description": "This setting is required if using BlobStorage as the storageKind, otherwise can be left blank"
+          }
+        },
+        "storageKind": {
+          "type": "string",
+          "defaultValue": "StorageV2",
+          "allowedValues": [
+            "StorageV2",
+            "Storage",
+            "BlobStorage"
+          ]
         },
         "ApplicationName": {
           "defaultValue": "MGMT",
@@ -130,16 +149,20 @@
         }
       },
       "variables": {
-        "automationAccountName": "[concat('auto-',parameters('orgTag'),'-adap-',parameters('Env'),parameters('suffix'))]"
+        "StorageAccountName": "[replace(concat('stg',parameters('orgTag'),'diagmgmt',parameters('Env'),parameters('suffix')),'-','')]"
       },
       "resources": [
         {
-          "name": "[variables('automationAccountName')]",
-          "type": "Microsoft.Automation/automationAccounts",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2018-02-01",
+          "name": "[variables('StorageAccountName')]",
+          "type": "Microsoft.Storage/storageAccounts",
           "location": "[resourceGroup().location]",
+          "sku": {
+            "name": "[parameters('accountType')]"
+          },
+          "kind": "[parameters('storageKind')]",
           "tags": {
-            "Display Name": "azure automation account name: [variables('automationAccountName')]",
+            "Display Name": "storage account name: [variables('StorageAccountName')]",
             "Application name": "[parameters('ApplicationName')]",
             "Approver name": "[parameters('Approver')]",
             "Budget required-approved": "[parameters('BudgetAmount')]",
@@ -154,24 +177,49 @@
             "Start date of the project": "[parameters('StartDate')]"
           },
           "properties": {
-            "sku": {
-              "name": "[parameters('skuName')]"
-            }
+            "encryption": {
+              "services": {
+                "blob": {
+                  "enabled": true
+                },
+                "file": {
+                  "enabled": true
+                }
+              },
+              "keySource": "Microsoft.Storage"
+            },
+            "accessTier": "[parameters('accessTier')]",
+            "supportsHttpsTrafficOnly": true
           }
         }
       ],
-      "outputs": {}
+      "outputs": {
+        "storageKey": {
+          "type": "string",
+          "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',variables('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
+        },
+        "storageConnectionString": {
+          "type": "string",
+          "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('StorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts',variables('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value, ';EndpointSuffix=core.windows.net')]"
+        }
+      }
     },
-    "resourceGroup": "ADAP-RG",
+    "resourceGroup": "MGMT-RG",
     "parameters": {
-      "skuName": {
-        "value": "[parameters('Auto_skuName')]"
-      },
       "orgTag": {
         "value": "[parameters('orgTag')]"
       },
       "suffix": {
         "value": "[parameters('suffix')]"
+      },
+      "accountType": {
+        "value": "[parameters('adapRgStorageAccount_accountType')]"
+      },
+      "accessTier": {
+        "value": "[parameters('adapRgStorageAccount_accessTier')]"
+      },
+      "storageKind": {
+        "value": "[parameters('adapRgStorageAccount_storageKind')]"
       },
       "ApplicationName": {
         "value": "[parameters('ApplicationName')]"

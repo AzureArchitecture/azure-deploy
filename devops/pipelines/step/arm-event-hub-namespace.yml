@@ -3,7 +3,7 @@ parameters:
   armParameterTemplateFile: ''
   location: ''
   ev: ''
-  AzureSubscription: 'azure-coe-service-connection'
+  AzureSubscription: 'azure-devops-service-connection'
   resourceGroup: ''
 
 steps:

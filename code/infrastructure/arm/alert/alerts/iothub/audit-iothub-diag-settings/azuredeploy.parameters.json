@@ -26,7 +26,7 @@
       "value": "la-xazx-dev-eus"
     },
     "laResourceGroupName": {
-      "value": "rg-shared-dev-eus"
+      "value": "rg-xazx-shared-dev-eus"
     },
     "alertFrequency": {
       "value": 60

@@ -18,7 +18,7 @@ The following security controls can be met through configuration of this templat
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "stgazsadapdeveus"
+      "value": "stgxazxadapdeveus"
     },    
     "ResourceGroupName": {
       "value": "rg-xazx-adap-dev-eus"

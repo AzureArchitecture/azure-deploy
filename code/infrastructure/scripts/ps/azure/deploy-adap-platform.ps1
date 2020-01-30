@@ -2,7 +2,7 @@
       .SYNOPSIS
       This script deploys the ADAP platform based on the values in the adap-cmdb.xlsx spreadsheet.
 
-      .PARAMETER -azAll -adUsers -adGroups -adServicePrincipals -azPolicies -azInitiatives -azRoles -azRoleAssignments -azActionGroups -azAlerts -azBlueprints -azParameterFiles
+      .PARAMETER -azAll -adUsers -adGroups -azPolicies -azInitiatives -azRoles -azRoleAssignments -azActionGroups -azAlerts -azBlueprints -azParameterFiles
       Switch to deploy the resources
 
       .PARAMETER debugAction (default off)
@@ -14,13 +14,13 @@
       .PARAMETER env (default dev)
       token for deployment (smoke, dev, prod, uat, sandbox)
 
-      .PARAMETER suffix (default -eus)
+      .PARAMETER suffix (default eus)
       token for deployment
 
       .PARAMETER location (default centralus)
       location for Azure Blueprint deployment
 
-      .PARAMETER alertResourceGroup (default rg-shared-dev-eus)
+      .PARAMETER alertResourceGroup (default rg-xazx-shared-dev-eus)
       Resource group to deploy Azure Alerts to
 
       .PARAMETER action (default create)
@@ -44,9 +44,6 @@
 
   #>
   param(
-    # useMFA
-    [Switch]$useMFA=$false,
-
     # azAll
     [Switch]$azAll=$false,
 
@@ -56,23 +53,20 @@
     # adGroups
     [Switch]$adGroups=$false,
 
-    # adServicePrincipals
-    [Switch]$adServicePrincipals=$false,
-
     # azPolicies
-    [Switch]$azPolicies=$false,
+    [Switch]$azPolicies=$true,
 
     # azInitiatives
-    [Switch]$azInitiatives=$false,
+    [Switch]$azInitiatives=$true,
 
     #azRoles
     [Switch]$azRoles=$false,
 
     #azBlueprints
-    [Switch]$azBlueprints=$false,
+    [Switch]$azBlueprints=$true,
 
     #AzRoleAssignments
-    [Switch]$azRoleAssignments=$false,
+    [Switch]$azRoleAssignments=$true,
 
     # azActionGroups
     [Switch]$azActionGroups=$false,
@@ -91,7 +85,7 @@
 
     # deployAction
     [validateset('create','purge')]
-    [string]$deployAction = 'create',
+    [string]$deployAction = 'purge',
 
     # adapCMDB
     [string]$adapCMDBfile = 'adap-cmdb.xlsm',
@@ -108,7 +102,7 @@
     # errorActionPreferenceVariable
     [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
     [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$errorActionPreferenceVariable = 'Continue',
+    [string]$errorActionPreferenceVariable = 'Stop',
 
     # debugPreferenceVariable
     [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
@@ -118,7 +112,12 @@
     # informationPreferenceVariable
     [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
     [validateset('Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue')]
-    [string]$informationPreferenceVariable = 'Continue'
+    [string]$informationPreferenceVariable = 'Continue',
+
+    # confirmPreferenceVariable
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
+    [validateset('None','Low','Medium','High')]
+    [string]$confirmPreferenceVariable = 'None'
 
   )
 
@@ -127,25 +126,22 @@
   Get-ChildItem C:\repos -recurse | Unblock-File 
   try{
     Set-ExecutionPolicy Unrestricted -Confirm:0 -Force -ErrorAction SilentlyContinue
-
-    }
-    Catch
-    {}
+  }
+  Catch
+  {}
   
-
+  
   #$null = "$actionErrorVariable"
   $VerbosePreference = $verbosePreferenceVariable
   $DebugPreference = $debugPreferenceVariable
   $ErrorActionPreference = $errorActionPreferenceVariable
   $InformationPreference = $informationPreferenceVariable
+  $WarningPreference = $verbosePreferenceVariable
+  $ConfirmPreference = $confirmPreferenceVariable
   $psscriptsRoot = $PSScriptRoot
 
-  Set-PSDebug -Off
-  if($debugAction){
-    Set-PSDebug -Trace 1
-  }
-
   #Folder Locations
+  $psInfrastructureDirectory = "$psscriptsRoot\..\..\..\"
   $psCommonDirectory = "$psscriptsRoot\common"
   $psConfigDirectory = "$psscriptsRoot\config"
   $psAzureDirectory = "$psscriptsRoot"
@@ -155,6 +151,7 @@
   $armPolicyDirectory = "$psscriptsRoot\..\..\..\arm\policy"
   $armRBACDirectory = "$psscriptsRoot\..\..\..\arm\rbac\roles"
   $armRunbookDirectory = "$psscriptsRoot\..\..\..\arm\automation\runbooks"
+
 
   $adapCMDB = "$psConfigDirectory\$adapCMDBfile"
 
@@ -184,57 +181,26 @@
     $PSCmdlet.ThrowTerminatingError($_)
     Exit
   }
+  
 
   # Only run this the first time through.
-  if (!$modCheck) {  
+  if (!$firstRunCheck) {  
     # load PS modules
-    Load-Module "Az"
+    Import-Module "Az"
     Load-Module "Az.Blueprint"
+    Load-Module "AzureAD"
     Load-Module "Azure.Storage"
     Load-Module "Pester"
     Load-Module "PSDocs"
     Load-Module "PsISEProjectExplorer"
-    Load-Module "PSExcel"
     Load-Module "ImportExcel"
-    $modCheck = $true
-
-    # Set variabls from config file
-    $automationAccountName = $config.laAutomationAccount
-    $logAnalytics = $config.laWorkspaceName
-    $alertResourceGroup = $config.alertResourceGroup
-    $orgTag = $config.orgTag
-    $env = $config.evTag
-    $location = $config.primaryLocation
-    $username = $config.azureAdmin
-    $password = $config.azureAdminPwd
-    $subname = $config.subscriptionname
-    $adOUPath = $config.adOUPath
-    $suffix = $config.suffix
-  
-    # Multi-Factor Authentication
-    if($useMFA){
-      Connect-AzAccount -Force
-      Exit
-    }
-    else
-    {
-      $secpasswd = ConvertTo-SecureString $password -AsPlainText -Force
-      $cred = New-Object System.Management.Automation.PSCredential ($userName, $secpasswd)
-      Connect-AzAccount  -Credential $cred
-      $sub = get-AzSubscription -SubscriptionName $subname
-      Connect-AzAccount -Credential $cred -Tenant $sub.TenantId -SubscriptionId $sub.SubscriptionId
-      Set-AzContext -SubscriptionName $subname
-    }
-
-    # Logon to Azure
-    Write-Information 'Logon to Azure...'
-    Initialize-Subscription
-    $subscriptionId = Get-SubscriptionId
-    Set-AzContext -SubscriptionId $subscriptionId
-    $subscriptionName = (Get-AzContext).Subscription.SubscriptionName
+    
+    Write-Information 'Logon to Azure (MFA)...'
+    Initialize-Subscription -Force
     
     try{
-      if($adGroups -or $adServicePrincipals -or $adUsers){
+      if($adGroups -or $adUsers -or $azAll){
+        Add-Type -AssemblyName Microsoft.Open.AzureAD16.Graph.Client
         # Logon to Azure AD with values from config file
         Write-Information 'Logon to Azure Active Directory...'
         $currentAzureContext = Get-AzContext
@@ -249,15 +215,54 @@
       Write-Host -Message 'Press any key to exit...'
       Exit
     }
+    $firstRunCheck = $true
   }
+  
+  # Set variabls from config file
+  $automationAccountName = $config.laAutomationAccount
+  $logAnalytics = $config.laWorkspaceName
+  $alertResourceGroup = $config.alertResourceGroup
+  $orgTag = $config.orgTag
+  $env = $config.evTag
+  $location = $config.primaryLocation
+  $adOUPath = $config.adOUPath
+  $suffix = $config.suffix
+  $subscriptionId = $config.subscriptionId
+  $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
+  $orgTagDefault = "xazx"
+    
+  # define resource groups 
+  $testRG = $config.testResourceGroup
+  $smokeRG = $config.smokeResourceGroup
+  $mgmtRG = $config.mgmtResourceGroup
+  $networkRG = $config.networkResourceGroup
+  $sharedRG = $config.sharedResourceGroup
+  $adapRG = $config.adapResourceGroup
+  $onpremRG  = $config.onpremResourceGroup
+  
+  # update orgTags in yml and json files.
+  Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
+  If ($orgTagDefault -ne $orgTag){
+    Update-StringJsonFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $psInfrastructureDirectory
+    Update-StringYmlFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $psInfrastructureDirectory
+  }
+  else {
+    Write-Information "OrgTag are the same $orgTagDefault to $orgTag - no changes needed."
+  }
+  
+
+  Set-Location -Path "$psscriptsRoot"  
+      
   # Start Deployment of Azure Assets
   Write-Information 'Starting deployment of Azure Assets'
+  
+  Update-String -searchStr $subscriptionId -replaceStr $subscriptionIdZero -rootDirectory $armBluePrintDirectory
 
   # Deploy Azure Active Directory Users
   if($adUsers -or $azAll){
     Write-Information '  Starting deployment of Azure Active Directory Users'
     Set-Location -Path "$psAzureDirectory"
-    .\ad\deploy-azure-ad-users.ps1 -adapCMDB "$adapCMDB" -action $deployAction -orgTag $orgTag
+    .\ad\deploy-azure-ad-users.ps1 -adapCMDB "$adapCMDB" -action $deployAction
   }
   else
   {
@@ -268,7 +273,7 @@
   if($adGroups -or $azAll){
     Write-Information '  Starting deployment of Azure Active Directory Groups'
     Set-Location -Path "$psAzureDirectory"
-    .\ad\deploy-azure-ad-groups.ps1 -adapCMDB "$adapCMDB" -action $deployAction -adOnPrem # purge or create
+    .\ad\deploy-azure-ad-groups.ps1 -adapCMDB "$adapCMDB" -action $deployAction
   }
   else
   {
@@ -308,12 +313,18 @@
     Write-Information '  Deployment of Azure Policy Initiatives is disabled.'
   }
 
-  # Deploy Azure Blueprint
-  # New-AzOperationalInsightsWorkspace -Name "la-chp-dev-eus" -Location "East US" -Sku "pergb2018" -ResourceGroupName "rg-chp-shared-dev-eus" -Force
+  if (($azAll -or $azInitiatives) -and $azBlueprints -or $azAll){
+    # need to sleep for 5 minutes to allow inititives to flush cache
+    Write-Information '  Need to sleep for 5 minutes to allow Policy Initiatives to flush cache'
+    Start-Countdown -Seconds 300 -Message "    Need to sleep for 5 minutes to allow Policy Initiatives to flush cache"
+  }
+
   if($azBlueprints -or $azAll){
     Write-Information '  Starting deployment of Azure Blueprints...'
+    Update-String -searchStr $subscriptionIdZero -replaceStr $subscriptionId  -rootDirectory $armBluePrintDirectory
     Set-Location -Path "$psAzureDirectory"
-    .\blueprint\deploy-azure-blueprint-definitions.ps1 -adapCMDB "$adapCMDB" -rootDirectory "$armBluePrintDirectory" -action $deployAction -subscriptionId $subscriptionId -location $location -logAnalytics $logAnalytics -env $env -orgTag $orgTag -suffix $suffix -removeRG:$removeRG
+    .\blueprint\deploy-azure-blueprint-definitions.ps1 -adapCMDB "$adapCMDB" -rootDirectory "$armBluePrintDirectory" -action $deployAction -subscriptionId $subscriptionId -location $location -logAnalytics $logAnalytics -env $env -orgTag $orgTag -suffix $suffix -removeRG:$removeRG -testRG $testRG -smokeRG $smokeRG -mgmtRG $mgmtRG -networkRG $networkRG -sharedRG $sharedRG -adapRG $adapRG -onpremRG $onpremRG
+    Update-String -searchStr $subscriptionId -replaceStr $subscriptionIdZero -rootDirectory $armBluePrintDirectory
   }
   else
   {
@@ -377,9 +388,7 @@
   {
     Write-Information '  Creation of Azure ARM Template Files is disabled.'
   }
-
-
-  
+    
   Set-Location -Path $psscriptsRoot
   # Completing Deployment of Azure Assets
   Write-Information 'Completing deployment of Azure Assets'

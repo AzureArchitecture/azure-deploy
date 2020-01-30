@@ -10,7 +10,7 @@ steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-sql-server'
   inputs:
-    azureSubscription: 'azure-coe-service-connection'
+    azureSubscription: 'azure-devops-service-connection'
     resourceGroupName: ${{ parameters.resourceGroup }}
     location: ${{ parameters.location }}
     csmFile: '${{ parameters.armTemplateFile }}'

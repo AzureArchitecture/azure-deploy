@@ -16,7 +16,7 @@
   }
 
     $subscriptionId = Get-SubscriptionId
-    $exportPath = "C:\temp\blueprints\"
+    $exportPath = "C:\temp\blue1\"
     Write-Information "Exporting Blueprints from $subscriptionId" -InformationAction "Continue"
       $VerbosePreference = "Continue"
     $DebugPreference = "Continue"
