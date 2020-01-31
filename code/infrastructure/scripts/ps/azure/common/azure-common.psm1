@@ -621,8 +621,8 @@ function Close-Excel {
                 # Close the current worksheet.
                 $workbook.Close($false)
             }
-            # xazxt the Excel Object.
-            $ObjExcel.xazxt()
+            # exit the Excel Object.
+            $ObjExcel.exit()
         }
         End {
             # Release all the worksheet COM Ojbects.

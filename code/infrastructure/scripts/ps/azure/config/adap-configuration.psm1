@@ -35,11 +35,11 @@ function Get-Configuration
 
       testResourceGroup = "rg-test"
       smokeResourceGroup = "rg-smoke"
-      mgmtResourceGroup = "rg--mgmt-dev-eus"
-      networkResourceGroup = "rg--network-dev-eus"
-      sharedResourceGroup = "rg--shared-dev-eus"
-      adapResourceGroup = "rg--adap-dev-eus"
-      onpremResourceGroup = "rg--onprem-dev-eus"
+      mgmtResourceGroup = "rg-xazx-mgmt-dev-eus"
+      networkResourceGroup = "rg-xazx-network-dev-eus"
+      sharedResourceGroup = "rg-xazx-shared-dev-eus"
+      adapResourceGroup = "rg-xazx-adap-dev-eus"
+      onpremResourceGroup = "rg-xazx-onprem-dev-eus"
 
       subscriptionname = "AzureArch"
       subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
@@ -50,10 +50,10 @@ function Get-Configuration
       aadDirectoryName = "azurearchitecture"
       tenentId = "3ae449e7-25e5-4e5d-b705-7a39e1ad16f0"
 
-      laAutomationAccount = "auto--shared-dev-eus"
-      laWorkspaceName = "la--dev-eus"
-      laResourceGroup = "rg--shared-dev-eus"
-      alertResourceGroup = "rg--shared-dev-eus"
+      laAutomationAccount = "auto-xazx-shared-dev-eus"
+      laWorkspaceName = "la-xazx-dev-eus"
+      laResourceGroup = "rg-xazx-shared-dev-eus"
+      alertResourceGroup = "rg-xazx-shared-dev-eus"
       
       orgTag = "xazx"
       suffix = "eus"

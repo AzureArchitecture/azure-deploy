@@ -3,14 +3,14 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "SharedResourceGroupName": {
-      "defaultValue": "rg--shared-dev-eus",
+      "defaultValue": "rg-xazx-shared-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "NetworkResourceGroupName": {
-      "defaultValue": "rg--network-dev-eus",
+      "defaultValue": "rg-xazx-network-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."

@@ -19,8 +19,8 @@ Test Parameters File: [bastion-host.test.parameter.json](C:\AzureDevOps\Repos\xa
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-SharedResourceGroupName | string | The name of the Resource Group. | rg--shared-dev-eus
-NetworkResourceGroupName | string | The name of the Resource Group. | rg--network-dev-eus
+SharedResourceGroupName | string | The name of the Resource Group. | rg-xazx-shared-dev-eus
+NetworkResourceGroupName | string | The name of the Resource Group. | rg-xazx-network-dev-eus
 virtualNetworkName | string | The name of the virtual network for the Bastion Host. | vnet--dev
 bastionHostName | string | The name of the Bastion Host. | bast--shared-dev-eus
 subnetName     | string | The id of the Bastion Host subnet. | AzureBastionSubnet

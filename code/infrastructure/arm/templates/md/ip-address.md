@@ -20,7 +20,7 @@ Test Parameters File: [ip-address.test.parameter.json](C:\AzureDevOps\Repos\xazx
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
 publicIpAddressName | string | The name of the Bastion Host public IP address. | -
-ResourceGroupName | string | The name of the Resource Group. | rg--network-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-network-dev-eus
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0

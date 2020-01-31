@@ -8,7 +8,7 @@
     },
     "resourcegroupName": {
       "type": "string",
-      "defaultValue": "rg--shared-dev-eus"
+      "defaultValue": "rg-xazx-shared-dev-eus"
     },
     "subscriptionId": {
       "type": "string",

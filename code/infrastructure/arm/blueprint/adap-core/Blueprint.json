@@ -100,7 +100,7 @@
         ]
       },
       "logAnalyticsResourceGroup": {
-        "defaultValue": "rg--shared-dev-eus",
+        "defaultValue": "rg-xazx-shared-dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Resource Group Name"
@@ -295,7 +295,7 @@
           "displayName": "SHARED-RG",
           "type": "string"
         },
-        "defaultValue": "rg--shared-dev-eus"
+        "defaultValue": "rg-xazx-shared-dev-eus"
       },
       "adapRG": {
         "type": "string",
@@ -304,7 +304,7 @@
           "displayName": "ADAP-RG",
           "type": "string"
         },
-        "defaultValue": "rg--adap-dev-eus"
+        "defaultValue": "rg-xazx-adap-dev-eus"
       },
       "mgmtRG": {
         "type": "string",
@@ -313,7 +313,7 @@
           "displayName": "ADAP-RG",
           "type": "string"
         },
-        "defaultValue": "rg--mgmt-dev-eus"
+        "defaultValue": "rg-xazx-mgmt-dev-eus"
       },
       "networkRG": {
         "type": "string",
@@ -322,7 +322,7 @@
           "displayName": "NETWORK-RG",
           "type": "string"
         },
-        "defaultValue": "rg--network-dev-eus"
+        "defaultValue": "rg-xazx-network-dev-eus"
       },
       "onpremRG": {
         "type": "string",
@@ -331,7 +331,7 @@
           "displayName": "ONPREM-RG",
           "type": "string"
         },
-        "defaultValue": "rg--onprem-dev-eus"
+        "defaultValue": "rg-xazx-onprem-dev-eus"
       },
       "smokeRG": {
         "type": "string",
@@ -340,7 +340,7 @@
           "displayName": "SMOKE-RG",
           "type": "string"
         },
-        "defaultValue": "rg--smoke-dev-eus"
+        "defaultValue": "rg-xazx-smoke-dev-eus"
       },
       "testRG": {
         "type": "string",
@@ -349,7 +349,7 @@
           "displayName": "TEST-RG",
           "type": "string"
         },
-        "defaultValue": "rg--test-dev-eus"
+        "defaultValue": "rg-xazx-test-dev-eus"
       }
     },
     "resourceGroups": {

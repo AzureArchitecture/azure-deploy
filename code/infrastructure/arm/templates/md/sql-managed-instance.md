@@ -19,11 +19,11 @@ Test Parameters File: [sql-managed-instance.test.parameter.json](C:\AzureDevOps\
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg--adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
 administratorLogin | string | SQL Managed Instance Administrator name. | -
 administratorLoginPassword | securestring | SQL Managed Instance Administrator password. | -
 managedInstanceName | string | SQL Managed Instance name. | -
-virtualNetworkResourceGroupName | string | SQL Managed Instance Virtual Network Resource Group name. | rg--network-dev-eus
+virtualNetworkResourceGroupName | string | SQL Managed Instance Virtual Network Resource Group name. | rg-xazx-network-dev-eus
 virtualNetworkName | string | SQL Managed Instance Virtual Network name. | vnet--dev
 subnetName     | string | SQL Managed Instance Virtual Network Subnet name. | -
 skuName        | string | SQL Managed Instance SKU name. | GP_Gen5

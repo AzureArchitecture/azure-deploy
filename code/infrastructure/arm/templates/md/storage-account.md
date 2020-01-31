@@ -19,7 +19,7 @@ Test Parameters File: [storage-account.test.parameter.json](C:\AzureDevOps\Repos
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg--adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
 StorageAccountName | string | The name of the storage account. | stgadapdeveus
 AccountType    | string | The type of storage account. | Standard_LRS
 StorageKind    | string | The kind of storage account. | StorageV2

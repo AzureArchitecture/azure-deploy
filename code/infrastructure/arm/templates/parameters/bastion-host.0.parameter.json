@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "bastionHostName": {
-      "value": "rg--shared-dev-eus"
+      "value": "rg-xazx-shared-dev-eus"
     },
     "SharedResourceGroupName": {
-      "value": "rg--shared-dev-eus"
+      "value": "rg-xazx-shared-dev-eus"
     },
     "NetworkResourceGroupName": {
-      "value": "rg--network-dev-eus"
+      "value": "rg-xazx-network-dev-eus"
     },
     "publicIpAddressName": {
       "value": "bast--network-dev-eus-ip"

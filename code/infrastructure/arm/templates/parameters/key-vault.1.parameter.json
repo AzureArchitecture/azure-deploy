@@ -33,7 +33,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg--mgmt-dev-eus"
+                                                 "value":  "rg-xazx-mgmt-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"

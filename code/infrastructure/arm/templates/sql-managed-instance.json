@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.1",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg--adap-dev-eus",
+      "defaultValue": "rg-xazx-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -28,7 +28,7 @@
       }
     },
     "virtualNetworkResourceGroupName": {
-      "defaultValue": "rg--network-dev-eus",
+      "defaultValue": "rg-xazx-network-dev-eus",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network Resource Group name."
