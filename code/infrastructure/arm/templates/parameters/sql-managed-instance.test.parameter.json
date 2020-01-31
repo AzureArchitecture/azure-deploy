@@ -18,16 +18,16 @@
       "value": "SQL_Latin1_General_CP1_CI_AS"
     },
     "SQLManagedInstanceName": {
-      "value": "sql--adap-tst-eus"
+      "value": "sql-xazx-adap-tst-eus"
     },
     "dnsZonePartner": {
       "value": null
     },
     "virtualNetworkName": {
-      "value": "vnet--tst"
+      "value": "vnet-xazx-tst"
     },
     "subnetName": {
-      "value": "snet--tst-sqlmi"
+      "value": "snet-xazx-tst-sqlmi"
     },
     "licenseType": {
       "value": "LicenseIncluded"

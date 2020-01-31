@@ -11,7 +11,7 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns--adap-test-eus",
+      "defaultValue": "ehns-xazx-adap-test-eus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }

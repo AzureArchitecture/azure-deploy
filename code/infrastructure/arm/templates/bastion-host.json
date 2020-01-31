@@ -17,14 +17,14 @@
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet--dev",
+      "defaultValue": "vnet-xazx-dev",
       "type": "string",
       "metadata": {
         "description": "The name of the virtual network for the Bastion Host."
       }
     },
     "bastionHostName": {
-      "defaultValue": "bast--shared-dev-eus",
+      "defaultValue": "bast-xazx-shared-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Bastion Host."

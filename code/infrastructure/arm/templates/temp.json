@@ -16,7 +16,7 @@
     },
     "workspaceName": {
       "type": "string",
-      "defaultValue": "la--dev-eus"
+      "defaultValue": "la-xazx-dev-eus"
     },
     "solutionTypes": {
       "type": "array",

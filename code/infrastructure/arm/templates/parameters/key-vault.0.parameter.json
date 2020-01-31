@@ -15,7 +15,7 @@
                                         "value":  "approver@company.org"
                                     },
                        "KeyVaultName":  {
-                                            "value":  "kv--adap-dev-eus-01"
+                                            "value":  "kv-xazx-adap-dev-eus-01"
                                         },
                        "ServiceClass":  {
                                             "value":  "Gold"

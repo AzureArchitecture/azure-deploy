@@ -20,7 +20,7 @@ Test Parameters File: [event-hub-namespace.test.parameter.json](C:\AzureDevOps\R
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
 ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
-EventHubNamespaceName | String | The name of the Event Hub Namespace. | ehns--adap-test-eus
+EventHubNamespaceName | String | The name of the Event Hub Namespace. | ehns-xazx-adap-test-eus
 SkuName        | String | The name of the Event Hub Namespace SKU. | -
 SkuTier        | String | The service tier of the Event Hub Namespace SKU. | -
 SkuCapacity    | String | The capacity of the Event Hub Namespace SKU. | -

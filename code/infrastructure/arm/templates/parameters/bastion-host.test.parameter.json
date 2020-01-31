@@ -12,10 +12,10 @@
       "value": "rg-xazx-network-dev-eus"
     },
     "publicIpAddressName": {
-      "value": "bast--network-tst-eus-ip"
+      "value": "bast-xazx-network-tst-eus-ip"
     },
     "virtualNetworkName": {
-      "value": "vnet--dev"
+      "value": "vnet-xazx-dev"
     },
     "subnetName": {
       "value": "AzureBastionSubnet"

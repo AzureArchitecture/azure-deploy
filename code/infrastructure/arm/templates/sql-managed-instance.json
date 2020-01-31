@@ -35,7 +35,7 @@
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet--dev",
+      "defaultValue": "vnet-xazx-dev",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network name."

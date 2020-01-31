@@ -1,48 +1,48 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
-                       "StartDate":  {
-                                         "value":  43832
-                                     },
-                       "ApplicationName":  {
-                                               "value":  "MGMT"
-                                           },
-                       "Approver":  {
-                                        "value":  "approver@company.org"
-                                    },
-                       "KeyVaultName":  {
-                                            "value":  "kv--mgmt-dev-eus-02"
-                                        },
-                       "ServiceClass":  {
-                                            "value":  "Gold"
-                                        },
-                       "EndDate":  {
-                                       "value":  2958465
-                                   },
-                       "DR":  {
-                                  "value":  "Mission-Critical"
-                              },
-                       "CostCenter":  {
-                                          "value":  "8675-310"
-                                      },
-                       "BusinessUnit":  {
-                                            "value":  "CORP"
-                                        },
-                       "ResourceGroupName":  {
-                                                 "value":  "rg-xazx-mgmt-dev-eus"
-                                             },
-                       "Env":  {
-                                   "value":  "dev"
-                               },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
-                       "BudgetAmount":  {
-                                            "value":  "0"
-                                        }
-                   }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "StartDate": {
+      "value": 43832
+    },
+    "ApplicationName": {
+      "value": "MGMT"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "KeyVaultName": {
+      "value": "kv-xazx-mgmt-dev-eus-02"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "EndDate": {
+      "value": 2958465
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-310"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ResourceGroupName": {
+      "value": "rg-xazx-mgmt-dev-eus"
+    },
+    "Env": {
+      "value": "dev"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "0"
+    }
+  }
 }

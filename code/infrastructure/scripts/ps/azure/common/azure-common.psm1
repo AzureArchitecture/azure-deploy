@@ -622,7 +622,7 @@ function Close-Excel {
                 $workbook.Close($false)
             }
             # exit the Excel Object.
-            $ObjExcel.exit()
+            $ObjExcel.Quit()
         }
         End {
             # Release all the worksheet COM Ojbects.

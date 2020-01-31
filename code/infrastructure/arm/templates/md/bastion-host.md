@@ -21,8 +21,8 @@ Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
 SharedResourceGroupName | string | The name of the Resource Group. | rg-xazx-shared-dev-eus
 NetworkResourceGroupName | string | The name of the Resource Group. | rg-xazx-network-dev-eus
-virtualNetworkName | string | The name of the virtual network for the Bastion Host. | vnet--dev
-bastionHostName | string | The name of the Bastion Host. | bast--shared-dev-eus
+virtualNetworkName | string | The name of the virtual network for the Bastion Host. | vnet-xazx-dev
+bastionHostName | string | The name of the Bastion Host. | bast-xazx-shared-dev-eus
 subnetName     | string | The id of the Bastion Host subnet. | AzureBastionSubnet
 publicIpAddressName | string | The name of the Bastion Host public IP address. | -
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP

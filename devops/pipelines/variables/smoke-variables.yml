@@ -1,5 +1,4 @@
 variables:
-- group: 'smoke-variables'
 - name: 'ev'
   value: 'tst'
 - name: 'location'

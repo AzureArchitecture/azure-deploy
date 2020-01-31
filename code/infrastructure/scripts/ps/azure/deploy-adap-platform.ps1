@@ -66,16 +66,16 @@
     [Switch]$azRoles=$false,
 
     #azBlueprints
-    [Switch]$azBlueprints=$false,
+    [Switch]$azBlueprints=$true,
 
     #AzRoleAssignments
-    [Switch]$azRoleAssignments=$false,
+    [Switch]$azRoleAssignments=$true,
 
     # azActionGroups
-    [Switch]$azActionGroups=$false,
+    [Switch]$azActionGroups=$true,
 
     # azAlerts
-    [Switch]$azAlerts=$false,
+    [Switch]$azAlerts=$true,
 
     # azRunbooks
     [Switch]$azRunbooks=$false,
@@ -240,7 +240,6 @@
     Initialize-Subscription -Force
     
     try{
-      if($adGroups -or $adUsers -or $azAll){
         Add-Type -AssemblyName Microsoft.Open.AzureAD16.Graph.Client
         # Logon to Azure AD with values from config file
         Write-Information 'Logon to Azure Active Directory...'
@@ -249,7 +248,6 @@
         $tenantId = $currentAzureContext.Tenant.Id
         $accountId = $currentAzureContext.Account.Id
         Connect-AzureAD -TenantId $tenantId -AccountId $accountId
-      }
     }
     catch{
       Write-Host 'Logon to Azure Active Directory Failed'

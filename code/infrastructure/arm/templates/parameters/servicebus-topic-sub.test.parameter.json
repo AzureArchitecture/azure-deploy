@@ -9,7 +9,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb--adap-tst-eus"
+      "value": "sb-xazx-adap-tst-eus"
     },
     "Approver": {
       "value": "approver@company.org"

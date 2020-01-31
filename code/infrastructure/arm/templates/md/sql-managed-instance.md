@@ -24,7 +24,7 @@ administratorLogin | string | SQL Managed Instance Administrator name. | -
 administratorLoginPassword | securestring | SQL Managed Instance Administrator password. | -
 managedInstanceName | string | SQL Managed Instance name. | -
 virtualNetworkResourceGroupName | string | SQL Managed Instance Virtual Network Resource Group name. | rg-xazx-network-dev-eus
-virtualNetworkName | string | SQL Managed Instance Virtual Network name. | vnet--dev
+virtualNetworkName | string | SQL Managed Instance Virtual Network name. | vnet-xazx-dev
 subnetName     | string | SQL Managed Instance Virtual Network Subnet name. | -
 skuName        | string | SQL Managed Instance SKU name. | GP_Gen5
 skuEdition     | string | SQL Managed Instance SKU Edition name. | GeneralPurpose

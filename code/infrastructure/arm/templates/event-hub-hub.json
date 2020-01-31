@@ -11,14 +11,14 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns--adap-dev-eus",
+      "defaultValue": "ehns-xazx-adap-dev-eus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }
     },
     "EventHubName": {
       "type": "String",
-      "defaultValue": "eh--adap-dev-eus",
+      "defaultValue": "eh-xazx-adap-dev-eus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }

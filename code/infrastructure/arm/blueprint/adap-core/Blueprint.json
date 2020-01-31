@@ -107,7 +107,7 @@
         }
       },
       "logAnalytics": {
-        "defaultValue": "la--dev-eus",
+        "defaultValue": "la-xazx-dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Name"

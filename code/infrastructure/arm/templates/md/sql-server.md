@@ -20,7 +20,7 @@ Test Parameters File: [sql-server.test.parameter.json](C:\AzureDevOps\Repos\xazx
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
 ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
-sqlServerName  | string | The name of the Logical SQL Server. | sql--adap-dev-eus
+sqlServerName  | string | The name of the Logical SQL Server. | sql-xazx-adap-dev-eus
 sqlServerAdminUserName | string | The Azure SQL Server Administrator (SA) username  | sqlAdmin
 sqlServerAdminPassword | string | The Azure SQL Server Administrator (SA) password | Z1!xcvbnmnbvcxz
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP

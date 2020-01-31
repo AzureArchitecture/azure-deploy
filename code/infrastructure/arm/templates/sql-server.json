@@ -10,7 +10,7 @@
       }
     },
     "sqlServerName": {
-      "defaultValue": "sql--adap-dev-eus",
+      "defaultValue": "sql-xazx-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Logical SQL Server."

@@ -1,5 +1,4 @@
 variables:
-- group: 'development-features'
 - name: 'analysis-services-flag'
   value: '1'
 - name: 'cosmos-db-flag'

@@ -1,5 +1,4 @@
 variables:
--group: 'azure-shared'
 - name: 'deploy-dev'
   value: '1'
 - name: 'deploy-prod'
