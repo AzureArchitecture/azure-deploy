@@ -1,27 +1,30 @@
-﻿  # loop through policy assignments
-  $policies = Get-AzPolicyAssignment -InformationAction Ignore
-  foreach ($policy in $policies) {
-    $temp = "    Removing policy assignment: {0}" -f $policy.Name
-    Write-Host -foreground YELLOW $temp  -InformationAction $informationPreferenceVariable
-    Remove-AzPolicyAssignment -ResourceId $policy.ResourceId -ErrorAction $actionErrorVariable -InformationAction Ignore
+﻿$subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
+$resourceGroupName = "rg-xazx-shared-dev-eus"
+
+# Delete policy assignments
+$policies = Get-AzPolicyAssignment -InformationAction Ignore
+foreach ($policy in $policies) {
+  $temp = "    Removing policy assignment: {0}" -f $policy.Name
+  Write-Host -foreground YELLOW $temp  -InformationAction Continue
+  Remove-AzPolicyAssignment -ResourceId $policy.ResourceId -ErrorAction Continue -InformationAction Ignore
+}
+
+# Delete all of the policy set definitions
+$policySetDefinitions = Get-AzPolicySetDefinition -Custom
+foreach ($policySetDefinition in $policySetDefinitions) {
+  Write-Host "    Removing Policy Set Definition:" $policySetDefinition.Name
+  Remove-AzPolicySetDefinition -Name $policySetDefinition.Name -Force -ErrorAction Continue  -InformationAction Continue
+}
+
+# Delete all of the policy definitions
+$policyDefinitions = Get-AzPolicyDefinition -Custom
+foreach ($policyDefinition in $policyDefinitions) {
+  Write-Information "    Removing Policy Definition "
+  Remove-AzPolicyDefinition -Name $policyDefinition.Name -Force -ErrorAction SilentlyContinue
   }
 
-  	# Get and delete all of the policy set definitions. Skip over the built in policy definitions.
-    $policySetDefinitions = Get-AzPolicySetDefinition -Custom
-    foreach ($policySetDefinition in $policySetDefinitions) {
-      Write-Host "    Removing Policy Set Definition:" $policySetDefinition.Name
-      Remove-AzPolicySetDefinition -Name $policySetDefinition.Name -Force -ErrorAction $actionErrorVariable  -InformationAction $informationPreferenceVariable
-    }
-
-  # Get and delete all of the policy definitions. Skip over the built in policy definitions.
-  $policyDefinitions = Get-AzPolicyDefinition -Custom
-  foreach ($policyDefinition in $policyDefinitions) {
-    Write-Information "    Removing Policy Definition "
-    Remove-AzPolicyDefinition -Name $policyDefinition.Name -Force -ErrorAction SilentlyContinue
-  }
-
-# remove all blueprint assignments
-$bps = Get-AzBlueprintAssignment -SubscriptionId $subcriptionId
+# Delete Blueprint assignments
+$bps = Get-AzBlueprintAssignment -SubscriptionId $subscriptionId
 foreach ($bp in $bps) {
     $temp = "Deleting blueprint assignment {0}" -f $bp.Name
     Write-Host $temp
@@ -32,11 +35,11 @@ foreach ($bp in $bps) {
 $filter = 'xazx'
 $rgs = Get-AzResourceGroup | Where ResourceGroupName -like *$filter* 
 Get-AzResourceLock | Remove-AzResourceLock -Force   -ErrorAction Continue
-  foreach ($rg in $rgs) {
-        $temp = "    Deleting {0}..." -f $rg.ResourceGroupName
-        Write-Information $temp  
-        Remove-AzResourceGroup -Name $rg.ResourceGroupName -Force   -ErrorAction Continue
-        }
+foreach ($rg in $rgs) {
+  $temp = "    Deleting {0}..." -f $rg.ResourceGroupName
+  Write-Information $temp  
+  Remove-AzResourceGroup -Name $rg.ResourceGroupName -Force   -ErrorAction Continue
+}
 
 # get-azroleassignment returns assignments at current OR parent scope`
 # will need to do a check on the scope property
@@ -52,17 +55,3 @@ foreach ($rbac in $rbacs) {
     }
 }
 
-  $alerts = Get-AzAlert
-  foreach ($def in $alerts) {
-    $temp = "    Removing Action Group: {0}" -f $def.Name
-    Write-Host -foreground YELLOW $temp  -InformationAction $informationPreferenceVariable
-    Remove-Az -Name $def.Name -ResourceGroupName $resourceGroupName -ErrorAction $actionErrorVariable
-  }
-  
-    # loop through action groups and delete
-  $actiongroups = Get-AzActionGroup
-  foreach ($group in $actiongroups) {
-    $temp = "    Removing Action Group: {0}" -f $group.Name
-    Write-Host -foreground YELLOW $temp  -InformationAction $informationPreferenceVariable
-    Remove-AzActionGroup -Name $group.Name -ResourceGroupName $resourceGroupName -ErrorAction $actionErrorVariable
-  }
