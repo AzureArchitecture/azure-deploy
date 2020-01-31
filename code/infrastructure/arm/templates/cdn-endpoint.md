@@ -5,16 +5,16 @@ A CDN Profile must already exist (see cdn-profile.md) and this must be ran in th
 
 ## Parameters
 
-cdnProfileName (required) string
+cdnProfileName (rexazxred) string
 
 Existing CDN profile name
 
-cdnEndPointName (required) string
+cdnEndPointName (rexazxred) string
 
 Name of endpoint to create.
 This must be globally unique and can only consist of letters, numbers or hypens (a hyphen cannot be the first or last character).
 
-originHostName (required) string
+originHostName (rexazxred) string
 
 URL to get the content from.
 

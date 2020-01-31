@@ -30,7 +30,7 @@
 | --- | --- |
 |Azure SLA|https://azure.microsoft.com/en-us/support/legal/sla/|
 |Azure Availability Zones|https://docs.microsoft.com/en-us/azure/availability-zones/az-overview|
-|Azure Availability Zones Quick Tour and Guide|https://blogs.msdn.microsoft.com/igorpag/2018/05/03/azure-availability-zones-quick-tour-and-guide/|
+|Azure Availability Zones xazxck Tour and Guide|https://blogs.msdn.microsoft.com/igorpag/2018/05/03/azure-availability-zones-xazxck-tour-and-guide/|
 |Business continuity with data resiliency|https://azurecomcdn.azureedge.net/mediahandler/files/resourcefiles/azure-resiliency-infographic/Azure_resiliency_infographic.pdf|
 |Azure Availability Set|https://docs.microsoft.com/en-us/azure/virtual-machines/windows/manage-availability<br>https://docs.microsoft.com/en-us/azure/virtual-machines/linux/manage-availability|
 |Azure Resiliency|https://azure.microsoft.com/en-us/features/resiliency/|

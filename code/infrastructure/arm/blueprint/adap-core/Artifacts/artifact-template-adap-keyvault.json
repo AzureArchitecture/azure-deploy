@@ -14,7 +14,7 @@
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "xazx"
+          "defaultValue": ""
         },
         "suffix": {
           "type": "string",
@@ -121,7 +121,7 @@
           "tags": {
             "Application name": "[parameters('ApplicationName')]",
             "Approver name": "[parameters('Approver')]",
-            "Budget required-approved": "[parameters('BudgetAmount')]",
+            "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
             "Business unit": "[parameters('BusinessUnit')]",
             "Cost center": "[parameters('CostCenter')]",
             "Disaster recovery": "[parameters('DR')]",

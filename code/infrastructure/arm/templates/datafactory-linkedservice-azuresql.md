@@ -4,12 +4,12 @@ Creates a linked service within a Data Factory for a single Azure SQL Database. 
 
 ## Parameters
 
-DataFactoryName: required (string)
+DataFactoryName: rexazxred (string)
 
-SqlDatabaseName: required (string)
+SqlDatabaseName: rexazxred (string)
 
-SqlDatabaseServer: required (string)
+SqlDatabaseServer: rexazxred (string)
 
-SqlDatabaseUserName: required (string)
+SqlDatabaseUserName: rexazxred (string)
 
-SqlDatabaseUserPassword: required (securestring)
+SqlDatabaseUserPassword: rexazxred (securestring)

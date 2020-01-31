@@ -4,7 +4,7 @@ Creates a service bus namespace
 
 ## Parameters
 
-ServiceBusNamespaceName (required) string
+ServiceBusNamespaceName (rexazxred) string
 
 The name of the Service Bus namespace.
 

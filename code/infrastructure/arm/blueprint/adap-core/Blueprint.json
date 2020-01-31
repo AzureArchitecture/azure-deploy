@@ -10,7 +10,7 @@
           "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
           "description": "Organization Tag"
         },
-        "defaultValue": "xazx"
+        "defaultValue": ""
       },
       "suffix": {
         "type": "string",
@@ -67,7 +67,7 @@
         "type": "string",
         "metadata": {
           "displayName": "accessTier (Deploy ADAP Resource Group Storage Account)",
-          "description": "This setting is required if using BlobStorage as the storageKind, otherwise can be left blank"
+          "description": "This setting is rexazxred if using BlobStorage as the storageKind, otherwise can be left blank"
         },
         "defaultValue": "Hot",
         "allowedValues": [
@@ -100,14 +100,14 @@
         ]
       },
       "logAnalyticsResourceGroup": {
-        "defaultValue": "rg-xazx-shared-dev-eus",
+        "defaultValue": "rg--shared-dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Resource Group Name"
         }
       },
       "logAnalytics": {
-        "defaultValue": "la-xazx-dev-eus",
+        "defaultValue": "la--dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Name"
@@ -295,7 +295,7 @@
           "displayName": "SHARED-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-shared-dev-eus"
+        "defaultValue": "rg--shared-dev-eus"
       },
       "adapRG": {
         "type": "string",
@@ -304,7 +304,7 @@
           "displayName": "ADAP-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-adap-dev-eus"
+        "defaultValue": "rg--adap-dev-eus"
       },
       "mgmtRG": {
         "type": "string",
@@ -313,7 +313,7 @@
           "displayName": "ADAP-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-mgmt-dev-eus"
+        "defaultValue": "rg--mgmt-dev-eus"
       },
       "networkRG": {
         "type": "string",
@@ -322,7 +322,7 @@
           "displayName": "NETWORK-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-network-dev-eus"
+        "defaultValue": "rg--network-dev-eus"
       },
       "onpremRG": {
         "type": "string",
@@ -331,7 +331,7 @@
           "displayName": "ONPREM-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-onprem-dev-eus"
+        "defaultValue": "rg--onprem-dev-eus"
       },
       "smokeRG": {
         "type": "string",
@@ -340,7 +340,7 @@
           "displayName": "SMOKE-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-smoke-dev-eus"
+        "defaultValue": "rg--smoke-dev-eus"
       },
       "testRG": {
         "type": "string",
@@ -349,7 +349,7 @@
           "displayName": "TEST-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-test-dev-eus"
+        "defaultValue": "rg--test-dev-eus"
       }
     },
     "resourceGroups": {
@@ -363,7 +363,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -386,7 +386,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -409,7 +409,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -432,7 +432,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -455,7 +455,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -478,7 +478,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -501,7 +501,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget required-approved": "[parameters('BudgetAmount')]",
+          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",

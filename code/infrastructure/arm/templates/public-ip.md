@@ -4,16 +4,16 @@ Creates a public IP address
 
 ## Paramaters
 
-ipAddressName: (required) string
+ipAddressName: (rexazxred) string
 
 Name for the public IP address resource
 
-ipAddressSku: (required) string
+ipAddressSku: (rexazxred) string
 
 The SKU for the public IP address.
 Must be either Basic or Standard.
 
-allocationMethod: (required) string
+allocationMethod: (rexazxred) string
 
 The way Azure allocates the IP address.
 If the SKU is Basic this can be either Static or Dynamic.

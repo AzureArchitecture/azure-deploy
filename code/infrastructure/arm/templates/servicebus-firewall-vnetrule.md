@@ -4,19 +4,19 @@ Adds a Virtual Network rule to an existing Service Bus Namespace.  Optionally ca
 
 ## Parameters
 
-servicebusName (required) string
+servicebusName (rexazxred) string
 
 The name of the Service Bus Namespace to ad the VNet rule to.
 
-subnetNames (required) array
+subnetNames (rexazxred) array
 
 An array of Subnet names to add to the VNet rule.  All the subnets must be part of the same VNet.
 
-vnetName (required) string
+vnetName (rexazxred) string
 
 Name of the VNet that contains the subnets.
 
-vnetResourceGroup (required) string
+vnetResourceGroup (rexazxred) string
 
 Name of the Vnet's resource group.
 

@@ -4,15 +4,15 @@ Creates a Subscription for an existing ServiceBus Topic.
 
 ## Parameters
 
-ServiceBusNamespaceName: (required) string
+ServiceBusNamespaceName: (rexazxred) string
 
 Name of an existing ServiceBus to create the topic in.
 
-ServiceBusTopicName: (required) string
+ServiceBusTopicName: (rexazxred) string
 
 Name of the existing Topic in the Service Bus to add the subsciption to.
 
-ServiceBusTopicSubName: (required) string
+ServiceBusTopicSubName: (rexazxred) string
 
 Name of the Subscription.
 

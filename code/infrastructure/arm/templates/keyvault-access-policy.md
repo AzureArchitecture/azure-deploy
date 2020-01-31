@@ -4,9 +4,9 @@ Adds a KeyVault Access Policy, leaves any existing policies in place.  If access
 
 ## Parameters
 
-keyVaultName (required) string
+keyVaultName (rexazxred) string
 
-servicePrincipalObjectId (required) string
+servicePrincipalObjectId (rexazxred) string
 
 The ObjectId of the ServicePrincipal that needs permissions.
 

@@ -33,7 +33,7 @@
     "type": {
       "type": "string",
       "enum": [
-        "QuickStart",
+        "xazxckStart",
         "Application",
         "ManagedApplication",
         "PolicyDefinition",
@@ -90,7 +90,7 @@
     "minLength": 10,
     "maxLength": 1000
   },
-  "required": [
+  "rexazxred": [
     "$schema",
     "itemDisplayName",
     "description",

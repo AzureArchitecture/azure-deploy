@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [servicebus-topic-sub.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.json + )
+Resource File: [servicebus-topic-sub.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.json + )
 
-Metadata File: [servicebus-topic-sub.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.metadata.json + )
+Metadata File: [servicebus-topic-sub.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.metadata.json + )
 
-Test Parameters File: [servicebus-topic-sub.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.test.parameter.json + )
+Test Parameters File: [servicebus-topic-sub.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.test.parameter.json + )
 
 ## Parameters
 
@@ -22,7 +22,7 @@ Parameter name | Type | Description | DefaultValue
 ServiceBusNamespaceName | string | Name of an existing Service Bus namespace to add the topic to | -
 ServiceBusTopicName | string | Topic name to add to Service Bus | -
 ServiceBusTopicSubName | string | Subscription name to add to Service Bus | -
-ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg--adap-dev-eus
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0

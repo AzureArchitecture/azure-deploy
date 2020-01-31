@@ -59,7 +59,7 @@ Source: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes
 - https://docs.microsoft.com/en-us/azure/ Microsoft Azure Documentation
 - https://docs.microsoft.com/en-us/azure/architecture/best-practices/naming-conventions Naming rules and restrictions for Azure resources and a baseline set of recommendations for naming conventions
 - https://github.com/Azure APIs, SDKs and open source projects from Microsoft Azure
-- https://github.com/Azure/azure-quickstart-templates Azure Resource Manager QuickStart Templates
+- https://github.com/Azure/azure-xazxckstart-templates Azure Resource Manager xazxckStart Templates
 - https://github.com/mspnp Microsoft patterns & practices
 
 
@@ -96,7 +96,7 @@ Source: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes
 
 
 ### Training and Learning
-- https://www.pluralsight.com/partners/microsoft/azure Pluralsight and Microsoft have partnered to help become an expert in Azure. With skill assessments and over 130 courses across three Azure roles, you can focus your time on understanding your strengths and skill gaps and learn Azure as quickly as possible.
+- https://www.pluralsight.com/partners/microsoft/azure Pluralsight and Microsoft have partnered to help become an expert in Azure. With skill assessments and over 130 courses across three Azure roles, you can focus your time on understanding your strengths and skill gaps and learn Azure as xazxckly as possible.
 - https://www.microsoft.com/handsonlabs Get hands-on with cloud technologies from Microsoft. Practice with the latest cloud products and services in a live environment and advance your cloud skills for free.
 - https://docs.microsoft.com/en-us/learn/azure/ Unlock your cloud skills in minutes.
 

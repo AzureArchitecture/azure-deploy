@@ -6,11 +6,11 @@ For an alternative which only creates the key vault if one does not exist, see P
 
 ## Paramaters
 
-keyVaultName: (required) string
+keyVaultName: (rexazxred) string
 
 Name of key vault. Will be created in the same resource group as the script is run and in the default location for resource group.
 
-certificates: (required) array of string
+certificates: (rexazxred) array of string
 
 Array of certification to create. Name must match that of the secret in the keyvault.
 

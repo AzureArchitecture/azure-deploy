@@ -4,7 +4,7 @@ Creates a Redis cache.
 
 ## Paramaters
 
-redisName: (required) string
+redisName: (rexazxred) string
 
 Name of Redis cache. Will be created in the same resource group as the script is run and in the default location for resource group.
 

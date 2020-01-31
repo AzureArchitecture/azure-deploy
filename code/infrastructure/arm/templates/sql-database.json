@@ -218,7 +218,7 @@
         "Display Name": "sql database: [parameters('databaseName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget required-approved": "[parameters('BudgetAmount')]",
+        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",

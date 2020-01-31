@@ -1,4 +1,4 @@
-﻿Function Start-Countdown 
+Function Start-Countdown 
 {   <#
     .SYNOPSIS
         Provide a graphical countdown if you need to pause a script for a period of time
@@ -149,7 +149,6 @@ function Update-StringMdFile
     Set-Content $file.PSPath
   }
 }
-
 function Update-StringPsFile
 {
   <#
@@ -176,6 +175,39 @@ function Update-StringPsFile
   Set-Location -Path  $rootDirectory -PassThru
   
   $psFiles = Get-ChildItem . *.ps1 -rec
+  foreach ($file in $psFiles)
+  {
+    (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
+    Foreach-Object { $_ -replace $searchStr, $replaceStr } |
+    Set-Content $file.PSPath
+  }
+}
+function Update-StringPsModFile
+{
+  <#
+      .SYNOPSIS
+      Updates one string for another in a file
+  #>
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory=$false, Position=0)]
+    [System.String]
+    $searchStr = "",
+ 
+    [Parameter(Mandatory=$false, Position=1)]
+    [System.String]
+    $replaceStr = "",
+    
+    [Parameter(Mandatory=$false, Position=2)]
+    [System.String]
+    $rootDirectory = ""
+  )
+  
+  # Set working directory to path specified by rootDirectory var
+  Set-Location -Path  $rootDirectory -PassThru
+  
+  $psFiles = Get-ChildItem . *.psm1 -rec
   foreach ($file in $psFiles)
   {
     (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
@@ -220,7 +252,7 @@ function Load-Module ($m) {
 function Initialize-Subscription
 {
   param(
-    # Force requires the user selects a subscription explicitly
+    # Force rexazxres the user selects a subscription explicitly
     [parameter(Mandatory=$false)]
     [switch] $Force=$false,
 
@@ -238,7 +270,7 @@ function Initialize-Subscription
 
       if (!$AzureContext.Account)
       {
-        # Fall through and require login
+        # Fall through and rexazxre login
       }
       else
       {
@@ -255,7 +287,7 @@ function Initialize-Subscription
     }
     catch
     {
-      # Fall through and require login - (Get-AzContext fails with Az. modules < 4.0 if there is no logged in acount)
+      # Fall through and rexazxre login - (Get-AzContext fails with Az. modules < 4.0 if there is no logged in acount)
     }
   }
   else
@@ -452,7 +484,7 @@ function Remove-ResourceGroup
 function Get-PSModules
 {     <#
       .SYNOPSIS
-        Checks for required PS Modules
+        Checks for rexazxred PS Modules
 
       .EXAMPLE
 
@@ -589,8 +621,8 @@ function Close-Excel {
                 # Close the current worksheet.
                 $workbook.Close($false)
             }
-            # Quit the Excel Object.
-            $ObjExcel.Quit()
+            # xazxt the Excel Object.
+            $ObjExcel.xazxt()
         }
         End {
             # Release all the worksheet COM Ojbects.
@@ -928,7 +960,7 @@ function Get-WorksheetUsedRange {
                 $worksheet)
         Begin {
             # Define search parameters, see https://blog.udemy.com/excel-vba-find/ for details.
-            # What (required): The only required parameter, What tells the Excel what to actually look for. This can be anything - string, integer, etc.).
+            # What (rexazxred): The only rexazxred parameter, What tells the Excel what to actually look for. This can be anything - string, integer, etc.).
             $What = "*"
             # After (optional): This specifies the cell after which the search is to begin. This must always be a single cell; you can't use a range here.
             # If the after parameter isn't specified, the search begins from the top-left corner of the cell range.
@@ -1503,7 +1535,7 @@ function Import-ExcelData {
       .DESCRIPTION
       This function imports Microsoft Excel worksheets and puts the data in to a hashtable of pscustom objects. The hashtable
       keys are the names of the Excel worksheets with spaces omitted. The function imports data from all worksheets. It does not
-      validate that the data started in cell A1 and is in format of regular rows and columns, which is required to load the data.
+      validate that the data started in cell A1 and is in format of regular rows and columns, which is rexazxred to load the data.
 
       .PARAMETER Path
         The optional parameter Path accepts a path string to the excel file. The string can be either the absolute or relative path.
@@ -1739,7 +1771,7 @@ function Test-Passwords {
   if ($pw2test.Length -ge $passLength) {
     $isGood = 1
         if ($pw2test -match " ") {
-          Write-Verbose -Message "Password does not meet complexity requirements. Password cannot contain spaces."
+          Write-Verbose -Message "Password does not meet complexity rexazxrements. Password cannot contain spaces."
           checkPasswords -name $name
           return
         }
@@ -1750,7 +1782,7 @@ function Test-Passwords {
           $isGood = 3
         }
         else {
-            Write-Verbose -Message "Password does not meet complexity requirements. Password must contain a special character."
+            Write-Verbose -Message "Password does not meet complexity rexazxrements. Password must contain a special character."
             checkPasswords -name $name
             return
         }
@@ -1758,7 +1790,7 @@ function Test-Passwords {
           $isGood = 4
         }
         else {
-            Write-Verbose -Message "Password does not meet complexity requirements. Password must contain a numerical character."
+            Write-Verbose -Message "Password does not meet complexity rexazxrements. Password must contain a numerical character."
             checkPasswords -name $name
             return
         }
@@ -1767,7 +1799,7 @@ function Test-Passwords {
         }
         else {
             Write-Verbose -Message "Password must contain a lowercase letter."
-            Write-Verbose -Message "Password does not meet complexity requirements."
+            Write-Verbose -Message "Password does not meet complexity rexazxrements."
             checkPasswords -name $name
             return
         }
@@ -1776,7 +1808,7 @@ function Test-Passwords {
         }
         else {
             Write-Verbose -Message "Password must contain an uppercase character."
-            Write-Verbose -Message "Password does not meet complexity requirements."
+            Write-Verbose -Message "Password does not meet complexity rexazxrements."
             checkPasswords -name $name
         }
       if ($isGood -ge 6) {
@@ -1784,7 +1816,7 @@ function Test-Passwords {
             return
         }
         else {
-            Write-Verbose -Message "Password does not meet complexity requirements."
+            Write-Verbose -Message "Password does not meet complexity rexazxrements."
             checkPasswords -name $name
             return
         }
@@ -1879,8 +1911,8 @@ function Connect-Azure() {
 }
 ########################################################################################################################
 function New-ResourceGroup([string]$ResourceGroupName, [string]$Location) {
-  # Required Argument $1 = RESOURCE_GROUP
-  # Required Argument $2 = LOCATION
+  # Rexazxred Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $2 = LOCATION
 
   Get-AzResourceGroup -Name $ResourceGroupName -ev notPresent -ea 0 | Out-null
 
@@ -1894,9 +1926,9 @@ function New-ResourceGroup([string]$ResourceGroupName, [string]$Location) {
 }
 ########################################################################################################################
 function Add-Secret ([string]$ResourceGroupName, [string]$SecretName, [securestring]$SecretValue) {
-  # Required Argument $1 = RESOURCE_GROUP
-  # Required Argument $2 = SECRET_NAME
-  # Required Argument $3 = RESOURCE_VALUE
+  # Rexazxred Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $2 = SECRET_NAME
+  # Rexazxred Argument $3 = RESOURCE_VALUE
 
   $KeyVault = Get-AzKeyVault -ResourceGroupName $ResourceGroupName
   if (!$KeyVault) {
@@ -1909,65 +1941,65 @@ function Add-Secret ([string]$ResourceGroupName, [string]$SecretName, [securestr
 }
 ########################################################################################################################
 function Get-StorageAccount([string]$ResourceGroupName) {
-  # Required Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
 
   return (get-AzStorageAccount -ResourceGroupName $ResourceGroupName).StorageAccountName
 }
 ########################################################################################################################
 function Get-LoadBalancer([string]$ResourceGroupName) {
-  # Required Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
 
   return (Get-AzLoadBalancer -ResourceGroupName $ResourceGroupName).Name
 }
 ########################################################################################################################
 function Get-VirtualNetwork([string]$ResourceGroupName) {
-  # Required Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
 
   return (Get-AzVirtualNetwork -ResourceGroupName $ResourceGroupName).Name
 }
 ########################################################################################################################
 function Get-SubNet([string]$ResourceGroupName, [string]$VNetName, [int]$Index) {
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
-  if ( !$VNetName) { throw "VNetName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
+  if ( !$VNetName) { throw "VNetName Rexazxred" }
 
   return (Get-AzVirtualNetwork -ResourceGroupName $ResourceGroupName -Name $VNetName).Subnets[$Index].Name
 }
 ########################################################################################################################
 function Get-AutomationAccount([string]$ResourceGroupName) {
-  # Required Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
 
   return (Get-AzAutomationAccount -ResourceGroupName $ResourceGroupName).AutomationAccountName
 }
 ########################################################################################################################
 function Get-StorageAccountKey([string]$ResourceGroupName, [string]$StorageAccountName) {
-  # Required Argument $1 = RESOURCE_GROUP
-  # Required Argument $2 = STORAGE_ACCOUNT
+  # Rexazxred Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $2 = STORAGE_ACCOUNT
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
-  if ( !$StorageAccountName) { throw "StorageAccountName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
+  if ( !$StorageAccountName) { throw "StorageAccountName Rexazxred" }
 
   return (get-AzStorageAccountKey -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName).Value[0]
 }
 ########################################################################################################################
 function Get-KeyVault([string]$ResourceGroupName) {
-  # Required Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
 
   return (Get-AzKeyVault -ResourceGroupName $ResourceGroupName).VaultName
 }
 ########################################################################################################################
 function New-Container ($ResourceGroupName, $ContainerName, $Access = "Off") {
-  # Required Argument $1 = RESOURCE_GROUP
-  # Required Argument $2 = CONTAINER_NAME
+  # Rexazxred Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $2 = CONTAINER_NAME
 
   # Get Storage Account
   $StorageAccount = get-AzStorageAccount -ResourceGroupName $ResourceGroupName
@@ -2158,9 +2190,9 @@ function Add-NodesViaFilter ($filter, $group, $dscAccount, $dscGroup, $dscConfig
 }
 ########################################################################################################################
 function Get-ADGroup([string]$GroupName) {
-  # Required Argument $1 = GROUPNAME
+  # Rexazxred Argument $1 = GROUPNAME
 
-  if ( !$GroupName) { throw "GroupName Required" }
+  if ( !$GroupName) { throw "GroupName Rexazxred" }
 
   $Group = Get-AzureADGroup -Filter "DisplayName eq '$GroupName'"
   if (!$Group) {
@@ -2174,10 +2206,10 @@ function Get-ADGroup([string]$GroupName) {
 }
 ########################################################################################################################
 function Get-ADuser([string]$Email) {
-  # Required Argument $1 = Email
+  # Rexazxred Argument $1 = Email
 
   Add-Type -AssemblyName Microsoft.Open.AzureAD16.Graph.Client
-if (!$Email) { throw "Email Required" }
+if (!$Email) { throw "Email Rexazxred" }
 
   $user = Get-AzureADUser -Filter "userPrincipalName eq '$Email'"
   if (!$User) {
@@ -2194,8 +2226,8 @@ if (!$Email) { throw "Email Required" }
 }
 ########################################################################################################################
 function Set-ADGroup($Email, $Group) {
-  if (!$Email) { throw "User Required" }
-  if (!$Group) { throw "User Required" }
+  if (!$Email) { throw "User Rexazxred" }
+  if (!$Group) { throw "User Rexazxred" }
 
   $User = GetADUser $Email
   $Group = GetADGroup $Group
@@ -2240,9 +2272,9 @@ function Get-PlainText() {
 }
 ########################################################################################################################
 function Get-VmssInstances([string]$ResourceGroupName) {
-  # Required Argument $1 = RESOURCE_GROUP
+  # Rexazxred Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Required" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName Rexazxred" }
 
   $ServerNames = @()
   $VMScaleSets = Get-AzVmss -ResourceGroupName $ResourceGroupName
@@ -2661,7 +2693,7 @@ Function New-SPNApp
   $isAzureModulePresent = Get-Module -Name Az.Resources -ListAvailable
   if ([String]::IsNullOrEmpty($isAzureModulePresent) -eq $true)
   {
-    Write-Output "Script requires Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
+    Write-Output "Script rexazxres Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
     return
   }
 
@@ -2759,7 +2791,7 @@ function Get-RoleScopes {
       This function will output the scopes (subscriptions) to a text file
 
       .Parameter Role
-      Required - name of the role you want to get the actions from
+      Rexazxred - name of the role you want to get the actions from
 
       .Parameter scopesfile
       Optional - text file to output role actions too.  Def = Role_scopes.txt
@@ -2796,7 +2828,7 @@ function Get-RoleActions {
       edit and use the New-Role or Update-Role function to create or modify a role.
 
       .Parameter Role
-      Required - name of the role you want to get the actions from.
+      Rexazxred - name of the role you want to get the actions from.
 
       .Parameter actionsfile
       Optional - text file to output role actions too.  Def = Role_actions.txt
@@ -2899,10 +2931,10 @@ function Export-SubscriptionBlueprints {
       This function will output the Azure Blueprints in a subscription to a folder and files.
 
       .Parameter $subscriptionId
-      Required - the Azure subscription to export the Blueprints from
+      Rexazxred - the Azure subscription to export the Blueprints from
 
       .Parameter $exportPath
-      Required - The path to export the blueprints to.
+      Rexazxred - The path to export the blueprints to.
 
   #>
   Param (
@@ -2931,10 +2963,10 @@ function Export-ManagementGroupBlueprints {
       This function will output the Azure Blueprints in a subscription to a folder and files.
 
       .Parameter $subscriptionId
-      Required - the Azure subscription to export the Blueprints from
+      Rexazxred - the Azure subscription to export the Blueprints from
 
       .Parameter $exportPath
-      Required - The path to export the blueprints to.
+      Rexazxred - The path to export the blueprints to.
 
   #>
   Param (
@@ -2958,10 +2990,10 @@ function Export-ManagementGroupBlueprints {
     Create a Blueprint name for assignments
 
     .Parameter $blueprintName
-    Required - Name of the blueprint
+    Rexazxred - Name of the blueprint
 
     .Parameter $blueprintVersion
-    Required - Version of the blueprint
+    Rexazxred - Version of the blueprint
 
 #>
 function New-BlueprintName(

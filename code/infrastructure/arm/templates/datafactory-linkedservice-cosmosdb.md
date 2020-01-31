@@ -4,10 +4,10 @@ Creates linked services within a Data Factory for one or more databases within a
 
 ## Parameters
 
-CosmosDbName: required (string)
+CosmosDbName: rexazxred (string)
 
-CosmosDbPrimaryKey: required (securestring)
+CosmosDbPrimaryKey: rexazxred (securestring)
 
-CosmosDbDatabases: required (array)
+CosmosDbDatabases: rexazxred (array)
 
-DataFactoryName: required (string)
+DataFactoryName: rexazxred (string)

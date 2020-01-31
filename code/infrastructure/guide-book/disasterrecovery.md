@@ -25,7 +25,7 @@
 |Azure Backup Documentation|https://docs.microsoft.com/en-us/azure/backup/|
 |Overview of the features in Azure Backup|https://docs.microsoft.com/en-us/azure/backup/backup-introduction-to-azure-backup|
 |Recovery Services vaults overview|https://docs.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview|
-|Back up a virtual machine in Azure|https://docs.microsoft.com/en-us/azure/backup/quick-backup-vm-portal|
+|Back up a virtual machine in Azure|https://docs.microsoft.com/en-us/azure/backup/xazxck-backup-vm-portal|
 |Use Azure portal to back up multiple virtual machines|https://docs.microsoft.com/en-us/azure/backup/tutorial-backup-vm-at-scale|
 |Use Role-Based Access Control to manage Azure Backup recovery points|https://docs.microsoft.com/en-us/azure/backup/backup-rbac-rs-vault|
 |Move your long-term storage from tape to the Azure cloud|https://docs.microsoft.com/en-us/azure/backup/backup-azure-backup-cloud-as-tape|

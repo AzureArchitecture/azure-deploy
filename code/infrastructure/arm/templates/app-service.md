@@ -4,11 +4,11 @@ Creates an App Service
 
 ## Paramaters
 
-appServiceName: (required) string
+appServiceName: (rexazxred) string
 
 Name of App Service. Will be created in the same resource group as the script is run and in the default location for resource group.
 
-appServicePlanName: (required) string
+appServicePlanName: (rexazxred) string
 
 Name of the App Service Plan the app will run inside.
 
@@ -63,7 +63,7 @@ In order to specify a custom domain, a CNAME DNS record must be created referenc
 certificateThumbprint: (optional) string
 
 Thumbprint of the certificate used.
-Only required if the customHostName is supplied above.
+Only rexazxred if the customHostName is supplied above.
 
 This can be passed into the template via the following reference function if an Azure certificate resource has been created:
 > [reference(resourceId(parameters('certificateResourceGroup'), 'Microsoft.Web/certificates', parameters('certificateName')), '2016-03-01').Thumbprint]
@@ -76,7 +76,7 @@ Defaults to creating a staging slot
 clientAffinity: (optional) boolean
 
 Enable ARR Affinity cookie (also known as sticky sessions).
-Often required for stateful web applications.
+Often rexazxred for stateful web applications.
 Defaults to not enabled (stateless).
 
 If ARR Affinity is enabled the server will place a cookie on responses that causes a user to always hit the same instance within their session.

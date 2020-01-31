@@ -4,7 +4,7 @@ Creates a CDN Profile, use the [CDN Endpoint](CDN/cdn-endpoint.md) to add endpoi
 
 ## Parameters
 
-cdnProfileName (required) string
+cdnProfileName (rexazxred) string
 
 The name of the CDN Profile, use the standard organisation-environment-project naming convention with the -cdn suffix.
 

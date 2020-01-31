@@ -4,23 +4,23 @@ Creates a virtual network rule on an existing PaaS Azure SQL Server
 
 ## Parameters
 
-sqlServerName (required) string
+sqlServerName (rexazxred) string
 
 Name of the SQL server to which the Virtual Network Rule will be applied
 
-subnetName (required) string
+subnetName (rexazxred) string
 
 Name of the subnet from which traffic will be allowed through to the SQL server
 
-virtualNetworkRuleName (required) string
+virtualNetworkRuleName (rexazxred) string
 
 Display name of the Virtual Network Rule that will be created.  This should be descriptive rather than a concatenation of the vnet and subnet names as these properties are clearly displayed in the portal and elsewhere
 
-vnetName (required) string
+vnetName (rexazxred) string
 
 Name of the VNet which the subnet belongs to
 
-vnetResourceGroupName (required) string
+vnetResourceGroupName (rexazxred) string
 
 Name of the Resource Group that the VNet belongs to
 

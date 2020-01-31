@@ -5,17 +5,17 @@ This template relies on an ARM resource that is still in preview (though IP filt
 
 ## Parameters
 
-action (required) string
+action (rexazxred) string
 
 Values can be Accept or Deny
 
-ipAddress (required) string
+ipAddress (rexazxred) string
 
 A single IP address from which traffic will either be accepted or denied.
 Adding an Accept filter for 0.0.0.0 will allow access by all Azure resources
 Adding Accept filters for 104.42.195.92, 40.76.54.131, 52.176.6.30, 52.169.50.45 and 52.187.184.26 will all access via the Azure Portal
 
-servicebusName (required) string
+servicebusName (rexazxred) string
 
 The name of the ServiceBus to apply the rule to.  The ServiceBus must be on the Premium SKU.
 

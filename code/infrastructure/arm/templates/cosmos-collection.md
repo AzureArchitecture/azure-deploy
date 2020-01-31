@@ -4,15 +4,15 @@ Creates a container on a CosmosDb Collection
 
 ## Parameters
 
-accountName (required)  string
+accountName (rexazxred)  string
 
 The CosmosDb account to create the collection on.
 
-databaseName (required) string
+databaseName (rexazxred) string
 
 The database within the cosmosdb account to create the collection on.
 
-collectionName (required) string
+collectionName (rexazxred) string
 
 The name of the collection to create
 

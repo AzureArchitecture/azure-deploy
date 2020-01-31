@@ -4,12 +4,12 @@ Deploys a SQL Server Managed Instance to the supplied VNet Subnet
 
 ## Paramaters
 
-sqlServerName: (required) string
+sqlServerName: (rexazxred) string
 
 Name of SQL Server Managed Instance.
 Will be created in the same resource group as the script is run and in the default location for resource group.
 
-sqlSubnetId: (required) string
+sqlSubnetId: (rexazxred) string
 
 Subnet ID to install SQL managed instance to
 
@@ -21,17 +21,17 @@ Does not change settings if the server already exists (will not change the admin
 If not passed in a username will be generated.
 The username is available as an output of the template - saAdministratorLogin
 
-sqlServerAdminPassword: (required) securestring
+sqlServerAdminPassword: (rexazxred) securestring
 
 SQL SA administrator password.
 Only used when the server is created.
 Does not change settings if the server already exists (will not change the admin password on an existing server).
 
-sqlServerActiveDirectoryAdminLogin: (required) string
+sqlServerActiveDirectoryAdminLogin: (rexazxred) string
 
 Name of AAD user or group to grant administrator rights to.
 
-sqlServerActiveDirectoryAdminObjectId: (required) string
+sqlServerActiveDirectoryAdminObjectId: (rexazxred) string
 
 Object ID of AAD user or group above.
 

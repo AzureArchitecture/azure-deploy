@@ -9,21 +9,21 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [storage-account.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account.json + )
+Resource File: [storage-account.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account.json + )
 
-Metadata File: [storage-account.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account.metadata.json + )
+Metadata File: [storage-account.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account.metadata.json + )
 
-Test Parameters File: [storage-account.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account.test.parameter.json + )
+Test Parameters File: [storage-account.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
-StorageAccountName | string | The name of the storage account. | stgxazxadapdeveus
+ResourceGroupName | string | The name of the Resource Group. | rg--adap-dev-eus
+StorageAccountName | string | The name of the storage account. | stgadapdeveus
 AccountType    | string | The type of storage account. | Standard_LRS
 StorageKind    | string | The kind of storage account. | StorageV2
-AccessTier     | string | This setting is required if using Blob Storage as the storageKind, otherwise can be left blank | Hot
+AccessTier     | string | This setting is rexazxred if using Blob Storage as the storageKind, otherwise can be left blank | Hot
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0

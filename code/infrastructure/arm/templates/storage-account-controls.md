@@ -25,7 +25,7 @@ To verify if the Storage account is geo-redundant:
 
 Storage accounts deployed by this template can be configured to enable replication ensuring high availability either by using geo-redundant storage (GRS). GRS ensures that data is replicated to a secondary region.
 
-**CP-6.b: The organization ensures that the alternate storage site provides information security safeguards equivalent to that of the primary site.**
+**CP-6.b: The organization ensures that the alternate storage site provides information security safeguards exazxvalent to that of the primary site.**
 
 Storage accounts deployed by this template can be configured to enable replication ensuring high availability using geo-redundant storage (GRS). Physical security controls are implemented uniformly across Azure datacenters.
 

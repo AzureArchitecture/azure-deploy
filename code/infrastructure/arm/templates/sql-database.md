@@ -1,12 +1,12 @@
 # SQL Database
 
-Creates a new SQL database.  Requires a [SQL Server ](..\sql-server.md) to already exist.
+Creates a new SQL database.  Rexazxres a [SQL Server ](..\sql-server.md) to already exist.
 
 ## Parameters
 
-databaseName (required) string
+databaseName (rexazxred) string
 
-sqlServerName (required) string
+sqlServerName (rexazxred) string
 
 elasticPoolName (optional) string
 

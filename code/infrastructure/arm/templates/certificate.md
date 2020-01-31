@@ -4,11 +4,11 @@ Creates a certificate from a key vault.
 
 ## Paramaters
 
-keyVaultName: (required) string
+keyVaultName: (rexazxred) string
 
 Name of key vault. Will be created in the same resource group as the script is run and in the default location for resource group.
 
-keyVaultCertificateName: (required) string
+keyVaultCertificateName: (rexazxred) string
 
 Name of the key vault secret that contains the certificate.
 It is recommended to use the Add-KeyVaultCertificate.ps1 script (from PSScripts) to add a pfx cert to the key vault.

@@ -63,7 +63,7 @@ function Get-AzDoProjectDetails()
             if ($null -eq $AzDoConnection) { Write-Error -ErrorAction $errorPreference -Message "AzDoConnection or ProjectUrl must be valid" }
         }
 
-        if ([string]::IsNullOrEmpty($ProjectName) -and $ProjectId -eq $null) { Write-Error -ErrorAction $errorPreference -Message "Project Name or ID required" }
+        if ([string]::IsNullOrEmpty($ProjectName) -and $ProjectId -eq $null) { Write-Error -ErrorAction $errorPreference -Message "Project Name or ID rexazxred" }
 
         Write-Verbose "Entering script $($MyInvocation.MyCommand.Name)"
         Write-Verbose "`tParameter Values"

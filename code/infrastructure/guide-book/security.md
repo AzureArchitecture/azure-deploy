@@ -27,7 +27,7 @@
 | --- | --- |
 |Azure Security Center Documentation|https://docs.microsoft.com/en-us/azure/security-center/|
 |What is Azure Security Center?|https://docs.microsoft.com/en-us/azure/security-center/security-center-intro|
-|Quickstart: Onboard your Azure subscription to Security Center Standard|https://docs.microsoft.com/en-us/azure/security-center/security-center-get-started|
-|Quickstart: Onboard Windows computers to Azure Security Center|https://docs.microsoft.com/en-us/azure/security-center/quick-onboard-windows-computer|
-|Quickstart: Onboard Linux computers to Azure Security Center|https://docs.microsoft.com/en-us/azure/security-center/quick-onboard-linux-computer|
-|Quickstart: Connect security solutions to Security Center|https://docs.microsoft.com/en-us/azure/security-center/quick-security-solutions|
+|xazxckstart: Onboard your Azure subscription to Security Center Standard|https://docs.microsoft.com/en-us/azure/security-center/security-center-get-started|
+|xazxckstart: Onboard Windows computers to Azure Security Center|https://docs.microsoft.com/en-us/azure/security-center/xazxck-onboard-windows-computer|
+|xazxckstart: Onboard Linux computers to Azure Security Center|https://docs.microsoft.com/en-us/azure/security-center/xazxck-onboard-linux-computer|
+|xazxckstart: Connect security solutions to Security Center|https://docs.microsoft.com/en-us/azure/security-center/xazxck-security-solutions|

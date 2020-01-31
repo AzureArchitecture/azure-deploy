@@ -5,14 +5,14 @@ Cognitive Services is a general wrapper around Azure AI services.
 
 ## Paramaters
 
-cognitiveServiceName: (required) string
+cognitiveServiceName: (rexazxred) string
 
 Name of Cognitive Services account.
 Will be created in the same resource group as the script is run and in the default location for resource group.
 
-cognitiveServiceType: (required) string
+cognitiveServiceType: (rexazxred) string
 
-The type of AI service required.
+The type of AI service rexazxred.
 Must be one of Bing.Autosuggest.v7, Bing.CustomSearch, Bing.EntitySearch, Bing.Search.v7, Bing.SpellCheck.v7, CognitiveServices, ComputerVision, ContentModerator, CustomVision.Prediction, CustomVision.Training, Face, Internal.AllInOne, LUIS, QnAMaker, SpeakerRecognition, SpeechServices, TextAnalytics or TextTranslation.
 
 Some Cognitive Services account types are non-regional and will deploy with a global location,

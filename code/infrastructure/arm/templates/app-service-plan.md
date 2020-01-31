@@ -4,7 +4,7 @@ Creates an App Service Plan
 
 ## Paramaters
 
-appServicePlanName: (required) string
+appServicePlanName: (rexazxred) string
 
 Name of App Service Plan. Will be created in the same resource group as the script is run and in the default location for resource group.
 
@@ -37,4 +37,4 @@ If not specified, the app service plan will not be assigned to an ASE.
 aseResourceGroup: (optional) string
 
 Resource group the App Service Environment belongs to.
-Only required if aseHostingEnvironmentName specified.
+Only rexazxred if aseHostingEnvironmentName specified.

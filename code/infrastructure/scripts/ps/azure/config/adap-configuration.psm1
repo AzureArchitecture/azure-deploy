@@ -1,28 +1,28 @@
 function Get-Configuration
 {
   <#
-    .SYNOPSIS
-    Describe purpose of "Get-Configuration" in 1-2 sentences.
+      .SYNOPSIS
+      Describe purpose of "Get-Configuration" in 1-2 sentences.
 
-    .DESCRIPTION
-    Add a more complete description of what the function does.
+      .DESCRIPTION
+      Add a more complete description of what the function does.
 
-    .EXAMPLE
-    Get-Configuration
-    Describe what this call does
+      .EXAMPLE
+      Get-Configuration
+      Describe what this call does
 
-    .NOTES
-    Place additional notes here.
+      .NOTES
+      Place additional notes here.
 
-    .LINK
-    URLs to related sites
-    The first link is opened by Get-Help -Online Get-Configuration
+      .LINK
+      URLs to related sites
+      The first link is opened by Get-Help -Online Get-Configuration
 
-    .INPUTS
-    List of input types that are accepted by this function.
+      .INPUTS
+      List of input types that are accepted by this function.
 
-    .OUTPUTS
-    List of output types produced by this function.
+      .OUTPUTS
+      List of output types produced by this function.
   #>
     $configuration = @{`
       azureEnvironment = "AzureCloud"
@@ -35,11 +35,11 @@ function Get-Configuration
 
       testResourceGroup = "rg-test"
       smokeResourceGroup = "rg-smoke"
-      mgmtResourceGroup = "rg-xazx-mgmt-dev-eus"
-      networkResourceGroup = "rg-xazx-network-dev-eus"
-      sharedResourceGroup = "rg-xazx-shared-dev-eus"
-      adapResourceGroup = "rg-xazx-adap-dev-eus"
-      onpremResourceGroup = "rg-xazx-onprem-dev-eus"
+      mgmtResourceGroup = "rg--mgmt-dev-eus"
+      networkResourceGroup = "rg--network-dev-eus"
+      sharedResourceGroup = "rg--shared-dev-eus"
+      adapResourceGroup = "rg--adap-dev-eus"
+      onpremResourceGroup = "rg--onprem-dev-eus"
 
       subscriptionname = "AzureArch"
       subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
@@ -50,13 +50,15 @@ function Get-Configuration
       aadDirectoryName = "azurearchitecture"
       tenentId = "3ae449e7-25e5-4e5d-b705-7a39e1ad16f0"
 
-      laAutomationAccount = "auto-xazx-shared-dev-eus"
-      laWorkspaceName = "la-xazx-dev-eus"
-      laResourceGroup = "rg-xazx-shared-dev-eus"
-      alertResourceGroup = "rg-xazx-shared-dev-eus"
-      suffix = "eus"
+      laAutomationAccount = "auto--shared-dev-eus"
+      laWorkspaceName = "la--dev-eus"
+      laResourceGroup = "rg--shared-dev-eus"
+      alertResourceGroup = "rg--shared-dev-eus"
+      
       orgTag = "xazx"
+      suffix = "eus"
       evTag="dev"
+      
     }
   return $configuration
 }

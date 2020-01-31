@@ -13,7 +13,7 @@
       "type": "String"
     },
     "ResourceGroupName": {
-      "defaultValue": "rg-xazx-adap-dev-eus",
+      "defaultValue": "rg--adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -115,7 +115,7 @@
         "Display Name": "logic app: [parameters('logicAppName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget required-approved": "[parameters('BudgetAmount')]",
+        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",

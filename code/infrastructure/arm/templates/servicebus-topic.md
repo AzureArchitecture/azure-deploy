@@ -4,11 +4,11 @@ Creates a Topic for an existing ServiceBus.
 
 ## Parameters
 
-ServiceBusNamespaceName: (required) string
+ServiceBusNamespaceName: (rexazxred) string
 
 Name of an existing ServiceBus to create the topic in.
 
-ServiceBusTopicName: (required) string
+ServiceBusTopicName: (rexazxred) string
 
 Name of the Topic to add to Service Bus
 

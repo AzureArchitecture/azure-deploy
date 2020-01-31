@@ -9,22 +9,22 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [sql-managed-instance.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.json + )
+Resource File: [sql-managed-instance.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.json + )
 
-Metadata File: [sql-managed-instance.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.metadata.json + )
+Metadata File: [sql-managed-instance.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.metadata.json + )
 
-Test Parameters File: [sql-managed-instance.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.test.parameter.json + )
+Test Parameters File: [sql-managed-instance.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg--adap-dev-eus
 administratorLogin | string | SQL Managed Instance Administrator name. | -
 administratorLoginPassword | securestring | SQL Managed Instance Administrator password. | -
 managedInstanceName | string | SQL Managed Instance name. | -
-virtualNetworkResourceGroupName | string | SQL Managed Instance Virtual Network Resource Group name. | rg-xazx-network-dev-eus
-virtualNetworkName | string | SQL Managed Instance Virtual Network name. | vnet-xazx-dev
+virtualNetworkResourceGroupName | string | SQL Managed Instance Virtual Network Resource Group name. | rg--network-dev-eus
+virtualNetworkName | string | SQL Managed Instance Virtual Network name. | vnet--dev
 subnetName     | string | SQL Managed Instance Virtual Network Subnet name. | -
 skuName        | string | SQL Managed Instance SKU name. | GP_Gen5
 skuEdition     | string | SQL Managed Instance SKU Edition name. | GeneralPurpose

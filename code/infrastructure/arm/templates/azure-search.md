@@ -4,7 +4,7 @@ Creates an Azure Search
 
 ## Paramaters
 
-azureSearchName: (required) string
+azureSearchName: (rexazxred) string
 
 Name of Azure search. Will be created in the same resource group as the script is run and in the default location for resource group.
 

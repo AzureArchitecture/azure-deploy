@@ -48,7 +48,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-xazx-adap-tst-eus"
+      "value": "ehns--adap-tst-eus"
     },
     "SkuCapacity": {
       "value": "1"

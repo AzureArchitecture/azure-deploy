@@ -4,12 +4,12 @@ Creates secrets within the key vault
 
 ## Paramaters
 
-keyVaultName: (required) string
+keyVaultName: (rexazxred) string
 
 Name of key vault. This must ALREADY exists before the template is called.
 Please see common usage section for an example of how to create a Keyvault and optionally populate with secrets.
 
-secrets: (required) array of objects
+secrets: (rexazxred) array of objects
 
 Array of secrets to add to the keyvault.
 Objects in the array must be in the following format.

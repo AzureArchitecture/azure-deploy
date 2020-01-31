@@ -4,7 +4,7 @@ Deploys a SQL Server
 
 ## Paramaters
 
-**sqlServerName**: (required) string
+**sqlServerName**: (rexazxred) string
 
 Name of SQL Server.
 Will be created in the same resource group as the script is run and in the default location for resource group.
@@ -18,21 +18,21 @@ Only used when the server is created.
 Does not change settings if the server already exists (will not change the admin username on an existing server).
 The username is available as an output of the template - saAdministratorLogin
 
-**sqlServerAdminPassword**: (required) securestring
+**sqlServerAdminPassword**: (rexazxred) securestring
 
 SQL SA administrator password.
 Only used when the server is created.
 Does not change settings if the server already exists (will not change the admin password on an existing server).
 
-**StorageAccountName**: (required) string
+**StorageAccountName**: (rexazxred) string
 
 Name of a storage account to store logs to.
 
-**sqlServerActiveDirectoryAdminLogin**: (required) string
+**sqlServerActiveDirectoryAdminLogin**: (rexazxred) string
 
 Name of AAD user or group to grant administrator rights to.
 
-**sqlServerActiveDirectoryAdminObjectId**: (required) string
+**sqlServerActiveDirectoryAdminObjectId**: (rexazxred) string
 
 Object ID of AAD user or group above.
 
@@ -46,7 +46,7 @@ If not provided will not email anyone.
 - **Display Name**-A description of the azure resource or service.
 - **Application name**-Name of the application, service, or workload the resource is associated with.
 - **Approver name**-Person responsible for approving costs related to this resource.
-- **Budget required/approved**-Money allocated for this application, service, or workload.
+- **Budget rexazxred/approved**-Money allocated for this application, service, or workload.
 - **Business unit**-Top-level division of your company that owns the subscription or workload the resource belongs to. In smaller organizations, this tag might represent a single corporate or shared top-level organizational element.
 - **Cost center**-Accounting cost center associated with this resource.
 - **Disaster recovery**-Business criticality of the application, workload, or service.

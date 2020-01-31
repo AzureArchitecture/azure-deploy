@@ -44,6 +44,9 @@
 
   #>
   param(
+      # ortTag
+    [string]$orgTag="xazx",
+
     # azAll
     [Switch]$azAll=$false,
 
@@ -54,19 +57,19 @@
     [Switch]$adGroups=$false,
 
     # azPolicies
-    [Switch]$azPolicies=$true,
+    [Switch]$azPolicies=$false,
 
     # azInitiatives
-    [Switch]$azInitiatives=$true,
+    [Switch]$azInitiatives=$false,
 
     #azRoles
     [Switch]$azRoles=$false,
 
     #azBlueprints
-    [Switch]$azBlueprints=$true,
+    [Switch]$azBlueprints=$false,
 
     #AzRoleAssignments
-    [Switch]$azRoleAssignments=$true,
+    [Switch]$azRoleAssignments=$false,
 
     # azActionGroups
     [Switch]$azActionGroups=$false,
@@ -85,7 +88,7 @@
 
     # deployAction
     [validateset('create','purge')]
-    [string]$deployAction = 'purge',
+    [string]$deployAction = 'create',
 
     # adapCMDB
     [string]$adapCMDBfile = 'adap-cmdb.xlsm',
@@ -141,7 +144,8 @@
   $psscriptsRoot = $PSScriptRoot
 
   #Folder Locations
-  $psInfrastructureDirectory = "$psscriptsRoot\..\..\..\"
+  $rootAzuredeploy = "$psscriptsRoot\..\..\..\..\..\"
+  $psInfrastructureDirectory = "$psscriptsRoot\..\..\..\..\"
   $psCommonDirectory = "$psscriptsRoot\common"
   $psConfigDirectory = "$psscriptsRoot\config"
   $psAzureDirectory = "$psscriptsRoot"
@@ -151,6 +155,7 @@
   $armPolicyDirectory = "$psscriptsRoot\..\..\..\arm\policy"
   $armRBACDirectory = "$psscriptsRoot\..\..\..\arm\rbac\roles"
   $armRunbookDirectory = "$psscriptsRoot\..\..\..\arm\automation\runbooks"
+
 
 
   $adapCMDB = "$psConfigDirectory\$adapCMDBfile"
@@ -182,9 +187,45 @@
     Exit
   }
   
+  # Set variabls from config file
+  $automationAccountName = $config.laAutomationAccount
+  $logAnalytics = $config.laWorkspaceName
+  $alertResourceGroup = $config.alertResourceGroup
+  $orgTagDefault = $config.orgTag
+  $env = $config.evTag
+  $location = $config.primaryLocation
+  $adOUPath = $config.adOUPath
+  $suffix = $config.suffix
+  $subscriptionId = $config.subscriptionId
+  $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
+    
+  # define resource groups 
+  $testRG = $config.testResourceGroup
+  $smokeRG = $config.smokeResourceGroup
+  $mgmtRG = $config.mgmtResourceGroup
+  $networkRG = $config.networkResourceGroup
+  $sharedRG = $config.sharedResourceGroup
+  $adapRG = $config.adapResourceGroup
+  $onpremRG  = $config.onpremResourceGroup
+  
+  
 
   # Only run this the first time through.
   if (!$firstRunCheck) {  
+  
+    Set-Location -Path "$rootAzuredeploy"
+
+    # update orgTags in yml and json files.
+    Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
+    If ($orgTagDefault -ne $orgTag){
+      Update-StringJsonFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
+      Update-StringYmlFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
+      Update-StringPsModFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
+      Update-StringMdFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
+    }
+    else {
+      Write-Information "OrgTag are the same $orgTagDefault to $orgTag - no changes needed."
+    }
     # load PS modules
     Import-Module "Az"
     Load-Module "Az.Blueprint"
@@ -216,38 +257,6 @@
       Exit
     }
     $firstRunCheck = $true
-  }
-  
-  # Set variabls from config file
-  $automationAccountName = $config.laAutomationAccount
-  $logAnalytics = $config.laWorkspaceName
-  $alertResourceGroup = $config.alertResourceGroup
-  $orgTag = $config.orgTag
-  $env = $config.evTag
-  $location = $config.primaryLocation
-  $adOUPath = $config.adOUPath
-  $suffix = $config.suffix
-  $subscriptionId = $config.subscriptionId
-  $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
-  $orgTagDefault = "xazx"
-    
-  # define resource groups 
-  $testRG = $config.testResourceGroup
-  $smokeRG = $config.smokeResourceGroup
-  $mgmtRG = $config.mgmtResourceGroup
-  $networkRG = $config.networkResourceGroup
-  $sharedRG = $config.sharedResourceGroup
-  $adapRG = $config.adapResourceGroup
-  $onpremRG  = $config.onpremResourceGroup
-  
-  # update orgTags in yml and json files.
-  Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
-  If ($orgTagDefault -ne $orgTag){
-    Update-StringJsonFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $psInfrastructureDirectory
-    Update-StringYmlFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $psInfrastructureDirectory
-  }
-  else {
-    Write-Information "OrgTag are the same $orgTagDefault to $orgTag - no changes needed."
   }
   
 

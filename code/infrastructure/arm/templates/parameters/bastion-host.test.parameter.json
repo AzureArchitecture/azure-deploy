@@ -3,19 +3,19 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "bastionHostName": {
-      "value": "rg-xazx-shared-tst-eus"
+      "value": "rg--shared-tst-eus"
     },
     "SharedResourceGroupName": {
-      "value": "rg-xazx-shared-dev-eus"
+      "value": "rg--shared-dev-eus"
     },
     "NetworkResourceGroupName": {
-      "value": "rg-xazx-network-dev-eus"
+      "value": "rg--network-dev-eus"
     },
     "publicIpAddressName": {
-      "value": "bast-xazx-network-tst-eus-ip"
+      "value": "bast--network-tst-eus-ip"
     },
     "virtualNetworkName": {
-      "value": "vnet-xazx-dev"
+      "value": "vnet--dev"
     },
     "subnetName": {
       "value": "AzureBastionSubnet"

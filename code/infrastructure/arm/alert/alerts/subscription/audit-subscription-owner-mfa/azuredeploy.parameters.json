@@ -23,10 +23,10 @@
       "value": "afc-audit-subscription-owner-mfa"
     },
     "laWorkspaceName": {
-      "value": "la-xazx-dev-eus"
+      "value": "la--dev-eus"
     },
     "laResourceGroupName": {
-      "value": "rg-xazx-shared-dev-eus"
+      "value": "rg--shared-dev-eus"
     },
     "alertFrequency": {
       "value": 60

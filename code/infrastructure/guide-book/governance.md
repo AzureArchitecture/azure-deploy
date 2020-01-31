@@ -9,7 +9,7 @@
 |Get started with Azure AD|https://docs.microsoft.com/pt-br/azure/active-directory/fundamentals/get-started-azure-ad|
 |Integrate your on-premises directories with Azure Active Directory|https://docs.microsoft.com/en-us/azure/active-directory/connect/active-directory-aadconnect|
 |Azure AD Authentication Documentation|https://docs.microsoft.com/en-us/azure/active-directory/authentication/index|
-|Quickstart: Add new users to Azure Active Directory|https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/add-users-azure-active-directory|
+|xazxckstart: Add new users to Azure Active Directory|https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/add-users-azure-active-directory|
 |How to associate or add an Azure subscription to Azure Active Directory|https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-how-subscriptions-associated-directory|
 |Monitor Subscription Activity with the Azure Activity Log|https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs|
 |Introduction to the Azure Activity Log|https://azure.microsoft.com/en-us/resources/videos/intro-activity-log/|

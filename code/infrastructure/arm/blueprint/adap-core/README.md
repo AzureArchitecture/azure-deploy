@@ -5,9 +5,9 @@ Last edited: 7-3-19
 # Azure Blueprints
 
 ## Table of Contents
-  - [Prerequisites](#prerequisites)
+  - [Prerexazxsites](#prerexazxsites)
   - [How to use this guide](#how-to-use-this-guide)
-  - [Quickstart](#quickstart)
+  - [xazxckstart](#xazxckstart)
   - [Structure of blueprint artifacts](#structure-of-blueprint-artifacts)
     - [Blueprint folder](#blueprint-folder)
     - [Functions](#functions)
@@ -21,7 +21,7 @@ Last edited: 7-3-19
   - [Next steps](#next-steps)
   - [Contributing](#contributing)
 
-## Prerequisites
+## Prerexazxsites
 
 This doc assumes you have a basic understanding of how blueprints work. If you've never used Blueprints before, this will be a little overwhelming. We recommend you build your first blueprint with the UI to understand how everything works. You can try it at [aka.ms/getblueprints](https://aka.ms/getblueprints) and learn more about it in the [docs](https://docs.microsoft.com/en-us/azure/governance/blueprints/overview).
 
@@ -31,7 +31,7 @@ This doc assumes you have a basic understanding of how blueprints work. If you'v
 Install-Module -Name Az.Blueprint
 ```
 
-## Quickstart
+## xazxckstart
 Push a sample blueprint definition to Azure:
 ```powershell
 Import-AzBlueprintWithArtifact -Name adap-core-foundation -ManagementGroupId "corp-information-services" -InputPath  ".\arm\blueprint\adap-core-foundation"
@@ -217,7 +217,7 @@ And then you can reference that parameter within the `template` section in `temp
 },
 ```
 
-This shouldn't require any modification of your arm templates.
+This shouldn't rexazxre any modification of your arm templates.
 
 You can also use the `New-AzBlueprintArtifact` cmdlet to convert a standard ARM template into a blueprint artifact:
 
@@ -295,7 +295,7 @@ Now you should see a new blueprint definition in Azure. You can update the bluep
 That’s it!
 
 You might run into some issues. Here are some common ones:
-* **Missing a required property** – this will result in a 400 bad request. This could be a lot of things. Make sure your blueprint and artifacts have all required properties.
+* **Missing a rexazxred property** – this will result in a 400 bad request. This could be a lot of things. Make sure your blueprint and artifacts have all rexazxred properties.
 * **```parameters``` in an artifact are not found in the main blueprint file.** Make sure all parameter references are complete. If you are using a parameter in an artifact, make sure it is defined in the main `blueprint.json`
 * **```policyDefinitionId``` or ```roleDefinitionId``` does not exist.** If you are referencing a custom policy or custom role, make sure that the policy or role exists at or above the management group where the blueprint is saved.
 	

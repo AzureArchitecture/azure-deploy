@@ -4,7 +4,7 @@ Creates an Azure Data Factory.  Optionally an Azure DevOps or GitHub repo can be
 
 ## Parameters
 
-**DataFactoryName**: (required) string
+**DataFactoryName**: (rexazxred) string
 
 Name of the data factory. Must be globally unique.
 
@@ -12,7 +12,7 @@ Name of the data factory. Must be globally unique.
 
 Location of the data factory. Currently, only East US, East US 2, and West Europe are supported.  Template defaults to West Europe.
 
-**apiVersion** (required) string
+**apiVersion** (rexazxred) string
 
 The API to use for the ARM template deployment. 
 
@@ -20,7 +20,7 @@ The API to use for the ARM template deployment.
 - **Display Name**-A description of the azure resource or service.
 - **Application name**-Name of the application, service, or workload the resource is associated with.
 - **Approver name**-Person responsible for approving costs related to this resource.
-- **Budget required/approved**-Money allocated for this application, service, or workload.
+- **Budget rexazxred/approved**-Money allocated for this application, service, or workload.
 - **Business unit**-Top-level division of your company that owns the subscription or workload the resource belongs to. In smaller organizations, this tag might represent a single corporate or shared top-level organizational element.
 - **Cost center**-Accounting cost center associated with this resource.
 - **Disaster recovery**-Business criticality of the application, workload, or service.

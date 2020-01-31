@@ -4,11 +4,11 @@ Creates a database within a cosmosdb account.
 
 ## Parameters
 
-accountName (required) string
+accountName (rexazxred) string
 
 Name of the cosmosdb account
 
-databaseName (required) string
+databaseName (rexazxred) string
 
 Name of the database to create
 
@@ -22,7 +22,7 @@ Please note: there is a minimum of 100 RU for each container on the database. Pl
 
 offerThroughput (optional) int
 
-When running with useSharedRequestUnits set to true,  sets the required shared request units for the database.
+When running with useSharedRequestUnits set to true,  sets the rexazxred shared request units for the database.
 
 databaseNeedsCreation (optional) boolean
 

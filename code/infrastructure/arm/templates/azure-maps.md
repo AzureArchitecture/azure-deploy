@@ -6,11 +6,11 @@ location must be set as global
 
 ## Paramaters
 
-azureMapsName: (required) string
+azureMapsName: (rexazxred) string
 
 Name of Azure Maps. Will be created in the same resource group as the script is run and in the default location for resource group.
 
-azureMapsSku: (required) string
+azureMapsSku: (rexazxred) string
 
 Map tier; can be either Standard S0, Standard S1.
 

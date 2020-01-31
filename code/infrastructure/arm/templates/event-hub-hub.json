@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-xazx-adap-dev-eus",
+      "defaultValue": "rg--adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -11,14 +11,14 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns-xazx-adap-dev-eus",
+      "defaultValue": "ehns--adap-dev-eus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }
     },
     "EventHubName": {
       "type": "String",
-      "defaultValue": "eh-xazx-adap-dev-eus",
+      "defaultValue": "eh--adap-dev-eus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }
@@ -132,7 +132,7 @@
         "Display Name": "event hub namespace: [parameters('EventHubNamespaceName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget required-approved": "[parameters('BudgetAmount')]",
+        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",
