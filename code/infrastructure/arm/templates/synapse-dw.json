@@ -139,5 +139,11 @@
         "collation": "SQL_Latin1_General_CP1_CI_AS"
       }
     }
-  ]
+  ],
+  "outputs": {
+    "analysis-services-name": {
+      "type": "string",
+      "value": "[parameters('synapseDWName')]"
+    }
+  }
 }

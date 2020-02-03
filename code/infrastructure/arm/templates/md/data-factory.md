@@ -1,6 +1,6 @@
-# Azure Stream Analytics Job Deployment
+# Azure Data Factory v2 Deployment
 
-This template creates an Azure Stream Analytics Job in the same resource group.
+This template creates an Azure Data Factory v2 in the same resource group.
 
 ## Security Controls
 
@@ -9,18 +9,18 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [stream-analytics-job.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/stream-analytics-job.json + )
+Resource File: [data-factory.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/data-factory.json + )
 
-Metadata File: [stream-analytics-job.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/stream-analytics-job.metadata.json + )
+Metadata File: [data-factory.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/data-factory.metadata.json + )
 
-Test Parameters File: [stream-analytics-job.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/stream-analytics-job.test.parameter.json + )
+Test Parameters File: [data-factory.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/data-factory.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
+DataFactoryName | string | Name of the data factory. Must be globally unique. | -
 ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
-streamAnalyticsName | string | The name of the Stream Analytics Job. | asaj-xazx-adap-dev-eus-01
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0
@@ -28,7 +28,7 @@ BusinessUnit   | string | Top-level division of your company that owns the subsc
 CostCenter     | string | Business criticality of the application, workload, or service. | 8675-309
 DR             | string | Business criticality of the application, workload, or service. | Mission-Critical
 EndDate        | string | Date when the application, workload, or service is scheduled for retirement. | 9999-12-31
-Env            | string | Deployment environment of the application, workload, or service. | test
+Env            | string | Deployment environment of the application, workload, or service. | dev
 Owner          | string | Owner of the application, workload, or service. | owner@company.org
 Requester      | string | User who requested the creation of this application. | requester@company.org
 ServiceClass   | string | Service level agreement level of the application, workload, or service. | Gold
@@ -42,7 +42,7 @@ Resource name | Type | ApiVersion
               |      |
               |      |
               |      |
-[parameters('streamAnalyticsName')] | Microsoft.StreamAnalytics/streamingjobs | 2017-04-01-preview
+[parameters('DataFactoryName')] | Microsoft.DataFactory/factories | 2018-06-01
               |      |
               |      |
               |      |

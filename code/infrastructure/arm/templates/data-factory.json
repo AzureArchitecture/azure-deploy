@@ -8,10 +8,6 @@
         "description": "Name of the data factory. Must be globally unique."
       }
     },
-    "apiVersion": {
-      "defaultValue": "2018-06-01",
-      "type": "String"
-    },
     "ResourceGroupName": {
       "defaultValue": "rg-xazx-adap-dev-eus",
       "type": "string",
@@ -108,7 +104,7 @@
   "resources": [
     {
       "type": "Microsoft.DataFactory/factories",
-      "apiVersion": "[parameters('apiVersion')]",
+      "apiVersion": "2018-06-01",
       "name": "[parameters('DataFactoryName')]",
       "location": "[resourceGroup().location]",
       "identity": {

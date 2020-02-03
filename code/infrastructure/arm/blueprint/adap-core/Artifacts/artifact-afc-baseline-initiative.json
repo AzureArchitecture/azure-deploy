@@ -3,7 +3,7 @@
   "properties": {
     "displayName": "[afc] Deploy Baseline Controls for Azure Resources",
     "dependsOn": [],
-    "policyDefinitionId": "/subscriptions/323241e8-df5e-434e-b1d4-a45c3576bf80/providers/Microsoft.Authorization/policySetDefinitions/afc-Baseline-Initiative",
+    "policyDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/afc-Baseline-Initiative",
     "parameters": {
       "location": {
         "value": [

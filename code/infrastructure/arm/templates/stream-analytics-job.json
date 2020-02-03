@@ -106,9 +106,24 @@
   "resources": [
     {
       "apiVersion": "2017-04-01-preview",
-      "name": "[parameters('name')]",
+      "name": "[parameters('streamAnalyticsName')]",
       "location": "[resourceGroup().location]",
       "type": "Microsoft.StreamAnalytics/streamingjobs",
+      "tags": {
+        "Display Name": "stream analytics job: [parameters('streamAnalyticsName')]",
+        "Application name": "[parameters('ApplicationName')]",
+        "Approver name": "[parameters('Approver')]",
+        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+        "Business unit": "[parameters('BusinessUnit')]",
+        "Cost center": "[parameters('CostCenter')]",
+        "Disaster recovery": "[parameters('DR')]",
+        "End date of the project": "[parameters('EndDate')]",
+        "Environment": "[parameters('Env')]",
+        "Owner name": "[parameters('Owner')]",
+        "Requester name": "[parameters('Requester')]",
+        "Service class": "[parameters('ServiceClass')]",
+        "Start date of the project": "[parameters('StartDate')]"
+      },
       "properties": {
         "sku": {
           "name": "Standard"
@@ -130,5 +145,11 @@
         "compatibilityLevel": "1.1"
       }
     }
-  ]
+  ],
+  "outputs": {
+    "analysis-services-name": {
+      "type": "string",
+      "value": "[parameters('streamAnalyticsName')]"
+    }
+  }
 }

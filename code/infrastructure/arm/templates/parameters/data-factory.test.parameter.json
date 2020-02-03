@@ -5,9 +5,6 @@
     "DataFactoryName": {
       "value": "adf-xazx-adap-tst-eus"
     },
-    "apiVersion": {
-      "value": "2018-06-01"
-    },
     "StartDate": {
       "value": "1-1-2020"
     },

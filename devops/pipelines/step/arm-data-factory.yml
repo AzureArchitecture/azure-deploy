@@ -5,11 +5,10 @@ parameters:
   ev: ''
   AzureSubscription: ''
   resourceGroup: ''
-  storage-account-name: ''
 
 steps:
 - task: AzureResourceGroupDeployment@2
-  displayName: 'deploy-storage-account-container'
+  displayName: 'deploy-data-factory'
   inputs:
     AzureSubscription: ${{ parameters.AzureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}
@@ -17,6 +16,6 @@ steps:
     csmFile: '${{ parameters.armTemplateFile }}'
     csmParametersFile: '${{ parameters.armParameterTemplateFile }}'
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
-    deploymentName: 'deployment-storage-account-container'
+    deploymentName: 'deployment-data-factory'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['storage-account-flag'], '1'))
+  condition: and(succeeded(), eq(variables['data-factory-flag'], '1'))

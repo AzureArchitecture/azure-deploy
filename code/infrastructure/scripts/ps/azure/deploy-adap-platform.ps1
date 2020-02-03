@@ -69,13 +69,13 @@
     [Switch]$azBlueprints=$false,
 
     #AzRoleAssignments
-    [Switch]$azRoleAssignments=$false,
+    [Switch]$azRoleAssignments=$true,
 
     # azActionGroups
-    [Switch]$azActionGroups=$false,
+    [Switch]$azActionGroups=$true,
 
     # azAlerts
-    [Switch]$azAlerts=$false,
+    [Switch]$azAlerts=$true,
 
     # azRunbooks
     [Switch]$azRunbooks=$false,
@@ -262,6 +262,20 @@
   # Start Deployment of Azure Assets
   Write-Information 'Starting deployment of Azure Assets'
   
+    # Deploy Azure ARM Parameter Files
+  if($azParameterFiles -or $azAll){
+    Write-Information '  Starting deployment of Azure ARM Parameter Files...'
+    Set-Location -Path "$psAzureDirectory"
+    .\arm\create-arm-template-parameter-files.ps1 -adapCMDB "$adapCMDB" -paramDirectory "$armTemplatesDirectory\parameters"
+    Set-Location -Path "$psAzureDirectory"
+    Write-Information '  updating arm markdown docs...'
+    .\arm\create-adap-platform-docs.ps1 
+  }
+  else
+  {
+    Write-Information '  Creation of Azure ARM Template Files is disabled.'
+  }
+  
   # Deploy Azure Active Directory Users
   if($adUsers -or $azAll){
     Write-Information '  Starting deployment of Azure Active Directory Users'
@@ -334,6 +348,12 @@
   {
     Write-Information '  Deployment of Azure Blueprints is disabled.'
   }
+  
+  if ($azBlueprints -or $azAll){
+    # need to sleep for 10 minutes to allow blueprint deployment  to complete
+    Write-Information '  Need to sleep for 10 minutes to allow blueprint deployment to complete.'
+    Start-Countdown -Seconds 300 -Message "Waiting 10 minutes to allow blueprint deployment to complete."
+  }
 
   # Deploy Azure Role Assignments
   if($azRoleAssignments -or $azAll){
@@ -379,19 +399,6 @@
     Write-Information '  Deployment of Azure Alerts is disabled.'
   }
 
-  # Deploy Azure ARM Parameter Files
-  if($azParameterFiles -or $azAll){
-    Write-Information '  Starting deployment of Azure ARM Parameter Files...'
-    Set-Location -Path "$psAzureDirectory"
-    .\arm\create-arm-template-parameter-files.ps1 -adapCMDB "$adapCMDB" -paramDirectory "$armTemplatesDirectory\parameters"
-    Set-Location -Path "$psAzureDirectory"
-    Write-Information '  updating arm markdown docs...'
-    .\arm\create-adap-platform-docs.ps1 
-  }
-  else
-  {
-    Write-Information '  Creation of Azure ARM Template Files is disabled.'
-  }
     
   Set-Location -Path $psscriptsRoot
   # Completing Deployment of Azure Assets
