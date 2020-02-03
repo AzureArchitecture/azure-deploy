@@ -33,3 +33,5 @@ variables:
   value: '0'
 - name: 'synapse-dw-flag'
   value: '0'
+- name: 'sql-managed-instance-flag'
+  value: '1'

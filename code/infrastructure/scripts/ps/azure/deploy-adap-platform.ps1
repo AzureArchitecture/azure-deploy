@@ -45,7 +45,7 @@
   #>
   param(
       # ortTag
-    [string]$orgTag="xazx",
+    [string]$orgTag="gswc",
 
     # azAll
     [Switch]$azAll=$false,
@@ -69,13 +69,13 @@
     [Switch]$azBlueprints=$false,
 
     #AzRoleAssignments
-    [Switch]$azRoleAssignments=$true,
+    [Switch]$azRoleAssignments=$false,
 
     # azActionGroups
-    [Switch]$azActionGroups=$true,
+    [Switch]$azActionGroups=$false,
 
     # azAlerts
-    [Switch]$azAlerts=$true,
+    [Switch]$azAlerts=$false,
 
     # azRunbooks
     [Switch]$azRunbooks=$false,
@@ -352,7 +352,7 @@
   if ($azBlueprints -or $azAll){
     # need to sleep for 10 minutes to allow blueprint deployment  to complete
     Write-Information '  Need to sleep for 10 minutes to allow blueprint deployment to complete.'
-    Start-Countdown -Seconds 300 -Message "Waiting 10 minutes to allow blueprint deployment to complete."
+    Start-Countdown -Seconds 600 -Message "Waiting 10 minutes to allow blueprint deployment to complete."
   }
 
   # Deploy Azure Role Assignments

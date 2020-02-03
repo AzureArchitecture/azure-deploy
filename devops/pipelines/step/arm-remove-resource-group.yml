@@ -10,5 +10,5 @@ steps:
     action: DeleteRG
     resourceGroupName: '$(resource-group)'
     deploymentName: 'deployment-remove-rg'
-  condition: and(succeeded(), eq(variables['purge-rg-smoketest'], '1'))
+  condition: and(succeeded(), eq(variables['purge-rg-smoketest'], '0'))
 

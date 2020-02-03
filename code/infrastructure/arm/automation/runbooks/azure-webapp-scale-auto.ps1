@@ -106,7 +106,7 @@ function Set-WebAppServicePlan
         $AutoScaleUpRule = New-AutoscaleRule @AutoScaleUpHash
         $AutoScaleDownRule = New-AutoscaleRule @AutoScaleDownHash
 
-        $AutoScaleProfile = New-AutoscaleProfile -DefaultCapacity '1' -MaximumCapacity '10' -MinimumCapacity '1' -Rules $AutoScaleUpRule, $AutoScaleDownRule -Name 'DefaultAutoScaleProfile'
+        $AutoScaleProfile = New-AutoscaleProfile -DefaultCapacity '0' -MaximumCapacity '10' -MinimumCapacity '0' -Rules $AutoScaleUpRule, $AutoScaleDownRule -Name 'DefaultAutoScaleProfile'
         $AutoScaleProfile.FixedDate = $null
         
         $null = Add-AutoscaleSetting -Location $WebsiteResourceObj.Location -Name DefaultAutoScaleSetting -ResourceGroup $WebsiteResourceObj.ResourceGroupName -TargetResourceId $AppServicePlan.ResourceId -AutoscaleProfiles $AutoScaleProfile -ErrorAction Stop

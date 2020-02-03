@@ -14,7 +14,7 @@ stages:
 # Stage 1 - Continuous Integration (CI)
 # -----------------------------------------------------------------------------
 - stage: build
-  condition: and(succeeded(), eq(variables['deploy-build'], '1'))
+  condition: and(succeeded(), eq(variables['deploy-build'], '0'))
   jobs:
   - job: buildjob
     displayName: 'build azure-deploy'
@@ -30,7 +30,7 @@ stages:
 # Stage 2 - Continuous Testing (CT)
 # -----------------------------------------------------------------------------
 - stage: smoketest
-  condition: eq(variables['deploy-smoke'], '1')
+  condition: eq(variables['deploy-smoke'], '0')
   dependsOn: build
   variables:
   - template: devops/pipelines/variables/smoke-variables.yml
@@ -127,6 +127,15 @@ stages:
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
         ev: '$(ev)'
+    - template: devops/pipelines/step/arm-sql-managed-instance.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/sql-managed-instance.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/sql-managed-instance.test.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+
     - template: devops/pipelines/step/arm-remove-resource-group.yml
       parameters:
         azureSubscription: '$(azureSubscription)'
@@ -136,7 +145,7 @@ stages:
 # Stage 3 - Continuous Delivery (CD)
 # -----------------------------------------------------------------------------
 - stage: development
-  condition: eq(variables['deploy-dev'], '1')
+  condition: eq(variables['deploy-dev'], '0')
   dependsOn: smoketest
   variables:
   - template: devops/pipelines/variables/development-variables.yml
@@ -147,7 +156,7 @@ stages:
     - template: devops/pipelines/step/arm-storage-account.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/storage-account.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -155,7 +164,7 @@ stages:
     - template: devops/pipelines/step/arm-storage-account-container.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/storage-account-container.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account-container.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account-container.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -164,7 +173,7 @@ stages:
     - template: devops/pipelines/step/arm-sql-server.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/sql-server.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/sql-server.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/sql-server.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -172,7 +181,7 @@ stages:
     - template: devops/pipelines/step/arm-event-hub-namespace.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/event-hub-namespace.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/event-hub-namespace.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/event-hub-namespace.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -180,7 +189,7 @@ stages:
     - template: devops/pipelines/step/arm-servicebus-namespace.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/servicebus-namespace.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/servicebus-namespace.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/servicebus-namespace.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -188,7 +197,7 @@ stages:
     - template: devops/pipelines/step/arm-analysis-services.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/analysis-services.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/analysis-services.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/analysis-services.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -196,7 +205,7 @@ stages:
     - template: devops/pipelines/step/arm-synapse-dw.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/synapse-dw.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/synapse-dw.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/synapse-dw.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -204,7 +213,7 @@ stages:
     - template: devops/pipelines/step/arm-stream-analytics-job.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/stream-analytics-job.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/stream-analytics-job.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/stream-analytics-job.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -212,7 +221,7 @@ stages:
     - template: devops/pipelines/step/arm-event-hub-hub.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/event-hub-hub.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/event-hub-hub.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/event-hub-hub.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -220,7 +229,7 @@ stages:
     - template: devops/pipelines/step/arm-servicebus-topic.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/servicebus-topic.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/servicebus-topic.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/servicebus-topic.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -228,7 +237,7 @@ stages:
     - template: devops/pipelines/step/arm-data-factory.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/data-factory.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/data-factory.test.parameter.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/data-factory.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'

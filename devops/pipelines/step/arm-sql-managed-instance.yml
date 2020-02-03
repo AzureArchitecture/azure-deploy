@@ -8,7 +8,7 @@ parameters:
 
 steps:
 - task: AzureResourceGroupDeployment@2
-  displayName: 'deploy-sql-server'
+  displayName: 'deploy-sql-managed-instance'
   inputs:
     azureSubscription: ${{ parameters.azureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}
@@ -16,6 +16,6 @@ steps:
     csmFile: '${{ parameters.armTemplateFile }}'
     csmParametersFile: '${{ parameters.armParameterTemplateFile }}'
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
-    deploymentName: 'deployment-sql-server'
+    deploymentName: 'deployment-sql-managed-instance'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['sql-server-flag'], '0'))
+  condition: and(succeeded(), eq(variables['sql-managed-instance-flag'], '0'))
