@@ -1,0 +1,14 @@
+parameters:
+  azureSubscription: ''
+  resourceGroup: ''
+
+steps:
+- task: AzureResourceGroupDeployment@2
+  displayName: 'remove-resource-group'
+  inputs:
+    azureSubscription: ${{ parameters.azureSubscription }}
+    action: DeleteRG
+    resourceGroupName: '$(resource-group)'
+    deploymentName: 'deployment-remove-rg'
+  condition: and(succeeded(), eq(variables['purge-rg-smoketest'], '1'))
+

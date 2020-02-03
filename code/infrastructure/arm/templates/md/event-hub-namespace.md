@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [event-hub-namespace.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/event-hub-namespace.json + )
+Resource File: [event-hub-namespace.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/event-hub-namespace.json + )
 
-Metadata File: [event-hub-namespace.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/event-hub-namespace.metadata.json + )
+Metadata File: [event-hub-namespace.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/event-hub-namespace.metadata.json + )
 
-Test Parameters File: [event-hub-namespace.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/event-hub-namespace.test.parameter.json + )
+Test Parameters File: [event-hub-namespace.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/event-hub-namespace.test.parameter.json + )
 
 ## Parameters
 

@@ -14,7 +14,7 @@ Function Start-Countdown
     Write-Progress -Id 1 -Activity $Message -Status "Completed" -PercentComplete 100 -Completed
 }
 
-function Update-String
+function Update-StringInFile
 {
   <#
       .SYNOPSIS
@@ -23,202 +23,37 @@ function Update-String
   [CmdletBinding()]
   param
   (
-    [Parameter(Mandatory=$false, Position=0)]
+    [Parameter(Mandatory=$true, Position=0)]
     [System.String]
-    $searchStr = "",
+    $searchStr,
  
-    [Parameter(Mandatory=$false, Position=1)]
+    [Parameter(Mandatory=$true, Position=1)]
     [System.String]
-    $replaceStr = "",
+    $replaceStr,
     
-    [Parameter(Mandatory=$false, Position=2)]
+    [Parameter(Mandatory=$true, Position=2)]
     [System.String]
-    $rootDirectory = ""
-  )
-  
-  # Set working directory to path specified by rootDirectory var
-  Set-Location -Path  $rootDirectory -PassThru
-  
-  $jsonFiles = Get-ChildItem . *.* -rec
-  foreach ($file in $jsonFiles)
-  {
-    (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
-    Foreach-Object { $_ -replace $searchStr, $replaceStr } |
-    Set-Content $file.PSPath
-  }
-}
+    $rootDirectory,
 
-function Update-StringJsonFile
-{
-  <#
-      .SYNOPSIS
-      Updates one string for another in a file
-  #>
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory=$false, Position=0)]
-    [System.String]
-    $searchStr = "",
- 
-    [Parameter(Mandatory=$false, Position=1)]
-    [System.String]
-    $replaceStr = "",
-    
-    [Parameter(Mandatory=$false, Position=2)]
-    [System.String]
-    $rootDirectory = ""
+    [Parameter(Mandatory=$true, Position=3)]
+    [validateset('json','ps1','psm1','md', 'yml','xml','*')]
+    [System.String]$fileExtension
   )
   
   # Set working directory to path specified by rootDirectory var
   Set-Location -Path  $rootDirectory -PassThru
   
-  $jsonFiles = Get-ChildItem . *.json -rec
-  foreach ($file in $jsonFiles)
+  $searchFiles = Get-ChildItem . *.$fileExtension -rec
+  foreach ($file in $searchFiles)
   {
     (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
     Foreach-Object { $_ -replace $searchStr, $replaceStr } |
     Set-Content $file.PSPath
   }
 }
-
-function Update-StringYmlFile
-{
-  <#
-      .SYNOPSIS
-      Updates one string for another in a file
-  #>
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory=$false, Position=0)]
-    [System.String]
-    $searchStr = "",
- 
-    [Parameter(Mandatory=$false, Position=1)]
-    [System.String]
-    $replaceStr = "",
-    
-    [Parameter(Mandatory=$false, Position=2)]
-    [System.String]
-    $rootDirectory = ""
-  )
-  
-  # Set working directory to path specified by rootDirectory var
-  Set-Location -Path  $rootDirectory -PassThru
-  
-  $ymlFiles = Get-ChildItem . *.yml -rec
-  foreach ($file in $ymlFiles)
-  {
-    (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
-    Foreach-Object { $_ -replace $searchStr, $replaceStr } |
-    Set-Content $file.PSPath
-  }
-}
-
-function Update-StringMdFile
-{
-  <#
-      .SYNOPSIS
-      Updates one string for another in a file
-  #>
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory=$false, Position=0)]
-    [System.String]
-    $searchStr = "",
- 
-    [Parameter(Mandatory=$false, Position=1)]
-    [System.String]
-    $replaceStr = "",
-    
-    [Parameter(Mandatory=$false, Position=2)]
-    [System.String]
-    $rootDirectory = ""
-  )
-  
-  # Set working directory to path specified by rootDirectory var
-  Set-Location -Path  $rootDirectory -PassThru
-  
-  $mdFiles = Get-ChildItem . *.md -rec
-  foreach ($file in $mdFiles)
-  {
-    (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
-    Foreach-Object { $_ -replace $searchStr, $replaceStr } |
-    Set-Content $file.PSPath
-  }
-}
-function Update-StringPsFile
-{
-  <#
-      .SYNOPSIS
-      Updates one string for another in a file
-  #>
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory=$false, Position=0)]
-    [System.String]
-    $searchStr = "",
- 
-    [Parameter(Mandatory=$false, Position=1)]
-    [System.String]
-    $replaceStr = "",
-    
-    [Parameter(Mandatory=$false, Position=2)]
-    [System.String]
-    $rootDirectory = ""
-  )
-  
-  # Set working directory to path specified by rootDirectory var
-  Set-Location -Path  $rootDirectory -PassThru
-  
-  $psFiles = Get-ChildItem . *.ps1 -rec
-  foreach ($file in $psFiles)
-  {
-    (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
-    Foreach-Object { $_ -replace $searchStr, $replaceStr } |
-    Set-Content $file.PSPath
-  }
-}
-function Update-StringPsModFile
-{
-  <#
-      .SYNOPSIS
-      Updates one string for another in a file
-  #>
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory=$false, Position=0)]
-    [System.String]
-    $searchStr = "",
- 
-    [Parameter(Mandatory=$false, Position=1)]
-    [System.String]
-    $replaceStr = "",
-    
-    [Parameter(Mandatory=$false, Position=2)]
-    [System.String]
-    $rootDirectory = ""
-  )
-  
-  # Set working directory to path specified by rootDirectory var
-  Set-Location -Path  $rootDirectory -PassThru
-  
-  $psFiles = Get-ChildItem . *.psm1 -rec
-  foreach ($file in $psFiles)
-  {
-    (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
-    Foreach-Object { $_ -replace $searchStr, $replaceStr } |
-    Set-Content $file.PSPath
-  }
-}
-
 <#
     .SYNOPSIS
-    Checmks if a module is loaded and does just that...
+    Checks if a module is loaded and does just that...
 #>
 function Load-Module ($m) {
     # If module is imported say that and do nothing

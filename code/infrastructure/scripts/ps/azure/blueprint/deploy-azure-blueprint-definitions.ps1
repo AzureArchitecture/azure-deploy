@@ -103,7 +103,7 @@ if ($action -eq 'purge')
       {
         # loop through each rg in a sub
       $rgs = Get-AzResourceGroup | Where ResourceGroupName -like *$orgTag* 
-      Get-AzResourceLock | Remove-AzResourceLock -Force   -ErrorAction Continue
+      Get-AzResourceLock | Where Name -NE 'dnd' | Remove-AzResourceLock -Force -ErrorAction Continue
         foreach ($rg in $rgs) {
           if($rg.ResourceGroupName.StartsWith("rg-"))
             {

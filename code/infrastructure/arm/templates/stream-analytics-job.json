@@ -1,19 +1,20 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "",
+      "defaultValue": "rg-xazx-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
-    "analysisServicesName": {
-      "type": "string"
-    },
-    "AnalysisServicesAdmin": {
-      "type": "string"
+    "streamAnalyticsName": {
+      "defaultValue": "asaj-xazx-adap-dev-eus-01",
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Stream Analytics Job."
+      }
     },
     "ApplicationName": {
       "defaultValue": "ADAP",
@@ -104,36 +105,30 @@
   },
   "resources": [
     {
-      "apiVersion": "2017-08-01",
-      "name": "[parameters('analysisServicesName')]",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[parameters('name')]",
       "location": "[resourceGroup().location]",
-      "type": "Microsoft.AnalysisServices/servers",
-      "tags": {
-        "Display Name": "analysis services: [parameters('sqlServerName')]",
-        "Application name": "[parameters('ApplicationName')]",
-        "Approver name": "[parameters('Approver')]",
-        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
-        "Business unit": "[parameters('BusinessUnit')]",
-        "Cost center": "[parameters('CostCenter')]",
-        "Disaster recovery": "[parameters('DR')]",
-        "End date of the project": "[parameters('EndDate')]",
-        "Environment": "[parameters('Env')]",
-        "Owner name": "[parameters('Owner')]",
-        "Requester name": "[parameters('Requester')]",
-        "Service class": "[parameters('ServiceClass')]",
-        "Start date of the project": "[parameters('StartDate')]"
-      },
-      "sku": {
-        "name": "D1",
-        "capacity": 1
-      },
-      "properties": {}
+      "type": "Microsoft.StreamAnalytics/streamingjobs",
+      "properties": {
+        "sku": {
+          "name": "Standard"
+        },
+        "outputErrorPolicy": "stop",
+        "eventsOutOfOrderPolicy": "adjust",
+        "eventsOutOfOrderMaxDelayInSeconds": 0,
+        "eventsLateArrivalMaxDelayInSeconds": 5,
+        "dataLocale": "en-US",
+        "jobType": "Cloud",
+        "inputs": [],
+        "transformation": {
+          "name": "Transformation",
+          "properties": {
+            "query": "SELECT\r\n    *\r\nINTO\r\n    [YourOutputAlias]\r\nFROM\r\n    [YourInputAlias]",
+            "streamingUnits": 1
+          }
+        },
+        "compatibilityLevel": "1.1"
+      }
     }
-  ],
-  "outputs": {
-    "analysis-services-name": {
-      "type": "string",
-      "value": "[parameters('analysisServicesName')]"
-    }
-  }
+  ]
 }

@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [storage-account-fileshare.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.json + )
+Resource File: [storage-account-fileshare.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.json + )
 
-Metadata File: [storage-account-fileshare.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.metadata.json + )
+Metadata File: [storage-account-fileshare.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.metadata.json + )
 
-Test Parameters File: [storage-account-fileshare.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.test.parameter.json + )
+Test Parameters File: [storage-account-fileshare.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-fileshare.test.parameter.json + )
 
 ## Parameters
 

@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [storage-account-container.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-container.json + )
+Resource File: [storage-account-container.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-container.json + )
 
-Metadata File: [storage-account-container.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-container.metadata.json + )
+Metadata File: [storage-account-container.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-container.metadata.json + )
 
-Test Parameters File: [storage-account-container.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-container.test.parameter.json + )
+Test Parameters File: [storage-account-container.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/storage-account-container.test.parameter.json + )
 
 ## Parameters
 

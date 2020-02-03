@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [servicebus-topic-sub.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.json + )
+Resource File: [servicebus-topic-sub.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.json + )
 
-Metadata File: [servicebus-topic-sub.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.metadata.json + )
+Metadata File: [servicebus-topic-sub.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.metadata.json + )
 
-Test Parameters File: [servicebus-topic-sub.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.test.parameter.json + )
+Test Parameters File: [servicebus-topic-sub.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-sub.test.parameter.json + )
 
 ## Parameters
 

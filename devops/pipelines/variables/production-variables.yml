@@ -1,5 +1,4 @@
 variables:
-- group: 'development-variables'
 - name: 'ev'
   value: 'prd'
 - name: 'location'

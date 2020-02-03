@@ -1,6 +1,6 @@
-# Azure Public IP Address Deployment
+# Azure Stream Analytics Job Deployment
 
-This template creates an Azure Public IP Address in the same Network resource group.
+This template creates an Azure Stream Analytics Job in the same resource group.
 
 ## Security Controls
 
@@ -9,18 +9,18 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [ip-address.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.json + )
+Resource File: [stream-analytics-job.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/stream-analytics-job.json + )
 
-Metadata File: [ip-address.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.metadata.json + )
+Metadata File: [stream-analytics-job.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/stream-analytics-job.metadata.json + )
 
-Test Parameters File: [ip-address.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.test.parameter.json + )
+Test Parameters File: [stream-analytics-job.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/stream-analytics-job.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-publicIpAddressName | string | The name of the Bastion Host public IP address. | -
-ResourceGroupName | string | The name of the Resource Group. | rg-xazx-network-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
+streamAnalyticsName | string | The name of the Stream Analytics Job. | asaj-xazx-adap-dev-eus-01
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0
@@ -42,7 +42,7 @@ Resource name | Type | ApiVersion
               |      |
               |      |
               |      |
-[parameters('publicIpAddressName')] | Microsoft.Network/publicIpAddresses | 2019-02-01
+[parameters('name')] | Microsoft.StreamAnalytics/streamingjobs | 2017-04-01-preview
               |      |
               |      |
               |      |

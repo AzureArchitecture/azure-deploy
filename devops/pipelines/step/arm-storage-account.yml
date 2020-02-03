@@ -3,7 +3,7 @@ parameters:
   armParameterTemplateFile: ''
   location: ''
   ev: ''
-  AzureSubscription: 'azure-devops-service-connection'
+  AzureSubscription: ''
   resourceGroup: ''
 
 steps:

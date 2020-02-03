@@ -10,6 +10,7 @@ variables:
  - template: devops/pipelines/variables/azure-shared.yml
 
 stages:
+
 # -----------------------------------------------------------------------------
 # Stage 1 - Continuous Integration (CI)
 # -----------------------------------------------------------------------------
@@ -21,16 +22,18 @@ stages:
     steps:
     - template: devops/pipelines/step/arm-build.yml
       parameters:
+        armTemplateFile: '$(armTemplateRoot)/storage-account.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/storage-account.test.parameter.json'
+        location: '$(location)'
         azureSubscription: '$(azureSubscription)'
-        solution: '$(solution)'
-        buildPlatform: '$(buildPlatform)'
-        buildConfiguration: '$(buildConfiguration)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
 
 # -----------------------------------------------------------------------------
 # Stage 2 - Continuous Testing (CT)
 # -----------------------------------------------------------------------------
 - stage: smoketest
-  condition: eq(variables['deploy-smoke'], '1')
+  condition: and(succeeded(), eq(variables['deploy-smoke'], '1'))
   dependsOn: build
   variables:
   - template: devops/pipelines/variables/smoke-variables.yml
@@ -73,50 +76,10 @@ stages:
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
         ev: '$(ev)'
-    - template: devops/pipelines/step/arm-servicebus-namespace.yml
-      parameters:
-        armTemplateFile: '$(armTemplateRoot)/servicebus-namespace.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/servicebus-namespace.test.parameter.json'
-        location: '$(location)'
-        azureSubscription: '$(azureSubscription)'
-        resourceGroup: '$(resource-group)'
-        ev: '$(ev)'
-    - template: devops/pipelines/step/arm-analysis-services.yml
-      parameters:
-        armTemplateFile: '$(armTemplateRoot)/analysis-services.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/analysis-services.test.parameter.json'
-        location: '$(location)'
-        azureSubscription: '$(azureSubscription)'
-        resourceGroup: '$(resource-group)'
-        ev: '$(ev)'
-    - template: devops/pipelines/step/arm-synapse-dw.yml
-      parameters:
-        armTemplateFile: '$(armTemplateRoot)/synapse-dw.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/synapse-dw.test.parameter.json'
-        location: '$(location)'
-        azureSubscription: '$(azureSubscription)'
-        resourceGroup: '$(resource-group)'
-        ev: '$(ev)'
-    - template: devops/pipelines/step/arm-stream-analytics-job.yml
-      parameters:
-        armTemplateFile: '$(armTemplateRoot)/stream-analytics-job.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/stream-analytics-job.test.parameter.json'
-        location: '$(location)'
-        azureSubscription: '$(azureSubscription)'
-        resourceGroup: '$(resource-group)'
-        ev: '$(ev)'
     - template: devops/pipelines/step/arm-event-hub-hub.yml
       parameters:
         armTemplateFile: '$(armTemplateRoot)/event-hub-hub.json'
         armParameterTemplateFile: '$(armParameterTemplateRoot)/event-hub-hub.test.parameter.json'
-        location: '$(location)'
-        azureSubscription: '$(azureSubscription)'
-        resourceGroup: '$(resource-group)'
-        ev: '$(ev)'
-    - template: devops/pipelines/step/arm-servicebus-topic.yml
-      parameters:
-        armTemplateFile: '$(armTemplateRoot)/servicebus-topic.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/servicebus-topic.test.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
@@ -130,7 +93,7 @@ stages:
 # Stage 3 - Continuous Delivery (CD)
 # -----------------------------------------------------------------------------
 - stage: development
-  condition: eq(variables['deploy-dev'], '1')
+  condition: and(succeeded(), eq(variables['deploy-dev'], '1'))
   dependsOn: smoketest
   variables:
   - template: devops/pipelines/variables/development-variables.yml

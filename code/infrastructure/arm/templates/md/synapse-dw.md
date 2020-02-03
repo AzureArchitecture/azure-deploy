@@ -1,6 +1,6 @@
-# Azure Public IP Address Deployment
+# Azure Synapse DW Deployment
 
-This template creates an Azure Public IP Address in the same Network resource group.
+This template creates an Azure Synapse DW in the same resource group.
 
 ## Security Controls
 
@@ -9,18 +9,19 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [ip-address.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.json + )
+Resource File: [synapse-dw.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/synapse-dw.json + )
 
-Metadata File: [ip-address.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.metadata.json + )
+Metadata File: [synapse-dw.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/synapse-dw.metadata.json + )
 
-Test Parameters File: [ip-address.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/ip-address.test.parameter.json + )
+Test Parameters File: [synapse-dw.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/synapse-dw.test.parameter.json + )
 
 ## Parameters
 
 Parameter name | Type | Description | DefaultValue
 -------------- | ---- | ----------- | ------------
-publicIpAddressName | string | The name of the Bastion Host public IP address. | -
-ResourceGroupName | string | The name of the Resource Group. | rg-xazx-network-dev-eus
+ResourceGroupName | string | The name of the Resource Group. | rg-xazx-adap-dev-eus
+sqlServerName  | string | The name of the Logical SQL Server. | sql-xazx-adap-dev-eus
+synapseDWName  | string | The Azure Synapse DW Name | -
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0
@@ -42,7 +43,7 @@ Resource name | Type | ApiVersion
               |      |
               |      |
               |      |
-[parameters('publicIpAddressName')] | Microsoft.Network/publicIpAddresses | 2019-02-01
+[concat(parameters('sqlServerName'), '/', parameters('synapseDWName'))] | Microsoft.Sql/servers/databases | 2017-10-01-preview
               |      |
               |      |
               |      |

@@ -14,9 +14,6 @@
     "Approver": {
       "value": "approver@company.org"
     },
-    "AnalysisServicesAdmin": {
-      "value": "patrick@gallucci.us"
-    },
     "ServiceClass": {
       "value": "Gold"
     },
@@ -32,11 +29,11 @@
     "BusinessUnit": {
       "value": "CORP"
     },
-    "analysisServicesName": {
-      "value": "aasxazxadaptsteus"
+    "sqlServerName": {
+      "value": "sql-xazx-adap-tst-eus"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-xazx-adap-tst-eus"
     },
     "Env": {
       "value": "tst"
@@ -44,8 +41,11 @@
     "Requester": {
       "value": "requester@company.org"
     },
+    "synapseDWName": {
+      "value": "syndwxazxadaptsteus"
+    },
     "BudgetAmount": {
-      "value": "$200-Month"
+      "value": "$0-Month"
     }
   }
 }

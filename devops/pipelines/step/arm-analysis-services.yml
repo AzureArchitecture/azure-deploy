@@ -3,20 +3,19 @@ parameters:
   armParameterTemplateFile: ''
   location: ''
   ev: ''
-  AzureSubscription: ''
+  azureSubscription: ''
   resourceGroup: ''
-  storage-account-name: ''
 
 steps:
 - task: AzureResourceGroupDeployment@2
-  displayName: 'deploy-storage-account-container'
+  displayName: 'deploy-analysis-services'
   inputs:
-    AzureSubscription: ${{ parameters.AzureSubscription }}
+    azureSubscription: ${{ parameters.azureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}
     location: ${{ parameters.location }}
     csmFile: '${{ parameters.armTemplateFile }}'
     csmParametersFile: '${{ parameters.armParameterTemplateFile }}'
-    overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
-    deploymentName: 'deployment-storage-account-container'
+    overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }} -AnalysisServicesAdmin $(deploymentAdminName)'
+    deploymentName: 'deployment-analysis-services'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['storage-account-flag'], '1'))
+  condition: and(succeeded(), eq(variables['analysis-services-flag'], '1'))

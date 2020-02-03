@@ -11,12 +11,12 @@
                        "ApplicationName":  {
                                                "value":  "ADAP"
                                            },
+                       "streamAnalyticsName":  {
+                                                   "value":  "asaj-xazx-adap-dev-eus-01"
+                                               },
                        "Approver":  {
                                         "value":  "approver@company.org"
                                     },
-                       "AnalysisServicesAdmin":  {
-                                                     "value":  "patrick@gallucci.us"
-                                                 },
                        "ServiceClass":  {
                                             "value":  "Gold"
                                         },
@@ -32,9 +32,6 @@
                        "BusinessUnit":  {
                                             "value":  "CORP"
                                         },
-                       "analysisServicesName":  {
-                                                    "value":  "aasxazxadapdeveus"
-                                                },
                        "ResourceGroupName":  {
                                                  "value":  "rg-xazx-adap-dev-eus"
                                              },

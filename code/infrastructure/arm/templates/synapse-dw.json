@@ -1,19 +1,27 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "",
+      "defaultValue": "rg-xazx-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
-    "analysisServicesName": {
-      "type": "string"
+    "sqlServerName": {
+      "defaultValue": "sql-xazx-adap-dev-eus",
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Logical SQL Server."
+      }
     },
-    "AnalysisServicesAdmin": {
-      "type": "string"
+    "synapseDWName": {
+      "defaultValue": "",
+      "type": "string",
+      "metadata": {
+        "description": "The Azure Synapse DW Name"
+      }
     },
     "ApplicationName": {
       "defaultValue": "ADAP",
@@ -104,12 +112,12 @@
   },
   "resources": [
     {
-      "apiVersion": "2017-08-01",
-      "name": "[parameters('analysisServicesName')]",
+      "name": "[concat(parameters('sqlServerName'), '/', parameters('synapseDWName'))]",
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2017-10-01-preview",
       "location": "[resourceGroup().location]",
-      "type": "Microsoft.AnalysisServices/servers",
       "tags": {
-        "Display Name": "analysis services: [parameters('sqlServerName')]",
+        "Display Name": "synaspe data warehouse: [parameters('synapseDWName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
         "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
@@ -124,16 +132,12 @@
         "Start date of the project": "[parameters('StartDate')]"
       },
       "sku": {
-        "name": "D1",
-        "capacity": 1
+        "name": "DW100c",
+        "tier": "DataWarehouse"
       },
-      "properties": {}
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS"
+      }
     }
-  ],
-  "outputs": {
-    "analysis-services-name": {
-      "type": "string",
-      "value": "[parameters('analysisServicesName')]"
-    }
-  }
+  ]
 }

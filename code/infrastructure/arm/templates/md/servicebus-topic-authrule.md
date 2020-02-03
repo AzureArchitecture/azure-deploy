@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [servicebus-topic-authrule.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.json + )
+Resource File: [servicebus-topic-authrule.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.json + )
 
-Metadata File: [servicebus-topic-authrule.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.metadata.json + )
+Metadata File: [servicebus-topic-authrule.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.metadata.json + )
 
-Test Parameters File: [servicebus-topic-authrule.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.test.parameter.json + )
+Test Parameters File: [servicebus-topic-authrule.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-topic-authrule.test.parameter.json + )
 
 ## Parameters
 

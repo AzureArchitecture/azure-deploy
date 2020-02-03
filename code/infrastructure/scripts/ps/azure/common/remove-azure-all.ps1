@@ -34,7 +34,7 @@ foreach ($bp in $bps) {
 # loop through each rg in a sub
 $filter = 'xazx'
 $rgs = Get-AzResourceGroup | Where ResourceGroupName -like *$filter* 
-Get-AzResourceLock | Remove-AzResourceLock -Force   -ErrorAction Continue
+Get-AzResourceLock | Where Name -NE 'dnd' | Remove-AzResourceLock -Force -ErrorAction Continue
 foreach ($rg in $rgs) {
   $temp = "    Deleting {0}..." -f $rg.ResourceGroupName
   Write-Information $temp  

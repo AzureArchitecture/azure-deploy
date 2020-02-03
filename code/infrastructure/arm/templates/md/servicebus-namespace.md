@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [servicebus-namespace.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-namespace.json + )
+Resource File: [servicebus-namespace.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-namespace.json + )
 
-Metadata File: [servicebus-namespace.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-namespace.metadata.json + )
+Metadata File: [servicebus-namespace.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-namespace.metadata.json + )
 
-Test Parameters File: [servicebus-namespace.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-namespace.test.parameter.json + )
+Test Parameters File: [servicebus-namespace.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/servicebus-namespace.test.parameter.json + )
 
 ## Parameters
 

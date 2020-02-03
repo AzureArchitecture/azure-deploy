@@ -3,20 +3,19 @@ parameters:
   armParameterTemplateFile: ''
   location: ''
   ev: ''
-  AzureSubscription: ''
+  azureSubscription: ''
   resourceGroup: ''
-  storage-account-name: ''
 
 steps:
 - task: AzureResourceGroupDeployment@2
-  displayName: 'deploy-storage-account-container'
+  displayName: 'deploy-synapse-dw'
   inputs:
-    AzureSubscription: ${{ parameters.AzureSubscription }}
+    azureSubscription: ${{ parameters.azureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}
     location: ${{ parameters.location }}
     csmFile: '${{ parameters.armTemplateFile }}'
     csmParametersFile: '${{ parameters.armParameterTemplateFile }}'
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
-    deploymentName: 'deployment-storage-account-container'
+    deploymentName: 'deployment-synapse-dw'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['storage-account-flag'], '1'))
+  condition: and(succeeded(), eq(variables['synapse-dw-flag'], '1'))

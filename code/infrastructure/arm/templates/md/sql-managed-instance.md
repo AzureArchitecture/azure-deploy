@@ -9,11 +9,11 @@ The following security controls can be met through configuration of this templat
 
 ## File Details
 
-Resource File: [sql-managed-instance.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.json + )
+Resource File: [sql-managed-instance.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.json + )
 
-Metadata File: [sql-managed-instance.metadata.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.metadata.json + )
+Metadata File: [sql-managed-instance.metadata.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.metadata.json + )
 
-Test Parameters File: [sql-managed-instance.test.parameter.json](C:\AzureDevOps\Repos\xazxitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.test.parameter.json + )
+Test Parameters File: [sql-managed-instance.test.parameter.json](C:\AzureDevOps\Repos\Quisitive\AzureCoE\code\infrastructure\scripts\ps\azure\arm\..\..\..\..\arm\templates/sql-managed-instance.test.parameter.json + )
 
 ## Parameters
 

@@ -36,7 +36,7 @@
       SilentlyContinue: No effect. The error message isn't displayed and execution continues without interruption.
 
       .EXAMPLE
-      .\deploy-adap-platform -azBlueprints -azParameterFiles
+      .\deploy-adap-platform -orgTag "xazx" -deployAction "audit" -azAll
       .\deploy-adap-platform.ps1 -adGroups -adUsers -azPolicies -azInitiatives -azAlerts -azRoles -azRoleAssignments -azBlueprints
       .\deploy-adap-platform.ps1 -azAll -deployAction create
       .\deploy-adap-platform.ps1 -azAll -location "centralus" -env "dev" -actionVerboseVariable "SilentlyContinue" -actionDebugVariable "SilentlyContinue" -actionErrorVariable "SilentlyContinue" -deployAction create
@@ -66,16 +66,16 @@
     [Switch]$azRoles=$false,
 
     #azBlueprints
-    [Switch]$azBlueprints=$true,
+    [Switch]$azBlueprints=$false,
 
     #AzRoleAssignments
-    [Switch]$azRoleAssignments=$true,
+    [Switch]$azRoleAssignments=$false,
 
     # azActionGroups
-    [Switch]$azActionGroups=$true,
+    [Switch]$azActionGroups=$false,
 
     # azAlerts
-    [Switch]$azAlerts=$true,
+    [Switch]$azAlerts=$false,
 
     # azRunbooks
     [Switch]$azRunbooks=$false,
@@ -207,8 +207,6 @@
   $sharedRG = $config.sharedResourceGroup
   $adapRG = $config.adapResourceGroup
   $onpremRG  = $config.onpremResourceGroup
-  
-  
 
   # Only run this the first time through.
   if (!$firstRunCheck) {  
@@ -218,10 +216,11 @@
     # update orgTags in yml and json files.
     Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
     If ($orgTagDefault -ne $orgTag){
-      Update-StringJsonFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
-      Update-StringYmlFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
-      Update-StringPsModFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
-      Update-StringMdFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy
+      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "json"
+      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "yml"
+      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "ps1"
+      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "psm1"
+      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "md"
     }
     else {
       Write-Information "OrgTag are the same $orgTagDefault to $orgTag - no changes needed."
@@ -263,8 +262,6 @@
   # Start Deployment of Azure Assets
   Write-Information 'Starting deployment of Azure Assets'
   
-  Update-String -searchStr $subscriptionId -replaceStr $subscriptionIdZero -rootDirectory $armBluePrintDirectory
-
   # Deploy Azure Active Directory Users
   if($adUsers -or $azAll){
     Write-Information '  Starting deployment of Azure Active Directory Users'
@@ -328,10 +325,10 @@
 
   if($azBlueprints -or $azAll){
     Write-Information '  Starting deployment of Azure Blueprints...'
-    Update-String -searchStr $subscriptionIdZero -replaceStr $subscriptionId  -rootDirectory $armBluePrintDirectory
+    Update-StringInFile -searchStr $subscriptionIdZero -replaceStr $subscriptionId -rootDirectory $armBluePrintDirectory -fileExtension "json"
     Set-Location -Path "$psAzureDirectory"
     .\blueprint\deploy-azure-blueprint-definitions.ps1 -adapCMDB "$adapCMDB" -rootDirectory "$armBluePrintDirectory" -action $deployAction -subscriptionId $subscriptionId -location $location -logAnalytics $logAnalytics -env $env -orgTag $orgTag -suffix $suffix -removeRG:$removeRG -testRG $testRG -smokeRG $smokeRG -mgmtRG $mgmtRG -networkRG $networkRG -sharedRG $sharedRG -adapRG $adapRG -onpremRG $onpremRG
-    Update-String -searchStr $subscriptionId -replaceStr $subscriptionIdZero -rootDirectory $armBluePrintDirectory
+    Update-StringInFile -searchStr $subscriptionId -replaceStr $subscriptionIdZero -rootDirectory $armBluePrintDirectory -fileExtension "json"
   }
   else
   {
