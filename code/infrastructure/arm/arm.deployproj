@@ -32,6 +32,7 @@
     <None Include="templates\md\bastion-host.md" />
     <None Include="templates\md\event-hub-namespace.md" />
     <None Include="templates\md\ip-address.md" />
+    <None Include="templates\md\logic-app.md" />
     <None Include="templates\md\servicebus-firewall-vnetrule.md" />
     <None Include="templates\md\servicebus-namespace.md" />
     <None Include="templates\md\servicebus-topic-authrule.md" />
