@@ -5,7 +5,7 @@ parameters:
   ev: ''
   AzureSubscription: ''
   resourceGroup: ''
-
+ 
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-logic-app'
