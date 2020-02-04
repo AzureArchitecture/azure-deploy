@@ -150,7 +150,7 @@ stages:
         resourceGroup: '$(resource-group)'
 
 # -----------------------------------------------------------------------------
-# Stage 3 - Continuous Delivery (CD) 
+# Stage 3 - Continuous Delivery (CD)
 # -----------------------------------------------------------------------------
 - stage: development
   condition: eq(variables['deploy-dev'], '0')
