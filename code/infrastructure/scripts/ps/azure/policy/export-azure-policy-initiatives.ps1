@@ -1,4 +1,4 @@
-﻿function Export-cAZPolicyInitiativesDefinitions {
+function Export-cAZPolicyInitiativesDefinitions {
     [cmdletBinding()]
     param(
         [parameter(mandatory)]

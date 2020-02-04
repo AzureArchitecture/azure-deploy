@@ -1,4 +1,4 @@
-﻿  <#
+  <#
       .SYNOPSIS
       This script deploys the ADAP platform based on the values in the adap-cmdb.xlsx spreadsheet.
 
@@ -45,7 +45,7 @@
   #>
   param(
       # ortTag
-    [string]$orgTag="gswc",
+    [string]$orgTag="xazx",
 
     # azAll
     [Switch]$azAll=$false,
@@ -155,6 +155,7 @@
   $armPolicyDirectory = "$psscriptsRoot\..\..\..\arm\policy"
   $armRBACDirectory = "$psscriptsRoot\..\..\..\arm\rbac\roles"
   $armRunbookDirectory = "$psscriptsRoot\..\..\..\arm\automation\runbooks"
+
 
 
   $adapCMDB = "$psConfigDirectory\$adapCMDBfile"
@@ -404,4 +405,4 @@
   Write-Information 'Completing deployment of Azure Assets'
 
   # Remove variable
-  #((Compare-Object -ReferenceObject (Get-Variable).Name -DifferenceObject $DefaultVariables).InputObject).foreach{Remove-Variable -Name $_} 
+  #((Compare-Object -ReferenceObject (Get-Variable).Name -DifferenceObject $DefaultVariables).InputObject).foreach{Remove-Variable -Name $_}

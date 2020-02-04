@@ -1,4 +1,4 @@
-﻿  Clear-Host
+  Clear-Host
 
   #Folder Locations
   $psCommonDirectory = "$PSScriptRoot\..\common"

@@ -1,6 +1,6 @@
 {
   "properties": {
-    "displayName": "ADAP Core Foundation",
+    "displayName": "Azure Core Foundation",
     "description": "Azure core foundation deployment for the Azure Data & Analytics Platform (ADAP)",
     "targetScope": "subscription",
     "parameters": {
@@ -10,7 +10,7 @@
           "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
           "description": "Organization Tag"
         },
-        "defaultValue": ""
+        "defaultValue": "xazx"
       },
       "suffix": {
         "type": "string",
@@ -34,6 +34,20 @@
           120,
           180,
           365
+        ]
+      },
+      "location": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Azure Region used when establishing the Log Analytics workspace",
+          "description": "LogAnalytics_Location"
+        },
+        "defaultValue": "East US",
+        "allowedValues": [
+          "eastus",
+          "eastus2",
+          "westus",
+          "westus2"
         ]
       },
       "LogAnalytics_Location": {

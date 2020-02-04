@@ -1,4 +1,4 @@
-ï»¿<#
+<#
     .DESCRIPTION
         This report outputs a backup status report for SQL PaaS servers in Azure.
 
@@ -22,10 +22,10 @@
         name of the subscription in its title followed by "Azure RBAC Audit.csv"
 #>
 
-#Requires â€“Modules AzureRM
-#Requires â€“Modules AzureRM.Backup
-#Requires â€“Modules AzureRM.RecoveryServices
-#Requires â€“Modules AzureRM.SiteRecovery
+#Requires –Modules AzureRM
+#Requires –Modules AzureRM.Backup
+#Requires –Modules AzureRM.RecoveryServices
+#Requires –Modules AzureRM.SiteRecovery
 
 Param (
     [Parameter (Mandatory=$true)]

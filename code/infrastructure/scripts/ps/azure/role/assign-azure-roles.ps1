@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 Set Azure Role Assignments
 

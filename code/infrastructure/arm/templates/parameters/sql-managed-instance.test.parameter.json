@@ -2,95 +2,62 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "timezoneId": {
-      "value": "UTC"
-    },
-    "hardwareFamily": {
-      "value": "Gen5"
+    "virtualNetworkName": {
+      "value": "vnet-xazx-dev"
     },
     "Owner": {
       "value": "owner@company.org"
     },
-    "administratorLoginPassword": {
-      "value": "Z1!xcvbnmnbvcxz"
+    "StartDate": {
+      "value": "1-1-2020"
     },
-    "collation": {
-      "value": "SQL_Latin1_General_CP1_CI_AS"
+    "ApplicationName": {
+      "value": "ADAP"
     },
-    "SQLManagedInstanceName": {
-      "value": "sql-xazx-adap-tst-eus"
-    },
-    "dnsZonePartner": {
-      "value": null
-    },
-    "virtualNetworkName": {
-      "value": "vnet-xazx-tst"
-    },
-    "subnetName": {
-      "value": "snet-xazx-tst-sqlmi"
-    },
-    "licenseType": {
-      "value": "LicenseIncluded"
-    },
-    "CostCenter": {
-      "value": "8675-309"
-    },
-    "Env": {
-      "value": "tst"
-    },
-    "proxyOverride": {
-      "value": null
-    },
-    "skuEdition": {
-      "value": "GeneralPurpose"
-    },
-    "ServiceClass": {
-      "value": "Gold"
-    },
-    "vCores": {
-      "value": 4
-    },
-    "storageSizeGb": {
-      "value": 32
-    },
-    "virtualNetworkResourceGroupName": {
-      "value": "rg-xazx-network-tst-eus"
+    "managedInstanceName": {
+      "value": "sqlmi-xazx-adap-dev-eus-01"
     },
     "Approver": {
       "value": "approver@company.org"
     },
-    "publicDataEndpointEnabled": {
-      "value": false
+    "administratorLoginPassword": {
+      "value": "Z1!xcvbnmnbvcxz"
     },
-    "Requester": {
-      "value": "requester@company.org"
-    },
-    "ResourceGroupName": {
-      "value": "rg-xazx-adap-tst-eus"
-    },
-    "DR": {
-      "value": "Mission-Critical"
-    },
-    "BusinessUnit": {
-      "value": "CORP"
-    },
-    "StartDate": {
-      "value": "1-1-2020"
-    },
-    "BudgetAmount": {
-      "value": "$200-Month"
-    },
-    "skuName": {
-      "value": "GP_Gen5"
-    },
-    "administratorLogin": {
-      "value": "sqlAdmin"
+    "ServiceClass": {
+      "value": "Gold"
     },
     "EndDate": {
       "value": "12-31-9999"
     },
-    "ApplicationName": {
-      "value": "ADAP"
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "subnetName": {
+      "value": "snet-xazx-dev-sqlmi"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "virtualNetworkResourceGroupName": {
+      "value": "rg-xazx-network-dev-eus"
+    },
+    "ResourceGroupName": {
+      "value": "rg-xazx-adap-dev-eus"
+    },
+    "Env": {
+      "value": "dev"
+    },
+    "administratorLogin": {
+      "value": "sqlAdmin"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
     }
   }
 }

@@ -39,7 +39,9 @@
       "minLength": 1,
       "allowedValues": [
         "eastus",
-        "eastus2"
+        "eastus2",
+        "westus",
+        "westus2"
       ],
       "defaultValue": "eastus"
     }

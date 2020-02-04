@@ -47,93 +47,6 @@
         "description": "SQL Managed Instance Virtual Network Subnet name."
       }
     },
-    "skuName": {
-      "defaultValue": "GP_Gen5",
-      "type": "string",
-      "metadata": {
-        "description": "SQL Managed Instance SKU name."
-      }
-    },
-    "skuEdition": {
-      "defaultValue": "GeneralPurpose",
-      "type": "string",
-      "metadata": {
-        "description": "SQL Managed Instance SKU Edition name."
-      }
-    },
-    "storageSizeGb": {
-      "defaultValue": 32,
-      "type": "int",
-      "metadata": {
-        "description": "SQL Managed Instance Storage Size in GB."
-      }
-    },
-    "vCores": {
-      "defaultValue": 4,
-      "type": "int",
-      "allowedValues": [
-        4,
-        8,
-        16,
-        24,
-        32,
-        40,
-        64,
-        80
-      ],
-      "metadata": {
-        "description": "SQL Managed Instance number of vCores."
-      }
-    },
-    "licenseType": {
-      "defaultValue": "LicenseIncluded",
-      "type": "string",
-      "metadata": {
-        "description": "SQL Managed Instance License Type name."
-      }
-    },
-    "hardwareFamily": {
-      "defaultValue": "Gen5",
-      "type": "string",
-      "metadata": {
-        "description": "SQL Managed Instance Hardware Family name."
-      }
-    },
-    "dnsZonePartner": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "SQL Managed Instance DNS Zone Partner name."
-      }
-    },
-    "collation": {
-      "type": "string",
-      "defaultValue": "SQL_Latin1_General_CP1_CI_AS",
-      "metadata": {
-        "description": "SQL Managed Instance Collation name."
-      }
-    },
-    "proxyOverride": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "SQL Managed Instance Proxy Override."
-      }
-    },
-    "publicDataEndpointEnabled": {
-      "type": "bool",
-      "defaultValue": false,
-      "metadata": {
-        "description": "SQL Managed Instance Public Data Endpoint enabled."
-      }
-    },
-    "timezoneId": {
-      "type": "string",
-      "defaultValue": "UTC",
-      "metadata": {
-        "description": "SQL Managed Instance Time Zone Id."
-      }
-    },
     "ApplicationName": {
       "defaultValue": "ADAP",
       "type": "string",
@@ -224,8 +137,8 @@
     {
       "type": "Microsoft.Sql/managedInstances",
       "sku": {
-        "name": "[parameters('skuName')]",
-        "tier": "[parameters('skuEdition')]"
+        "name": "GP_Gen5",
+        "tier": "GeneralPurpose"
       },
       "name": "[parameters('managedInstanceName')]",
       "apiVersion": "2015-05-01-preview",
@@ -252,15 +165,15 @@
         "administratorLogin": "[parameters('administratorLogin')]",
         "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
         "subnetId": "[resourceId(parameters('virtualNetworkResourceGroupName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetName'))]",
-        "storageSizeInGB": "[parameters('storageSizeGb')]",
-        "vCores": "[parameters('vCores')]",
-        "licenseType": "[parameters('licenseType')]",
-        "hardwareFamily": "[parameters('hardwareFamily')]",
-        "dnsZonePartner": "[parameters('dnsZonePartner')]",
-        "collation": "[parameters('collation')]",
-        "proxyOverride": "[parameters('proxyOverride')]",
-        "publicDataEndpointEnabled": "[parameters('publicDataEndpointEnabled')]",
-        "timezoneId": "[parameters('timezoneId')]"
+        "storageSizeInGB": 32,
+        "vCores": 4,
+        "licenseType": "BasePrice",
+        "hardwareFamily": "Gen5",
+        "dnsZonePartner": "",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "proxyOverride": "Redirect",
+        "publicDataEndpointEnabled": false,
+        "timezoneId": "Eastern Standard Time"
       }
     }
   ]

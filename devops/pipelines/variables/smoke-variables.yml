@@ -13,3 +13,6 @@ variables:
   value: 'changeme'
 - name: 'suffix'
   value: 'eus'
+- name: 'purge-rg-smoketest'
+  value: '1'
+
