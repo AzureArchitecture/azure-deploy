@@ -6,7 +6,7 @@ parameters:
   AzureSubscription: ''
   resourceGroup: ''
 
-steps:
+steps: 
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-logic-app'
   inputs:
