@@ -127,14 +127,6 @@ stages:
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
         ev: '$(ev)'
-    - template: devops/pipelines/step/arm-sql-managed-instance.yml
-      parameters:
-        armTemplateFile: '$(armTemplateRoot)/sql-managed-instance.json'
-        armParameterTemplateFile: '$(armParameterTemplateRoot)/sql-managed-instance.test.parameter.json'
-        location: '$(location)'
-        azureSubscription: '$(azureSubscription)'
-        resourceGroup: '$(resource-group)'
-        ev: '$(ev)'
 
     - template: devops/pipelines/step/arm-remove-resource-group.yml
       parameters:
@@ -238,6 +230,14 @@ stages:
       parameters:
         armTemplateFile: '$(armTemplateRoot)/data-factory.json'
         armParameterTemplateFile: '$(armParameterTemplateRoot)/data-factory.0.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+    - template: devops/pipelines/step/arm-sql-managed-instance.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/sql-managed-instance.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/sql-managed-instance.0.parameter.json'
         location: '$(location)'
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
