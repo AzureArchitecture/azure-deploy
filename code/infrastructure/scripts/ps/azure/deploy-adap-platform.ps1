@@ -157,7 +157,6 @@
   $armRunbookDirectory = "$psscriptsRoot\..\..\..\arm\automation\runbooks"
 
 
-
   $adapCMDB = "$psConfigDirectory\$adapCMDBfile"
 
   if ( -not (Test-path ('{0}\azure-common.psm1' -f "$psCommonDirectory")))
