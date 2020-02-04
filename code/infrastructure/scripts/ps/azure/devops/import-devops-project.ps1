@@ -1,4 +1,4 @@
-﻿   <#
+   <#
       .SYNOPSIS
       This script deploys the Azure DevOps project based on the azdevop-cmdb.xlsx spreadsheet.
 

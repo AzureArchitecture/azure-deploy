@@ -1,4 +1,4 @@
-﻿$subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
+$subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
 $resourceGroupName = "rg-xazx-shared-dev-eus"
 
 # Delete policy assignments

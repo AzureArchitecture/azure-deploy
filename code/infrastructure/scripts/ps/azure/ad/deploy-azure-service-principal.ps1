@@ -1,4 +1,4 @@
-﻿<#
+<#
     .SYNOPSIS
         Create Service Principals in Azure Active Directory
 

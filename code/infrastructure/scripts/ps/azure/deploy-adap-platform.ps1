@@ -1,4 +1,4 @@
-﻿  <#
+  <#
       .SYNOPSIS
       This script deploys the ADAP platform based on the values in the adap-cmdb.xlsx spreadsheet.
 
@@ -45,7 +45,7 @@
   #>
   param(
       # ortTag
-    [string]$orgTag="gswc",
+    [string]$orgTag="xazx",
 
     # azAll
     [Switch]$azAll=$false,

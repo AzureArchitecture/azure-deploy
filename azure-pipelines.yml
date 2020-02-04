@@ -14,7 +14,7 @@ stages:
 # Stage 1 - Continuous Integration (CI)
 # -----------------------------------------------------------------------------
 - stage: build
-  condition: and(succeeded(), eq(variables['deploy-build'], '0'))
+  condition: and(succeeded(), eq(variables['deploy-build'], '1'))
   jobs:
   - job: buildjob
     displayName: 'build azure-deploy'
@@ -30,7 +30,7 @@ stages:
 # Stage 2 - Continuous Testing (CT)
 # -----------------------------------------------------------------------------
 - stage: smoketest
-  condition: eq(variables['deploy-smoke'], '0')
+  condition: eq(variables['deploy-smoke'], '1')
   dependsOn: build
   variables:
   - template: devops/pipelines/variables/smoke-variables.yml
@@ -145,7 +145,7 @@ stages:
 # Stage 3 - Continuous Delivery (CD)
 # -----------------------------------------------------------------------------
 - stage: development
-  condition: eq(variables['deploy-dev'], '0')
+  condition: eq(variables['deploy-dev'], '1')
   dependsOn: smoketest
   variables:
   - template: devops/pipelines/variables/development-variables.yml

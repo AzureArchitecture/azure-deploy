@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 Deploys all the roles in the root folder and child folders.
 

@@ -1,4 +1,4 @@
-﻿#
+#
 # Azure Resource Manager documentation definitions
 #
 # A function to break out parameters from an ARM template

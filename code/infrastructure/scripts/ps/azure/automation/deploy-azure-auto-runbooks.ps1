@@ -1,4 +1,4 @@
-﻿<#
+<#
     .SYNOPSIS
     Deploys all the runbooks in the root folder and child folders.
 

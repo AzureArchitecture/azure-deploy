@@ -26,17 +26,6 @@ managedInstanceName | string | SQL Managed Instance name. | -
 virtualNetworkResourceGroupName | string | SQL Managed Instance Virtual Network Resource Group name. | rg-xazx-network-dev-eus
 virtualNetworkName | string | SQL Managed Instance Virtual Network name. | vnet-xazx-dev
 subnetName     | string | SQL Managed Instance Virtual Network Subnet name. | -
-skuName        | string | SQL Managed Instance SKU name. | GP_Gen5
-skuEdition     | string | SQL Managed Instance SKU Edition name. | GeneralPurpose
-storageSizeGb  | int  | SQL Managed Instance Storage Size in GB. | 32
-vCores         | int  | SQL Managed Instance number of vCores. | 4
-licenseType    | string | SQL Managed Instance License Type name. | LicenseIncluded
-hardwareFamily | string | SQL Managed Instance Hardware Family name. | Gen5
-dnsZonePartner | string | SQL Managed Instance DNS Zone Partner name. | -
-collation      | string | SQL Managed Instance Collation name. | SQL_Latin1_General_CP1_CI_AS
-proxyOverride  | string | SQL Managed Instance Proxy Override. | -
-publicDataEndpointEnabled | bool | SQL Managed Instance Public Data Endpoint enabled. | -
-timezoneId     | string | SQL Managed Instance Time Zone Id. | UTC
 ApplicationName | string | Name of the application, service, or workload the resource is associated with. | ADAP
 Approver       | string | Person responsible for approving costs related to this resource. | approver@company.org
 BudgetAmount   | string | Money allocated for this application, service, or workload. | 0

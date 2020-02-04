@@ -1,4 +1,4 @@
-﻿function Export-cAZRoleDefinitions {
+function Export-cAZRoleDefinitions {
     [cmdletBinding()]
     param(
         [parameter(mandatory)]

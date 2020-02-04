@@ -1,4 +1,4 @@
-﻿ $psscriptsRoot = $PSScriptRoot
+ $psscriptsRoot = $PSScriptRoot
  $extensionFilepath = "..\dev-vm\files\$psscriptsRoot"
  Set-Location -Path "$psscriptsRoot"
 

@@ -1,4 +1,4 @@
-ï»¿<#
+<#
     NAME 
         AzureSubscriptionRBACAudit.ps1    
 
@@ -16,8 +16,8 @@
 
 #>
 
-#Requires â€“Modules AzureRM
-#Requires â€“Modules ReportHTML
+#Requires –Modules AzureRM
+#Requires –Modules ReportHTML
 #Requires -Modules ReportHTMLHelpers
 
 [CmdletBinding(DefaultParameterSetName='ReportParameters')]
