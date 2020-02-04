@@ -103,6 +103,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "security", "security", "{00
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1FC0A479-7732-4994-A15E-B410D473996E}"
 	ProjectSection(SolutionItems) = preProject
+		scripts\ps\azure\test\analysis-services.tests.ps1 = scripts\ps\azure\test\analysis-services.tests.ps1
 		scripts\ps\azure\test\arm-test.xml = scripts\ps\azure\test\arm-test.xml
 		scripts\ps\azure\test\data-factory.tests.ps1 = scripts\ps\azure\test\data-factory.tests.ps1
 		scripts\ps\azure\test\event-hub-namespace.tests.ps1 = scripts\ps\azure\test\event-hub-namespace.tests.ps1

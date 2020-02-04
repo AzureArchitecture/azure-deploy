@@ -9,7 +9,7 @@ parameters:
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-logic-app'
-  inputs:
+  inputs: 
     AzureSubscription: ${{ parameters.AzureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}
     location: ${{ parameters.location }}
