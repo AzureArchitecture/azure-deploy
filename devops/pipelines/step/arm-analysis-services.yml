@@ -18,4 +18,4 @@ steps:
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }} -AnalysisServicesAdmin $(deploymentAdminName)'
     deploymentName: 'deployment-analysis-services'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['analysis-services-flag'], '0'))
+  condition: and(succeeded(), eq(variables['analysis-services-flag'], '1'))

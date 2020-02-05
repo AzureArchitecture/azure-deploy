@@ -16,7 +16,7 @@ if (Test-Path $TemplateFile){
 Describe "Analysis Services Deployment Tests" -Tag "functional" {
   Context "When Analysis Services is deployed" {
     $TemplateParameters = @{
-      sqlServerName = "analservadaptest"
+      analysisServicesName = "analservadaptest"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

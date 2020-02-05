@@ -1,57 +1,57 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
-                       "StartDate":  {
-                                         "value":  "1-1-2020"
-                                     },
-                       "ApplicationName":  {
-                                               "value":  "ADAP"
-                                           },
-                       "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-xazx-adap-dev-eus"
-                                                   },
-                       "Approver":  {
-                                        "value":  "approver@company.org"
-                                    },
-                       "ServiceClass":  {
-                                            "value":  "Gold"
-                                        },
-                       "EndDate":  {
-                                       "value":  "12-31-9999"
-                                   },
-                       "messageDefaultTTL":  {
-                                                 "value":  "P90D"
-                                             },
-                       "DR":  {
-                                  "value":  "Mission-Critical"
-                              },
-                       "Env":  {
-                                   "value":  "dev"
-                               },
-                       "CostCenter":  {
-                                          "value":  "8675-309"
-                                      },
-                       "BusinessUnit":  {
-                                            "value":  "CORP"
-                                        },
-                       "ServiceBusTopicName":  {
-                                                   "value":  "sbt-xazx-adap-dev-eus"
-                                               },
-                       "ResourceGroupName":  {
-                                                 "value":  "rg-xazx-adap-dev-eus"
-                                             },
-                       "topicMaxSizeMb":  {
-                                              "value":  "1024"
-                                          },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
-                       "BudgetAmount":  {
-                                            "value":  "$200-Month"
-                                        }
-                   }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "ServiceBusNamespaceName": {
+      "value": "sb-xazx-adap-dev-eus"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "messageDefaultTTL": {
+      "value": "P90D"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "Env": {
+      "value": "dev"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ServiceBusTopicName": {
+      "value": "sbt-xazx-adap-dev-eus"
+    },
+    "ResourceGroupName": {
+      "value": "rg-xazx-adap-dev-eus"
+    },
+    "topicMaxSizeMb": {
+      "value": "1024"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    }
+  }
 }

@@ -18,4 +18,4 @@ steps:
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
     deploymentName: 'deployment-servicebus-namespace'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['servicebus-flag'], '0'))
+  condition: and(succeeded(), eq(variables['servicebus-flag'], '1'))

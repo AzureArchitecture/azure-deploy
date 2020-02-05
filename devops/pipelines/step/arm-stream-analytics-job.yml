@@ -18,4 +18,4 @@ steps:
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
     deploymentName: 'deployment-stream-analytics-job'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['stream-analytics-job-flag'], '0'))
+  condition: and(succeeded(), eq(variables['stream-analytics-job-flag'], '1'))
