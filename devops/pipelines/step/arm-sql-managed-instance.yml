@@ -18,4 +18,4 @@ steps:
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
     deploymentName: 'deployment-sql-managed-instance'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['sql-managed-instance-flag'], '0'))
+  condition: and(succeeded(), eq(variables['sql-managed-instance-flag'], '1'))

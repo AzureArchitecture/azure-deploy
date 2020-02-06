@@ -44,8 +44,12 @@
         },
         "defaultValue": "East US",
         "allowedValues": [
+          "centralus",
           "eastus",
           "eastus2",
+          "northcentralus",
+          "southcentralus",
+          "westcentralus",
           "westus",
           "westus2"
         ]

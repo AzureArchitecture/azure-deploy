@@ -110,7 +110,7 @@
       "apiVersion": "[parameters('apiVersion')]",
       "name": "[parameters('logicAppName')]",
       "type": "Microsoft.Logic/workflows",
-      "location": "eastus2",
+      "location": "[resourceGroup().location]",
       "tags": {
         "Display Name": "logic app: [parameters('logicAppName')]",
         "Application name": "[parameters('ApplicationName')]",

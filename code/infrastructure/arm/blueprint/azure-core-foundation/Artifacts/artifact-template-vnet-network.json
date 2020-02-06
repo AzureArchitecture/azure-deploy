@@ -130,16 +130,22 @@
         }
       },
       "variables": {
-        "deployment-prefix": "[toLower(concat(parameters('orgTag'), '-', parameters('Env')))]",
+        "deployment-prefix": "[toLower(concat(parameters('orgTag'), '-', parameters('Env'),'-',parameters('suffix')))]",
         "virtualNetworkName": "[concat('vnet-', variables('deployment-prefix'))]",
         "routeTableName": "[concat('rt-', variables('deployment-prefix'))]",
         "networkSecurityGroupName": "[concat('nsg-', variables('deployment-prefix'))]",
         "addressPrefix": "10.0.0.0/16",
-        "subnetName": "[concat('snet-',variables('deployment-prefix'),'-sqlmi')]",
-        "subnetPrefix": "10.0.0.0/24",
+        "sqlmiSubnetName": "[concat('snet-',variables('deployment-prefix'),'-sqlmi')]",
+        "sqlmiSubnetPrefix": "10.0.0.0/24",
+        "defaultSubnetName": "[concat('snet-',variables('deployment-prefix'),'-default')]",
+        "defaultSubnetPrefix": "10.1.0.0/24",
         "locations": [
+          "centralus",
           "eastus",
           "eastus2",
+          "northcentralus",
+          "southcentralus",
+          "westcentralus",
           "westus",
           "westus2"
         ],
@@ -596,7 +602,7 @@
               "sourcePortRange": "*",
               "destinationPortRange": "1433",
               "sourceAddressPrefix": "VirtualNetwork",
-              "destinationAddressPrefix": "[variables('subnetPrefix')]",
+              "destinationAddressPrefix": "[variables('sqlmiSubnetPrefix')]",
               "access": "Allow",
               "priority": 1000,
               "direction": "Inbound"
@@ -610,7 +616,7 @@
               "sourcePortRange": "*",
               "destinationPortRange": "11000-11999",
               "sourceAddressPrefix": "VirtualNetwork",
-              "destinationAddressPrefix": "[variables('subnetPrefix')]",
+              "destinationAddressPrefix": "[variables('sqlmiSubnetPrefix')]",
               "access": "Allow",
               "priority": 1100,
               "direction": "Inbound"
@@ -624,7 +630,7 @@
               "sourcePortRange": "*",
               "destinationPortRange": "5022",
               "sourceAddressPrefix": "VirtualNetwork",
-              "destinationAddressPrefix": "[variables('subnetPrefix')]",
+              "destinationAddressPrefix": "[variables('sqlmiSubnetPrefix')]",
               "access": "Allow",
               "priority": 1200,
               "direction": "Inbound"
@@ -651,7 +657,7 @@
               "protocol": "Tcp",
               "sourcePortRange": "*",
               "destinationPortRange": "1433",
-              "sourceAddressPrefix": "[variables('subnetPrefix')]",
+              "sourceAddressPrefix": "[variables('sqlmiSubnetPrefix')]",
               "destinationAddressPrefix": "VirtualNetwork",
               "access": "Allow",
               "priority": 1000,
@@ -665,7 +671,7 @@
               "protocol": "Tcp",
               "sourcePortRange": "*",
               "destinationPortRange": "11000-11999",
-              "sourceAddressPrefix": "[variables('subnetPrefix')]",
+              "sourceAddressPrefix": "[variables('sqlmiSubnetPrefix')]",
               "destinationAddressPrefix": "VirtualNetwork",
               "access": "Allow",
               "priority": 1100,
@@ -679,7 +685,7 @@
               "protocol": "Tcp",
               "sourcePortRange": "*",
               "destinationPortRange": "5022",
-              "sourceAddressPrefix": "[variables('subnetPrefix')]",
+              "sourceAddressPrefix": "[variables('sqlmiSubnetPrefix')]",
               "destinationAddressPrefix": "VirtualNetwork",
               "access": "Allow",
               "priority": 1200,
@@ -806,9 +812,9 @@
             },
             "subnets": [
               {
-                "name": "[variables('subnetName')]",
+                "name": "[variables('sqlmiSubnetName')]",
                 "properties": {
-                  "addressPrefix": "[variables('subnetPrefix')]",
+                  "addressPrefix": "[variables('sqlmiSubnetPrefix')]",
                   "routeTable": {
                     "id": "[resourceId('Microsoft.Network/routeTables', variables('routeTableName'))]"
                   },

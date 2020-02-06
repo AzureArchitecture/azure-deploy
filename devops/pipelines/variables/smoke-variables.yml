@@ -15,4 +15,3 @@ variables:
   value: 'eus'
 - name: 'purge-rg-smoketest'
   value: '1'
-

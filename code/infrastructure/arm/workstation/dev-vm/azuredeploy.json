@@ -38,8 +38,12 @@
       "type": "string",
       "minLength": 1,
       "allowedValues": [
+        "centralus",
         "eastus",
         "eastus2",
+        "northcentralus",
+        "southcentralus",
+        "westcentralus",
         "westus",
         "westus2"
       ],

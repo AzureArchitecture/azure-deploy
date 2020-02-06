@@ -7,8 +7,12 @@
     "parameters": {
       "location": {
         "value": [
+          "centralus",
           "eastus",
           "eastus2",
+          "northcentralus",
+          "southcentralus",
+          "westcentralus",
           "westus",
           "westus2"
         ]
