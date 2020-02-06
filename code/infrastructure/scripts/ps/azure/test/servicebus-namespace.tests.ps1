@@ -1,6 +1,6 @@
 # common variables
 $ResourceGroupName = "rg-test"
-$template = "servicebus-namespace"
+$template = "service-bus-namespace"
 
 $TemplateFile = "$PSScriptRoot\..\..\..\..\arm\templates\$template.json"
 $TemplateParameterFile = "$PSScriptRoot\..\..\..\..\arm\templates\parameters\$template.test.parameter.json"

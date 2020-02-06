@@ -18,4 +18,4 @@ steps:
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
     deploymentName: 'deployment-synapse-dw'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['synapse-dw-flag'], '1'))
+  condition: and(succeeded(), eq(variables['synapse-dw-flag'], '0'))

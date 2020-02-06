@@ -19,4 +19,4 @@ steps:
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
     deploymentName: 'deployment-storage-account-container'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['storage-account-flag'], '1'))
+  condition: and(succeeded(), eq(variables['storage-account-flag'], '0'))
