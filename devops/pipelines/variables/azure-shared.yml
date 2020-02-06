@@ -6,7 +6,7 @@ variables:
   armParameterTemplateRoot: '$(System.DefaultWorkingDirectory)\code\infrastructure\arm\templates\parameters'
   azureSubscription: 'azure-devops-service-connection'
   deploymentAdminName: 'patrick@gallucci.us'
-  deploy-build: false
-  deploy-development: true
-  deploy-production: true
-  deploy-smoke: true
+  deploy-build: '0'
+  deploy-dev: '1'
+  deploy-prod: '0'
+  deploy-smoke: '0'
