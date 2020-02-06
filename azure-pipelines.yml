@@ -14,7 +14,7 @@ stages:
 # Stage 1 - Continuous Integration (CI)
 # -----------------------------------------------------------------------------
 - stage: build
-  condition: and(succeeded(), eq(variables['deploy-build'], '1'))
+  condition: and(succeeded(), eq(variables['deploy-build'], true))
   jobs:
   - job: buildjob
     displayName: 'build azure-deploy'
@@ -30,7 +30,7 @@ stages:
 # Stage 2 - Continuous Testing (CT)
 # -----------------------------------------------------------------------------
 - stage: smoketest
-  condition: eq(variables['deploy-smoke'], '1')
+  condition: eq(variables['deploy-smoke'], true)
   dependsOn: build
   variables:
   - template: devops/pipelines/variables/smoke-variables.yml
@@ -127,6 +127,14 @@ stages:
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
         ev: '$(ev)'
+    - template: devops/pipelines/step/arm-logic-app.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/logic-app.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/logic-app.test.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
 
     - template: devops/pipelines/step/arm-remove-resource-group.yml
       parameters:
@@ -137,7 +145,7 @@ stages:
 # Stage 3 - Continuous Delivery (CD)
 # -----------------------------------------------------------------------------
 - stage: development
-  condition: eq(variables['deploy-dev'], '1')
+  condition: eq(variables['deploy-development'], true)
   dependsOn: smoketest
   variables:
   - template: devops/pipelines/variables/development-variables.yml
@@ -242,3 +250,21 @@ stages:
         azureSubscription: '$(azureSubscription)'
         resourceGroup: '$(resource-group)'
         ev: '$(ev)'
+    - template: devops/pipelines/step/arm-logic-app.yml
+      parameters:
+        armTemplateFile: '$(armTemplateRoot)/logic-app.json'
+        armParameterTemplateFile: '$(armParameterTemplateRoot)/logic-app.0.parameter.json'
+        location: '$(location)'
+        azureSubscription: '$(azureSubscription)'
+        resourceGroup: '$(resource-group)'
+        ev: '$(ev)'
+
+# -----------------------------------------------------------------------------
+# Stage 2 - Continuous Release (CR)
+# -----------------------------------------------------------------------------
+- stage: production
+  condition: eq(variables['deploy-production'], true)
+  dependsOn: build
+  variables:
+  - template: devops/pipelines/variables/production-variables.yml
+  - template: devops/pipelines/variables/production-features.yml

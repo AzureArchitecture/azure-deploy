@@ -18,4 +18,4 @@ steps:
     overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
     deploymentName: 'deployment-data-factory'
     deploymentOutputs: armOutput
-  condition: and(succeeded(), eq(variables['data-factory-flag'], '0'))
+  condition: and(succeeded(), eq(variables['data-factory-flag'], '1'))

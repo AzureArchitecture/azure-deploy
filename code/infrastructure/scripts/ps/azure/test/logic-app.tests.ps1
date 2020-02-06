@@ -1,6 +1,6 @@
 # common variables
 $ResourceGroupName = "rg-test"
-$template = "servicebus-namespace"
+$template = "logic-app"
 
 $TemplateFile = "$PSScriptRoot\..\..\..\..\arm\templates\$template.json"
 $TemplateParameterFile = "$PSScriptRoot\..\..\..\..\arm\templates\parameters\$template.test.parameter.json"
@@ -13,10 +13,10 @@ Describe 'Metadata Test' {
 }
 
 if (Test-Path $TemplateFile){
-Describe "Service Bus Namespace Deployment Tests" -Tag "functional" {
-  Context "When an Service Bus Namespace is deployed" {
+Describe "Logic App Deployment Tests" -Tag "functional" {
+  Context "When Logic App is deployed" {
     $TemplateParameters = @{
-      ServiceBusNamespaceName = "sb-chp-adap-test"
+      logicAppName = "adaplogicAppTest"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName
