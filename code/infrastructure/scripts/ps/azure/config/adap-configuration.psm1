@@ -25,42 +25,26 @@ function Get-Configuration
       List of output types produced by this function.
   #>
     $configuration = @{`
-    # Update these values
-    subscriptionname = "AzureArch"
-    subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
-    securityEmails = "user@domain.com"
-    securityPhoneNo = "88886753909"
+      # Update these values
+      securityEmails = "user@domain.com"
+      securityPhoneNo = "88886753909"
 
-    adOUPath = "OU=Azure,"
-    aadDirectoryName = "azurearchitecture"
-    tenentId = "3ae449e7-25e5-4e5d-b705-7a39e1ad16f0"
+      adOUPath = "OU=Azure,"
+      aadDirectoryName = "azurearchitecture"
+      tenentId = "3ae449e7-25e5-4e5d-b705-7a39e1ad16f0"
  
-    # Do Not change Below
-    # ########################################################
-    azureEnvironment = "AzureCloud"
-    primaryLocation = "eastus"
-    primaryLocationName = "East US"
-    primaryLocationTag = "eus"
-    secondaryLocation = "eastus2"
-    secondaryLocationName = "East US 2"
-    secondaryLocationTag = "eus2"
+      # Do Not change Below
+      # ########################################################
+      azureEnvironment = "AzureCloud"
+      primaryLocation = "eastus"
+      primaryLocationName = "East US"
+      primaryLocationTag = "eus"
+      secondaryLocation = "eastus2"
+      secondaryLocationName = "East US 2"
+      secondaryLocationTag = "eus2"
 
-    testResourceGroup = "rg-test"
-    smokeResourceGroup = "rg-smoke"
-    mgmtResourceGroup = "rg-xazx-mgmt-dev-eus"
-    networkResourceGroup = "rg-xazx-network-dev-eus"
-    sharedResourceGroup = "rg-xazx-shared-dev-eus"
-    adapResourceGroup = "rg-xazx-adap-dev-eus"
-    onpremResourceGroup = "rg-xazx-onprem-dev-eus"
-
-    laAutomationAccount = "auto-xazx-shared-dev-eus"
-    laWorkspaceName = "la-xazx-dev-eus"
-    laResourceGroup = "rg-xazx-shared-dev-eus"
-    alertResourceGroup = "rg-xazx-shared-dev-eus"
-      
-    orgTag = "xazx"
-    suffix = "eus"
-    evTag="dev"
+      orgTag = "yazy"
+      tenentDomain = "company.org"
       
     }
   return $configuration

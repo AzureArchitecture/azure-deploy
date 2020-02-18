@@ -121,7 +121,7 @@
           "tags": {
             "Application name": "[parameters('ApplicationName')]",
             "Approver name": "[parameters('Approver')]",
-            "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+            "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
             "Business unit": "[parameters('BusinessUnit')]",
             "Cost center": "[parameters('CostCenter')]",
             "Disaster recovery": "[parameters('DR')]",

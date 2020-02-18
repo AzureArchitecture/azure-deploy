@@ -114,8 +114,56 @@ try {
   choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install rdcman -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install office365business  -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install git-credential-manager-for-windows -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install gitextensions -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install gitbook-editor -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install azuredatastudio-powershell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install vscode-powershell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install vscode-mssql -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+
+  choco install azure-documentdb-emulator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install microsoftazurestorageexplorer -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install azure-functions-core-tools -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install azure-devops-policy-configurator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install azure-data-studio-sql-server-admin-pack -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install vscode-azurerm-tools -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install azcopy10 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install vscode-vsonline -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install azure-pipelines-agent -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install markdownmonster -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install rdmfree -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install vscode-azurerepos -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install ignorefiles -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install imagesprites -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install openinvscode -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install textgenerator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install trailingwhitespace -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install webextensionpack -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install extensibilitytools -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install opencommandline -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install packageinstaller -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install codemaid -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install stylecop -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+
+  choco install sourcetree -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install 7zip.install -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install filezilla -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install paint.net -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install atom -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install chocolateygui -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install fiddler -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   Write-Host
 
+  ######################################################
+  # Taskbar icons
+  ######################################################
+  Write-Host "Adding Icons to the TaskBar"
+  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
+  Install-ChocolateyPinnedTaskBarItem "%windir%\system32\WindowsPowerShell\v1.0\PowerShell_ISE.exe"
+  Install-ChocolateyPinnedTaskBarItem "C:\Windows\explorer.exe"
+  Install-ChocolateyPinnedTaskBarItem "%windir%\system32\cmd.exe"
+  Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+  %windir%\system32\cmd.exe
 
   ######################################################
   # Add to the path

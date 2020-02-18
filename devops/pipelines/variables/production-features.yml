@@ -24,7 +24,7 @@ variables:
 - name: 'sql-db-flag'
   value: 0
 - name: 'sql-server-flag'
-  value: 0
+  value: 1
 - name: 'storage-account-flag'
   value: 0
 - name: 'stream-analytics-job-flag'

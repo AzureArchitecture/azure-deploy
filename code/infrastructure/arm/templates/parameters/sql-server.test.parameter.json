@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "sqlServerName": {
-      "value": "sql-xazx-adap-tst-eus"
+      "value": "sql-yazy-adap-tst-eus"
     },
     "StartDate": {
       "value": "1-1-2020"

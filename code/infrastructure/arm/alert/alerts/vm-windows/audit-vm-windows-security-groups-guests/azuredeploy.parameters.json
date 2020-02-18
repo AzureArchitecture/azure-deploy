@@ -23,10 +23,10 @@
       "value": "afc-audit-vm-windows-security-groups-guests"
     },
     "laWorkspaceName": {
-      "value": "la-xazx-dev-eus"
+      "value": "la-yazy-dev-eus"
     },
     "laResourceGroupName": {
-      "value": "rg-xazx-shared-dev-eus"
+      "value": "rg-yazy-shared-dev-eus"
     },
     "alertFrequency": {
       "value": 60

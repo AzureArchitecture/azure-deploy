@@ -20,7 +20,7 @@
       .PARAMETER location (default centralus)
       location for Azure Blueprint deployment
 
-      .PARAMETER alertResourceGroup (default rg-xazx-shared-dev-eus)
+      .PARAMETER alertResourceGroup (default rg-yazy-shared-dev-eus)
       Resource group to deploy Azure Alerts to
 
       .PARAMETER action (default create)
@@ -36,7 +36,7 @@
       SilentlyContinue: No effect. The error message isn't displayed and execution continues without interruption.
 
       .EXAMPLE
-      .\deploy-adap-platform -orgTag "xazx" -deployAction "audit" -azAll
+      .\deploy-adap-platform -orgTag "yazy" -deployAction "audit" -azAll
       .\deploy-adap-platform.ps1 -adGroups -adUsers -azPolicies -azInitiatives -azAlerts -azRoles -azRoleAssignments -azBlueprints
       .\deploy-adap-platform.ps1 -azAll -deployAction create
       .\deploy-adap-platform.ps1 -azAll -location "centralus" -env "dev" -actionVerboseVariable "SilentlyContinue" -actionDebugVariable "SilentlyContinue" -actionErrorVariable "SilentlyContinue" -deployAction create
@@ -44,8 +44,27 @@
 
   #>
   param(
-      # ortTag
-    [string]$orgTag="xazx",
+    # ortTag
+    [string]$orgTag="yazy",
+
+    # envTag
+    [string]$envTag="dev",
+
+    # suffix
+    [string]$suffix="eus",
+
+    # deployAction
+    [validateset('create','purge')]
+    [string]$deployAction = 'create',
+
+    # adapCMDB
+    [string]$adapCMDBfile = 'adap-cmdb.xlsm',
+
+    # azParameterFiles
+    [Switch]$azParameterFiles=$false,
+
+    # azMdFiles
+    [Switch]$azMdFiles=$true,
 
     # azAll
     [Switch]$azAll=$false,
@@ -80,18 +99,8 @@
     # azRunbooks
     [Switch]$azRunbooks=$false,
 
-    # azParameterFiles
-    [Switch]$azParameterFiles=$true,
-
     # debugAction
     [Switch]$debugAction = $false,
-
-    # deployAction
-    [validateset('create','purge')]
-    [string]$deployAction = 'create',
-
-    # adapCMDB
-    [string]$adapCMDBfile = 'adap-cmdb.xlsm',
 
     # removeRG
     [switch]$removeRG=$false,
@@ -124,17 +133,9 @@
 
   )
 
-  Clear-Host
   Set-Location -Path "$PSScriptRoot"
-  Get-ChildItem C:\repos -recurse | Unblock-File 
-  try{
-    Set-ExecutionPolicy Unrestricted -Confirm:0 -Force -ErrorAction SilentlyContinue
-  }
-  Catch
-  {}
-  
-  
-  #$null = "$actionErrorVariable"
+  Clear-Host
+  # Set variables
   $VerbosePreference = $verbosePreferenceVariable
   $DebugPreference = $debugPreferenceVariable
   $ErrorActionPreference = $errorActionPreferenceVariable
@@ -156,75 +157,56 @@
   $armRBACDirectory = "$psscriptsRoot\..\..\..\arm\rbac\roles"
   $armRunbookDirectory = "$psscriptsRoot\..\..\..\arm\automation\runbooks"
 
+   # Set Excel Spreadsheet
+  $adapCMDB = "$psConfigDirectory\$envTag-$adapCMDBfile"
 
-
-  $adapCMDB = "$psConfigDirectory\$adapCMDBfile"
-
-  if ( -not (Test-path ('{0}\azure-common.psm1' -f "$psCommonDirectory")))
-  {
-    Write-Information 'Shared PS modules can not be found, Check path {0}\azure-common.psm1.' -f $psCommonDirectory
-    Exit
-  }
   ## Check path to CMDB
-  if ( -not (Test-path -Path $adapCMDB))
+  if ( (Test-path -Path $adapCMDB) -and (Test-path ('{0}\azure-common.psm1' -f "$psCommonDirectory")))
   {
+    try{
+      $azureCommon = ('{0}\{1}' -f  $psCommonDirectory, 'azure-common.psm1')
+      Import-Module -Name $azureCommon -Force 
+
+      #Set Config Values
+      $configurationFile = ('{0}\{1}' -f  $psConfigDirectory, 'adap-configuration.psm1')
+      Import-Module -Name $configurationFile -Force 
+      $config = Get-Configuration
+      
+      # Set variabls from config file
+      $orgTagDefault = $config.orgTag
+      $location = $config.primaryLocation
+      $adOUPath = $config.adOUPath
+      $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
+      $tenantDomain = $configurationFile.tenentDomain
+    }
+    catch {
+      Write-Host -ForegroundColor RED    "Error importing reguired PS modules: $azureCommon, $configurationFile"
+      $PSCmdlet.ThrowTerminatingError($_)
+      Exit
+    }
+  }
+  else
+    {
     Write-Information  'No file specified or file {0}\{1} does not exist.' -f $psConfigDirectory, $adapCMDBfile
     Exit
   }
-
-  try{
-    $azureCommon = ('{0}\{1}' -f  $psCommonDirectory, 'azure-common.psm1')
-    Import-Module -Name $azureCommon -Force 
-
-    #Set Config Values
-    $configurationFile = ('{0}\{1}' -f  $psConfigDirectory, 'adap-configuration.psm1')
-    Import-Module -Name $configurationFile -Force 
-    $config = Get-Configuration
-  }
-  catch {
-    Write-Host -ForegroundColor RED    "Error importing reguired PS modules: $azureCommon, $configurationFile"
-    $PSCmdlet.ThrowTerminatingError($_)
-    Exit
-  }
   
-  # Set variabls from config file
-  $automationAccountName = $config.laAutomationAccount
-  $logAnalytics = $config.laWorkspaceName
-  $alertResourceGroup = $config.alertResourceGroup
-  $orgTagDefault = $config.orgTag
-  $env = $config.evTag
-  $location = $config.primaryLocation
-  $adOUPath = $config.adOUPath
-  $suffix = $config.suffix
-  $subscriptionId = $config.subscriptionId
-  $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
-    
-  # define resource groups 
-  $testRG = $config.testResourceGroup
-  $smokeRG = $config.smokeResourceGroup
-  $mgmtRG = $config.mgmtResourceGroup
-  $networkRG = $config.networkResourceGroup
-  $sharedRG = $config.sharedResourceGroup
-  $adapRG = $config.adapResourceGroup
-  $onpremRG  = $config.onpremResourceGroup
+     
+    $testRG = "rg-test"
+    $smokeRG = "rg-smoke"
+    $mgmtRG = "rg-$orgTag-mgmt-$envTag-$suffix"
+    $networkRG = "rg-$orgTag-network-$envTag-$suffix"
+    $sharedRG = "rg-$orgTag-shared-$envTag-$suffix"
+    $adapRG = "rg-$orgTag-adap-$envTag-$suffix"
+    $onpremRG = "rg-$orgTag-onprem-$envTag-$suffix"
 
-  # Only run this the first time through.
-  if (!$firstRunCheck) {  
-  
-    Set-Location -Path "$rootAzuredeploy"
+    $automationAccountName = "auto-$orgTag-shared-$envTag-$suffix"
+    $logAnalytics = "la-$orgTag-$envTag-$suffix"
+    $laResourceGroup = "rg-$orgTag-shared-$envTag-$suffix"
+    $alertResourceGroup = "rg-$orgTag-shared-$envTag-$suffix"
 
-    # update orgTags in yml and json files.
-    Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
-    If ($orgTagDefault -ne $orgTag){
-      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "json"
-      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "yml"
-      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "ps1"
-      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "psm1"
-      Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "md"
-    }
-    else {
-      Write-Information "OrgTag are the same $orgTagDefault to $orgTag - no changes needed."
-    }
+   # Only run this the first time through.
+  if (!$firstRunCheck) {
     # load PS modules
     Import-Module "Az"
     Load-Module "Az.Blueprint"
@@ -235,15 +217,24 @@
     Load-Module "PsISEProjectExplorer"
     Load-Module "ImportExcel"
     
+    Get-ChildItem $rootAzuredeploy -recurse | Unblock-File 
+    try{
+      Set-ExecutionPolicy Unrestricted -Confirm:0 -Force -ErrorAction SilentlyContinue
+    }
+    Catch
+    {}
+    
+    # Logon to Azure
     Write-Information 'Logon to Azure (MFA)...'
     Initialize-Subscription -Force
     
+    # Logon to Azure AD
     try{
         Add-Type -AssemblyName Microsoft.Open.AzureAD16.Graph.Client
         # Logon to Azure AD with values from config file
         Write-Information 'Logon to Azure Active Directory...'
         $currentAzureContext = Get-AzContext
-        Write-Information "Logon to Azure AD with values from config file: $configurationFile"
+        Write-Information "Logon to Azure AD"
         $tenantId = $currentAzureContext.Tenant.Id
         $accountId = $currentAzureContext.Account.Id
         Connect-AzureAD -TenantId $tenantId -AccountId $accountId
@@ -256,9 +247,23 @@
     $firstRunCheck = $true
   }
   
+  Set-Location -Path "$rootAzuredeploy"
 
+  # update orgTags in yml and json files.
+  Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
+  If ($orgTagDefault -ne $orgTag){
+    Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "json"
+    Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "yml"
+    Update-StringInFile -searchStr $orgTagDefault -replaceStr $orgTag -rootDirectory $rootAzuredeploy -fileExtension "psm1"
+  }
+  else {
+    Write-Information "OrgTag are the same $orgTagDefault to $orgTag - no changes needed."
+  }
+
+ 
   Set-Location -Path "$psscriptsRoot"  
-      
+  $subscriptionId = Get-SubscriptionId
+       
   # Start Deployment of Azure Assets
   Write-Information 'Starting deployment of Azure Assets'
   
@@ -266,14 +271,22 @@
   if($azParameterFiles -or $azAll){
     Write-Information '  Starting deployment of Azure ARM Parameter Files...'
     Set-Location -Path "$psAzureDirectory"
-    .\arm\create-arm-template-parameter-files.ps1 -adapCMDB "$adapCMDB" -paramDirectory "$armTemplatesDirectory\parameters"
+    .\arm\create-arm-template-parameter-files.ps1 -adapCMDB "$adapCMDB" -paramDirectory "$armTemplatesDirectory\parameters" -env $envTag
+  }
+  else
+  {
+    Write-Information '  Creation of Azure ARM Template Files is disabled.'
+  }
+  
+      # Create Markdown Files
+  if($azMdFiles -or $azAll){
     Set-Location -Path "$psAzureDirectory"
     Write-Information '  updating arm markdown docs...'
     .\arm\create-adap-platform-docs.ps1 
   }
   else
   {
-    Write-Information '  Creation of Azure ARM Template Files is disabled.'
+    Write-Information '  Creation of Azure Markdown Files is disabled.'
   }
   
   # Deploy Azure Active Directory Users
@@ -334,14 +347,14 @@
   if (($azAll -or $azInitiatives) -and $azBlueprints -or $azAll){
     # need to sleep for 5 minutes to allow inititives to flush cache
     Write-Information '  Need to sleep for 5 minutes to allow Policy Initiatives to flush cache'
-    Start-Countdown -Seconds 300 -Message "    Need to sleep for 5 minutes to allow Policy Initiatives to flush cache"
+    #Start-Countdown -Seconds 300 -Message "    Need to sleep for 5 minutes to allow Policy Initiatives to flush cache"
   }
 
   if($azBlueprints -or $azAll){
     Write-Information '  Starting deployment of Azure Blueprints...'
     Update-StringInFile -searchStr $subscriptionIdZero -replaceStr $subscriptionId -rootDirectory $armBluePrintDirectory -fileExtension "json"
     Set-Location -Path "$psAzureDirectory"
-    .\blueprint\deploy-azure-blueprint-definitions.ps1 -adapCMDB "$adapCMDB" -rootDirectory "$armBluePrintDirectory" -action $deployAction -subscriptionId $subscriptionId -location $location -logAnalytics $logAnalytics -env $env -orgTag $orgTag -suffix $suffix -removeRG:$removeRG -testRG $testRG -smokeRG $smokeRG -mgmtRG $mgmtRG -networkRG $networkRG -sharedRG $sharedRG -adapRG $adapRG -onpremRG $onpremRG
+    .\blueprint\deploy-azure-blueprint-definitions.ps1 -adapCMDB "$adapCMDB" -rootDirectory "$armBluePrintDirectory" -action $deployAction -subscriptionId $subscriptionId -location $location -logAnalytics $logAnalytics -env $envTag -orgTag $orgTag -suffix $suffix -removeRG:$removeRG -testRG $testRG -smokeRG $smokeRG -mgmtRG $mgmtRG -networkRG $networkRG -sharedRG $sharedRG -adapRG $adapRG -onpremRG $onpremRG
     Update-StringInFile -searchStr $subscriptionId -replaceStr $subscriptionIdZero -rootDirectory $armBluePrintDirectory -fileExtension "json"
   }
   else
@@ -352,14 +365,14 @@
   if ($azBlueprints -or $azAll){
     # need to sleep for 10 minutes to allow blueprint deployment  to complete
     Write-Information '  Need to sleep for 10 minutes to allow blueprint deployment to complete.'
-    Start-Countdown -Seconds 600 -Message "Waiting 10 minutes to allow blueprint deployment to complete."
+    #Start-Countdown -Seconds 600 -Message "Waiting 10 minutes to allow blueprint deployment to complete."
   }
 
   # Deploy Azure Role Assignments
   if($azRoleAssignments -or $azAll){
     Write-Information '  Starting deployment of Azure Role Assignments'
     Set-Location -Path "$psAzureDirectory"
-    .\role\assign-azure-roles.ps1 -adapCMDB "$adapCMDB" -env $env -action $deployAction -subscriptionId $subscriptionId
+    .\role\assign-azure-roles.ps1 -adapCMDB "$adapCMDB" -env $envTag -action $deployAction -subscriptionId $subscriptionId
   }
   else
   {

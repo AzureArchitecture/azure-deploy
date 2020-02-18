@@ -1,0 +1,51 @@
+{
+    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "Owner":  {
+                                     "value":  "owner@company.org"
+                                 },
+                       "StartDate":  {
+                                         "value":  "1-1-2020"
+                                     },
+                       "ApplicationName":  {
+                                               "value":  "ADAP"
+                                           },
+                       "Approver":  {
+                                        "value":  "approver@company.org"
+                                    },
+                       "logicAppName":  {
+                                            "value":  "log-yazy-adap-dev-eus-01"
+                                        },
+                       "ServiceClass":  {
+                                            "value":  "Gold"
+                                        },
+                       "EndDate":  {
+                                       "value":  "12-31-9999"
+                                   },
+                       "DR":  {
+                                  "value":  "Mission-Critical"
+                              },
+                       "apiVersion":  {
+                                          "value":  "2017-07-01"
+                                      },
+                       "CostCenter":  {
+                                          "value":  "8675-309"
+                                      },
+                       "BusinessUnit":  {
+                                            "value":  "CORP"
+                                        },
+                       "ResourceGroupName":  {
+                                                 "value":  "rg-yazy-adap-dev-eus"
+                                             },
+                       "Env":  {
+                                   "value":  "dev"
+                               },
+                       "Requester":  {
+                                         "value":  "requester@company.org"
+                                     },
+                       "BudgetAmount":  {
+                                            "value":  "$200-Month"
+                                        }
+                   }
+}

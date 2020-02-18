@@ -53,7 +53,7 @@
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Resource group the App Service Environment belongs to - only rexazxred if aseHostingEnvironmentName specified"
+                "description": "Resource group the App Service Environment belongs to - only reyazyred if aseHostingEnvironmentName specified"
             }
         }
     },

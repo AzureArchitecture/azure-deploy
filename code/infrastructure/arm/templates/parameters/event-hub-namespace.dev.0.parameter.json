@@ -1,0 +1,69 @@
+{
+    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "SkuName":  {
+                                       "value":  "Basic"
+                                   },
+                       "StartDate":  {
+                                         "value":  "1-1-2020"
+                                     },
+                       "ApplicationName":  {
+                                               "value":  "ADAP"
+                                           },
+                       "EndDate":  {
+                                       "value":  "12-31-9999"
+                                   },
+                       "Requester":  {
+                                         "value":  "requester@company.org"
+                                     },
+                       "ResourceGroupName":  {
+                                                 "value":  "rg-yazy-adap-dev-eus"
+                                             },
+                       "ServiceClass":  {
+                                            "value":  "Gold"
+                                        },
+                       "Approver":  {
+                                        "value":  "approver@company.org"
+                                    },
+                       "zoneRedundant":  {
+                                             "value":  "false"
+                                         },
+                       "isAutoInflateEnabled":  {
+                                                    "value":  "true"
+                                                },
+                       "DR":  {
+                                  "value":  "Mission-Critical"
+                              },
+                       "SkuTier":  {
+                                       "value":  "Basic"
+                                   },
+                       "Env":  {
+                                   "value":  "dev"
+                               },
+                       "CostCenter":  {
+                                          "value":  "8675-309"
+                                      },
+                       "Owner":  {
+                                     "value":  "owner@company.org"
+                                 },
+                       "BusinessUnit":  {
+                                            "value":  "CORP"
+                                        },
+                       "EventHubNamespaceName":  {
+                                                     "value":  "ehns-yazy-adap-dev-eus"
+                                                 },
+                       "SkuCapacity":  {
+                                           "value":  "1"
+                                       },
+                       "maximumThroughputUnits":  {
+                                                      "value":  "6"
+                                                  },
+                       "LocationKey":  {
+                                           "value":  "eastus"
+                                       },
+                       "BudgetAmount":  {
+                                            "value":  "$200-Month"
+                                        }
+                   }
+}

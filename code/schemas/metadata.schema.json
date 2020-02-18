@@ -33,7 +33,7 @@
     "type": {
       "type": "string",
       "enum": [
-        "xazxckStart",
+        "yazyckStart",
         "Application",
         "ManagedApplication",
         "PolicyDefinition",
@@ -90,7 +90,7 @@
     "minLength": 10,
     "maxLength": 1000
   },
-  "rexazxred": [
+  "reyazyred": [
     "$schema",
     "itemDisplayName",
     "description",

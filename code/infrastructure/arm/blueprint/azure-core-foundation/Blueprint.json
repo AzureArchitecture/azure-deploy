@@ -10,7 +10,7 @@
           "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
           "description": "Organization Tag"
         },
-        "defaultValue": "xazx"
+        "defaultValue": "yazy"
       },
       "suffix": {
         "type": "string",
@@ -85,7 +85,7 @@
         "type": "string",
         "metadata": {
           "displayName": "accessTier (Deploy ADAP Resource Group Storage Account)",
-          "description": "This setting is rexazxred if using BlobStorage as the storageKind, otherwise can be left blank"
+          "description": "This setting is reyazyred if using BlobStorage as the storageKind, otherwise can be left blank"
         },
         "defaultValue": "Hot",
         "allowedValues": [
@@ -118,14 +118,14 @@
         ]
       },
       "logAnalyticsResourceGroup": {
-        "defaultValue": "rg-xazx-shared-dev-eus",
+        "defaultValue": "rg-yazy-shared-dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Resource Group Name"
         }
       },
       "logAnalytics": {
-        "defaultValue": "la-xazx-dev-eus",
+        "defaultValue": "la-yazy-dev-eus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Name"
@@ -186,15 +186,7 @@
           "displayName": "Environment Tag",
           "description": "Select the Azure environment tag: smoke, prod, uat, sandbox, dev, lab"
         },
-        "defaultValue": "dev",
-        "allowedValues": [
-          "smoke",
-          "prod",
-          "uat",
-          "sandbox",
-          "dev",
-          "lab"
-        ]
+        "defaultValue": "dev"
       },
       "Owner": {
         "defaultValue": "owner@company.org",
@@ -313,7 +305,7 @@
           "displayName": "SHARED-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-shared-dev-eus"
+        "defaultValue": "rg-yazy-shared-dev-eus"
       },
       "adapRG": {
         "type": "string",
@@ -322,7 +314,7 @@
           "displayName": "ADAP-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-adap-dev-eus"
+        "defaultValue": "rg-yazy-adap-dev-eus"
       },
       "mgmtRG": {
         "type": "string",
@@ -331,7 +323,7 @@
           "displayName": "ADAP-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-mgmt-dev-eus"
+        "defaultValue": "rg-yazy-mgmt-dev-eus"
       },
       "networkRG": {
         "type": "string",
@@ -340,7 +332,7 @@
           "displayName": "NETWORK-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-network-dev-eus"
+        "defaultValue": "rg-yazy-network-dev-eus"
       },
       "onpremRG": {
         "type": "string",
@@ -349,7 +341,7 @@
           "displayName": "ONPREM-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-onprem-dev-eus"
+        "defaultValue": "rg-yazy-onprem-dev-eus"
       },
       "smokeRG": {
         "type": "string",
@@ -358,7 +350,7 @@
           "displayName": "SMOKE-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-smoke-dev-eus"
+        "defaultValue": "rg-yazy-smoke-dev-eus"
       },
       "testRG": {
         "type": "string",
@@ -367,7 +359,7 @@
           "displayName": "TEST-RG",
           "type": "string"
         },
-        "defaultValue": "rg-xazx-test-dev-eus"
+        "defaultValue": "rg-yazy-test-dev-eus"
       }
     },
     "resourceGroups": {
@@ -381,7 +373,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -404,7 +396,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -427,7 +419,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -450,7 +442,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -473,7 +465,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -496,7 +488,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -519,7 +511,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",

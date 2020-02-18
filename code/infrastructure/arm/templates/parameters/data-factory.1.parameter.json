@@ -1,48 +1,48 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "StartDate":  {
-                                         "value":  "1-1-2020"
-                                     },
-                       "ApplicationName":  {
-                                               "value":  "ADAP"
-                                           },
-                       "DataFactoryName":  {
-                                               "value":  "dfa-xazx-adap-dev-eus-02"
-                                           },
-                       "ServiceClass":  {
-                                            "value":  "Gold"
-                                        },
-                       "Approver":  {
-                                        "value":  "approver@company.org"
-                                    },
-                       "EndDate":  {
-                                       "value":  "12-31-9999"
-                                   },
-                       "DR":  {
-                                  "value":  "Mission-Critical"
-                              },
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
-                       "CostCenter":  {
-                                          "value":  "8675-309"
-                                      },
-                       "BusinessUnit":  {
-                                            "value":  "CORP"
-                                        },
-                       "ResourceGroupName":  {
-                                                 "value":  "rg-xazx-adap-dev-eus"
-                                             },
-                       "Env":  {
-                                   "value":  "dev"
-                               },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
-                       "BudgetAmount":  {
-                                            "value":  "$200-Month"
-                                        }
-                   }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "DataFactoryName": {
+      "value": "dfa-yazy-adap-dev-eus-02"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ResourceGroupName": {
+      "value": "rg-yazy-adap-dev-eus"
+    },
+    "Env": {
+      "value": "dev"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    }
+  }
 }

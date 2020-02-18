@@ -29,10 +29,8 @@ param(
 
 ## Process Worksheet
 # Load list of Users from Worksheet
-$cmdbExcel = Open-Excel
-$wb = Get-Workbook -ObjExcel $cmdbExcel -Path "$adapCMDB"
-$ws = Get-Worksheet -Workbook $wb -SheetName "ADUsers"
-$ListofUsers = Get-WorksheetData -Worksheet $ws
+$e = Open-ExcelPackage "$adapCMDB"
+$ListofUsers = Import-Excel -ExcelPackage $e -WorksheetName "ADUsers"
 
 foreach ($U in $ListofUsers)
 {
@@ -77,9 +75,9 @@ foreach ($U in $ListofUsers)
     catch
     {
       write-host -foreground RED  "    Error Azure AD User: $($UserPrincipalName)" 
-      Close-Excel -ObjExcel $cmdbExcel
+      Close-ExcelPackage $e -NoSave
     }
   }
 }
 
-Close-Excel -ObjExcel $cmdbExcel
+Close-ExcelPackage $e -NoSave

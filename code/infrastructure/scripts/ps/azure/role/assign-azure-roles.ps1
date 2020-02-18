@@ -25,7 +25,6 @@ param(
     [Parameter(Mandatory=$true,HelpMessage='Action to take.')]
     [ValidateSet("create","purge")]$action= "create",
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [validateset("smoke","smoke2","prod","uat","sandbox","dev","lab")]
     [string]$env = "dev",
     [Parameter(Mandatory=$true,HelpMessage='SubscriptionId for Scope.')]
     [string]$subscriptionId
@@ -62,10 +61,8 @@ if ($action -eq "purge")
 
 ## Process Worksheet
 # Load list of Groups from Worksheet
-$cmdbExcel = Open-Excel
-$wb = Get-Workbook -ObjExcel $cmdbExcel -Path "$adapCMDB"
-$ws = Get-Worksheet -Workbook $wb -SheetName "RoleAssignments"
-$ListofRoleAssignments = Get-WorksheetData -Worksheet $ws
+$e = Open-ExcelPackage "$adapCMDB"
+$ListofRoleAssignments = Import-Excel -ExcelPackage $e -WorksheetName "RoleAssignments"
 
 foreach ($U in $ListofRoleAssignments)
 {
@@ -115,3 +112,4 @@ foreach ($U in $ListofRoleAssignments)
     write-host -foreground RED  "    Error Setting Azure Role Assignment (RBAC) - ADGroup: $($ADGroupName) Role: $($AzureRole) Scope: $($Scope) SubscriptionId: $($subscriptionId) Resource Group: $($ResourceGroup)"
   }
 }
+Close-ExcelPackage $e -NoSave

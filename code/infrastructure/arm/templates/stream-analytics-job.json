@@ -3,14 +3,14 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-xazx-adap-dev-eus",
+      "defaultValue": "rg-yazy-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "streamAnalyticsName": {
-      "defaultValue": "asaj-xazx-adap-dev-eus-01",
+      "defaultValue": "asaj-yazy-adap-dev-eus-01",
       "type": "string",
       "metadata": {
         "description": "The name of the Stream Analytics Job."
@@ -113,7 +113,7 @@
         "Display Name": "stream analytics job: [parameters('streamAnalyticsName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",

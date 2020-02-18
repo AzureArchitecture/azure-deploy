@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.1",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-xazx-adap-dev-eus",
+      "defaultValue": "rg-yazy-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -28,14 +28,14 @@
       }
     },
     "virtualNetworkResourceGroupName": {
-      "defaultValue": "rg-xazx-network-dev-eus",
+      "defaultValue": "rg-yazy-network-dev-eus",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network Resource Group name."
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet-xazx-dev",
+      "defaultValue": "vnet-yazy-dev",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network name."
@@ -150,7 +150,7 @@
         "Display Name": "sql managed instance: [parameters('managedInstanceName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",

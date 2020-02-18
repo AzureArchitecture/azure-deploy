@@ -3,28 +3,28 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "SharedResourceGroupName": {
-      "defaultValue": "rg-xazx-shared-dev-eus",
+      "defaultValue": "rg-yazy-shared-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "NetworkResourceGroupName": {
-      "defaultValue": "rg-xazx-network-dev-eus",
+      "defaultValue": "rg-yazy-network-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet-xazx-dev",
+      "defaultValue": "vnet-yazy-dev",
       "type": "string",
       "metadata": {
         "description": "The name of the virtual network for the Bastion Host."
       }
     },
     "bastionHostName": {
-      "defaultValue": "bast-xazx-shared-dev-eus",
+      "defaultValue": "bast-yazy-shared-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Bastion Host."
@@ -144,7 +144,7 @@
         "Display Name": "bastion host: [parameters('bastionHostName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",
@@ -183,7 +183,7 @@
         "Display Name": "bastion host ip address: [parameters('publicIpAddressName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget rexazxred-approved": "[parameters('BudgetAmount')]",
+        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",

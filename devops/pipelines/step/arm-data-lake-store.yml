@@ -1,0 +1,21 @@
+parameters:
+  armTemplateFile: ''
+  armParameterTemplateFile: ''
+  location: ''
+  ev: ''
+  AzureSubscription: ''
+  resourceGroup: ''
+
+steps:
+- task: AzureResourceGroupDeployment@2
+  displayName: 'deploy-data-lake'
+  inputs:
+    AzureSubscription: ${{ parameters.AzureSubscription }}
+    resourceGroupName: ${{ parameters.resourceGroup }}
+    location: ${{ parameters.location }}
+    csmFile: '${{ parameters.armTemplateFile }}'
+    csmParametersFile: '${{ parameters.armParameterTemplateFile }}'
+    overrideParameters: '-ResourceGroupName ${{ parameters.resourceGroup }} -Env ${{ parameters.ev }}'
+    deploymentName: 'deployment-data-lake'
+    deploymentOutputs: 'armOutput'
+  condition: and(succeeded(), eq(variables['data-lake-flag'], '1'))

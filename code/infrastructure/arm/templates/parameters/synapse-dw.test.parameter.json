@@ -30,10 +30,10 @@
       "value": "CORP"
     },
     "sqlServerName": {
-      "value": "sql-xazx-adap-tst-eus"
+      "value": "sql-yazy-adap-tst-eus"
     },
     "ResourceGroupName": {
-      "value": "rg-xazx-adap-tst-eus"
+      "value": "rg-yazy-adap-tst-eus"
     },
     "Env": {
       "value": "tst"
@@ -42,7 +42,7 @@
       "value": "requester@company.org"
     },
     "synapseDWName": {
-      "value": "syndwxazxadaptsteus"
+      "value": "syndwyazyadaptsteus"
     },
     "BudgetAmount": {
       "value": "$0-Month"

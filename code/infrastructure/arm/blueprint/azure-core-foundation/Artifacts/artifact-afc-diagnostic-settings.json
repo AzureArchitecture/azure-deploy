@@ -8,7 +8,7 @@
     "policyDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/afc-diagnostic-settings-initiative",
     "parameters": {
       "logAnalytics": {
-        "value": "la-xazx-dev-eus"
+        "value": "la-yazy-dev-eus"
       }
     }
   }

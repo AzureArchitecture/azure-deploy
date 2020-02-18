@@ -3,7 +3,7 @@
 #
 
 # A function to break out resources from an ARM template
-function GetTemplateResources {
+function Get-TemplateResources {
     param (
         [Parameter(Mandatory = $True)]
         [String]$Path
@@ -41,7 +41,7 @@ function GetTemplateParameter {
     }
 }
 # A function to get the parameter values from an ARM template
-function GetTemplateParameterValues {
+function Get-TemplateParameterValues {
     param (
         [Parameter(Mandatory = $True)]
         [String]$Path
@@ -59,7 +59,7 @@ function GetTemplateParameterValues {
 }
 
 # A function to import metadata
-function GetTemplateMetadata {
+function Get-TemplateMetadata {
     param (
         [Parameter(Mandatory = $True)]
         [String]$Path
@@ -73,11 +73,17 @@ function GetTemplateMetadata {
 
 # Description: A definition to generate markdown for an ARM template
 document 'arm-template' {
-    $metadata = GetTemplateMetadata -Path $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.metadata.json;
-    $parameters = GetTemplateParameter -Path $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.json;
-    $resources = GetTemplateResources -Path  $env:ARM_TEMPLATE_PATH/$env:ARM_TEMPLATE_CURRENT.json;
-    $testParameters = GetTemplateParameterValues -Path $env:ARM_TEMPLATE_PATH/parameters/$env:ARM_TEMPLATE_CURRENT.test.parameter.json;
-    $jsonParameters = Get-Content -Path $env:ARM_TEMPLATE_PATH/parameters/$env:ARM_TEMPLATE_CURRENT.test.parameter.json;
+    $metadata = Get-TemplateMetadata -Path $env:TEMPLATE_PATH/$env:TEMPLATE_CURRENT.metadata.json;
+    $parameters = GetTemplateParameter -Path $env:TEMPLATE_PATH/$env:TEMPLATE_CURRENT.json;
+    $resources = Get-TemplateResources -Path  $env:TEMPLATE_PATH/$env:TEMPLATE_CURRENT.json;
+    $testParameters = Get-TemplateParameterValues -Path $env:TEMPLATE_PATH/parameters/$env:TEMPLATE_CURRENT.test.parameter.json;
+    $jsonParameters = Get-Content -Path $env:TEMPLATE_PATH/parameters/$env:TEMPLATE_CURRENT.test.parameter.json;
+
+    # TOC
+    Section 'TOC' {
+      '[[_TOC_]]
+'
+    }
 
     # Set document title
     Title $metadata.itemDisplayName
@@ -92,9 +98,9 @@ document 'arm-template' {
     }
 
    Section 'File Details' {
-      'Resource File: [' + $env:ARM_TEMPLATE_CURRENT + '.json](' +  $env:ARM_TEMPLATE_PATH + '/' + $env:ARM_TEMPLATE_CURRENT+ '.json + )'
-      'Metadata File: [' + $env:ARM_TEMPLATE_CURRENT + '.metadata.json](' +  $env:ARM_TEMPLATE_PATH + '/' + $env:ARM_TEMPLATE_CURRENT+ '.metadata.json + )'
-      'Test Parameters File: [' + $env:ARM_TEMPLATE_CURRENT + '.test.parameter.json](' +  $env:ARM_TEMPLATE_PATH + '/' + $env:ARM_TEMPLATE_CURRENT+ '.test.parameter.json + )'
+      'Resource File: [' + $env:TEMPLATE_CURRENT + '.json](' +  $env:TEMPLATE_PATH + '/' + $env:TEMPLATE_CURRENT+ '.json + )'
+      'Metadata File: [' + $env:TEMPLATE_CURRENT + '.metadata.json](' +  $env:TEMPLATE_PATH + '/' + $env:TEMPLATE_CURRENT+ '.metadata.json + )'
+      'Parameters File: [' + $env:TEMPLATE_CURRENT + '.test.parameter.json](' +  $env:TEMPLATE_PATH + '/parameters/' + $env:TEMPLATE_CURRENT+ '.test.parameter.json + )'
     }
 
     # Add each parameter to a table

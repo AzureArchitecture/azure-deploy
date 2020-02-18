@@ -29,10 +29,8 @@ param(
 
 ## Process Worksheet
 # Load list of Groups from Worksheet
-$cmdbExcel = Open-Excel
-$wb = Get-Workbook -ObjExcel $cmdbExcel -Path "$adapCMDB"
-$ws = Get-Worksheet -Workbook $wb -SheetName "ADGroups"
-$ListofGroups = Get-WorksheetData -Worksheet $ws
+$e = Open-ExcelPackage "$adapCMDB"
+$listofGroups = Import-Excel -ExcelPackage $e -WorksheetName "ADGroups"
 
 foreach ($U in $ListofGroups)
 {
@@ -76,9 +74,9 @@ foreach ($U in $ListofGroups)
     catch
     {
       Write-Host -ForegroundColor RED    "    ERROR Azure AD Group: $($Groupname) "
-      Close-Excel -ObjExcel $cmdbExcel
+      Close-ExcelPackage $e -NoSave
     }
   }
 }
 
-Close-Excel -ObjExcel $cmdbExcel
+Close-ExcelPackage $e -NoSave

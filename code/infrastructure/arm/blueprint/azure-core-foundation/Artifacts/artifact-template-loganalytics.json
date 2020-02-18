@@ -103,15 +103,7 @@
             "displayName": "Environment Tag",
             "description": "Select the Azure environment tag: smoke, prod, uat, sandbox, dev, lab"
           },
-          "defaultValue": "dev",
-          "allowedValues": [
-            "smoke",
-            "prod",
-            "uat",
-            "sandbox",
-            "dev",
-            "lab"
-          ]
+          "defaultValue": "dev"
         },
         "Owner": {
           "defaultValue": "owner@company.org",
@@ -196,7 +188,7 @@
           "tags": {
             "Application name": "parameters('ApplicationName')",
             "Approver name": "parameters('Approver')",
-            "Budget rexazxred-approved": "parameters('BudgetAmount')",
+            "Budget reyazyred-approved": "parameters('BudgetAmount')",
             "Business unit": "parameters('BusinessUnit')",
             "Cost center": "parameters('CostCenter')",
             "Disaster recovery": "parameters('DR')",

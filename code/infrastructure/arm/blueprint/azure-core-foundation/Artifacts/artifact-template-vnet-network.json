@@ -14,7 +14,7 @@
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "xazx"
+          "defaultValue": "yazy"
         },
         "suffix": {
           "type": "string",
@@ -90,15 +90,7 @@
             "displayName": "Environment Tag",
             "description": "Select the Azure environment tag: smoke, prod, uat, sandbox, dev, lab"
           },
-          "defaultValue": "dev",
-          "allowedValues": [
-            "smoke",
-            "prod",
-            "uat",
-            "sandbox",
-            "dev",
-            "lab"
-          ]
+          "defaultValue": "dev"
         },
         "Owner": {
           "defaultValue": "owner@company.org",

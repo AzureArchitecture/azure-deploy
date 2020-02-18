@@ -83,7 +83,7 @@ This module provides a way to work with most of Azure DevOps from PowerShell.  I
 
 ## Examples
 ### Working With Libraries
-For some xazxck background, check out this blog article: http://itramblings.com/2019/03/managing-vsts-tfs-release-definition-variables-from-powershell/
+For some yazyck background, check out this blog article: http://itramblings.com/2019/03/managing-vsts-tfs-release-definition-variables-from-powershell/
 
 #### Import-AzDoVariableGroupVariables
 This script will do a bulk import from a CSV file into a specific Azure DevOps Variable group.  

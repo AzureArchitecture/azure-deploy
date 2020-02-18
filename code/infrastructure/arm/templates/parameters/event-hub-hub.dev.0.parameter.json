@@ -1,0 +1,57 @@
+{
+    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "partitionCount":  {
+                                              "value":  "10"
+                                          },
+                       "StartDate":  {
+                                         "value":  "1-1-2020"
+                                     },
+                       "ApplicationName":  {
+                                               "value":  "ADAP"
+                                           },
+                       "ResourceGroupName":  {
+                                                 "value":  "rg-yazy-adap-dev-eus"
+                                             },
+                       "ServiceClass":  {
+                                            "value":  "Gold"
+                                        },
+                       "Approver":  {
+                                        "value":  "approver@company.org"
+                                    },
+                       "EndDate":  {
+                                       "value":  "12-31-9999"
+                                   },
+                       "DR":  {
+                                  "value":  "Mission-Critical"
+                              },
+                       "EventHubName":  {
+                                            "value":  "eh-yazy-adap-dev-eus"
+                                        },
+                       "CostCenter":  {
+                                          "value":  "8675-309"
+                                      },
+                       "Owner":  {
+                                     "value":  "owner@company.org"
+                                 },
+                       "BusinessUnit":  {
+                                            "value":  "CORP"
+                                        },
+                       "EventHubNamespaceName":  {
+                                                     "value":  "ehns-yazy-adap-dev-eus"
+                                                 },
+                       "Env":  {
+                                   "value":  "dev"
+                               },
+                       "Requester":  {
+                                         "value":  "requester@company.org"
+                                     },
+                       "BudgetAmount":  {
+                                            "value":  "$200-Month"
+                                        },
+                       "messageRetentionInDays":  {
+                                                      "value":  "1"
+                                                  }
+                   }
+}

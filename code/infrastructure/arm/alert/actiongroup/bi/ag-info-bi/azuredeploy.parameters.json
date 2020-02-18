@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "emailAddress": {
-      "value": "bi-info@company.org"
+      "value": "az.ag.info.bi@company.org"
     },
     "actionGroupName": {
       "value": "ag-info-businessintelligence"
@@ -18,7 +18,7 @@
       "value": "9999999999"
     },
     "azAppPushId": {
-      "value": "bi-info@company.org"
+      "value": "az.ag.info.bi@company.org"
     }
   }
 }

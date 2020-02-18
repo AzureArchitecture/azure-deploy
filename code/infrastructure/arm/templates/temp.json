@@ -8,7 +8,7 @@
     },
     "resourcegroupName": {
       "type": "string",
-      "defaultValue": "rg-xazx-shared-dev-eus"
+      "defaultValue": "rg-yazy-shared-dev-eus"
     },
     "subscriptionId": {
       "type": "string",
@@ -16,7 +16,7 @@
     },
     "workspaceName": {
       "type": "string",
-      "defaultValue": "la-xazx-dev-eus"
+      "defaultValue": "la-yazy-dev-eus"
     },
     "solutionTypes": {
       "type": "array",
