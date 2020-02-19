@@ -3,16 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "bastionHostName": {
-      "value": "rg-yazy-shared-tst-eus"
+      "value": "rg-yazy-shared-tst-cus"
     },
     "SharedResourceGroupName": {
-      "value": "rg-yazy-shared-dev-eus"
+      "value": "rg-yazy-shared-dev-pcus"
     },
     "NetworkResourceGroupName": {
-      "value": "rg-yazy-network-dev-eus"
+      "value": "rg-yazy-network-dev-pcus"
     },
     "publicIpAddressName": {
-      "value": "bast-yazy-network-tst-eus-ip"
+      "value": "bast-yazy-network-tst-cus-ip"
     },
     "virtualNetworkName": {
       "value": "vnet-yazy-dev"

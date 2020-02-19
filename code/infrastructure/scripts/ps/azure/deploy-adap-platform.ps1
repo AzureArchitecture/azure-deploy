@@ -20,7 +20,7 @@
       .PARAMETER location (default centralus)
       location for Azure Blueprint deployment
 
-      .PARAMETER alertResourceGroup (default rg-yazy-shared-dev-eus)
+      .PARAMETER alertResourceGroup (default rg-yazy-shared-dev-cus)
       Resource group to deploy Azure Alerts to
 
       .PARAMETER action (default create)
@@ -51,7 +51,7 @@
     [string]$envTag="dev",
 
     # suffix
-    [string]$suffix="eus",
+    [string]$suffix="pcus",
 
     # deployAction
     [validateset('create','purge')]
@@ -64,7 +64,7 @@
     [Switch]$azParameterFiles=$false,
 
     # azMdFiles
-    [Switch]$azMdFiles=$true,
+    [Switch]$azMdFiles=$false,
 
     # azAll
     [Switch]$azAll=$false,
@@ -73,7 +73,7 @@
     [Switch]$adUsers=$false,
 
     # adGroups
-    [Switch]$adGroups=$false,
+    [Switch]$adGroups=$true,
 
     # azPolicies
     [Switch]$azPolicies=$false,
@@ -134,7 +134,7 @@
   )
 
   Set-Location -Path "$PSScriptRoot"
-  Clear-Host
+  #Clear-Host
   # Set variables
   $VerbosePreference = $verbosePreferenceVariable
   $DebugPreference = $debugPreferenceVariable
@@ -175,6 +175,7 @@
       # Set variabls from config file
       $orgTagDefault = $config.orgTag
       $location = $config.primaryLocation
+      $locationName = $config.primaryLocationName
       $adOUPath = $config.adOUPath
       $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
       $tenantDomain = $configurationFile.tenentDomain
@@ -304,7 +305,7 @@
   if($adGroups -or $azAll){
     Write-Information '  Starting deployment of Azure Active Directory Groups'
     Set-Location -Path "$psAzureDirectory"
-    .\ad\deploy-azure-ad-groups.ps1 -adapCMDB "$adapCMDB" -action $deployAction
+    .\ad\deploy-azure-ad-groups.ps1 -adapCMDB "$adapCMDB" -action $deployAction -onPremAD
   }
   else
   {
@@ -351,10 +352,11 @@
   }
 
   if($azBlueprints -or $azAll){
+    Write-Host $locationName
     Write-Information '  Starting deployment of Azure Blueprints...'
     Update-StringInFile -searchStr $subscriptionIdZero -replaceStr $subscriptionId -rootDirectory $armBluePrintDirectory -fileExtension "json"
     Set-Location -Path "$psAzureDirectory"
-    .\blueprint\deploy-azure-blueprint-definitions.ps1 -adapCMDB "$adapCMDB" -rootDirectory "$armBluePrintDirectory" -action $deployAction -subscriptionId $subscriptionId -location $location -logAnalytics $logAnalytics -env $envTag -orgTag $orgTag -suffix $suffix -removeRG:$removeRG -testRG $testRG -smokeRG $smokeRG -mgmtRG $mgmtRG -networkRG $networkRG -sharedRG $sharedRG -adapRG $adapRG -onpremRG $onpremRG
+    .\blueprint\deploy-azure-blueprint-definitions.ps1 -adapCMDB "$adapCMDB" -rootDirectory "$armBluePrintDirectory" -action $deployAction -subscriptionId $subscriptionId -location "$locationName" -logAnalytics $logAnalytics -env $envTag -orgTag $orgTag -suffix $suffix -removeRG:$removeRG -testRG $testRG -smokeRG $smokeRG -mgmtRG $mgmtRG -networkRG $networkRG -sharedRG $sharedRG -adapRG $adapRG -onpremRG $onpremRG
     Update-StringInFile -searchStr $subscriptionId -replaceStr $subscriptionIdZero -rootDirectory $armBluePrintDirectory -fileExtension "json"
   }
   else

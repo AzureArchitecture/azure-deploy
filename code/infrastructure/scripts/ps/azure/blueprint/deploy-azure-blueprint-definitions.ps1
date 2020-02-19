@@ -124,7 +124,7 @@ if ($action -eq 'purge')
   }
 
 # parameters are listed in a single hashtable, with a key/value pair for each parameter
-$parameters = @{ Env=$env; orgTag=$orgTag; logAnalytics=$logAnalytics; suffix=$suffix; testRG=$testRG; smokeRG=$smokeRG; mgmtRG=$mgmtRG; networkRG=$networkRG; sharedRG=$sharedRG; adapRG=$adapRG ;onpremRG=$onpremRG}
+$parameters = @{ Env=$env; orgTag=$orgTag; logAnalytics=$logAnalytics; suffix=$suffix; testRG=$testRG; smokeRG=$smokeRG; mgmtRG=$mgmtRG; networkRG=$networkRG; sharedRG=$sharedRG; adapRG=$adapRG ;onpremRG=$onpremRG; location=$location; AzureRegion=$location}
 
 $BPFolders = Get-ChildItem $rootDirectory  
 foreach($BPFolder in $BPFolders) {

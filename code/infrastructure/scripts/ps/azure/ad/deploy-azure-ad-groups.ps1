@@ -20,7 +20,9 @@ param(
     [Parameter(Mandatory=$true,HelpMessage='Excel Spreadsheet with Configuration Information.')]
     [string]$adapCMDB = $adapCMDB,
     [Parameter(Mandatory=$true,HelpMessage='Action to take.')]
-    [ValidateSet("create","purge")]$action= "create"
+    [ValidateSet("create","purge")]$action= "create",
+    [switch]$onPremAD,
+    [string]$ouPath
 )
 
 # ====================
@@ -31,7 +33,7 @@ param(
 # Load list of Groups from Worksheet
 $e = Open-ExcelPackage "$adapCMDB"
 $listofGroups = Import-Excel -ExcelPackage $e -WorksheetName "ADGroups"
-
+Import-Module ActiveDirectory
 foreach ($U in $ListofGroups)
 {
   if ($U.GroupName)
@@ -44,14 +46,24 @@ foreach ($U in $ListofGroups)
     $mailNickName  = "NotSet"
 
     $ThisGroup = Get-AzureADGroup -SearchString $GroupName
+    
     try
     {
       if ($action -eq 'create')
       {
         if (-not $ThisGroup)
         {
-              Write-Information  "    Creating Azure AD Group $($Groupname)..."
+            
+            if($onPremAD){
+              
+              Write-Information  "    Creating OnPrem AD Group $($GroupName)..."
+              Get-ADGroup -Name $GroupName -GroupScope Global -GroupCategory Security -Description $GDescription -DisplayName $GDisplayName -Path $ouPath
+            }
+            else
+            {
+              Write-Information  "    Creating Azure AD Group $($GroupName)..."
               $ThisGroup = New-AzureADGroup -displayname  $GroupName -description $Gdescription -MailEnabled $GMailEnabled  -SecurityEnabled $GSecEnabled -mailnickname $mailNickName
+            }
         }
         else
         {
@@ -73,7 +85,7 @@ foreach ($U in $ListofGroups)
     }
     catch
     {
-      Write-Host -ForegroundColor RED    "    ERROR Azure AD Group: $($Groupname) "
+      Write-Host -ForegroundColor RED    "    ERROR AD Group: $($Groupname) "
       Close-ExcelPackage $e -NoSave
     }
   }

@@ -62,13 +62,13 @@ foreach($parentDir in Get-ChildItem -Directory)
   {
       try {
           $alertName = $childDir.Name + "-alert"
-           Write-Host get-AzScheduledQueryRule -ResourceGroupName $resourceGroupName -Name $alertName -ErrorAction SilentlyContinue
           $rule = get-AzScheduledQueryRule -ResourceGroupName $resourceGroupName -Name $alertName -ErrorAction SilentlyContinue
           if (!$rule){
             $templateFile = ('{0}\{1}\azuredeploy.json' -f $parentDir, $childDir)
             $paramFile = ('{0}\{1}\azuredeploy.parameters.json' -f $parentDir, $childDir)
             Write-Information  "    Creating Azure Alert:  $childDir"
-            New-AzResourceGroupDeployment -Name $childDir  -ResourceGroupName $resourceGroupName -TemplateFile $templateFile -TemplateParameterFile $paramFile
+            Write-Host New-AzResourceGroupDeployment -Name "$childDir" -ResourceGroupName "$resourceGroupName" -TemplateFile "$templateFile" -TemplateParameterFile "$paramFile"
+            New-AzResourceGroupDeployment -Name "$childDir" -ResourceGroupName "$resourceGroupName" -TemplateFile "$templateFile" -TemplateParameterFile "$paramFile"
             }
           else
           {

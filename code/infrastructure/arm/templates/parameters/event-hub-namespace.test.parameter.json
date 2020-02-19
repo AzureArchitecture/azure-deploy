@@ -26,9 +26,6 @@
     "Approver": {
       "value": "approver@company.org"
     },
-    "zoneRedundant": {
-      "value": false
-    },
     "DR": {
       "value": "Mission-Critical"
     },
@@ -48,7 +45,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-yazy-adap-tst-eus"
+      "value": "ehns-yazy-adap-tst"
     },
     "SkuCapacity": {
       "value": "1"

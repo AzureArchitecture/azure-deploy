@@ -2,23 +2,17 @@
     "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion":  "1.0.0.0",
     "parameters":  {
-                       "SkuName":  {
-                                       "value":  "Basic"
-                                   },
+                       "Owner":  {
+                                     "value":  "owner@company.org"
+                                 },
                        "StartDate":  {
                                          "value":  "1-1-2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
                                            },
-                       "EndDate":  {
-                                       "value":  "12-31-9999"
-                                   },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-prd-eus"
+                                                 "value":  "rg-yazy-adap-prd-pcus"
                                              },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -26,44 +20,38 @@
                        "Approver":  {
                                         "value":  "approver@company.org"
                                     },
-                       "zoneRedundant":  {
-                                             "value":  "false"
-                                         },
-                       "isAutoInflateEnabled":  {
-                                                    "value":  "true"
-                                                },
+                       "SkuName":  {
+                                       "value":  "Basic"
+                                   },
+                       "EndDate":  {
+                                       "value":  "12-31-9999"
+                                   },
                        "DR":  {
                                   "value":  "Mission-Critical"
                               },
-                       "SkuTier":  {
-                                       "value":  "Basic"
-                                   },
                        "Env":  {
                                    "value":  "prd"
                                },
                        "CostCenter":  {
                                           "value":  "8675-309"
                                       },
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
                        "BusinessUnit":  {
                                             "value":  "CORP"
                                         },
                        "EventHubNamespaceName":  {
-                                                     "value":  "ehns-yazy-adap-prd-eus"
+                                                     "value":  "ehns-yazy-adap-prd-pcus"
                                                  },
                        "SkuCapacity":  {
                                            "value":  "1"
                                        },
-                       "maximumThroughputUnits":  {
-                                                      "value":  "6"
-                                                  },
-                       "LocationKey":  {
-                                           "value":  "eastus"
-                                       },
+                       "Requester":  {
+                                         "value":  "requester@company.org"
+                                     },
                        "BudgetAmount":  {
                                             "value":  "$200-Month"
-                                        }
+                                        },
+                       "SkuTier":  {
+                                       "value":  "Basic"
+                                   }
                    }
 }

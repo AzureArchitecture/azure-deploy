@@ -15,7 +15,7 @@
                                         "value":  "approver@company.org"
                                     },
                        "logicAppName":  {
-                                            "value":  "log-yazy-adap-prd-eus-01"
+                                            "value":  "log-yazy-adap-prd-pcus-01"
                                         },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -36,7 +36,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-prd-eus"
+                                                 "value":  "rg-yazy-adap-prd-pcus"
                                              },
                        "Env":  {
                                    "value":  "prd"

@@ -9,10 +9,10 @@
   "summary": "Creates and deploys an Azure Event Hub.",
   "type": "SubscriptionDeployment",
   "EventHubNamespaceName": {
-    "value": "ehns-yazy-adap-test-eus"
+    "value": "ehns-yazy-adap-tst-cus"
   },
   "EventHubName": {
-    "value": "eh-yazy-adap-dev-eus"
+    "value": "eh-yazy-adap-dev-pcus"
   },
   "messageRetentionInDays": {
     "value": "1"

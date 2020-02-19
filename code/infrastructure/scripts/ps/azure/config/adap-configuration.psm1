@@ -36,9 +36,9 @@ function Get-Configuration
       # Do Not change Below
       # ########################################################
       azureEnvironment = "AzureCloud"
-      primaryLocation = "eastus"
-      primaryLocationName = "East US"
-      primaryLocationTag = "eus"
+      primaryLocation = "centralus"
+      primaryLocationName = "Central US"
+      primaryLocationTag = "cus"
       secondaryLocation = "eastus2"
       secondaryLocationName = "East US 2"
       secondaryLocationTag = "eus2"

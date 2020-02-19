@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-adap-dev-eus",
+      "defaultValue": "rg-yazy-adap-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -11,7 +11,7 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns-yazy-adap-test-eus",
+      "defaultValue": "ehns-yazy-adap-tst-cus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }
@@ -32,12 +32,6 @@
       "type": "String",
       "metadata": {
         "description": "The capacity of the Event Hub Namespace SKU."
-      }
-    },
-    "zoneRedundant": {
-      "type": "Bool",
-      "metadata": {
-        "description": "Is the Event Hub Namespace Zone Redundant?"
       }
     },
     "ApplicationName": {
@@ -140,7 +134,7 @@
         "Display Name": "event hub namespace: [parameters('EventHubNamespaceName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+        "Budget required-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",
@@ -152,7 +146,7 @@
         "Start date of the project": "[parameters('StartDate')]"
       },
       "properties": {
-        "zoneRedundant": "[parameters('zoneRedundant')]"
+        "zoneRedundant": false
       }
     }
   ],

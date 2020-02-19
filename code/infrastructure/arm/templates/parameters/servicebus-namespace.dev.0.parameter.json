@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-yazy-adap-dev-eus"
+                                                       "value":  "sb-yazy-adap-dev-pcus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -36,7 +36,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-pcus"
                                              },
                        "Env":  {
                                    "value":  "dev"

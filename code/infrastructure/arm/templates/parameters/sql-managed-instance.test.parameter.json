@@ -15,7 +15,7 @@
       "value": "ADAP"
     },
     "managedInstanceName": {
-      "value": "sqlmi-yazy-adap-dev-eus-01"
+      "value": "sqlmi-yazy-adap-tst"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -42,10 +42,10 @@
       "value": "CORP"
     },
     "virtualNetworkResourceGroupName": {
-      "value": "rg-yazy-network-dev-eus"
+      "value": "rg-yazy-network-dev-pcus"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-dev-eus"
+      "value": "rg-smoke"
     },
     "Env": {
       "value": "dev"

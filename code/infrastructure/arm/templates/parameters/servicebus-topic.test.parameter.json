@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-yazy-adap-tst-eus"
+      "value": "sb-yazy-adap-tst"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -30,7 +30,7 @@
       "value": "Mission-Critical"
     },
     "Env": {
-      "value": "dev"
+      "value": "tst"
     },
     "CostCenter": {
       "value": "8675-309"

@@ -9,16 +9,14 @@
         "metadata": {
           "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
           "description": "Organization Tag"
-        },
-        "defaultValue": "yazy"
+        }
       },
       "suffix": {
         "type": "string",
         "metadata": {
           "displayName": "Enter a string to be added to the end of all resources. can also be empty string.",
           "description": "Suffix to add to labels."
-        },
-        "defaultValue": "eus"
+        }
       },
       "LogAnalytics_DataRetention": {
         "type": "int",
@@ -41,32 +39,7 @@
         "metadata": {
           "displayName": "Azure Region used when establishing the Log Analytics workspace",
           "description": "LogAnalytics_Location"
-        },
-        "defaultValue": "East US",
-        "allowedValues": [
-          "centralus",
-          "eastus",
-          "eastus2",
-          "northcentralus",
-          "southcentralus",
-          "westcentralus",
-          "westus",
-          "westus2"
-        ]
-      },
-      "LogAnalytics_Location": {
-        "type": "string",
-        "metadata": {
-          "displayName": "Azure Region used when establishing the Log Analytics workspace",
-          "description": "LogAnalytics_Location"
-        },
-        "defaultValue": "East US",
-        "allowedValues": [
-          "East US",
-          "East US 2",
-          "West US",
-          "West US 2"
-        ]
+        }
       },
       "adapRgStorageAccount_accountType": {
         "type": "string",
@@ -85,7 +58,7 @@
         "type": "string",
         "metadata": {
           "displayName": "accessTier (Deploy ADAP Resource Group Storage Account)",
-          "description": "This setting is reyazyred if using BlobStorage as the storageKind, otherwise can be left blank"
+          "description": "This setting is required if using BlobStorage as the storageKind, otherwise can be left blank"
         },
         "defaultValue": "Hot",
         "allowedValues": [
@@ -118,14 +91,14 @@
         ]
       },
       "logAnalyticsResourceGroup": {
-        "defaultValue": "rg-yazy-shared-dev-eus",
+        "defaultValue": "rg-yazy-shared-dev-pcus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Resource Group Name"
         }
       },
       "logAnalytics": {
-        "defaultValue": "la-yazy-dev-eus",
+        "defaultValue": "la-yazy-dev-pcus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Name"
@@ -185,8 +158,7 @@
         "metadata": {
           "displayName": "Environment Tag",
           "description": "Select the Azure environment tag: smoke, prod, uat, sandbox, dev, lab"
-        },
-        "defaultValue": "dev"
+        }
       },
       "Owner": {
         "defaultValue": "owner@company.org",
@@ -222,8 +194,7 @@
           "description": "Select the Azure Region to deploy the Resources",
           "displayName": "Azure Region",
           "strongType": "location"
-        },
-        "defaultValue": "eastus"
+        }
       },
       "vnet_vnet-address-prefix": {
         "type": "string",
@@ -284,19 +255,19 @@
       },
       "vnet_logs-retention-in-days": {
         "type": "int",
+        "defaultValue": 30,
         "metadata": {
           "displayName": "Log retention in days",
           "description": "Specifies the number of days that logs will be kept for; a value of 0 will retain data indefinitely"
-        },
-        "defaultValue": 365
+        }
       },
       "nsg_logs-retention-in-days": {
         "type": "int",
+        "defaultValue": 30,
         "metadata": {
           "displayName": "Log retention in days",
           "description": "Specifies the number of days that logs will be kept for; a value of 0 will retain data indefinitely"
-        },
-        "defaultValue": 365
+        }
       },
       "sharedRG": {
         "type": "string",
@@ -304,8 +275,7 @@
           "description": "The name of the Shared Services Resource Group",
           "displayName": "SHARED-RG",
           "type": "string"
-        },
-        "defaultValue": "rg-yazy-shared-dev-eus"
+        }
       },
       "adapRG": {
         "type": "string",
@@ -313,8 +283,7 @@
           "description": "The name of the Data Services Resource Group",
           "displayName": "ADAP-RG",
           "type": "string"
-        },
-        "defaultValue": "rg-yazy-adap-dev-eus"
+        }
       },
       "mgmtRG": {
         "type": "string",
@@ -322,8 +291,7 @@
           "description": "The name of the Management Resource Group",
           "displayName": "ADAP-RG",
           "type": "string"
-        },
-        "defaultValue": "rg-yazy-mgmt-dev-eus"
+        }
       },
       "networkRG": {
         "type": "string",
@@ -331,8 +299,7 @@
           "description": "The name of the Network Resource Group",
           "displayName": "NETWORK-RG",
           "type": "string"
-        },
-        "defaultValue": "rg-yazy-network-dev-eus"
+        }
       },
       "onpremRG": {
         "type": "string",
@@ -340,8 +307,7 @@
           "description": "The name of the On-Premise Resource Group",
           "displayName": "ONPREM-RG",
           "type": "string"
-        },
-        "defaultValue": "rg-yazy-onprem-dev-eus"
+        }
       },
       "smokeRG": {
         "type": "string",
@@ -349,8 +315,7 @@
           "description": "The name of the Smoke Test Resource Group",
           "displayName": "SMOKE-RG",
           "type": "string"
-        },
-        "defaultValue": "rg-yazy-smoke-dev-eus"
+        }
       },
       "testRG": {
         "type": "string",
@@ -358,8 +323,7 @@
           "description": "The name of the Test Resource Group",
           "displayName": "TEST-RG",
           "type": "string"
-        },
-        "defaultValue": "rg-yazy-test-dev-eus"
+        }
       }
     },
     "resourceGroups": {
@@ -373,7 +337,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -396,7 +360,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -419,7 +383,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -442,7 +406,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -465,7 +429,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -488,7 +452,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",
@@ -511,7 +475,7 @@
         "tags": {
           "Application name": "[parameters('ApplicationName')]",
           "Approver name": "[parameters('Approver')]",
-          "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+          "Budget required-approved": "[parameters('BudgetAmount')]",
           "Business unit": "[parameters('BusinessUnit')]",
           "Cost center": "[parameters('CostCenter')]",
           "Disaster recovery": "[parameters('DR')]",

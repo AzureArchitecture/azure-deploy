@@ -15,7 +15,7 @@
       "value": "approver@company.org"
     },
     "KeyVaultName": {
-      "value": "kv-yazy-mgmt-dev-eus-02"
+      "value": "kv-yazy-mgmt-dev-pcus-02"
     },
     "ServiceClass": {
       "value": "Gold"
@@ -33,7 +33,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-mgmt-dev-eus"
+      "value": "rg-yazy-mgmt-dev-pcus"
     },
     "Env": {
       "value": "dev"

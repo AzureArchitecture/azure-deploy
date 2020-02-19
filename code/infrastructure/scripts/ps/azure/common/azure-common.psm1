@@ -332,7 +332,7 @@ function Remove-ResourceGroup
 function Get-PSModules
 {     <#
       .SYNOPSIS
-        Checks for reyazyred PS Modules
+        Checks for required PS Modules
 
       .EXAMPLE
 
@@ -956,8 +956,8 @@ function Connect-Azure() {
 }
 ########################################################################################################################
 function New-ResourceGroup([string]$ResourceGroupName, [string]$Location) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
-  # Reyazyred Argument $2 = LOCATION
+  # required Argument $1 = RESOURCE_GROUP
+  # required Argument $2 = LOCATION
 
   Get-AzResourceGroup -Name $ResourceGroupName -ev notPresent -ea 0 | Out-null
 
@@ -971,9 +971,9 @@ function New-ResourceGroup([string]$ResourceGroupName, [string]$Location) {
 }
 ########################################################################################################################
 function Add-Secret ([string]$ResourceGroupName, [string]$SecretName, [securestring]$SecretValue) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
-  # Reyazyred Argument $2 = SECRET_NAME
-  # Reyazyred Argument $3 = RESOURCE_VALUE
+  # required Argument $1 = RESOURCE_GROUP
+  # required Argument $2 = SECRET_NAME
+  # required Argument $3 = RESOURCE_VALUE
 
   $KeyVault = Get-AzKeyVault -ResourceGroupName $ResourceGroupName
   if (!$KeyVault) {
@@ -986,65 +986,65 @@ function Add-Secret ([string]$ResourceGroupName, [string]$SecretName, [securestr
 }
 ########################################################################################################################
 function Get-StorageAccount([string]$ResourceGroupName) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
+  # required Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (get-AzStorageAccount -ResourceGroupName $ResourceGroupName).StorageAccountName
 }
 ########################################################################################################################
 function Get-LoadBalancer([string]$ResourceGroupName) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
+  # required Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzLoadBalancer -ResourceGroupName $ResourceGroupName).Name
 }
 ########################################################################################################################
 function Get-VirtualNetwork([string]$ResourceGroupName) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
+  # required Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzVirtualNetwork -ResourceGroupName $ResourceGroupName).Name
 }
 ########################################################################################################################
 function Get-SubNet([string]$ResourceGroupName, [string]$VNetName, [int]$Index) {
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
-  if ( !$VNetName) { throw "VNetName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
+  if ( !$VNetName) { throw "VNetName required" }
 
   return (Get-AzVirtualNetwork -ResourceGroupName $ResourceGroupName -Name $VNetName).Subnets[$Index].Name
 }
 ########################################################################################################################
 function Get-AutomationAccount([string]$ResourceGroupName) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
+  # required Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzAutomationAccount -ResourceGroupName $ResourceGroupName).AutomationAccountName
 }
 ########################################################################################################################
 function Get-StorageAccountKey([string]$ResourceGroupName, [string]$StorageAccountName) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
-  # Reyazyred Argument $2 = STORAGE_ACCOUNT
+  # required Argument $1 = RESOURCE_GROUP
+  # required Argument $2 = STORAGE_ACCOUNT
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
-  if ( !$StorageAccountName) { throw "StorageAccountName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
+  if ( !$StorageAccountName) { throw "StorageAccountName required" }
 
   return (get-AzStorageAccountKey -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName).Value[0]
 }
 ########################################################################################################################
 function Get-KeyVault([string]$ResourceGroupName) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
+  # required Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzKeyVault -ResourceGroupName $ResourceGroupName).VaultName
 }
 ########################################################################################################################
 function New-Container ($ResourceGroupName, $ContainerName, $Access = "Off") {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
-  # Reyazyred Argument $2 = CONTAINER_NAME
+  # required Argument $1 = RESOURCE_GROUP
+  # required Argument $2 = CONTAINER_NAME
 
   # Get Storage Account
   $StorageAccount = get-AzStorageAccount -ResourceGroupName $ResourceGroupName
@@ -1235,9 +1235,9 @@ function Add-NodesViaFilter ($filter, $group, $dscAccount, $dscGroup, $dscConfig
 }
 ########################################################################################################################
 function Get-ADGroup([string]$GroupName) {
-  # Reyazyred Argument $1 = GROUPNAME
+  # required Argument $1 = GROUPNAME
 
-  if ( !$GroupName) { throw "GroupName Reyazyred" }
+  if ( !$GroupName) { throw "GroupName required" }
 
   $Group = Get-AzureADGroup -Filter "DisplayName eq '$GroupName'"
   if (!$Group) {
@@ -1251,10 +1251,10 @@ function Get-ADGroup([string]$GroupName) {
 }
 ########################################################################################################################
 function Get-ADuser([string]$Email) {
-  # Reyazyred Argument $1 = Email
+  # required Argument $1 = Email
 
   Add-Type -AssemblyName Microsoft.Open.AzureAD16.Graph.Client
-if (!$Email) { throw "Email Reyazyred" }
+if (!$Email) { throw "Email required" }
 
   $user = Get-AzureADUser -Filter "userPrincipalName eq '$Email'"
   if (!$User) {
@@ -1271,8 +1271,8 @@ if (!$Email) { throw "Email Reyazyred" }
 }
 ########################################################################################################################
 function Set-ADGroup($Email, $Group) {
-  if (!$Email) { throw "User Reyazyred" }
-  if (!$Group) { throw "User Reyazyred" }
+  if (!$Email) { throw "User required" }
+  if (!$Group) { throw "User required" }
 
   $User = GetADUser $Email
   $Group = GetADGroup $Group
@@ -1317,9 +1317,9 @@ function Get-PlainText() {
 }
 ########################################################################################################################
 function Get-VmssInstances([string]$ResourceGroupName) {
-  # Reyazyred Argument $1 = RESOURCE_GROUP
+  # required Argument $1 = RESOURCE_GROUP
 
-  if ( !$ResourceGroupName) { throw "ResourceGroupName Reyazyred" }
+  if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   $ServerNames = @()
   $VMScaleSets = Get-AzVmss -ResourceGroupName $ResourceGroupName
@@ -1836,7 +1836,7 @@ function Get-RoleScopes {
       This function will output the scopes (subscriptions) to a text file
 
       .Parameter Role
-      Reyazyred - name of the role you want to get the actions from
+      required - name of the role you want to get the actions from
 
       .Parameter scopesfile
       Optional - text file to output role actions too.  Def = Role_scopes.txt
@@ -1873,7 +1873,7 @@ function Get-RoleActions {
       edit and use the New-Role or Update-Role function to create or modify a role.
 
       .Parameter Role
-      Reyazyred - name of the role you want to get the actions from.
+      required - name of the role you want to get the actions from.
 
       .Parameter actionsfile
       Optional - text file to output role actions too.  Def = Role_actions.txt
@@ -1976,10 +1976,10 @@ function Export-SubscriptionBlueprints {
       This function will output the Azure Blueprints in a subscription to a folder and files.
 
       .Parameter $subscriptionId
-      Reyazyred - the Azure subscription to export the Blueprints from
+      required - the Azure subscription to export the Blueprints from
 
       .Parameter $exportPath
-      Reyazyred - The path to export the blueprints to.
+      required - The path to export the blueprints to.
 
   #>
   Param (
@@ -2008,10 +2008,10 @@ function Export-ManagementGroupBlueprints {
       This function will output the Azure Blueprints in a subscription to a folder and files.
 
       .Parameter $subscriptionId
-      Reyazyred - the Azure subscription to export the Blueprints from
+      required - the Azure subscription to export the Blueprints from
 
       .Parameter $exportPath
-      Reyazyred - The path to export the blueprints to.
+      required - The path to export the blueprints to.
 
   #>
   Param (
@@ -2035,10 +2035,10 @@ function Export-ManagementGroupBlueprints {
     Create a Blueprint name for assignments
 
     .Parameter $blueprintName
-    Reyazyred - Name of the blueprint
+    required - Name of the blueprint
 
     .Parameter $blueprintVersion
-    Reyazyred - Version of the blueprint
+    required - Version of the blueprint
 
 #>
 function New-BlueprintName(

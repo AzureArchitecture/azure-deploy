@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-yazy-adap-prd-eus"
+                                                       "value":  "sb-yazy-adap-prd-pcus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -33,10 +33,10 @@
                                             "value":  "CORP"
                                         },
                        "ServiceBusTopicName":  {
-                                                   "value":  "sbt-yazy-adap-prd-eus"
+                                                   "value":  "sbt-yazy-adap-prd-pcus"
                                                },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-prd-eus"
+                                                 "value":  "rg-yazy-adap-prd-pcus"
                                              },
                        "Rights":  {
                                       "value":  "Manage"
@@ -51,7 +51,7 @@
                                             "value":  "$200-Month"
                                         },
                        "ServiceBusTopicAuthRuleName":  {
-                                                           "value":  "sbtar-yazy-adap-prd-eus"
+                                                           "value":  "sbtar-yazy-adap-prd-pcus"
                                                        }
                    }
 }

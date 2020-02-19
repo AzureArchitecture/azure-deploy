@@ -30,10 +30,10 @@
                                             "value":  "CORP"
                                         },
                        "sqlServerName":  {
-                                             "value":  "sql-yazy-adap-prd-eus-01"
+                                             "value":  "sql-yazy-adap-prd-pcus-01"
                                          },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-prd-eus"
+                                                 "value":  "rg-yazy-adap-prd-pcus"
                                              },
                        "Env":  {
                                    "value":  "prd"
@@ -42,7 +42,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "synapseDWName":  {
-                                             "value":  "syndwyazyadapprdeus"
+                                             "value":  "syndwyazyadapprdcus"
                                          },
                        "BudgetAmount":  {
                                             "value":  "$0-Month"

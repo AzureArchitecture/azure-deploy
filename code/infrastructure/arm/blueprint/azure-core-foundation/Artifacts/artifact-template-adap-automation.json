@@ -33,7 +33,7 @@
             "displayName": "Enter a string to be added to the end of all resources. can also be empty string.",
             "description": "Suffix to add to labels."
           },
-          "defaultValue": "eus"
+          "defaultValue": "cus"
         },
         "ApplicationName": {
           "defaultValue": "MGMT",
@@ -134,7 +134,7 @@
             "Display Name": "azure automation account name: [variables('automationAccountName')]",
             "Application name": "[parameters('ApplicationName')]",
             "Approver name": "[parameters('Approver')]",
-            "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+            "Budget required-approved": "[parameters('BudgetAmount')]",
             "Business unit": "[parameters('BusinessUnit')]",
             "Cost center": "[parameters('CostCenter')]",
             "Disaster recovery": "[parameters('DR')]",

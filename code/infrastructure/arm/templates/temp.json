@@ -3,12 +3,11 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "type": "string",
-      "defaultValue": "East US"
+      "type": "string"
     },
     "resourcegroupName": {
       "type": "string",
-      "defaultValue": "rg-yazy-shared-dev-eus"
+      "defaultValue": "rg-yazy-shared-dev-pcus"
     },
     "subscriptionId": {
       "type": "string",
@@ -16,7 +15,7 @@
     },
     "workspaceName": {
       "type": "string",
-      "defaultValue": "la-yazy-dev-eus"
+      "defaultValue": "la-yazy-dev-pcus"
     },
     "solutionTypes": {
       "type": "array",

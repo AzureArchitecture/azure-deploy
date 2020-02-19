@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-yazy-adap-dev-eus"
+                                                       "value":  "sb-yazy-adap-dev-pcus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -39,10 +39,10 @@
                                             "value":  "CORP"
                                         },
                        "ServiceBusTopicName":  {
-                                                   "value":  "sbt-yazy-adap-dev-eus"
+                                                   "value":  "sbt-yazy-adap-dev-pcus"
                                                },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-pcus"
                                              },
                        "topicMaxSizeMb":  {
                                               "value":  "1024"

@@ -39,7 +39,7 @@
                                                   "value":  "stgyazyadapdeveus01"
                                               },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-pcus"
                                              },
                        "AccountType":  {
                                            "value":  "Standard_LRS"

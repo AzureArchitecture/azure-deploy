@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "DataFactoryName": {
-      "value": "adf-yazy-adap-tst-eus"
+      "value": "adf-yazy-adap-tst"
     },
     "StartDate": {
       "value": "1-1-2020"

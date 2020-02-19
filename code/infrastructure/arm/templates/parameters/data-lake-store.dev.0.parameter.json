@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-pcus"
                                              },
                        "StorageKind":  {
                                            "value":  "StorageV2"

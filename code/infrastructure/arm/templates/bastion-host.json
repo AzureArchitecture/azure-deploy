@@ -3,14 +3,14 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "SharedResourceGroupName": {
-      "defaultValue": "rg-yazy-shared-dev-eus",
+      "defaultValue": "rg-yazy-shared-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "NetworkResourceGroupName": {
-      "defaultValue": "rg-yazy-network-dev-eus",
+      "defaultValue": "rg-yazy-network-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -24,7 +24,7 @@
       }
     },
     "bastionHostName": {
-      "defaultValue": "bast-yazy-shared-dev-eus",
+      "defaultValue": "bast-yazy-shared-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Bastion Host."
@@ -144,7 +144,7 @@
         "Display Name": "bastion host: [parameters('bastionHostName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+        "Budget required-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",
@@ -183,7 +183,7 @@
         "Display Name": "bastion host ip address: [parameters('publicIpAddressName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+        "Budget required-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",

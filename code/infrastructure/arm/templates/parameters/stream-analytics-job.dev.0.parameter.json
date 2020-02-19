@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "streamAnalyticsName":  {
-                                                   "value":  "asaj-yazy-adap-dev-eus-01"
+                                                   "value":  "asaj-yazy-adap-dev-pcus-01"
                                                },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -33,7 +33,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-pcus"
                                              },
                        "Env":  {
                                    "value":  "dev"

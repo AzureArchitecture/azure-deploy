@@ -90,7 +90,7 @@
     "minLength": 10,
     "maxLength": 1000
   },
-  "reyazyred": [
+  "required": [
     "$schema",
     "itemDisplayName",
     "description",

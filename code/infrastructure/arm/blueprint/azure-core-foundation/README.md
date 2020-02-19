@@ -295,7 +295,7 @@ Now you should see a new blueprint definition in Azure. You can update the bluep
 That’s it!
 
 You might run into some issues. Here are some common ones:
-* **Missing a reyazyred property** – this will result in a 400 bad request. This could be a lot of things. Make sure your blueprint and artifacts have all reyazyred properties.
+* **Missing a required property** – this will result in a 400 bad request. This could be a lot of things. Make sure your blueprint and artifacts have all required properties.
 * **```parameters``` in an artifact are not found in the main blueprint file.** Make sure all parameter references are complete. If you are using a parameter in an artifact, make sure it is defined in the main `blueprint.json`
 * **```policyDefinitionId``` or ```roleDefinitionId``` does not exist.** If you are referencing a custom policy or custom role, make sure that the policy or role exists at or above the management group where the blueprint is saved.
 	

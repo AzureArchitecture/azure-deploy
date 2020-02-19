@@ -33,16 +33,16 @@
                                             "value":  "CORP"
                                         },
                        "sqlServerName":  {
-                                             "value":  "sql-yazy-adap-prd-eus-01"
+                                             "value":  "sql-yazy-adap-prd-pcus-01"
                                          },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-prd-eus"
+                                                 "value":  "rg-yazy-adap-prd-pcus"
                                              },
                        "Env":  {
                                    "value":  "prd"
                                },
                        "CosmosDbAccountName":  {
-                                                   "value":  "cosdb-yazy-adap-prd-eus-01"
+                                                   "value":  "cosdb-yazy-adap-prd-pcus-01"
                                                },
                        "BudgetAmount":  {
                                             "value":  "$0-Month"

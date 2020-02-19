@@ -1,5 +1,5 @@
 $subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
-$resourceGroupName = "rg-yazy-shared-dev-eus"
+$resourceGroupName = "rg-yazy-shared-dev-pcus"
 
 # Delete policy assignments
 $policies = Get-AzPolicyAssignment -InformationAction Ignore

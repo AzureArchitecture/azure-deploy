@@ -22,7 +22,7 @@
             "displayName": "Enter a string to be added to the end of all resources. can also be empty string.",
             "description": "Suffix to add to labels."
           },
-          "defaultValue": "eus"
+          "defaultValue": "cus"
         },
         "data-retention": {
           "type": "int",
@@ -36,17 +36,10 @@
         },
         "location": {
           "type": "string",
-          "defaultvalue": "East US",
           "metadata": {
             "displayName": "Location",
             "description": "Region used when establishing the workspace"
-          },
-          "allowedValues": [
-            "East US",
-            "East US 2",
-            "West US",
-            "West US 2"
-          ]
+          }
         },
         "ApplicationName": {
           "defaultValue": "ADAP",
@@ -136,7 +129,7 @@
       },
       "variables": {
         "deployment-prefix": "[toLower(concat(parameters('orgTag'), '-', parameters('Env'),'-',parameters('suffix')))]",
-        "storageAccountName": "[concat('stg',parameters('orgTag'),'diagshared',parameters('Env'),parameters('suffix'))]",
+        "storageAccountName": "[concat('stg',parameters('orgTag'),'logshared',parameters('Env'),parameters('suffix'))]",
         "oms-workspace-name": "[concat('la-',variables('deployment-prefix'))]"
       },
       "resources": [
@@ -188,7 +181,7 @@
           "tags": {
             "Application name": "parameters('ApplicationName')",
             "Approver name": "parameters('Approver')",
-            "Budget reyazyred-approved": "parameters('BudgetAmount')",
+            "Budget required-approved": "parameters('BudgetAmount')",
             "Business unit": "parameters('BusinessUnit')",
             "Cost center": "parameters('CostCenter')",
             "Disaster recovery": "parameters('DR')",
@@ -234,7 +227,7 @@
         "value": "[parameters('Suffix')]"
       },
       "location": {
-        "value": "[parameters('LogAnalytics_Location')]"
+        "value": "[parameters('location')]"
       },
       "ApplicationName": {
         "value": "[parameters('ApplicationName')]"

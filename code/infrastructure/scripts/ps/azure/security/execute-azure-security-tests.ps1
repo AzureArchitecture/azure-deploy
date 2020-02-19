@@ -101,7 +101,7 @@ Initialize-Subscription
 $subscriptionId = Get-SubscriptionId
 Set-AzContext -SubscriptionId $subscriptionId
 $subscriptionName = (Get-AzContext).Subscription.SubscriptionName
-$resourceGroupNames = "rg-chp-adap-dev-eus,rg-chp-mgmt-dev-eus,rg-chp-network-dev-eus,rg-chp-shared-dev-eus"
+$resourceGroupNames = "rg-chp-adap-dev-pcus,rg-chp-mgmt-dev-pcus,rg-chp-network-dev-pcus,rg-chp-shared-dev-pcus"
 
 # chpK: Scan the security health of your subscription
 # https://chpk.azurewebsites.net/01-Subscription-Security/Readme.html#scan-the-security-health-of-your-subscription

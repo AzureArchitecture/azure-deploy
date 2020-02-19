@@ -23,10 +23,10 @@
       "value": "afc-audit-timeseriesinsights-diagnostic-settings"
     },
     "laWorkspaceName": {
-      "value": "la-yazy-dev-eus"
+      "value": "la-yazy-dev-pcus"
     },
     "laResourceGroupName": {
-      "value": "rg-yazy-shared-dev-eus"
+      "value": "rg-yazy-shared-dev-pcus"
     },
     "alertFrequency": {
       "value": 60

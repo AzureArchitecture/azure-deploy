@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-yazy-adap-test-eus"
+      "value": "sb-yazy-adap-tst-cus"
     },
     "Approver": {
       "value": "approver@company.org"

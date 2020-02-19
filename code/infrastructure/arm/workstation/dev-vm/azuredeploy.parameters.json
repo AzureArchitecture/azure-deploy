@@ -40,13 +40,13 @@
       "value": "vnet-chp-dev"
     },
     "virtualMachineName": {
-      "value": "vm-chp-ds-eus"
+      "value": "vm-chp-ds-cus"
     },
     "subnetName": {
       "value": "snet-chp-dev-dsvm"
     },
     "virtualNetworkRG": {
-      "value": "rg-chp-network-dev-eus"
+      "value": "rg-chp-network-dev-pcus"
     },
     "adminUsername": {
       "value": "vmAdmin"

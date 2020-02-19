@@ -9,7 +9,7 @@
       }
     },
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-network-dev-eus",
+      "defaultValue": "rg-yazy-network-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -116,7 +116,7 @@
         "Display Name": "bastion host public ip address : [parameters('publicIpAddressName')]",
         "Application name": "[parameters('ApplicationName')]",
         "Approver name": "[parameters('Approver')]",
-        "Budget reyazyred-approved": "[parameters('BudgetAmount')]",
+        "Budget required-approved": "[parameters('BudgetAmount')]",
         "Business unit": "[parameters('BusinessUnit')]",
         "Cost center": "[parameters('CostCenter')]",
         "Disaster recovery": "[parameters('DR')]",

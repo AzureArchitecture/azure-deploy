@@ -20,7 +20,7 @@
       .PARAMETER location (default centralus)
       location for Azure Blueprint deployment
 
-      .PARAMETER alertResourceGroup (default rg-yazy-shared-dev-eus)
+      .PARAMETER alertResourceGroup (default rg-yazy-shared-dev-pcus)
       Resource group to deploy Azure Alerts to
 
       .PARAMETER action (default create)
