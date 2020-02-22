@@ -77,7 +77,7 @@
     },
     {
       "type": "Microsoft.Network/publicIPAddresses",
-      "apiVersion": "2018-11-01",
+      "apiVersion": "2019-09-01",
       "name": "[variables('publicIPAddressName')]",
       "location": "[parameters('location')]",
       "properties": {
@@ -89,7 +89,7 @@
     },
     {
       "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2018-11-01",
+      "apiVersion": "2019-09-01",
       "name": "[variables('virtualNetworkName')]",
       "location": "[parameters('location')]",
       "properties": {
@@ -110,7 +110,7 @@
     },
     {
       "type": "Microsoft.Network/networkInterfaces",
-      "apiVersion": "2018-11-01",
+      "apiVersion": "2019-07-01",
       "name": "[variables('nicName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
@@ -136,7 +136,7 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines",
-      "apiVersion": "2018-10-01",
+      "apiVersion": "2019-07-01",
       "name": "[variables('vmName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
@@ -145,7 +145,7 @@
       ],
       "properties": {
         "hardwareProfile": {
-          "vmSize": "Standard_D2_v3"
+          "vmSize": "Standard_D2_v2"
         },
         "osProfile": {
           "computerName": "[variables('vmName')]",
@@ -156,7 +156,7 @@
           "imageReference": {
             "publisher": "MicrosoftWindowsDesktop",
             "offer": "Windows-10",
-            "sku": "19h2-ent-g2",
+            "sku": "19h2-pro",
             "version": "latest"
           },
           "osDisk": {

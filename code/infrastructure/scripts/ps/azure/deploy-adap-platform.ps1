@@ -6,13 +6,28 @@
       Organization string for deployment. This is used to create resources in Azure that are globally unique. Example: -orgTag ''adw''"
 
       .PARAMETER envTag 
-      Environment string for deployment. This is used to create resources in Azure that are globally unique. Example: -envTag ''dev''"
+      Environment string for deployment. This is used to create resources in Azure that are globally unique. Example: -envTag "dev"
 
       .PARAMETER suffix
-      Token for deployment. This is used to create resources in Azure that are globally unique. Example: -suffix ''eus2''"
+      Token for deployment. This is used to create resources in Azure that are globally unique. Example: -suffix "eus2"
 
-      .PARAMETER -azAll -adUsers -adGroups -azPolicies -azInitiatives -azRoles -azRoleAssignments -azActionGroups -azAlerts -azBlueprints -azParameterFiles
-      Switch to deploy all the resources
+      .PARAMETER deployAction
+      This parameter is used to either create or remove the Azure Resources. Example: -deployAction "create"
+
+      .PARAMETER adapCMDBfile
+       This is the file that contains the values that will create the parameter files for deployment. Example: -adapCMDB "dev-adap-cmdb.xlsm"
+
+      .PARAMETER azParameterFiles
+      This switch is used to indicate that you want to create the parameter files from the excel spreadsheet. Example: -azParameterFiles
+
+      .PARAMETER azMdFiles
+      This switch is used to indicate that you want to create the documentation markdown files. Example: -azMdFiles
+      
+      .PARAMETER azAll
+      This switch is used to indicate that you want to execute all sections of this PowerShell Script. Example: -azAll
+
+      .PARAMETER azAll
+      This switch is used to indicate that you want to execute all sections of this PowerShell Script. Example: -azAll
    
       .PARAMETER suffix (default eus)
       token for deployment
@@ -23,8 +38,7 @@
       .PARAMETER alertResourceGroup (default rg-yazy-shared-dev-cus)
       Resource group to deploy Azure Alerts to
 
-      .PARAMETER action (default create)
-      Create Azure Assets or Purge Azure Assets
+
 
       .PARAMETER removeRG (default $false)
       Switch to remove resource groups during blueprint purge
@@ -65,17 +79,24 @@
     [validateset('create','remove')]
     [string]$deployAction,
 
+    # removeRG
+    [Parameter(HelpMessage="This switch is used to indicate that you want to remove the Azure Resource Groups. It is only valid if deployAction -eq remove. Example: -removeRG")]
+    [switch]$removeRG=$false,
+
     # adapCMDB
     [Parameter(Mandatory=$True,HelpMessage="Enter the CMD file name for deployment metatdata. This is the file that contains the values that will create the parameter files for deployment. Example: -adapCMDB ''dev-adap-cmdb.xlsm''")]
     [string]$adapCMDBfile,
 
     # azParameterFiles
-    [Switch]$azParameterFiles=$true,
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create the Azure ARM Template Parameter files. Example: -azParameterFiles")]
+    [Switch]$azParameterFiles,
 
     # azMdFiles
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create the documentation markdown files. Example: -azMdFiles")]
     [Switch]$azMdFiles=$false,
 
     # azAll
+    [Parameter(HelpMessage="This switch is used to indicate that you want to execute all sections of this PowerShell Script. Example: -azAll")]
     [Switch]$azAll=$false,
 
     # adUsers
@@ -104,15 +125,6 @@
 
     # azAlerts
     [Switch]$azAlerts=$false,
-
-    # azRunbooks
-    [Switch]$azRunbooks=$false,
-
-    # debugAction
-    [Switch]$debugAction = $false,
-
-    # removeRG
-    [switch]$removeRG=$false,
 
     # verbosePreferenceVariable
     [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
