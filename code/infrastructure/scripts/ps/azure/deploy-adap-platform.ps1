@@ -1,19 +1,19 @@
   <#
       .SYNOPSIS
-      This script deploys the ADAP platform based on the values in the adap-cmdb.xlsx spreadsheet.
+      This script deploys the scafolding in Azure based on the values in the CMDB spreadsheet.
+
+      .PARAMETER orgTag 
+      Organization string for deployment. This is used to create resources in Azure that are globally unique. Example: -orgTag ''adw''"
+
+      .PARAMETER envTag 
+      Environment string for deployment. This is used to create resources in Azure that are globally unique. Example: -envTag ''dev''"
+
+      .PARAMETER suffix
+      Token for deployment. This is used to create resources in Azure that are globally unique. Example: -suffix ''eus2''"
 
       .PARAMETER -azAll -adUsers -adGroups -azPolicies -azInitiatives -azRoles -azRoleAssignments -azActionGroups -azAlerts -azBlueprints -azParameterFiles
-      Switch to deploy the resources
-
-      .PARAMETER debugAction (default off)
-      Switch to enable debugging output
-
-      .PARAMETER actionVar (default SilentlyContinue)
-      Switch to enable debugging output
-
-      .PARAMETER env (default dev)
-      token for deployment (smoke, dev, prod, uat, sandbox)
-
+      Switch to deploy all the resources
+   
       .PARAMETER suffix (default eus)
       token for deployment
 
@@ -36,7 +36,8 @@
       SilentlyContinue: No effect. The error message isn't displayed and execution continues without interruption.
 
       .EXAMPLE
-      .\deploy-adap-platform -orgTag "yazy" -deployAction "audit" -azAll
+      .\deploy-adap-platform -orgTag "yazy" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
+      .\deploy-adap-platform -orgTag "yazy" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
       .\deploy-adap-platform.ps1 -adGroups -adUsers -azPolicies -azInitiatives -azAlerts -azRoles -azRoleAssignments -azBlueprints
       .\deploy-adap-platform.ps1 -azAll -deployAction create
       .\deploy-adap-platform.ps1 -azAll -location "centralus" -env "dev" -actionVerboseVariable "SilentlyContinue" -actionDebugVariable "SilentlyContinue" -actionErrorVariable "SilentlyContinue" -deployAction create
@@ -44,24 +45,32 @@
 
   #>
   param(
-    # ortTag
-    [string]$orgTag="yazy",
+    # orgTag
+    [Parameter(Mandatory=$True,HelpMessage="Enter organization string between 1 and 4 characters. This is used to create resources in Azure that are globally unique. Example: -orgTag ''adw''")]
+    [ValidateLength(1,4)]
+    [string]$orgTag,
 
     # envTag
-    [string]$envTag="dev",
+    [Parameter(Mandatory=$True,HelpMessage="Enter 3 character environment string. This is used to create resources in Azure that are globally unique. Example: -envTag ''dev''")]
+    [ValidateLength(3)]
+    [string]$envTag,
 
     # suffix
-    [string]$suffix="pcus",
+    [Parameter(Mandatory=$True,HelpMessage="Enter resource suffix string between 1 and 4 characters. This is used to create resources in Azure that are globally unique. Example: -suffix ''eus2''")]
+    [ValidateLength(1,4)]
+    [string]$suffix,
 
     # deployAction
-    [validateset('create','purge')]
-    [string]$deployAction = 'create',
+    [Parameter(Mandatory=$True,HelpMessage="Enter deployment action: create or purge. This switch is used to either create or remove the Azure Resources. Example: -deployAction ''create''")]
+    [validateset('create','remove')]
+    [string]$deployAction,
 
     # adapCMDB
-    [string]$adapCMDBfile = 'adap-cmdb.xlsm',
+    [Parameter(Mandatory=$True,HelpMessage="Enter the CMD file name for deployment metatdata. This is the file that contains the values that will create the parameter files for deployment. Example: -adapCMDB ''dev-adap-cmdb.xlsm''")]
+    [string]$adapCMDBfile,
 
     # azParameterFiles
-    [Switch]$azParameterFiles=$false,
+    [Switch]$azParameterFiles=$true,
 
     # azMdFiles
     [Switch]$azMdFiles=$false,
@@ -73,7 +82,7 @@
     [Switch]$adUsers=$false,
 
     # adGroups
-    [Switch]$adGroups=$true,
+    [Switch]$adGroups=$false,
 
     # azPolicies
     [Switch]$azPolicies=$false,
@@ -348,7 +357,7 @@
   if (($azAll -or $azInitiatives) -and $azBlueprints -or $azAll){
     # need to sleep for 5 minutes to allow inititives to flush cache
     Write-Information '  Need to sleep for 5 minutes to allow Policy Initiatives to flush cache'
-    #Start-Countdown -Seconds 300 -Message "    Need to sleep for 5 minutes to allow Policy Initiatives to flush cache"
+    Start-Countdown -Seconds 300 -Message "    Need to sleep for 5 minutes to allow Policy Initiatives to flush cache"
   }
 
   if($azBlueprints -or $azAll){
@@ -367,7 +376,7 @@
   if ($azBlueprints -or $azAll){
     # need to sleep for 10 minutes to allow blueprint deployment  to complete
     Write-Information '  Need to sleep for 10 minutes to allow blueprint deployment to complete.'
-    #Start-Countdown -Seconds 600 -Message "Waiting 10 minutes to allow blueprint deployment to complete."
+    Start-Countdown -Seconds 600 -Message "Waiting 10 minutes to allow blueprint deployment to complete."
   }
 
   # Deploy Azure Role Assignments

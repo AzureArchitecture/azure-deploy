@@ -6,7 +6,7 @@ Function Start-Countdown
     #>
     Param(
         [Int32]$Seconds = 300,
-        [string]$Message = "Pausing for 10 seconds..."
+        [string]$Message = ""
     )
     ForEach ($Count in (1..$Seconds))
     {   Write-Progress -Id 1 -Activity $Message -Status "Waiting for $Seconds seconds, $($Seconds - $Count) left" -PercentComplete (($Count / $Seconds) * 100)
