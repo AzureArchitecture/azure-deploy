@@ -1,6 +1,6 @@
   <#
       .SYNOPSIS
-      This script deploys the scafolding in Azure based on the values in the CMDB spreadsheet.
+      This script deploys the scaffolding in Azure based on the values in the CMDB spreadsheet.
 
       .PARAMETER orgTag 
       Organization string for deployment. This is used to create resources in Azure that are globally unique. Example: -orgTag ''adw''"
@@ -113,7 +113,6 @@
 
     # removeRG
     [switch]$removeRG=$false,
-
 
     # verbosePreferenceVariable
     [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
