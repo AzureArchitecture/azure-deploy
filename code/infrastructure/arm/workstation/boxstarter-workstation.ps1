@@ -29,7 +29,6 @@ try {
   $repoCoreDir = "C:\repos"
   mkdir "$repoCoreDir" -Confirm:0 -ErrorAction Ignore
   mkdir "$repoCoreDir\github" -Confirm:0 -ErrorAction Ignore
-  mkdir "$repoCoreDir\azdo" -Confirm:0 -ErrorAction Ignore
   mkdir "$repoCoreDir\github\AzureArchitecture" -Confirm:0 -ErrorAction Ignore
 
   $Boxstarter.Log="C:\temp\boxstarter.log"
@@ -104,55 +103,54 @@ try {
   choco install azure-cli -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install microsoftazurestorageexplorer -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install vscode -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
-  choco install sysinternals -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install sql-server-management-studio -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install ssis-vs2019 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install azure-data-studio -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install azuredatastudio-powershell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install github-desktop -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
-  choco install azcopy -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install adobereader -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
-  choco install rdcman -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
-  choco install office365business  -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install office365proplus -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install git-credential-manager-for-windows -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
   choco install gitextensions -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
-  choco install gitbook-editor -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
-  choco install azuredatastudio-powershell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install vscode-powershell -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install vscode-mssql -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
 
-  choco install azure-documentdb-emulator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install microsoftazurestorageexplorer -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install azure-functions-core-tools -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install azure-devops-policy-configurator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install azure-data-studio-sql-server-admin-pack -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install vscode-azurerm-tools -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install azcopy10 -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install vscode-vsonline -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install azure-pipelines-agent -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install markdownmonster -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install rdmfree -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install vscode-azurerepos -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install ignorefiles -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install imagesprites -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install openinvscode -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install textgenerator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install trailingwhitespace -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install webextensionpack -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install extensibilitytools -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install opencommandline -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install packageinstaller -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install codemaid -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install stylecop -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
 
   choco install sourcetree -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install 7zip.install -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  Write-Host
+
+  <#
+  choco install sysinternals -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install rdcman -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install gitbook-editor -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache" 
+  choco install textgenerator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install trailingwhitespace -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install webextensionpack -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install extensibilitytools -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install atom -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install filezilla -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install paint.net -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  choco install atom -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install chocolateygui -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
   choco install fiddler -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
-  Write-Host
+  choco install azure-documentdb-emulator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install azure-devops-policy-configurator -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install ignorefiles -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install imagesprites -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install openinvscode -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  choco install packageinstaller -y --cacheLocation "$env:UserProfile\AppData\Local\ChocoCache"
+  #>   
 
   ######################################################
   # Taskbar icons
@@ -175,8 +173,7 @@ try {
 
   cd "$repoCoreDir\github\AzureArchitecture"
   git clone https://github.com/AzureArchitecture/azure-deploy.git
-  git clone https://github.com/AzureArchitecture/azure-data-services.git
-
+  
   ######################################################
   # installing windows updates
   ######################################################

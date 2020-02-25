@@ -3,59 +3,85 @@
       This script deploys the scaffolding in Azure based on the values in the CMDB spreadsheet.
 
       .PARAMETER orgTag 
-      Organization string for deployment. This is used to create resources in Azure that are globally unique. Example: -orgTag ''adw''"
+      Organization string for deployment. This is used to create resources in Azure that are globally unique. 
+      Example: -orgTag adw
+
+      .PARAMETER location 
+      Enter the Azure Location for the deployment. All resources and resource groups will be created in this Azure Region. 
+      Example: -location eastus
 
       .PARAMETER envTag 
-      Environment string for deployment. This is used to create resources in Azure that are globally unique. Example: -envTag "dev"
+      Environment string for deployment. This is used to create resources in Azure that are globally unique. 
+      Example: -envTag dev
 
       .PARAMETER suffix
-      Token for deployment. This is used to create resources in Azure that are globally unique. Example: -suffix "eus2"
+      Token for deployment. This is used to create resources in Azure that are globally unique. 
+      Example: -suffix eus2
 
       .PARAMETER deployAction
-      This parameter is used to either create or remove the Azure Resources. Example: -deployAction "create"
+      This parameter is used to either create or remove the Azure Resources. 
+      Example: -deployAction create
+
+      .PARAMETER removeRG
+      This switch is used to indicate that you want to remove the Azure Resource Groups. It is only valid if deployAction -eq remove. 
+      Example: -removeRG
 
       .PARAMETER adapCMDBfile
-       This is the file that contains the values that will create the parameter files for deployment. Example: -adapCMDB "dev-adap-cmdb.xlsm"
+       This is the file that contains the values that will create the parameter files for deployment. 
+       Example: -adapCMDB dev-adap-cmdb.xlsm
 
       .PARAMETER azParameterFiles
-      This switch is used to indicate that you want to create the parameter files from the excel spreadsheet. Example: -azParameterFiles
+      This switch is used to indicate that you want to create the parameter files from the excel spreadsheet. 
+      Example: -azParameterFiles
 
       .PARAMETER azMdFiles
-      This switch is used to indicate that you want to create the documentation markdown files. Example: -azMdFiles
+      This switch is used to indicate that you want to create the documentation markdown files. 
+      Example: -azMdFiles
       
       .PARAMETER azAll
-      This switch is used to indicate that you want to execute all sections of this PowerShell Script. Example: -azAll
+      This switch is used to indicate that you want to execute all sections of this PowerShell Script. 
+      Example: -azAll
 
-      .PARAMETER azAll
-      This switch is used to indicate that you want to execute all sections of this PowerShell Script. Example: -azAll
+      .PARAMETER adUsers
+      This switch is used to indicate that you want to create test users that are found in the Excel Spreadsheet. 
+      Example: -adUsers
+
+      .PARAMETER adGroups
+      This switch is used to indicate that you want to create Azure Active Directory Security Groups that are found in the Excel Spreadsheet. 
+      Example: -adGroups
+
+      .PARAMETER azPolicies
+      This switch is used to indicate that you want to create Azure Policies that are found in the Excel Spreadsheet. 
+      Example: -azPolicies
+
+      .PARAMETER azInitiatives
+      This switch is used to indicate that you want to create Azure Initiatives that are found in the Excel Spreadsheet. 
+      Example: -azInitiatives
    
-      .PARAMETER suffix (default eus)
-      token for deployment
+      .PARAMETER azRoles
+      This switch is used to indicate that you want to create Azure Roles that are found in the Excel Spreadsheet. 
+      Example: -azRoles
 
-      .PARAMETER location (default centralus)
-      location for Azure Blueprint deployment
+      .PARAMETER azBlueprints
+      This switch is used to indicate that you want to create Azure Blueprints that are found in the Excel Spreadsheet. 
+      Example: -azBlueprints
 
-      .PARAMETER alertResourceGroup (default rg-yazy-shared-dev-cus)
-      Resource group to deploy Azure Alerts to
+      .PARAMETER azRoleAssignments
+      This switch is used to indicate that you want to create Azure Role Assignments that are found in the Excel Spreadsheet. 
+      Example: -azRoleAssignments
 
+      .PARAMETER azActionGroups
+      This switch is used to indicate that you want to create Azure Action Groups that are found in the Excel Spreadsheet. 
+      Example: -azActionGroups
 
-
-      .PARAMETER removeRG (default $false)
-      Switch to remove resource groups during blueprint purge
-
-      Stop: Displays the error message and stops executing.
-      Inquire: Displays the error message and asks you whether you want to continue.
-      Continue: (Default) Displays the error message and continues executing.
-      Suspend: Automatically suspends a work-flow job to allow for further investigation. After investigation, the work-flow can be resumed.
-      SilentlyContinue: No effect. The error message isn't displayed and execution continues without interruption.
+      .PARAMETER azAlerts
+      This switch is used to indicate that you want to create Azure Alerts that are found in the Excel Spreadsheet. 
+      Example: -azAlerts
 
       .EXAMPLE
-      .\deploy-adap-platform -orgTag "yazy" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
-      .\deploy-adap-platform -orgTag "yazy" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
-      .\deploy-adap-platform.ps1 -adGroups -adUsers -azPolicies -azInitiatives -azAlerts -azRoles -azRoleAssignments -azBlueprints
-      .\deploy-adap-platform.ps1 -azAll -deployAction create
-      .\deploy-adap-platform.ps1 -azAll -location "centralus" -env "dev" -actionVerboseVariable "SilentlyContinue" -actionDebugVariable "SilentlyContinue" -actionErrorVariable "SilentlyContinue" -deployAction create
-      .\deploy-adap-platform.ps1 -azBlueprints -location "centralus" -env "dev" -actionVerboseVariable "Continue" -actionDebugVariable "Continue" -actionErrorVariable "Stop" -deployAction create
+      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
+      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "remove" -removeRG -azAll
+      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azParameterFiles -azMdFiles
 
   #>
   param(
@@ -63,105 +89,75 @@
     [Parameter(Mandatory=$True,HelpMessage="Enter organization string between 1 and 4 characters. This is used to create resources in Azure that are globally unique. Example: -orgTag ''adw''")]
     [ValidateLength(1,4)]
     [string]$orgTag,
-
+    # location
+    [Parameter(Mandatory=$True,HelpMessage="Enter the Azure Location for the deployment. All resources and resource groups will be created in this Azure Region. Example: -location ''eastus''")]
+    [validateset('canadacentral','canadaeast','centralus','eastus','eastus2','northcentralus','southcentralus','westcentralus','westus','westus2')]
+    [string]location,
     # envTag
     [Parameter(Mandatory=$True,HelpMessage="Enter 3 character environment string. This is used to create resources in Azure that are globally unique. Example: -envTag ''dev''")]
     [ValidateLength(3)]
     [string]$envTag,
-
     # suffix
     [Parameter(Mandatory=$True,HelpMessage="Enter resource suffix string between 1 and 4 characters. This is used to create resources in Azure that are globally unique. Example: -suffix ''eus2''")]
     [ValidateLength(1,4)]
     [string]$suffix,
-
     # deployAction
     [Parameter(Mandatory=$True,HelpMessage="Enter deployment action: create or purge. This switch is used to either create or remove the Azure Resources. Example: -deployAction ''create''")]
     [validateset('create','remove')]
     [string]$deployAction,
-
     # removeRG
     [Parameter(HelpMessage="This switch is used to indicate that you want to remove the Azure Resource Groups. It is only valid if deployAction -eq remove. Example: -removeRG")]
     [switch]$removeRG=$false,
-
     # adapCMDB
     [Parameter(Mandatory=$True,HelpMessage="Enter the CMD file name for deployment metatdata. This is the file that contains the values that will create the parameter files for deployment. Example: -adapCMDB ''dev-adap-cmdb.xlsm''")]
     [string]$adapCMDBfile,
-
     # azParameterFiles
     [Parameter(HelpMessage="This switch is used to indicate that you want to create the Azure ARM Template Parameter files. Example: -azParameterFiles")]
     [Switch]$azParameterFiles,
-
     # azMdFiles
     [Parameter(HelpMessage="This switch is used to indicate that you want to create the documentation markdown files. Example: -azMdFiles")]
-    [Switch]$azMdFiles=$false,
-
+    [Switch]$azMdFiles,
     # azAll
     [Parameter(HelpMessage="This switch is used to indicate that you want to execute all sections of this PowerShell Script. Example: -azAll")]
-    [Switch]$azAll=$false,
-
+    [Switch]$azAll,
     # adUsers
-    [Switch]$adUsers=$false,
-
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create test users that are found in the Excel Spreadsheet. Example: -adUsers")]
+    [Switch]$adUsers,
     # adGroups
-    [Switch]$adGroups=$false,
-
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Active Directory Security Groups that are found in the Excel Spreadsheet. Example: -adGroups")]
+    [Switch]$adGroups,
     # azPolicies
-    [Switch]$azPolicies=$false,
-
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Policies that are found in the Excel Spreadsheet. Example: -azPolicies")]
+    [Switch]$azPolicies,
     # azInitiatives
-    [Switch]$azInitiatives=$false,
-
-    #azRoles
-    [Switch]$azRoles=$false,
-
-    #azBlueprints
-    [Switch]$azBlueprints=$false,
-
-    #AzRoleAssignments
-    [Switch]$azRoleAssignments=$false,
-
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Initiatives that are found in the Excel Spreadsheet. Example: -azInitiatives")]
+    [Switch]$azInitiatives,
+    # azRoles
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Roles that are found in the Excel Spreadsheet. Example: -azRoles")]
+    [Switch]$azRoles,
+    # azBlueprints
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Blueprints that are found in the Excel Spreadsheet. Example: -azBlueprints")]
+    [Switch]$azBlueprints,
+    # azRoleAssignments
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Role Assignments that are found in the Excel Spreadsheet. Example: -azRoleAssignments")]
+    [Switch]$azRoleAssignments,
     # azActionGroups
-    [Switch]$azActionGroups=$false,
-
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Action Groups that are found in the Excel Spreadsheet. Example: -azActionGroups")]
+    [Switch]$azActionGroups,
     # azAlerts
-    [Switch]$azAlerts=$false,
-
-    # verbosePreferenceVariable
-    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$verbosePreferenceVariable = 'SilentlyContinue',
-
-    # errorActionPreferenceVariable
-    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$errorActionPreferenceVariable = 'Stop',
-
-    # debugPreferenceVariable
-    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
-    [validateset('Stop','Inquire','Continue','Suspend','SilentlyContinue')]
-    [string]$debugPreferenceVariable = 'SilentlyContinue',
-
-    # informationPreferenceVariable
-    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
-    [validateset('Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue')]
-    [string]$informationPreferenceVariable = 'Continue',
-
-    # confirmPreferenceVariable
-    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
-    [validateset('None','Low','Medium','High')]
-    [string]$confirmPreferenceVariable = 'None'
-
+    [Parameter(HelpMessage="This switch is used to indicate that you want to create Azure Alerts that are found in the Excel Spreadsheet. Example: -azAlerts")]
+    [Switch]$azAlerts
   )
 
   Set-Location -Path "$PSScriptRoot"
   #Clear-Host
   # Set variables
-  $VerbosePreference = $verbosePreferenceVariable
-  $DebugPreference = $debugPreferenceVariable
-  $ErrorActionPreference = $errorActionPreferenceVariable
-  $InformationPreference = $informationPreferenceVariable
-  $WarningPreference = $verbosePreferenceVariable
-  $ConfirmPreference = $confirmPreferenceVariable
+  $VerbosePreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
+  $DebugPreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
+  $ErrorActionPreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
+  $InformationPreference = 'Continue' # 'Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue'
+  $WarningPreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
+  $ConfirmPreference = 'None' # 'None','Low','Medium','High'
   $psscriptsRoot = $PSScriptRoot
 
   #Folder Locations
@@ -211,7 +207,6 @@
     Write-Information  'No file specified or file {0}\{1} does not exist.' -f $psConfigDirectory, $adapCMDBfile
     Exit
   }
-  
      
     $testRG = "rg-test"
     $smokeRG = "rg-smoke"
@@ -281,7 +276,6 @@
     Write-Information "OrgTag are the same $orgTagDefault to $orgTag - no changes needed."
   }
 
- 
   Set-Location -Path "$psscriptsRoot"  
   $subscriptionId = Get-SubscriptionId
        
