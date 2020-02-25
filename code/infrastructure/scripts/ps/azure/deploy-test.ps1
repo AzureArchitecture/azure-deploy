@@ -203,6 +203,7 @@
       $config = Get-Configuration
       
       # Set variabls from config file
+      $azureEnvironment = $config.azureEnvironment
       $orgTagDefault = $config.orgTag
       $location = $config.primaryLocation
       $locationName = $config.primaryLocationName
@@ -295,30 +296,6 @@
   Set-Location -Path "$psscriptsRoot"  
   $subscriptionId = Get-SubscriptionId
        
-  # Start Deployment of Azure Assets
-  Write-Information 'Starting deployment of Azure Assets'
-  
-    # Deploy Azure ARM Parameter Files
-  if($azParameterFiles -or $azAll){
-    Write-Information '  Starting deployment of Azure ARM Parameter Files...'
-    Set-Location -Path "$psAzureDirectory"
-    .\arm\create-arm-template-parameter-files.ps1 -adapCMDB "$adapCMDB" -paramDirectory "$armTemplatesDirectory\parameters" -env $envTag
-  }
-  else
-  {
-    Write-Information '  Creation of Azure ARM Template Files is disabled.'
-  }
-  
-      # Create Markdown Files
-  if($azMdFiles -or $azAll){
-    Set-Location -Path "$psAzureDirectory"
-    Write-Information '  updating arm markdown docs...'
-    .\arm\create-adap-platform-docs.ps1 
-  }
-  else
-  {
-    Write-Information '  Creation of Azure Markdown Files is disabled.'
-  }
   
   
     

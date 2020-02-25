@@ -1,0 +1,1772 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subid": {
+      "type": "string",
+      "metadata": {
+        "description": "Azue Subscription ID"
+      }
+    },
+    "workspacename": {
+      "type": "string",
+      "metadata": {
+        "description": "Log Analytics Workspace Name"
+      }
+    },
+    "workspacerg": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource Group where Log Analytics is in"
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "properties": {
+        "lenses": {
+          "0": {
+            "order": 0,
+            "parts": {
+              "0": {
+                "position": {
+                  "x": 2,
+                  "y": 1,
+                  "colSpan": 23,
+                  "rowSpan": 1
+                },
+                "metadata": {
+                  "inputs": [],
+                  "type": "Extension/HubsExtension/PartType/MarkdownPart",
+                  "settings": {
+                    "content": {
+                      "settings": {
+                        "content": "# OVERVIEW of all Log Data. - in development__\n\n\n",
+                        "title": "",
+                        "subtitle": ""
+                      }
+                    }
+                  }
+                }
+              },
+              "1": {
+                "position": {
+                  "x": 1,
+                  "y": 2,
+                  "colSpan": 9,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "union withsource = tt *\n| summarize LogVolume=count() by bin(TimeGenerated,1h)\n| render timechart title = \"Data Volume in past Month\"\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "2019-05-05T08:03:09.000Z/2019-06-18T08:03:09.354Z"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "TimeGenerated",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "LogVolume",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/3ee92ee5-711d-4dc1-9eb6-7e50a3f241b7')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "a69e7572-a120-4f96-8452-8eb462a2784c"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Data Volume in past Month"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Line"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {},
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "30d"
+                      }
+                    }
+                  }
+                }
+              },
+              "2": {
+                "position": {
+                  "x": 10,
+                  "y": 2,
+                  "colSpan": 5,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "union withsource = tt * \r\n| summarize Kbytes = sum(_BilledSize) by IsBillable = _IsBillable\r\n| extend IsBillable = iif(IsBillable==True,\"PaidforData\", \"FreeData\")\r\n| render piechart title = \"Billable vs. Free\"\r\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P1D"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "IsBillable",
+                          "type": "String"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "Kbytes",
+                            "type": "Double"
+                          }
+                        ],
+                        "splitBy": [],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "459e74a8-68fa-4672-8293-032462477b42"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Billable vs. Free"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsDonut"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Billable vs. Free ",
+                      "PartSubTitle": "24hrs"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "3": {
+                "position": {
+                  "x": 15,
+                  "y": 2,
+                  "colSpan": 10,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "// Check and chart the last week \r\nlet daystoSearch = 7d;\r\nunion withsource = tt * \r\n| where TimeGenerated > startofday(ago(daystoSearch))\r\n| where _IsBillable = True // only billing entries \r\n| summarize GBperSolution = round(sum(_BilledSize)/1024/1024,2)\r\n            by SolutionName = tt\r\n| sort by GBperSolution desc \r\n"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "SolutionName",
+                          "type": "String"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "GBperSolution",
+                            "type": "Double"
+                          }
+                        ],
+                        "splitBy": [],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "2bb64cc6-c384-49c9-8d76-418ec3142d9b"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Bar"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Top Solutions by Data Volume",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "4": {
+                "position": {
+                  "x": 1,
+                  "y": 6,
+                  "colSpan": 24,
+                  "rowSpan": 1
+                },
+                "metadata": {
+                  "inputs": [],
+                  "type": "Extension/HubsExtension/PartType/MarkdownPart",
+                  "settings": {
+                    "content": {
+                      "settings": {
+                        "content": "# SOLUTION LEVEL DETAILS\n\n\n",
+                        "title": "",
+                        "subtitle": ""
+                      }
+                    }
+                  }
+                }
+              },
+              "5": {
+                "position": {
+                  "x": 1,
+                  "y": 7,
+                  "colSpan": 14,
+                  "rowSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "let daystoSearch = 1d;\r\nunion withsource = tt * \r\n| where TimeGenerated > ago(daystoSearch)\r\n| summarize     \r\n              RecordCount=count(),\r\n              MbperRecord =  round(count() / sum(_BilledSize/1024/1024),2) ,\r\n              TotalMBytes= round(sum(_BilledSize/1024/1024),2)  \r\n              by SolutionName = tt, _IsBillable\r\n| sort by SolutionName asc"
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "d1e15cf6-f6bc-4f38-ae54-6a53c4bad9fa"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsGrid"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "isOptional": true
+                    },
+                    {
+                      "name": "TimeRange",
+                      "isOptional": true
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Solutions and Volume",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "6": {
+                "position": {
+                  "x": 15,
+                  "y": 7,
+                  "colSpan": 10,
+                  "rowSpan": 12
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "// Check and chart the last week \r\nlet daystoSearch = 7d;\r\nunion withsource = tt * \r\n| where TimeGenerated > startofday(ago(daystoSearch))\r\n| where _IsBillable = True // only billing entries \r\n| summarize GBperSolution = round(sum(_BilledSize)/1024/1024,2)\r\n            by SolutionName = tt\r\n| extend HealthDisplay = case(GBperSolution >= 5000, \"🛑\", \r\n                              GBperSolution >= 1000, \"⚠️\", \r\n                                                   \"✅\")\r\n| sort by GBperSolution desc \r\n"
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "310852bf-8fa6-4e4a-8f49-5c58fcefb9f0"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsGrid"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "isOptional": true
+                    },
+                    {
+                      "name": "TimeRange",
+                      "isOptional": true
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Top solutions by Data Volume (GB) - Health",
+                      "PartSubTitle": "Workspace_Name",
+                      "Query": "// Check and chart the last week \nlet daystoSearch = 7d;\nunion withsource = tt * \n| where TimeGenerated > startofday(ago(daystoSearch))\n| where _IsBillable = True // only billing entries \n| summarize GBperSolution = round(sum(_BilledSize)/1024/1024,2)\n            by SolutionName = tt\n| extend HealthDisplay = case(GBperSolution >= 1000, \"🛑\", \n                                         GBperSolution >= 500, \"⚠️\", \n                                          \"✅\")\n| sort by GBperSolution desc \n"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "24h"
+                      }
+                    }
+                  }
+                }
+              },
+              "7": {
+                "position": {
+                  "x": 1,
+                  "y": 13,
+                  "colSpan": 14,
+                  "rowSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "// Data Usage + identify the resources emitting data \r\nlet daystoSearch = 1d;\r\nunion withsource = tt * \r\n| where TimeGenerated > ago(daystoSearch)\r\n| where tt == \"AzureDiagnostics\"   // look for a specifc solution?\r\n| summarize     \r\n              RecordCount=count(),\r\n              MbperRecord =  round(count() / sum(_BilledSize/1024/1024),2) ,\r\n              TotalMBytes= round(sum(_BilledSize/1024/1024),2)  \r\n              by SolutionName = tt,\r\n                 _IsBillable,      // is this billable data?\r\n                 ResourceProvider, // what Azure Service\r\n                 Resource          // what entity in that service\r\n| sort by SolutionName asc, TotalMBytes\r\n"
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "a0f4b46a-f47e-4056-a8b8-f50f99d38186"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsGrid"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "isOptional": true
+                    },
+                    {
+                      "name": "TimeRange",
+                      "isOptional": true
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Solutions and Volume per Resource",
+                      "PartSubTitle": "Workspace_Name",
+                      "GridColumnsWidth": {
+                        "SolutionName": "248px",
+                        "ResourceProvider": "170px",
+                        "Resource": "214px",
+                        "RecordCount": "170px",
+                        "MbperRecord": "170px",
+                        "TotalMBytes": "170px"
+                      }
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "8": {
+                "position": {
+                  "x": 1,
+                  "y": 19,
+                  "colSpan": 24,
+                  "rowSpan": 1
+                },
+                "metadata": {
+                  "inputs": [],
+                  "type": "Extension/HubsExtension/PartType/MarkdownPart",
+                  "settings": {
+                    "content": {
+                      "settings": {
+                        "content": "# FORECAST (all Data) and LINKS\n",
+                        "title": "",
+                        "subtitle": ""
+                      }
+                    }
+                  }
+                }
+              },
+              "9": {
+                "position": {
+                  "x": 1,
+                  "y": 20,
+                  "colSpan": 14,
+                  "rowSpan": 5
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "//\r\n// Predict data volume for the next month \r\n//\r\nlet startDate       = startofday(ago(30d)); // go back in time nn days\r\nlet endDate         = now();                // what is the date now\r\nlet projectTo       = now()+30d;            // project forward nn days\r\nlet projectForward  = 30;                   // must be same as projectTo value \r\nunion withsource = tt * \r\n| where TimeGenerated  between (startDate .. endDate )\r\n| where _IsBillable == True\r\n| make-series BillingVolumeNow = avg(_BilledSize)  default=0 on TimeGenerated in range(startDate, projectTo, 1h)\r\n| extend BillingForecast = series_decompose_forecast(BillingVolumeNow, projectForward*24)\r\n| render timechart  \r\n"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "TimeGenerated",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "BillingVolumeNow",
+                            "type": "Double"
+                          },
+                          {
+                            "name": "BillingForecast",
+                            "type": "Double"
+                          }
+                        ],
+                        "splitBy": [],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "c5e67a15-fd1d-416e-9b0c-a732b3d206ed"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Line"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Predict Billed Volume Trend for next 30days",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "30d"
+                      }
+                    }
+                  }
+                }
+              },
+              "10": {
+                "position": {
+                  "x": 15,
+                  "y": 20,
+                  "colSpan": 10,
+                  "rowSpan": 5
+                },
+                "metadata": {
+                  "inputs": [],
+                  "type": "Extension/HubsExtension/PartType/MarkdownPart",
+                  "settings": {
+                    "content": {
+                      "settings": {
+                        "content": "__Useful Links__\n\n\n<a href='https://docs.microsoft.com/en-us/azure/azure-monitor/platform/manage-cost-storage' target='_blank'>Azure Docs</a> Usage  Article.\n\n<a href='https://cloudblogs.microsoft.com/industry-blog/en-gb/cross-industry/2019/03/28/azure-log-analytics-looking-at-data-and-costs/' target='_blank'>Blog</a> Usage  Article.\n\n",
+                        "title": "Useful Links",
+                        "subtitle": ""
+                      }
+                    }
+                  }
+                }
+              },
+              "11": {
+                "position": {
+                  "x": 1,
+                  "y": 25,
+                  "colSpan": 24,
+                  "rowSpan": 1
+                },
+                "metadata": {
+                  "inputs": [],
+                  "type": "Extension/HubsExtension/PartType/MarkdownPart",
+                  "settings": {
+                    "content": {
+                      "settings": {
+                        "content": "# SENTINEL Overview\n",
+                        "title": "",
+                        "subtitle": ""
+                      }
+                    }
+                  }
+                }
+              },
+              "12": {
+                "position": {
+                  "x": 1,
+                  "y": 26,
+                  "colSpan": 14,
+                  "rowSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "union isfuzzy=true\r\n      (\r\n        // Firewall vendors\r\n        CommonSecurityLog\r\n        | summarize LogVolume=count() by bin(bin(TimeGenerated,1h),1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Office 365\r\n        OfficeActivity\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Azure Security Center - free\r\n        SecurityCenterFree\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Azure Security Center - Standard\r\n        SecurityEvent\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Security Alerts\r\n        SecurityAlert\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // DNS\r\n        DnsEvents\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Windows Firewall\r\n        WindowsFirewall\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Azure AD\r\n        SigninLogs\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Syslog\r\n        Syslog\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // AWS\r\n        AWSCloudTrail\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // Symantec\r\n        SymantecICDX_CL\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n       ),\r\n      (\r\n        // Hunting Bookmarks\r\n        HuntingBookmark\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n       ),\r\n      (\r\n        // ThreatIntelligence Indicator\r\n        ThreatIntelligenceIndicator\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      ),\r\n      (\r\n        // LinuxAuditLog\r\n        LinuxAuditLog\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n      )\r\n| sort by LogVolume\r\n| render timechart title =\"Sentinel Log Volume by time\"\r\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P1D"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "TimeGenerated",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "LogVolume",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "SolutionName",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "fb80b3bf-3cef-453e-b9d2-63f472381eee"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Sentinel Log Volume by time"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Line"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Sentinel Log Volume by Month",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "30d"
+                      }
+                    }
+                  }
+                }
+              },
+              "13": {
+                "position": {
+                  "x": 15,
+                  "y": 26,
+                  "colSpan": 10,
+                  "rowSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "union isfuzzy=true\r\n      (\r\n        // Firewall vendors\r\n        CommonSecurityLog\r\n        | summarize Records = count() by SolutionName = Type, Vendor = DeviceVendor\r\n        | sort by Records desc \r\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel or CEF data found\",\"no data\") \r\n      ),\r\n      (\r\n        // Office 365\r\n        OfficeActivity\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Microsoft O365\"\r\n        | sort by Records desc \r\n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel enabled\",\"no data\") \r\n      ),\r\n      (\r\n        // Azure Security Center - free\r\n        SecurityCenterFree\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Security Center Free\"\r\n        | sort by Records desc \r\n        | extend PotentialDataSource = iif(Records>0,\"data found, ASC or Sentinel enabled\",\"no data\") \r\n      ),\r\n      (\r\n        // Azure Security Center - Standard\r\n        SecurityEvent\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Security Center Standard\"\r\n        | sort by Records desc \r\n        | extend PotentialDataSource = iif(Records>0,\"data found, ASC or Sentinel enabled\",\"no data\") \r\n      ),\r\n      (\r\n        // Security Alerts\r\n        SecurityAlert\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Sentinel\"\r\n        | sort by Records desc \r\n        | extend PotentialDataSource = iif(Records>0,\"data found, ASC or Sentinel\",\"no data\") \r\n      ),\r\n      (\r\n        // DNS\r\n        DnsEvents\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Microsoft DNS\"\r\n        | sort by Records desc \r\n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \r\n      ),\r\n      (\r\n        // Windows Firewall\r\n        WindowsFirewall\r\n        | summarize Records = count() by SolutionName = Type,  Vendor = \"Microsoft Firewall\"\r\n        | sort by Records desc \r\n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \r\n      ),\r\n      (\r\n        // Azure AD\r\n        SigninLogs\r\n        | summarize Records = count() by SolutionName = Type,  Vendor = \"Microsoft Azure AD\"\r\n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \r\n      ),\r\n      (\r\n        // Syslog\r\n        Syslog\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Linux\"\r\n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \r\n      ),\r\n      (\r\n        // AWS\r\n        AWSCloudTrail\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"AWS\"\r\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel or CEF data found\",\"no data\") \r\n      ),\r\n      (\r\n        // Symantec\r\n        SymantecICDX_CL\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Symantec\"\r\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \r\n       ),\r\n      (\r\n        // Hunting Bookmarks\r\n        HuntingBookmark\r\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Sentinel\"\r\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \r\n       ),\r\n      (\r\n        // ThreatIntelligence Indicator\r\n        ThreatIntelligenceIndicator\r\n        | summarize Records = count() by SolutionName = Type , Vendor = \"Azure Sentinel\"\r\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \r\n      ),\r\n      (\r\n        // LinuxAuditLog\r\n        LinuxAuditLog\r\n        | summarize Records = count() by SolutionName = Type , Vendor = \"Azure Sentinel\"\r\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \r\n      )\r\n| sort by Records\r\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P1D"
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "d865043a-3bf6-4bb0-9226-eba9ba99516f"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsGrid"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "isOptional": true
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Top Sentinel solutions by Record Volume",
+                      "PartSubTitle": "Workspace_Name",
+                      "Query": "union isfuzzy=true\n      (\n        // Firewall vendors\n        CommonSecurityLog\n        | summarize Records = count() by SolutionName = Type, Vendor = DeviceVendor\n        | sort by Records desc \n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel or CEF data found\",\"no data\") \n      ),\n      (\n        // Office 365\n        OfficeActivity\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Microsoft O365\"\n        | sort by Records desc \n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel enabled\",\"no data\") \n      ),\n      (\n        // Azure Security Center - free\n        SecurityCenterFree\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Security Center Free\"\n        | sort by Records desc \n        | extend PotentialDataSource = iif(Records>0,\"data found, ASC or Sentinel enabled\",\"no data\") \n      ),\n      (\n        // Azure Security Center - Standard\n        SecurityEvent\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Security Center Standard\"\n        | sort by Records desc \n        | extend PotentialDataSource = iif(Records>0,\"data found, ASC or Sentinel enabled\",\"no data\") \n      ),\n      (\n        // Security Alerts\n        SecurityAlert\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Sentinel\"\n        | sort by Records desc \n        | extend PotentialDataSource = iif(Records>0,\"data found, ASC or Sentinel\",\"no data\") \n      ),\n      (\n        // DNS\n        DnsEvents\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Microsoft DNS\"\n        | sort by Records desc \n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \n      ),\n      (\n        // Windows Firewall\n        WindowsFirewall\n        | summarize Records = count() by SolutionName = Type,  Vendor = \"Microsoft Firewall\"\n        | sort by Records desc \n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \n      ),\n      (\n        // Azure AD\n        SigninLogs\n        | summarize Records = count() by SolutionName = Type,  Vendor = \"Microsoft Azure AD\"\n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \n      ),\n      (\n        // Syslog\n        Syslog\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Linux\"\n        | extend PotentialDataSource = iif(Records>0,\"data found, Log Analytics or Sentinel\",\"no data\") \n      ),\n       (\n        // Event log\n        Syslog\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Monitor\"\n        | extend PotentialDataSource = iif(Records>0,\"Log Analytics\",\"no data\") \n      ), \n      (\n        // AWS\n        AWSCloudTrail\n        | summarize Records = count() by SolutionName = Type, Vendor = \"AWS\"\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel or CEF data found\",\"no data\") \n      ),\n      (\n        // Symantec\n        SymantecICDX_CL\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Symantec\"\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \n       ),\n      (\n        // Hunting Bookmarks\n        HuntingBookmark\n        | summarize Records = count() by SolutionName = Type, Vendor = \"Azure Sentinel\"\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \n       ),\n      (\n        // ThreatIntelligence Indicator\n        ThreatIntelligenceIndicator\n        | summarize Records = count() by SolutionName = Type , Vendor = \"Azure Sentinel\"\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \n      ),\n      (\n        // LinuxAuditLog\n        LinuxAuditLog\n        | summarize Records = count() by SolutionName = Type , Vendor = \"Azure Sentinel\"\n        | extend PotentialDataSource = iif(Records>0,\"✅  Sentinel data found\",\"no data\") \n      )\n| sort by Records",
+                      "GridColumnsWidth": {
+                        "SolutionName": "182px",
+                        "Vendor": "219px",
+                        "Records": "132px",
+                        "PotentialDataSource": "289px"
+                      }
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "14": {
+                "position": {
+                  "x": 1,
+                  "y": 32,
+                  "colSpan": 14,
+                  "rowSpan": 3
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "        // Security Alerts\r\n        SecurityAlert\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P1D"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "TimeGenerated",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "LogVolume",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "SolutionName",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "257ef46a-bb22-4311-b599-7d8d7460a8ae"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Line"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "SecurityAlerts by Week",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "7d"
+                      }
+                    }
+                  }
+                }
+              },
+              "15": {
+                "position": {
+                  "x": 15,
+                  "y": 32,
+                  "colSpan": 10,
+                  "rowSpan": 5
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "union withsource = tt * \r\n| where tt in (\"Syslog\", \"SecurityEvent\",\"AWSCloudTrail\", \"CommonSecurityLog\",\r\n               \"SecurityAlert\", \"ThreatIntelligenceIndicator\", \"LinuxAuditLog\",\r\n                \"HuntingBookmark\") \r\n| summarize     \r\n              RecordCount=count(),\r\n              MbperRecord =  round(count() / sum(_BilledSize/1024/1024),2) ,\r\n              TotalGBytes= round(sum(_BilledSize/1024/1024),2)  \r\n              by SolutionName = tt, _IsBillable\r\n| sort by TotalGBytes desc\r\n| render barchart \r\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "PT12H"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "SolutionName",
+                          "type": "String"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "RecordCount",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "_IsBillable",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "b919ccf9-c060-4bf4-a767-ccb36bc9d7c9"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Bar"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Top Sentinel Solutions by Data Volume",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "16": {
+                "position": {
+                  "x": 1,
+                  "y": 35,
+                  "colSpan": 14,
+                  "rowSpan": 2
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "        // Syslog\r\n        Syslog\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n        | render timechart title = \"Syslog by time\"\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P1D"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "TimeGenerated",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "LogVolume",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "SolutionName",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "44799404-ea1f-4d61-b183-e41695f6230a"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Syslog by time"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Line"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "CommonSecurityLog by Week",
+                      "PartSubTitle": "Workspace_Name",
+                      "Query": "CommonSecurityLog\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\n        | render timechart title = \"CommonSecurityLog by time\"\n"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "7d"
+                      }
+                    }
+                  }
+                }
+              },
+              "17": {
+                "position": {
+                  "x": 1,
+                  "y": 37,
+                  "colSpan": 14,
+                  "rowSpan": 2
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "        // Syslog\r\n        Syslog\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n        | render timechart title = \"Syslog by time\"\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P1D"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "TimeGenerated",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "LogVolume",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "SolutionName",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "ff81c9d1-adf9-4819-8d21-f8aa184ef62f"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Syslog by time"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Line"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "SecuirtyEvent by Week",
+                      "PartSubTitle": "Workspace_Name",
+                      "Query": "SecurityEvent\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\n        | render timechart title = \"SecurityEvent by time\"\n"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "7d"
+                      }
+                    }
+                  }
+                }
+              },
+              "18": {
+                "position": {
+                  "x": 15,
+                  "y": 37,
+                  "colSpan": 10,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "        // Security Alerts\r\n        SecurityAlert\r\n        | summarize count() by AlertName\r\n        | top 5 by AlertName desc \r\n        | render piechart \n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P7D"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "AlertName",
+                          "type": "String"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "count_",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "cf883f8a-298b-4286-bace-04d3f9c0a00f"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsDonut"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "isOptional": true
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Top Security Alerts today",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "19": {
+                "position": {
+                  "x": 1,
+                  "y": 39,
+                  "colSpan": 14,
+                  "rowSpan": 2
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subid')]",
+                        "ResourceGroup": "[parameters('workspacerg')]",
+                        "Name": "[parameters('workspacename')]",
+                        "ResourceId": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/microsoft.operationalinsights/workspaces/', parameters('workspacename'))]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "        // Syslog\r\n        Syslog\r\n        | summarize LogVolume=count() by bin(TimeGenerated,1h), SolutionName = Type\r\n        | render timechart title = \"Syslog by time\"\n"
+                    },
+                    {
+                      "name": "TimeRange",
+                      "value": "P1D"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "TimeGenerated",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "LogVolume",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "SolutionName",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c8d43904-df15-492e-ad3d-dc743133e23f')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "5cd7bdfe-9d4a-4224-a8ff-feb1504dcfb3"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Syslog by time"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('workspacename')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "workspace"
+                    },
+                    {
+                      "name": "ControlType",
+                      "value": "AnalyticsChart"
+                    },
+                    {
+                      "name": "SpecificChart",
+                      "value": "Line"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsPart",
+                  "settings": {
+                    "content": {
+                      "PartTitle": "Syslog by Week",
+                      "PartSubTitle": "Workspace_Name"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  },
+                  "filters": {
+                    "MsPortalFx_TimeRange": {
+                      "model": {
+                        "format": "utc",
+                        "granularity": "auto",
+                        "relative": "7d"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "metadata": {
+          "model": {
+            "timeRange": {
+              "value": {
+                "relative": {
+                  "duration": 24,
+                  "timeUnit": 1
+                }
+              },
+              "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+            },
+            "filterLocale": {
+              "value": "en-us"
+            },
+            "filters": {
+              "value": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "utc",
+                    "granularity": "auto",
+                    "relative": "24h"
+                  },
+                  "displayCache": {
+                    "name": "UTC Time",
+                    "value": "Past 24 hours"
+                  },
+                  "filteredPartIds": [
+                    "StartboardPart-AnalyticsPart-e2225535-7e26-4653-a740-428f7025d005",
+                    "StartboardPart-AnalyticsPart-e2225535-7e26-4653-a740-428f7025d007",
+                    "StartboardPart-AnalyticsPart-e2225535-7e26-4653-a740-428f7025d009",
+                    "StartboardPart-AnalyticsPart-c046d7de-d1d9-4ca5-b65d-1e53f8947007",
+                    "StartboardPart-AnalyticsPart-c046d7de-d1d9-4ca5-b65d-1e53f894700b",
+                    "StartboardPart-AnalyticsPart-c046d7de-d1d9-4ca5-b65d-1e53f894700d",
+                    "StartboardPart-AnalyticsPart-c046d7de-d1d9-4ca5-b65d-1e53f894700f",
+                    "StartboardPart-AnalyticsPart-c046d7de-d1d9-4ca5-b65d-1e53f8947011",
+                    "StartboardPart-AnalyticsPart-79da14e9-d820-4edb-8e70-3d0e31b84007",
+                    "StartboardPart-AnalyticsPart-79da14e9-d820-4edb-8e70-3d0e31b84009",
+                    "StartboardPart-AnalyticsPart-79da14e9-d820-4edb-8e70-3d0e31b8400b",
+                    "StartboardPart-AnalyticsPart-79da14e9-d820-4edb-8e70-3d0e31b8400f",
+                    "StartboardPart-AnalyticsPart-79da14e9-d820-4edb-8e70-3d0e31b84011",
+                    "StartboardPart-AnalyticsPart-79da14e9-d820-4edb-8e70-3d0e31b84015",
+                    "StartboardPart-AnalyticsPart-3010722c-26a1-41e3-be3a-1a1613b41007",
+                    "StartboardPart-AnalyticsPart-3010722c-26a1-41e3-be3a-1a1613b41009",
+                    "StartboardPart-AnalyticsPart-3010722c-26a1-41e3-be3a-1a1613b4100b",
+                    "StartboardPart-AnalyticsPart-3010722c-26a1-41e3-be3a-1a1613b4100f",
+                    "StartboardPart-AnalyticsPart-3010722c-26a1-41e3-be3a-1a1613b41011",
+                    "StartboardPart-AnalyticsPart-3010722c-26a1-41e3-be3a-1a1613b41013",
+                    "StartboardPart-AnalyticsPart-3010722c-26a1-41e3-be3a-1a1613b41017",
+                    "StartboardPart-AnalyticsPart-486cea73-50a7-4f20-abdb-ca20cb6e9007",
+                    "StartboardPart-AnalyticsPart-486cea73-50a7-4f20-abdb-ca20cb6e9009",
+                    "StartboardPart-AnalyticsPart-486cea73-50a7-4f20-abdb-ca20cb6e900b",
+                    "StartboardPart-AnalyticsPart-486cea73-50a7-4f20-abdb-ca20cb6e9011",
+                    "StartboardPart-AnalyticsPart-486cea73-50a7-4f20-abdb-ca20cb6e9013",
+                    "StartboardPart-AnalyticsPart-486cea73-50a7-4f20-abdb-ca20cb6e9017",
+                    "StartboardPart-AnalyticsPart-486cea73-50a7-4f20-abdb-ca20cb6e901b",
+                    "StartboardPart-AnalyticsPart-2106792c-c4cc-42ef-9be3-46e9cdcc132d",
+                    "StartboardPart-AnalyticsPart-2106792c-c4cc-42ef-9be3-46e9cdcc132f",
+                    "StartboardPart-AnalyticsPart-2106792c-c4cc-42ef-9be3-46e9cdcc1331",
+                    "StartboardPart-AnalyticsPart-2106792c-c4cc-42ef-9be3-46e9cdcc1335",
+                    "StartboardPart-AnalyticsPart-2106792c-c4cc-42ef-9be3-46e9cdcc1337",
+                    "StartboardPart-AnalyticsPart-2106792c-c4cc-42ef-9be3-46e9cdcc1339",
+                    "StartboardPart-AnalyticsPart-2106792c-c4cc-42ef-9be3-46e9cdcc133d",
+                    "StartboardPart-AnalyticsPart-9fe4831c-c46c-409e-88f1-07e2e16544b5",
+                    "StartboardPart-AnalyticsPart-9fe4831c-c46c-409e-88f1-07e2e16544b7",
+                    "StartboardPart-AnalyticsPart-9fe4831c-c46c-409e-88f1-07e2e16544b9",
+                    "StartboardPart-AnalyticsPart-9fe4831c-c46c-409e-88f1-07e2e16544bd",
+                    "StartboardPart-AnalyticsPart-9fe4831c-c46c-409e-88f1-07e2e16544bf",
+                    "StartboardPart-AnalyticsPart-9fe4831c-c46c-409e-88f1-07e2e16544c1",
+                    "StartboardPart-AnalyticsPart-9fe4831c-c46c-409e-88f1-07e2e16544c5",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e007",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e009",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e00b",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e00f",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e011",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e013",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e017",
+                    "StartboardPart-AnalyticsPart-2b6408b4-c285-420f-8065-daa7dfa1e01d",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df007",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df009",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df00b",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df00f",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df011",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df013",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df017",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df01d",
+                    "StartboardPart-AnalyticsPart-9da50ead-daa0-45fb-b4b1-88ea601df01f",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517007",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517009",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba51700b",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba51700f",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517011",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517013",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517017",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba51701d",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba51701f",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517023",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517025",
+                    "StartboardPart-AnalyticsPart-6ecfccd0-dcd3-490e-8041-428eba517027",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f007",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f009",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f00b",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f00f",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f011",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f013",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f017",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f01d",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f01f",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f021",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f023",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f025",
+                    "StartboardPart-AnalyticsPart-5c7a7b5c-4e2f-495b-9b13-1ba3b844f027",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89007",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89009",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c8900b",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c8900f",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89011",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89013",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89017",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c8901d",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c8901f",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89021",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89023",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89025",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89027",
+                    "StartboardPart-AnalyticsPart-1015d91a-4884-4c79-bdd9-bda349c89029",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365007",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365009",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe36500b",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe36500f",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365011",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365013",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365017",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe36501d",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe36501f",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365021",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365023",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365025",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365027",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe365029",
+                    "StartboardPart-AnalyticsPart-8c609957-bb5b-40be-bd4c-dd7ebe36502b",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a290c",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a290e",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2910",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2914",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2916",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2918",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a291c",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2922",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2924",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2926",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2928",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a292a",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a292c",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a292e",
+                    "StartboardPart-AnalyticsPart-f32bd4aa-2f7f-418c-ac92-9b12fe5a2930",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb75571ed",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb75571ef",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb75571f1",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb75571f5",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb75571f7",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb75571f9",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb75571fd",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb7557203",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb7557205",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb7557207",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb7557209",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb755720b",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb755720d",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb755720f",
+                    "StartboardPart-AnalyticsPart-dd94a326-9023-4bb3-a7bf-714fb7557211",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b009",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b00b",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b00f",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b011",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b013",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b017",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b01d",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b01f",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b021",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b023",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b025",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b027",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b029",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b02b",
+                    "StartboardPart-AnalyticsPart-bfc0ae79-6fcf-47c3-b970-97da8d24b02d",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6236",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6238",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae623a",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae623e",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6240",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6242",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6246",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae624c",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae624e",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6250",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6252",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6254",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6256",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae6258",
+                    "StartboardPart-AnalyticsPart-bc9be721-3957-4e38-abeb-a65f31ae625a",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9007",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9009",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c900b",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c900f",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9011",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9013",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9017",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c901d",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c901f",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9021",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9023",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9025",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9027",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c9029",
+                    "StartboardPart-AnalyticsPart-a195f22b-75fe-4d73-a162-1b8c329c902b"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "id": "[concat('/subscriptions/', parameters('subid'), '/resourcegroups/', parameters('workspacerg'), '/providers/Microsoft.Portal/dashboards/c5bcd39e-7d1f-4c46-84a0-78eb3f5c4ddd')]",
+      "name": "c5bcd39e-7d1f-4c46-84a0-78eb3f5c4ddd",
+      "type": "Microsoft.Portal/dashboards",
+      "location": "eastus",
+      "tags": {
+        "hidden-title": "Azure Monitor logs Usage"
+      },
+      "apiVersion": "2015-08-01-preview"
+    }
+  ]
+}

@@ -35,7 +35,7 @@ function Get-Configuration
  
       # Do Not change Below
       # ########################################################
-      azureEnvironment = "AzureCloud"
+      azureEnvironment = "AzureUSGovernment" # AzureUSGovernment, AzureCloud
       primaryLocation = "eastus"
       primaryLocationName = "East US"
       primaryLocationTag = "eus"

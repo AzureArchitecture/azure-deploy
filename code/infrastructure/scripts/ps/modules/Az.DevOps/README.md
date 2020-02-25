@@ -1,12 +1,6 @@
 # Az.DevOps
 Powershell Module for working with Azure DevOps
 
-## Getting Started
-Install the Power Shell Model from the gallery
-```
-Install-Module -Name Az.DevOps
-```
-or
 Clone/Download the files from the repository into a specific folder and then run the script ".\Import-Az.DevOpsModules.ps1".  
 
 This will import all of the modules correctly so they can be executed like any standard powershell command.  

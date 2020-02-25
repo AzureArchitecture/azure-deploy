@@ -91,8 +91,8 @@
     [string]$orgTag,
     # location
     [Parameter(Mandatory=$True,HelpMessage="Enter the Azure Location for the deployment. All resources and resource groups will be created in this Azure Region. Example: -location ''eastus''")]
-    [validateset('canadacentral','canadaeast','centralus','eastus','eastus2','northcentralus','southcentralus','westcentralus','westus','westus2')]
-    [string]location,
+    [validateset('canadacentral','canadaeast','centralus','eastus','eastus2','northcentralus','southcentralus','westcentralus','westus','westus2','usgovvirginia','usgoviowa','usgovtexas','usgovarizona')]
+    [string]$location,
     # envTag
     [Parameter(Mandatory=$True,HelpMessage="Enter 3 character environment string. This is used to create resources in Azure that are globally unique. Example: -envTag ''dev''")]
     [ValidateLength(3)]
@@ -189,6 +189,7 @@
       $config = Get-Configuration
       
       # Set variabls from config file
+      $azureEnvironment = $config.azureEnvironment
       $orgTagDefault = $config.orgTag
       $location = $config.primaryLocation
       $locationName = $config.primaryLocationName
@@ -242,7 +243,7 @@
     
     # Logon to Azure
     Write-Information 'Logon to Azure (MFA)...'
-    Initialize-Subscription -Force
+    Initialize-Subscription -Force -azureEnvironment $azureEnvironment
     
     # Logon to Azure AD
     try{
@@ -264,6 +265,7 @@
   }
   
   Set-Location -Path "$rootAzuredeploy"
+  exit
 
   # update orgTags in yml and json files.
   Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
