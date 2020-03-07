@@ -27,6 +27,9 @@ Describe "Event Hub Namespace Deployment Tests" -Tag "functional" {
     $DebugPreference = 'SilentlyContinue'
     $output = Test-AzResourceGroupDeployment -ResourceGroupName "$ResourceGroupName" -TemplateFile "$TemplateFile" -TemplateParameterFile "$TemplateParameterFile" 5>&1
     write-host $output
+    if ($output) {
+        write-host $output.details.details.message
+    }
     $DebugPreference = 'SilentlyContinue'
 
     It "Should be deployed successfully" {

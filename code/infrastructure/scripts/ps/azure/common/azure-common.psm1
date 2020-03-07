@@ -1,397 +1,733 @@
+function Get-AzSubLocation
+{
+  <#
+      .SYNOPSIS
+      This function reurns the Azure Location based on the logged on Azure Cloud and Display Name ('AzureCloud','AzureChinaCloud','AzureUSGovernment','AzureGermanyCloud'). 
+
+      .DESCRIPTION
+      This function is to return a list a valid location based on the current Azure Cloud that the user is logged in too ('AzureCloud','AzureChinaCloud','AzureUSGovernment','AzureGermanyCloud').
+      If you pass in a location DisplayName it will return the location value. Eg. 'East US' - eastus 
+
+      .EXAMPLE
+      Get-AzSubLocation
+      Returns a list of the location values based on the logged on user.
+
+      .EXAMPLE
+      Get-AzSubLocation -DisplayName "East US"
+      Returns the location value based on the logged on user and the passed in DisplayName.
+
+      .NOTES
+      This function utilizes and has a dependency on Powershell Dynamic Variables.
+
+      .LINK
+      URLs to related sites
+      https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azlocation
+
+      .PARAMETER DisplayName
+      Azure Location Display Name
+
+      .OUTPUTS
+      List or single Azure location value
+  #>
+    [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      },
+      @{
+        Name = 'DisplayName'
+        Type = [string]
+        Position = 2
+        Manndatory = $false
+        ValidateSet = (Get-AzLocation |Select-Object -Property DisplayName -Unique |Select-Object -ExpandProperty DisplayName)
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+    $DisplayName = $PSBoundParameters['Location'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      if ($DisplayName)
+      {
+        $ret = Get-AzLocation | Where-Object Location -match "$DisplayName" | Select -Property Location
+      }
+      else
+      {
+        $ret = Get-AzLocation Select -Property Location        
+      }
+      Return $ret
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
+
+  end
+  {
+  }
+}
+
+function Get-AzSubLocationDisplayName
+{
+  <#
+    .SYNOPSIS
+    This function reurns the Azure Location Display Name based on the logged on Azure Cloud and location Value ('AzureCloud','AzureChinaCloud','AzureUSGovernment','AzureGermanyCloud'). 
+
+    .DESCRIPTION
+    This function is to return a list a valid location Display Names based on the current Azure Cloud that the user is logged in too ('AzureCloud','AzureChinaCloud','AzureUSGovernment','AzureGermanyCloud').
+    If you pass in a location value it will return the location Display Name. Eg. eastus - 'East US'  
+
+    .EXAMPLE
+    Get-AzSubLocationDisplayName
+    Returns a list of the location Display Names values based on the logged on user.
+
+    .EXAMPLE
+    Get-AzSubLocationDisplayName -Location "eastus"
+    Returns the location value based on the logged on user and the passed in location value.
+
+    .NOTES
+    This function utilizes and has a dependency on Powershell Dynamic Variables.
+
+    .LINK
+    URLs to related sites
+    https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azlocation
+
+    .PARAMETER DisplayName
+    Azure Location Display Name
+
+    .OUTPUTS
+    List or single Azure location value
+  #>
+  [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      },
+      @{
+        Name = 'Location'
+        Type = [string]
+        Position = 2
+        Manndatory = $false
+        ValidateSet = (Get-AzLocation |Select-Object -Property Location -Unique |Select-Object -ExpandProperty Location)
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+    $Location = $PSBoundParameters['Location'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      if ($Location)
+      {
+        $ret = Get-AzLocation  | Where-Object Location -match $Location | Select -Property DisplayName
+      }
+      else
+      {
+        $ret = Get-AzLocation | Select -Property DisplayName
+      }
+      Return $ret
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
+
+  end
+  {
+  }
+}
+
 function Get-AzResourceProviders
 {
-	[CmdletBinding()]
-	param
-	(
-	)
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AzResourceProviders" in 1-2 sentences.
 
-	DynamicParam
-	{
-		$DynamicParameters = @(
-			@{
-				Name = 'Subscription'
-				Type = [object]
-				Position = 0
-				Mandatory = $true
-			},
-			@{
-				Name = 'Location'
-				Type = [string]
-				Position = 2
-				Manndatory = $false
-				ValidateSet = (Get-AzLocation |Select-Object -Property Location -Unique |Select-Object -ExpandProperty Location)
-			}
-		)
-		$DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
-	}
+    .DESCRIPTION
+    Add a more complete description of what the function does.
 
-	begin
-	{
-		$Subscription = $PSBoundParameters['Subscription'];
-		$Location = $PSBoundParameters['Location'];
-	}
+    .EXAMPLE
+    Get-AzResourceProviders
+    Describe what this call does
 
-	process
-	{
-		try
-		{
-			$ErrorActionPreference = 'Stop';
-			$Error.Clear();
+    .NOTES
+    Place additional notes here.
 
-			$ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/securityStatuses";
-			$ApiVersion = '2015-06-01-preview';
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AzResourceProviders
 
-			if ($Location)
-			{
-				Get-AzResourceProvider -Location $Location -ListAvailable | Select-Object ProviderNamespace, RegistrationState
-			}
-			else
-			{
-				Get-AzResourceProvider -ListAvailable | Select-Object ProviderNamespace, RegistrationState
-			}
-		}
-		catch
-		{
-			throw $_;
-		}
-	}
+    .INPUTS
+    List of input types that are accepted by this function.
 
-	end
-	{
-	}
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+  [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      },
+      @{
+        Name = 'Location'
+        Type = [string]
+        Position = 2
+        Manndatory = $false
+        ValidateSet = (Get-AzLocation |Select-Object -Property Location -Unique |Select-Object -ExpandProperty Location)
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+    $Location = $PSBoundParameters['Location'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      $ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/securityStatuses";
+      $ApiVersion = '2015-06-01-preview';
+
+      if ($Location)
+      {
+        Get-AzResourceProvider -Location $Location -ListAvailable | Select-Object -Property ProviderNamespace, RegistrationState
+      }
+      else
+      {
+        Get-AzResourceProvider -ListAvailable | Select-Object -Property ProviderNamespace, RegistrationState
+      }
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
+
+  end
+  {
+  }
 }
 
 function Get-AzSecurityStatus
 {
-	<#
-	https://msdn.microsoft.com/en-us/library/mt704041.aspx
-	#>
-	[CmdletBinding()]
-	param
-	(
-	)
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AzSecurityStatus" in 1-2 sentences.
 
-	DynamicParam
-	{
-		$DynamicParameters = @(
-			@{
-				Name = 'Subscription'
-				Type = [object]
-				Position = 0
-				Mandatory = $true
-			},
-			@{
-				Name = 'ResourceType'
-				Type = [string]
-				Position = 2
-				Manndatory = $false
-				ValidateSet = (Get-AzResource |Select-Object -Property ResourceType -Unique |Select-Object -ExpandProperty ResourceType)
-			}
-		)
-		$DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
-	}
+    .DESCRIPTION
+    Add a more complete description of what the function does.
 
-	begin
-	{
-		$Subscription = $PSBoundParameters['Subscription'];
-		$ResourceType = $PSBoundParameters['ResourceType'];
-	}
+    .EXAMPLE
+    Get-AzSecurityStatus
+    Describe what this call does
 
-	process
-	{
-		try
-		{
-			$ErrorActionPreference = 'Stop';
-			$Error.Clear();
+    .NOTES
+    Place additional notes here.
 
-			$ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/securityStatuses";
-			$ApiVersion = '2015-06-01-preview';
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AzSecurityStatus
 
-			if ($ResourceType)
-			{
-				Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion |Where-Object -Property ResourceType -EQ $ResourceType;
-			}
-			else
-			{
-				Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
-			}
-		}
-		catch
-		{
-			throw $_;
-		}
-	}
+    .INPUTS
+    List of input types that are accepted by this function.
 
-	end
-	{
-	}
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+  <#
+      https://msdn.microsoft.com/en-us/library/mt704041.aspx
+  #>
+  [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      },
+      @{
+        Name = 'ResourceType'
+        Type = [string]
+        Position = 2
+        Manndatory = $false
+        ValidateSet = (Get-AzResource |Select-Object -Property ResourceType -Unique |Select-Object -ExpandProperty ResourceType)
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+    $ResourceType = $PSBoundParameters['ResourceType'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      $ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/securityStatuses";
+      $ApiVersion = '2015-06-01-preview';
+
+      if ($ResourceType)
+      {
+        Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion |Where-Object -Property ResourceType -EQ $ResourceType;
+      }
+      else
+      {
+        Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
+      }
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
+
+  end
+  {
+  }
 }
 
 function Get-AzSecurityAlert
 {
-	<#
-	https://msdn.microsoft.com/en-us/library/mt704050.aspx
-	#>
-	[CmdletBinding()]
-	param
-	(
-	)
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AzSecurityAlert" in 1-2 sentences.
 
-	DynamicParam
-	{
-		$DynamicParameters = @(
-			@{
-				Name = 'Subscription'
-				Type = [object]
-				Position = 0
-				Mandatory = $true
-			},
-			@{
-				Name = 'ResourceType'
-				Type = [string]
-				Position = 2
-				Manndatory = $false
-				ValidateSet = (Get-AzResource |Select-Object -Property ResourceType -Unique |Select-Object -ExpandProperty ResourceType)
-			}
-		)
-		$DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
-	}
+    .DESCRIPTION
+    Add a more complete description of what the function does.
 
-	begin
-	{
-		$Subscription = $PSBoundParameters['Subscription'];
-		$ResourceType = $PSBoundParameters['ResourceType'];
-	}
+    .EXAMPLE
+    Get-AzSecurityAlert
+    Describe what this call does
 
-	process
-	{
-		try
-		{
-			$ErrorActionPreference = 'Stop';
-			$Error.Clear();
+    .NOTES
+    Place additional notes here.
 
-			$ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/alerts";
-			$ApiVersion = '2015-06-01-preview';
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AzSecurityAlert
 
-			if ($ResourceType)
-			{
-				Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion |Where-Object -Property ResourceType -EQ $ResourceType;
-			}
-			else
-			{
-				Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
-			}
-		}
-		catch
-		{
-			throw $_;
-		}
-	}
+    .INPUTS
+    List of input types that are accepted by this function.
 
-	end
-	{
-	}
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+  <#
+      https://msdn.microsoft.com/en-us/library/mt704050.aspx
+  #>
+  [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      },
+      @{
+        Name = 'ResourceType'
+        Type = [string]
+        Position = 2
+        Manndatory = $false
+        ValidateSet = (Get-AzResource |Select-Object -Property ResourceType -Unique |Select-Object -ExpandProperty ResourceType)
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+    $ResourceType = $PSBoundParameters['ResourceType'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      $ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/alerts";
+      $ApiVersion = '2015-06-01-preview';
+
+      if ($ResourceType)
+      {
+        Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion |Where-Object -Property ResourceType -EQ $ResourceType;
+      }
+      else
+      {
+        Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
+      }
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
+
+  end
+  {
+  }
 }
 
 function Get-AzSecurityTask
 {
-	<#
-	https://msdn.microsoft.com/en-us/library/mt704053.aspx
-	#>
-	[CmdletBinding()]
-	param
-	(
-	)
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AzSecurityTask" in 1-2 sentences.
 
-	DynamicParam
-	{
-		$DynamicParameters = @(
-			@{
-				Name = 'Subscription'
-				Type = [object]
-				Position = 0
-				Mandatory = $true
-			}
-		)
-		$DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
-	}
+    .DESCRIPTION
+    Add a more complete description of what the function does.
 
-	begin
-	{
-		$Subscription = $PSBoundParameters['Subscription'];
-	}
+    .EXAMPLE
+    Get-AzSecurityTask
+    Describe what this call does
 
-	process
-	{
-		try
-		{
-			$ErrorActionPreference = 'Stop';
-			$Error.Clear();
+    .NOTES
+    Place additional notes here.
 
-			$ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/tasks";
-			$ApiVersion = '2015-06-01-preview';
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AzSecurityTask
 
-			Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
-		}
-		catch
-		{
-			throw $_;
-		}
-	}
+    .INPUTS
+    List of input types that are accepted by this function.
 
-	end
-	{
-	}
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+  <#
+      https://msdn.microsoft.com/en-us/library/mt704053.aspx
+  #>
+  [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      $ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/tasks";
+      $ApiVersion = '2015-06-01-preview';
+
+      Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
+
+  end
+  {
+  }
 }
 
 function Get-AzSecurityPolicy
 {
-	<#
-	https://msdn.microsoft.com/en-us/library/mt704061.aspx
-	#>
-	[CmdletBinding()]
-	param
-	(
-	)
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AzSecurityPolicy" in 1-2 sentences.
 
-	DynamicParam
-	{
-		$DynamicParameters = @(
-			@{
-				Name = 'Subscription'
-				Type = [object]
-				Position = 0
-				Mandatory = $true
-			},
-			@{
-				Name = 'Name'
-				Type = [string]
-				Position = 1
-				Mandatory = $false
-			}
-		)
-		$DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
-	}
+    .DESCRIPTION
+    Add a more complete description of what the function does.
 
-	begin
-	{
-		$Subscription = $PSBoundParameters['Subscription'];
-		$PolicyName = $PSBoundParameters['Name'];
-	}
+    .EXAMPLE
+    Get-AzSecurityPolicy
+    Describe what this call does
 
-	process
-	{
-		try
-		{
-			$ErrorActionPreference = 'Stop';
-			$Error.Clear();
+    .NOTES
+    Place additional notes here.
 
-			$ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/policies";
-			$ApiVersion = '2015-06-01-preview';
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AzSecurityPolicy
 
-			if ($PolicyName)
-			{
-				$ResourceId = "$($ResourceId)/$($PolicyName)";
-			}
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+  <#
+      https://msdn.microsoft.com/en-us/library/mt704061.aspx
+  #>
+  [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      },
+      @{
+        Name = 'Name'
+        Type = [string]
+        Position = 1
+        Mandatory = $false
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+    $PolicyName = $PSBoundParameters['Name'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      $ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/providers/microsoft.Security/policies";
+      $ApiVersion = '2015-06-01-preview';
+
+      if ($PolicyName)
+      {
+        $ResourceId = "$($ResourceId)/$($PolicyName)";
+      }
 			
-			Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
-		}
-		catch
-		{
-			throw $_;
-		}
-	}
+      Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
 
-	end
-	{
-	}
+  end
+  {
+  }
 }
 
 function Get-AzSecurityDataCollection
 {
-	<#
-	https://msdn.microsoft.com/en-us/library/mt704044.aspx
-	#>
-	[CmdletBinding()]
-	param
-	(
-	)
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AzSecurityDataCollection" in 1-2 sentences.
 
-	DynamicParam
-	{
-		$DynamicParameters = @(
-			@{
-				Name = 'Subscription'
-				Type = [object]
-				Position = 0
-				Mandatory = $true
-			},
-			@{
-				Name = 'ResourceGroupName'
-				Type = [string]
-				Position = 1
-				Mandatory = $true
-			},
-			@{
-				Name = 'VMName'
-				Type = [string]
-				Position = 2
-				Mandatory = $true
-			},
-			@{
-				Name = 'Type'
-				Type = [string]
-				Position = 3
-				Mandatory = $true
-				ValidateSet = 'Microsoft.Compute','Microsoft.ClassicCompute'
-			},
-			@{
-				Name = 'ResultType'
-				Type = [string]
-				Position = 3
-				Mandatory = $true
-				ValidateSet = 'patch','baseline','antimalware'
-			}
-		)
-		$DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
-	}
+    .DESCRIPTION
+    Add a more complete description of what the function does.
 
-	begin
-	{
-		$Subscription = $PSBoundParameters['Subscription'];
-		$ResourceGroupName = $PSBoundParameters['ResourceGroupName']
-		$VMName = $PSBoundParameters['VMName'];
-		$ResourceType = $PSBoundParameters['Type'];
-		$ResultType = $PSBoundParameters['ResultType'];
-	}
+    .EXAMPLE
+    Get-AzSecurityDataCollection
+    Describe what this call does
 
-	process
-	{
-		try
-		{
-			$ErrorActionPreference = 'Stop';
-			$Error.Clear();
+    .NOTES
+    Place additional notes here.
 
-			$ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/resourceGroups/$($ResourceGroupName)/providers/$($ResourceType)/virtualMachines/$($VMName)/providers/Microsoft.Security/dataCollectionResults/$($ResultType)";
-			$ApiVersion = '2015-06-01-preview';
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AzSecurityDataCollection
 
-			Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
-		}
-		catch
-		{
-			throw $_;
-		}
-	}
+    .INPUTS
+    List of input types that are accepted by this function.
 
-	end
-	{
-	}
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+  <#
+      https://msdn.microsoft.com/en-us/library/mt704044.aspx
+  #>
+  [CmdletBinding()]
+  param
+  (
+  )
+
+  DynamicParam
+  {
+    $DynamicParameters = @(
+      @{
+        Name = 'Subscription'
+        Type = [object]
+        Position = 0
+        Mandatory = $true
+      },
+      @{
+        Name = 'ResourceGroupName'
+        Type = [string]
+        Position = 1
+        Mandatory = $true
+      },
+      @{
+        Name = 'VMName'
+        Type = [string]
+        Position = 2
+        Mandatory = $true
+      },
+      @{
+        Name = 'Type'
+        Type = [string]
+        Position = 3
+        Mandatory = $true
+        ValidateSet = 'Microsoft.Compute','Microsoft.ClassicCompute'
+      },
+      @{
+        Name = 'ResultType'
+        Type = [string]
+        Position = 3
+        Mandatory = $true
+        ValidateSet = 'patch','baseline','antimalware'
+      }
+    )
+    $DynamicParameters |ForEach-Object {New-Object -TypeName psobject -Property $_} |New-DynamicParameter;
+  }
+
+  begin
+  {
+    $Subscription = $PSBoundParameters['Subscription'];
+    $ResourceGroupName = $PSBoundParameters['ResourceGroupName']
+    $VMName = $PSBoundParameters['VMName'];
+    $ResourceType = $PSBoundParameters['Type'];
+    $ResultType = $PSBoundParameters['ResultType'];
+  }
+
+  process
+  {
+    try
+    {
+      $ErrorActionPreference = 'Stop';
+      $Error.Clear();
+
+      $ResourceId = "/subscriptions/$($Subscription.SubscriptionId)/resourceGroups/$($ResourceGroupName)/providers/$($ResourceType)/virtualMachines/$($VMName)/providers/Microsoft.Security/dataCollectionResults/$($ResultType)";
+      $ApiVersion = '2015-06-01-preview';
+
+      Get-AzResource -ResourceId $ResourceId -ApiVersion $ApiVersion;
+    }
+    catch
+    {
+      throw $_;
+    }
+  }
+
+  end
+  {
+  }
 }
 
 
 Function Start-Countdown 
 {   <#
-    .SYNOPSIS
+      .SYNOPSIS
         Provide a graphical countdown if you need to pause a script for a period of time
         Test
     #>
@@ -435,12 +771,12 @@ function Update-StringInFile
   # Set working directory to path specified by rootDirectory var
   Set-Location -Path  $rootDirectory -PassThru
   
-  $searchFiles = Get-ChildItem . *.$fileExtension -rec
+  $searchFiles = Get-ChildItem -Path . -Filter *.$fileExtension -Recurse
   foreach ($file in $searchFiles)
   {
-    (Get-Content $file.PSPath -Force -ErrorAction SilentlyContinue) |
+    (Get-Content -Path $file.PSPath -Force -ErrorAction SilentlyContinue) |
     Foreach-Object { $_ -replace $searchStr, $replaceStr } |
-    Set-Content $file.PSPath
+    Set-Content -Path $file.PSPath
   }
 }
 <#
@@ -448,6 +784,35 @@ function Update-StringInFile
     Checks if a module is loaded and does just that...
 #>
 function Load-Module ($m) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Load-Module" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER m
+    Describe parameter -m.
+
+    .EXAMPLE
+    Load-Module -m Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Load-Module
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     # If module is imported say that and do nothing
     if (Get-Module | Where-Object {$_.Name -eq $m}) {
         write-host "Module $m is already imported."
@@ -455,13 +820,13 @@ function Load-Module ($m) {
     else {
         # If module is not imported, but available on disk then import
         if (Get-Module -ListAvailable | Where-Object {$_.Name -eq $m}) {
-            Import-Module $m -Force
+            Import-Module -Name $m -Force
         }
         else {
             # If module is not imported, not available on disk, but is in on-line gallery then install and import
             if (Find-Module -Name $m | Where-Object {$_.Name -eq $m}) {
                 Install-Module -Name $m -Force -Verbose -Scope CurrentUser -InformationVariable Ignore -AllowClobber -Confirm:0
-                Import-Module $m -Force
+                Import-Module -Name $m -Force
             }
             else {
                 # If module is not imported, not available and not in online gallery then abort
@@ -478,6 +843,38 @@ function Load-Module ($m) {
 #>
 function Initialize-Subscription
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Initialize-Subscription" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Force
+    Describe parameter -Force.
+
+    .PARAMETER NoEcho
+    Describe parameter -NoEcho.
+
+    .EXAMPLE
+    Initialize-Subscription -Force -NoEcho
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Initialize-Subscription
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   param(
     # Force reyazyres the user selects a subscription explicitly
     [parameter(Mandatory=$false)]
@@ -507,7 +904,7 @@ function Initialize-Subscription
           $subscriptionId = Get-SubscriptionId
           $subscriptionName = Get-SubscriptionName
           $tenantId = Get-TenantId
-          Write-Output "Signed-in as $($AzureContext.Account), Subscription '$($subscriptionId)' '$($subscriptionName)', Tenant Id '$($tenantId)'"
+          Write-Output -InputObject "Signed-in as $($AzureContext.Account), Subscription '$($subscriptionId)' '$($subscriptionName)', Tenant Id '$($tenantId)'"
         }
         return
       }
@@ -558,17 +955,17 @@ function Initialize-Subscription
     }
 
     # Prompt for selection
-    Write-Output "Your Azure subscriptions: "
-    $subscriptionList | Format-Table Row, Id, Name -AutoSize
+    Write-Output -InputObject "Your Azure subscriptions: "
+    $subscriptionList | Format-Table -Property Row, Id, Name -AutoSize
 
     # Select single Azure subscription for session
     try
     {
-      [int]$selectedRow = Read-Host "Enter the row number to select the subscription to use" -ErrorAction Stop
+      [int]$selectedRow = Read-Host -Prompt "Enter the row number to select the subscription to use" -ErrorAction Stop
 
       Set-AzContext -SubscriptionId $subscriptionList[($selectedRow - 1)] -ErrorAction Stop > $null
 
-      Write-Output "Subscription Id '$($subscriptionList[($selectedRow - 1)].Id)' selected."
+      Write-Output -InputObject "Subscription Id '$($subscriptionList[($selectedRow - 1)].Id)' selected."
     }
     catch
     {
@@ -580,6 +977,32 @@ function Initialize-Subscription
 
 function Get-SubscriptionId
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-SubscriptionId" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-SubscriptionId
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-SubscriptionId
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $Azurecontext = Get-AzContext
   if ($Azurecontext) {
     return (Get-AzContext).Subscription.Id
@@ -591,6 +1014,32 @@ function Get-SubscriptionId
 
 function Get-SubscriptionName
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-SubscriptionName" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-SubscriptionName
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-SubscriptionName
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $Azurecontext = Get-AzContext
   if ($Azurecontext) {
       return (Get-AzContext).Subscription.Name
@@ -602,6 +1051,32 @@ function Get-SubscriptionName
 
 function Get-AccountId
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AccountId" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-AccountId
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AccountId
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $Azurecontext = Get-AzContext
   if ($Azurecontext) {
       return (Get-AzContext).Account.Id
@@ -613,6 +1088,32 @@ function Get-AccountId
 
 function Get-TenantId
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-TenantId" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-TenantId
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-TenantId
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $Azurecontext = Get-AzContext
   if ($Azurecontext) {
       return (Get-AzContext).Tenant.Id
@@ -624,6 +1125,32 @@ function Get-TenantId
 
 function Get-SubscriptionList
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-SubscriptionList" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-SubscriptionList
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-SubscriptionList
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # Add 'id' and 'name' properties to subscription object returned for Az. modules less than 4.0
   $subscriptionObject = get-AzSubscription
 
@@ -638,8 +1165,34 @@ function Get-SubscriptionList
 
 function Get-DbId
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-DbId" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-DbId
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-DbId
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $Azurecontext = Get-AzContext
-  $AzureModuleVersion = Get-Module Az.Resources -list
+  $AzureModuleVersion = Get-Module -Name Az.Resources -ListAvailable
 
   # Check PowerShell version to accommodate breaking change in Az. modules greater than 4.0
   if ($AzureModuleVersion.Version.Major -ge 4)
@@ -658,6 +1211,35 @@ function Get-DbId
 #>
 function Test-ResourceGroupExists
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Test-ResourceGroupExists" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Test-ResourceGroupExists -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Test-ResourceGroupExists
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   param(
     [parameter(Mandatory=$true)]
     [string] $ResourceGroupName
@@ -680,6 +1262,35 @@ function Test-ResourceGroupExists
 #>
 function Get-ResourceGroupLocation
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-ResourceGroupLocation" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Get-ResourceGroupLocation -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-ResourceGroupLocation
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   param(
     [parameter(Mandatory=$true)]
     [string] $ResourceGroupName
@@ -700,6 +1311,35 @@ function Get-ResourceGroupLocation
 }
 function Remove-ResourceGroup
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Remove-ResourceGroup" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Name
+    Describe parameter -Name.
+
+    .EXAMPLE
+    Remove-ResourceGroup -Name Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Remove-ResourceGroup
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   param(
     [parameter(Mandatory=$true)]
     [string] $Name
@@ -707,7 +1347,7 @@ function Remove-ResourceGroup
 
   try
   {
-    $rgexists = Get-AzResourceGroup $Name
+    $rgexists = Get-AzResourceGroup -Name $Name
     if ($rgexists) {
       Remove-AzResourceGroup -Name $Name -Force -Verbose
       $rgexists=$false
@@ -735,17 +1375,17 @@ function Get-PSModules
   }
   else
   {
-    Import-Module ImportExcel -verbose:0 -ErrorAction SilentlyContinue
+    Import-Module -Name ImportExcel -Verbose:0 -ErrorAction SilentlyContinue
   }
 
   ## Install Azure AD
   if ( -not (get-module -listavailable | Where-Object name -match 'AzureAD'))
   {
-    install-Module AzureAD -force -AllowClobber -confirm:$false
+    install-Module -Name AzureAD -Force -AllowClobber -confirm:$false
   }
     else
   {
-    Import-Module AzureAD -verbose:0 -ErrorAction SilentlyContinue
+    Import-Module -Name AzureAD -Verbose:0 -ErrorAction SilentlyContinue
   }
 
   ## Install Az module
@@ -755,7 +1395,7 @@ function Get-PSModules
   }
       else
   {
-    Import-Module Az -verbose:0 -ErrorAction SilentlyContinue
+    Import-Module -Name Az -Verbose:0 -ErrorAction SilentlyContinue
   }
 }
 
@@ -853,10 +1493,10 @@ function ConvertTo-Hashtable {
         {
             # Call this function recursively for each object in InputObjects.
             $collection = @(
-                foreach ($object in $InputObject) { ConvertTo-Hashtable $object }
+                foreach ($object in $InputObject) { ConvertTo-Hashtable -InputObject $object }
             )
 
-            Write-Output -NoEnumerate $collection
+            Write-Output -NoEnumerate -InputObject $collection
         }
         # If the InputObject is already an Object.
         elseif ($InputObject -is [psobject])
@@ -868,7 +1508,7 @@ function ConvertTo-Hashtable {
             foreach ($property in $InputObject.PSObject.Properties)
             {
                 # Add a key value pair to the hashtable and call the ConvertTo-Hashtable function on the property value.
-                $hash[$property.Name] = ConvertTo-Hashtable $property.Value
+                $hash[$property.Name] = ConvertTo-Hashtable -InputObject $property.Value
             }
 
             # Return the hashtable.
@@ -931,7 +1571,7 @@ function Export-Yaml {
             Install-Module -Name powershell-yaml -AllowClobber -Confirm:$false
         }
         # Import the powershell-yaml module.
-        Import-Module powershell-yaml
+        Import-Module -Name powershell-yaml
     }
     process {
         # Convert the InputObject to Yaml and save it to the Path location with overwrite.
@@ -1069,7 +1709,7 @@ function Import-Yaml {
             Install-Module -Name powershell-yaml -AllowClobber -Confirm:$false
         }
         # Import the powershell-yaml module.
-        Import-Module powershell-yaml
+        Import-Module -Name powershell-yaml
     }
     process {
         # Load the raw content from the provided path and convert it from Yaml to Json and then from Json to an Array of Custom Objects.
@@ -1120,11 +1760,11 @@ function Read-FilePath {
     # https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc189944(v%3dvs.95)
 
     Add-Type -AssemblyName System.Windows.Forms
-    $topform = New-Object System.Windows.Forms.Form
+    $topform = New-Object -TypeName System.Windows.Forms.Form
   $topform.Topmost = $true
     $topform.MinimizeBox = $true
 
-    $openFileDialog = New-Object windows.forms.openfiledialog
+    $openFileDialog = New-Object -TypeName windows.forms.openfiledialog
     $openFileDialog.title = $Title
     $openFileDialog.InitialDirectory = $pwd.path
     if ($Extension) {
@@ -1141,28 +1781,108 @@ function Read-FilePath {
     }
 }
 
-########################################################################################################################
 function Get-UserVariables() {
-    Compare-Object (Get-Variable) $AutomaticVariables -Property Name -PassThru | Where-Object -Property Name -ne "AutomaticVariables"
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-UserVariables" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-UserVariables
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-UserVariables
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+    Compare-Object -ReferenceObject (Get-Variable) -DifferenceObject $AutomaticVariables -Property Name -PassThru | Where-Object -Property Name -ne "AutomaticVariables"
 }
-########################################################################################################################
+
 function Test-KeyVaultName {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Test-KeyVaultName" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER keyVaultName
+    Describe parameter -keyVaultName.
+
+    .EXAMPLE
+    Test-KeyVaultName -keyVaultName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Test-KeyVaultName
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     Param(
     [Parameter(Mandatory=$true)]
     [string]$keyVaultName
   )
     $firstchar = $keyVaultName[0]
     if ($firstchar -match '^[0-9]+$') {
-        $keyVaultNew = Read-Host "Key Vault name can't start with numeric value. Please enter a new Key Vault Name."
+        $keyVaultNew = Read-Host -Prompt "Key Vault name can't start with numeric value. Please enter a new Key Vault Name."
         checkKeyVaultName -keyVaultName $keyVaultNew
         return;
     }
     return $keyVaultName;
 }
 
-########################################################################################################################
+
 function Test-AdminUserName {
-    $username = Read-Host "Enter an Admin Username"
+  <#
+    .SYNOPSIS
+    Describe purpose of "Test-AdminUserName" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Test-AdminUserName
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Test-AdminUserName
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+    $username = Read-Host -Prompt "Enter an Admin Username"
     if ($username.ToLower() -eq "admin") {
         Write-Verbose -Message "Not a valid Admin username, please select another."
         checkAdminUserName
@@ -1171,9 +1891,35 @@ function Test-AdminUserName {
     return $username
 }
 
-########################################################################################################################
+
 function Test-DomainName {
-    $domain = Read-Host "Domain Name"
+  <#
+    .SYNOPSIS
+    Describe purpose of "Test-DomainName" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Test-DomainName
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Test-DomainName
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+    $domain = Read-Host -Prompt "Domain Name"
     if ($domain.length -gt "15") {
         Write-Verbose -Message "Domain Name is too long. Must be less than 15 characters."
         CheckDomainName
@@ -1192,13 +1938,42 @@ function Test-DomainName {
     Return $domain
 }
 
-########################################################################################################################
+
 function Test-Passwords {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Test-Passwords" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER name
+    Describe parameter -name.
+
+    .EXAMPLE
+    Test-Passwords -name Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Test-Passwords
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   Param(
     [Parameter(Mandatory=$true)]
     [string]$name
   )
-  $password = Read-Host -assecurestring "Enter an $($name)"
+  $password = Read-Host -AsSecureString -Prompt "Enter an $($name)"
     $Ptr = [System.Runtime.InteropServices.Marshal]::SecureStringToCoTaskMemUnicode($password)
     $pw2test = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($Ptr)
     [System.Runtime.InteropServices.Marshal]::ZeroFreeCoTaskMemUnicode($Ptr)
@@ -1264,8 +2039,37 @@ function Test-Passwords {
     }
 }
 
-########################################################################################################################
+
 Function New-AlphaNumericPassword () {
+  <#
+    .SYNOPSIS
+    Describe purpose of "New-AlphaNumericPassword" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Length
+    Describe parameter -Length.
+
+    .EXAMPLE
+    New-AlphaNumericPassword -Length Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online New-AlphaNumericPassword
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     [CmdletBinding()]
     param(
         [int]$Length = 14
@@ -1280,8 +2084,40 @@ Function New-AlphaNumericPassword () {
         }
     return $RandomPassword
 }
-########################################################################################################################
+
 function New-Cert() {
+  <#
+    .SYNOPSIS
+    Describe purpose of "New-Cert" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER certPassword
+    Describe parameter -certPassword.
+
+    .PARAMETER domain
+    Describe parameter -domain.
+
+    .EXAMPLE
+    New-Cert -certPassword Value -domain Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online New-Cert
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   [CmdletBinding()]
   param(
     [securestring]$certPassword,
@@ -1294,11 +2130,58 @@ function New-Cert() {
     $certPath = $filePath + '\cert.pfx'
     $outFilePath = $filePath + '\cert.txt'
     Export-PfxCertificate -cert $path -FilePath $certPath -Password $certPassword
-    $fileContentBytes = get-content $certPath -Encoding Byte
-    [System.Convert]::ToBase64String($fileContentBytes) | Out-File $outFilePath
+    $fileContentBytes = get-content -Path $certPath -Encoding Byte
+    [System.Convert]::ToBase64String($fileContentBytes) | Out-File -FilePath $outFilePath
 }
-########################################################################################################################
+
 function Write-Color([String[]]$Text, [ConsoleColor[]]$Color = "White", [int]$StartTab = 0, [int] $LinesBefore = 0, [int] $LinesAfter = 0, [string] $LogFile = "", $TimeFormat = "yyyy-MM-dd HH:mm:ss") {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Write-Color" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Text
+    Describe parameter -Text.
+
+    .PARAMETER Color
+    Describe parameter -Color.
+
+    .PARAMETER StartTab
+    Describe parameter -StartTab.
+
+    .PARAMETER LinesBefore
+    Describe parameter -LinesBefore.
+
+    .PARAMETER LinesAfter
+    Describe parameter -LinesAfter.
+
+    .PARAMETER LogFile
+    Describe parameter -LogFile.
+
+    .PARAMETER TimeFormat
+    Describe parameter -TimeFormat.
+
+    .EXAMPLE
+    Write-Color -Text Value -Color Value -StartTab Value -LinesBefore Value -LinesAfter Value -LogFile Value -TimeFormat Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Write-Color
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # version 0.2
   # - added logging to file
   # version 0.1
@@ -1324,16 +2207,67 @@ function Write-Color([String[]]$Text, [ConsoleColor[]]$Color = "White", [int]$St
     for ($i = 0; $i -lt $Text.Length; $i++) {
       $TextToFile += $Text[$i]
     }
-    Write-Output "[$([datetime]::Now.ToString($TimeFormat))]$TextToFile" | Out-File $LogFile -Encoding unicode -Append
+    Write-Output -InputObject "[$([datetime]::Now.ToString($TimeFormat))]$TextToFile" | Out-File -FilePath $LogFile -Encoding unicode -Append
   }
 }
-########################################################################################################################
+
 function Get-ScriptDirectory {
-  $Invocation = (Get-Variable MyInvocation -Scope 1).Value
-  Split-Path $Invocation.MyCommand.Path
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-ScriptDirectory" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Get-ScriptDirectory
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-ScriptDirectory
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
+  $Invocation = (Get-Variable -Name MyInvocation -Scope 1).Value
+  Split-Path -Path $Invocation.MyCommand.Path
 }
-########################################################################################################################
 function Connect-Azure() {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Connect-Azure" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .EXAMPLE
+    Connect-Azure
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Connect-Azure
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   Write-Color -Text "Logging in and setting subscription..." -Color Green
   if ([string]::IsNullOrEmpty($(Get-AzContext).Account)) {
     if ($env:AZURE_TENANT) {
@@ -1345,8 +2279,40 @@ function Connect-Azure() {
   }
   Set-AzContext -SubscriptionId ${Subscription} | Out-null
 }
-########################################################################################################################
+
 function New-ResourceGroup([string]$ResourceGroupName, [string]$Location) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "New-ResourceGroup" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .PARAMETER Location
+    Describe parameter -Location.
+
+    .EXAMPLE
+    New-ResourceGroup -ResourceGroupName Value -Location Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online New-ResourceGroup
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
   # required Argument $2 = LOCATION
 
@@ -1360,8 +2326,43 @@ function New-ResourceGroup([string]$ResourceGroupName, [string]$Location) {
     Write-Color -Text "Resource Group ", "$ResourceGroupName ", "already exists." -Color Green, Red, Green
   }
 }
-########################################################################################################################
+
 function Add-Secret ([string]$ResourceGroupName, [string]$SecretName, [securestring]$SecretValue) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Add-Secret" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .PARAMETER SecretName
+    Describe parameter -SecretName.
+
+    .PARAMETER SecretValue
+    Describe parameter -SecretValue.
+
+    .EXAMPLE
+    Add-Secret -ResourceGroupName Value -SecretName Value -SecretValue Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Add-Secret
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
   # required Argument $2 = SECRET_NAME
   # required Argument $3 = RESOURCE_VALUE
@@ -1375,47 +2376,230 @@ function Add-Secret ([string]$ResourceGroupName, [string]$SecretName, [securestr
   Write-Color -Text "Saving Secret ", "$SecretName", "..." -Color Green, Red, Green
   Set-AzureKeyVaultSecret -VaultName $KeyVault.VaultName -Name $SecretName -SecretValue $SecretValue
 }
-########################################################################################################################
+
 function Get-StorageAccount([string]$ResourceGroupName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-StorageAccount" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Get-StorageAccount -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-StorageAccount
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
 
   if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (get-AzStorageAccount -ResourceGroupName $ResourceGroupName).StorageAccountName
 }
-########################################################################################################################
+
 function Get-LoadBalancer([string]$ResourceGroupName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-LoadBalancer" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Get-LoadBalancer -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-LoadBalancer
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
 
   if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzLoadBalancer -ResourceGroupName $ResourceGroupName).Name
 }
-########################################################################################################################
+
 function Get-VirtualNetwork([string]$ResourceGroupName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-VirtualNetwork" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Get-VirtualNetwork -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-VirtualNetwork
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
 
   if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzVirtualNetwork -ResourceGroupName $ResourceGroupName).Name
 }
-########################################################################################################################
+
 function Get-SubNet([string]$ResourceGroupName, [string]$VNetName, [int]$Index) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-SubNet" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .PARAMETER VNetName
+    Describe parameter -VNetName.
+
+    .PARAMETER Index
+    Describe parameter -Index.
+
+    .EXAMPLE
+    Get-SubNet -ResourceGroupName Value -VNetName Value -Index Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-SubNet
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
   if ( !$VNetName) { throw "VNetName required" }
 
   return (Get-AzVirtualNetwork -ResourceGroupName $ResourceGroupName -Name $VNetName).Subnets[$Index].Name
 }
-########################################################################################################################
+
 function Get-AutomationAccount([string]$ResourceGroupName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-AutomationAccount" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Get-AutomationAccount -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-AutomationAccount
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
 
   if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzAutomationAccount -ResourceGroupName $ResourceGroupName).AutomationAccountName
 }
-########################################################################################################################
+
 function Get-StorageAccountKey([string]$ResourceGroupName, [string]$StorageAccountName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-StorageAccountKey" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .PARAMETER StorageAccountName
+    Describe parameter -StorageAccountName.
+
+    .EXAMPLE
+    Get-StorageAccountKey -ResourceGroupName Value -StorageAccountName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-StorageAccountKey
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
   # required Argument $2 = STORAGE_ACCOUNT
 
@@ -1424,16 +2608,80 @@ function Get-StorageAccountKey([string]$ResourceGroupName, [string]$StorageAccou
 
   return (get-AzStorageAccountKey -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName).Value[0]
 }
-########################################################################################################################
+
 function Get-KeyVault([string]$ResourceGroupName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-KeyVault" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Get-KeyVault -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-KeyVault
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
 
   if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
 
   return (Get-AzKeyVault -ResourceGroupName $ResourceGroupName).VaultName
 }
-########################################################################################################################
+
 function New-Container ($ResourceGroupName, $ContainerName, $Access = "Off") {
+  <#
+    .SYNOPSIS
+    Describe purpose of "New-Container" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .PARAMETER ContainerName
+    Describe parameter -ContainerName.
+
+    .PARAMETER Access
+    Describe parameter -Access.
+
+    .EXAMPLE
+    New-Container -ResourceGroupName Value -ContainerName Value -Access Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online New-Container
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
   # required Argument $2 = CONTAINER_NAME
 
@@ -1453,8 +2701,46 @@ function New-Container ($ResourceGroupName, $ContainerName, $Access = "Off") {
     New-AzureStorageContainer -Name $ContainerName -Context $StorageContext -Permission $Access
   }
 }
-########################################################################################################################
+
 function Export-File ($ResourceGroupName, $ContainerName, $FileName, $BlobName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Export-File" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .PARAMETER ContainerName
+    Describe parameter -ContainerName.
+
+    .PARAMETER FileName
+    Describe parameter -FileName.
+
+    .PARAMETER BlobName
+    Describe parameter -BlobName.
+
+    .EXAMPLE
+    Export-File -ResourceGroupName Value -ContainerName Value -FileName Value -BlobName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Export-File
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # Get Storage Account
   $StorageAccount = get-AzStorageAccount -ResourceGroupName $ResourceGroupName
   if (!$StorageAccount) {
@@ -1469,7 +2755,7 @@ function Export-File ($ResourceGroupName, $ContainerName, $FileName, $BlobName) 
     -StorageAccountKey $Keys[0].Value
 
   ### Upload a file to the Microsoft Azure Storage Blob Container
-  Write-Output "Uploading $BlobName..."
+  Write-Output -InputObject "Uploading $BlobName..."
   $UploadFile = @{
     Context   = $StorageContext;
     Container = $ContainerName;
@@ -1479,8 +2765,43 @@ function Export-File ($ResourceGroupName, $ContainerName, $FileName, $BlobName) 
 
   Set-AzureStorageBlobContent @UploadFile -Force;
 }
-########################################################################################################################
+
 function Get-SASToken ($ResourceGroupName, $StorageAccountName, $ContainerName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-SASToken" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .PARAMETER StorageAccountName
+    Describe parameter -StorageAccountName.
+
+    .PARAMETER ContainerName
+    Describe parameter -ContainerName.
+
+    .EXAMPLE
+    Get-SASToken -ResourceGroupName Value -StorageAccountName Value -ContainerName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-SASToken
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # Get Storage Account
   $StorageAccount = get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageAccountName
   if (!$StorageAccount) {
@@ -1496,17 +2817,55 @@ function Get-SASToken ($ResourceGroupName, $StorageAccountName, $ContainerName) 
 
   return New-AzureStorageContainerSASToken -Name $ContainerName -Context $StorageContext -Permission rd -ExpiryTime (Get-Date).AddMinutes(20)
 }
-########################################################################################################################
+
 function Import-DscConfiguration ($script, $config, $ResourceGroup, $Force) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Import-DscConfiguration" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER script
+    Describe parameter -script.
+
+    .PARAMETER config
+    Describe parameter -config.
+
+    .PARAMETER ResourceGroup
+    Describe parameter -ResourceGroup.
+
+    .PARAMETER Force
+    Describe parameter -Force.
+
+    .EXAMPLE
+    Import-DscConfiguration -script Value -config Value -ResourceGroup Value -Force Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Import-DscConfiguration
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $AutomationAccount = (Get-AzAutomationAccount -ResourceGroupName $ResourceGroup).AutomationAccountName
 
-  $dscConfig = Join-Path $DscPath ($script + ".ps1")
-  $dscDataConfig = Join-Path $DscPath $config
+  $dscConfig = Join-Path -Path $DscPath -ChildPath ($script + ".ps1")
+  $dscDataConfig = Join-Path -Path $DscPath -ChildPath $config
 
-  $dscConfigFile = (Get-Item $dscConfig).FullName
+  $dscConfigFile = (Get-Item -Path $dscConfig).FullName
   $dscConfigFileName = [io.path]::GetFileNameWithoutExtension($dscConfigFile)
 
-  $dscDataConfigFile = (Get-Item $dscDataConfig).FullName
+  $dscDataConfigFile = (Get-Item -Path $dscDataConfig).FullName
   $dscDataConfigFileName = [io.path]::GetFileNameWithoutExtension($dscDataConfigFile)
 
   $dsc = Get-AzAutomationDscConfiguration `
@@ -1516,10 +2875,10 @@ function Import-DscConfiguration ($script, $config, $ResourceGroup, $Force) {
     -erroraction 'silentlycontinue'
 
   if ($dsc -and !$Force) {
-    Write-Output  "Configuration $dscConfig Already Exists"
+    Write-Output  -InputObject "Configuration $dscConfig Already Exists"
   }
   else {
-    Write-Output "Importing & compiling DSC configuration $dscConfigFileName"
+    Write-Output -InputObject "Importing & compiling DSC configuration $dscConfigFileName"
 
     Import-AzAutomationDscConfiguration `
       -AutomationAccountName $AutomationAccount `
@@ -1528,8 +2887,8 @@ function Import-DscConfiguration ($script, $config, $ResourceGroup, $Force) {
       -SourcePath $dscConfigFile `
       -Force
 
-    $configContent = (Get-Content $dscDataConfigFile | Out-String)
-    Invoke-Expression $configContent
+    $configContent = (Get-Content -Path $dscDataConfigFile | Out-String)
+    Invoke-Expression -Command $configContent
 
     $compiledJob = Start-AzAutomationDscCompilationJob `
       -ResourceGroupName $ResourceGroup `
@@ -1540,15 +2899,56 @@ function Import-DscConfiguration ($script, $config, $ResourceGroup, $Force) {
     while ($null -eq $compiledJob.EndTime -and $null -eq $compiledJob.Exception) {
       $compiledJob = $compiledJob | Get-AzAutomationDscCompilationJob
       Start-Sleep -Seconds 3
-      Write-Output "Compiling Configuration ..."
+      Write-Output -InputObject "Compiling Configuration ..."
     }
 
-    Write-Output "Compilation Complete!"
+    Write-Output -InputObject "Compilation Complete!"
     $compiledJob | Get-AzAutomationDscCompilationJobOutput
   }
 }
-########################################################################################################################
+
 function Import-Credential ($CredentialName, $UserName, $UserPassword, $AutomationAccount, $ResourceGroup) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Import-Credential" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER CredentialName
+    Describe parameter -CredentialName.
+
+    .PARAMETER UserName
+    Describe parameter -UserName.
+
+    .PARAMETER UserPassword
+    Describe parameter -UserPassword.
+
+    .PARAMETER AutomationAccount
+    Describe parameter -AutomationAccount.
+
+    .PARAMETER ResourceGroup
+    Describe parameter -ResourceGroup.
+
+    .EXAMPLE
+    Import-Credential -CredentialName Value -UserName Value -UserPassword Value -AutomationAccount Value -ResourceGroup Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Import-Credential
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $cred = Get-AzAutomationCredential `
     -Name $CredentialName `
     -ResourceGroupName $ResourceGroup `
@@ -1557,7 +2957,7 @@ function Import-Credential ($CredentialName, $UserName, $UserPassword, $Automati
 
   if (!$cred) {
     Set-StrictMode -off
-    Write-Output "Importing $CredentialName credential for user $UserName into the Automation Account $account"
+    Write-Output -InputObject "Importing $CredentialName credential for user $UserName into the Automation Account $account"
 
     $cred = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $UserName, $UserPassword
 
@@ -1568,8 +2968,46 @@ function Import-Credential ($CredentialName, $UserName, $UserPassword, $Automati
       -Value $cred
   }
 }
-########################################################################################################################
+
 function Import-Variable ($name, $value, $ResourceGroup, $AutomationAccount) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Import-Variable" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER name
+    Describe parameter -name.
+
+    .PARAMETER value
+    Describe parameter -value.
+
+    .PARAMETER ResourceGroup
+    Describe parameter -ResourceGroup.
+
+    .PARAMETER AutomationAccount
+    Describe parameter -AutomationAccount.
+
+    .EXAMPLE
+    Import-Variable -name Value -value Value -ResourceGroup Value -AutomationAccount Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Import-Variable
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   $variable = Get-AzAutomationVariable `
     -Name $name `
     -ResourceGroupName $ResourceGroup `
@@ -1578,7 +3016,7 @@ function Import-Variable ($name, $value, $ResourceGroup, $AutomationAccount) {
 
   if (!$variable) {
     Set-StrictMode -off
-    Write-Output "Importing $VariableName credential into the Automation Account $account"
+    Write-Output -InputObject "Importing $VariableName credential into the Automation Account $account"
 
     New-AzAutomationVariable `
       -Name $name `
@@ -1588,8 +3026,49 @@ function Import-Variable ($name, $value, $ResourceGroup, $AutomationAccount) {
       -AutomationAccountName $AutomationAccount
   }
 }
-########################################################################################################################
+
 function Add-NodesViaFilter ($filter, $group, $dscAccount, $dscGroup, $dscConfig) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Add-NodesViaFilter" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER filter
+    Describe parameter -filter.
+
+    .PARAMETER group
+    Describe parameter -group.
+
+    .PARAMETER dscAccount
+    Describe parameter -dscAccount.
+
+    .PARAMETER dscGroup
+    Describe parameter -dscGroup.
+
+    .PARAMETER dscConfig
+    Describe parameter -dscConfig.
+
+    .EXAMPLE
+    Add-NodesViaFilter -filter Value -group Value -dscAccount Value -dscGroup Value -dscConfig Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Add-NodesViaFilter
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   Write-Color -Text "`r`n---------------------------------------------------- "-Color Yellow
   Write-Color -Text "Register VM with name like ", "$filter ", "found in ", "$group ", "and apply config ", "$dscConfig", "..." -Color Green, Red, Green, Red, Green, Cyan, Green
   Write-Color -Text "---------------------------------------------------- "-Color Yellow
@@ -1624,8 +3103,37 @@ function Add-NodesViaFilter ($filter, $group, $dscAccount, $dscGroup, $dscConfig
     }
   }
 }
-########################################################################################################################
+
 function Get-ADGroup([string]$GroupName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-ADGroup" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER GroupName
+    Describe parameter -GroupName.
+
+    .EXAMPLE
+    Get-ADGroup -GroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-ADGroup
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = GROUPNAME
 
   if ( !$GroupName) { throw "GroupName required" }
@@ -1640,12 +3148,41 @@ function Get-ADGroup([string]$GroupName) {
   }
   return $Group
 }
-########################################################################################################################
+
 function Get-ADuser([string]$Email) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-ADuser" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Email
+    Describe parameter -Email.
+
+    .EXAMPLE
+    Get-ADuser -Email Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-ADuser
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = Email
 
   Add-Type -AssemblyName Microsoft.Open.AzureAD16.Graph.Client
-if (!$Email) { throw "Email required" }
+  if (!$Email) { throw "Email required" }
 
   $user = Get-AzureADUser -Filter "userPrincipalName eq '$Email'"
   if (!$User) {
@@ -1660,14 +3197,46 @@ if (!$Email) { throw "Email required" }
 
   return $User
 }
-########################################################################################################################
+
 function Set-ADGroup($Email, $Group) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Set-ADGroup" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Email
+    Describe parameter -Email.
+
+    .PARAMETER Group
+    Describe parameter -Group.
+
+    .EXAMPLE
+    Set-ADGroup -Email Value -Group Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Set-ADGroup
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   if (!$Email) { throw "User required" }
   if (!$Group) { throw "User required" }
 
   $User = GetADUser $Email
   $Group = GetADGroup $Group
-  $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+  $Groups = New-Object -TypeName Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
   $Groups.GroupIds = $Group.ObjectId
 
   $IsMember = Select-AzureADGroupIdsUserIsMemberOf  -ObjectId $User.ObjectId -GroupIdsForMembershipCheck $Groups
@@ -1680,13 +3249,80 @@ function Set-ADGroup($Email, $Group) {
     Write-Color -Text "AD User ", "$Email", " already assigned to ", $Group.DisplayName -Color Green, Red, Green, Red
   }
 }
-########################################################################################################################
+
 function Get-DbConnectionString($DatabaseServerName, $DatabaseName, $UserName, $Password) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-DbConnectionString" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER DatabaseServerName
+    Describe parameter -DatabaseServerName.
+
+    .PARAMETER DatabaseName
+    Describe parameter -DatabaseName.
+
+    .PARAMETER UserName
+    Describe parameter -UserName.
+
+    .PARAMETER Password
+    Describe parameter -Password.
+
+    .EXAMPLE
+    Get-DbConnectionString -DatabaseServerName Value -DatabaseName Value -UserName Value -Password Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-DbConnectionString
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   return "Server=tcp:{0}.database.windows.net,1433;Database={1};User ID={2}@{0};Password={3};Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" -f
   $DatabaseServerName, $DatabaseName, $UserName, $Password
 }
-########################################################################################################################
+
 function Get-PlainText() {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-PlainText" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER SecureString
+    Describe parameter -SecureString.
+
+    .EXAMPLE
+    Get-PlainText -SecureString Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-PlainText
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   [CmdletBinding()]
   param
   (
@@ -1706,8 +3342,37 @@ function Get-PlainText() {
   }
   END { }
 }
-########################################################################################################################
+
 function Get-VmssInstances([string]$ResourceGroupName) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-VmssInstances" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroupName
+    Describe parameter -ResourceGroupName.
+
+    .EXAMPLE
+    Get-VmssInstances -ResourceGroupName Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-VmssInstances
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   # required Argument $1 = RESOURCE_GROUP
 
   if ( !$ResourceGroupName) { throw "ResourceGroupName required" }
@@ -1725,8 +3390,43 @@ function Get-VmssInstances([string]$ResourceGroupName) {
   }
   return $ServerNames
 }
-########################################################################################################################
+
 function Set-SqlClientFirewallRule($SqlServerName, $RuleName, $IP) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Set-SqlClientFirewallRule" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER SqlServerName
+    Describe parameter -SqlServerName.
+
+    .PARAMETER RuleName
+    Describe parameter -RuleName.
+
+    .PARAMETER IP
+    Describe parameter -IP.
+
+    .EXAMPLE
+    Set-SqlClientFirewallRule -SqlServerName Value -RuleName Value -IP Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Set-SqlClientFirewallRule
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   Get-AzureSqlDatabaseServerFirewallRule -ServerName $SqlServerName -RuleName $RuleName -ev notPresent -ea 0 | Out-null
 
   if ($notPresent) {
@@ -1744,6 +3444,59 @@ function Set-SqlClientFirewallRule($SqlServerName, $RuleName, $IP) {
 #>
 function Set-Policy
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Set-Policy" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER subscriptionId
+    Describe parameter -subscriptionId.
+
+    .PARAMETER PolicyName
+    Describe parameter -PolicyName.
+
+    .PARAMETER PolicyDescription
+    Describe parameter -PolicyDescription.
+
+    .PARAMETER PolicyFile
+    Describe parameter -PolicyFile.
+
+    .PARAMETER PolicyResourceGroup
+    Describe parameter -PolicyResourceGroup.
+
+    .PARAMETER PolicyDisplayName
+    Describe parameter -PolicyDisplayName.
+
+    .PARAMETER PolicyParameterFile
+    Describe parameter -PolicyParameterFile.
+
+    .PARAMETER PolicyScope
+    Describe parameter -PolicyScope.
+
+    .PARAMETER State
+    Describe parameter -State.
+
+    .EXAMPLE
+    Set-Policy -subscriptionId Value -PolicyName Value -PolicyDescription Value -PolicyFile Value -PolicyResourceGroup Value -PolicyDisplayName Value -PolicyParameterFile Value -PolicyScope Value -State Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Set-Policy
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   param(
     [Parameter(Mandatory=$True,Position=1)]
     [string]$subscriptionId = "",
@@ -1785,7 +3538,7 @@ function Set-Policy
         exit
       }
       }
-      default { throw New-Object ArgumentException('scope') }
+      default { throw New-Object -TypeName ArgumentException -ArgumentList ('scope') }
     }
 
   # First check if the policy definition already exists, this determines the cmdlet to change the policyrules
@@ -1831,6 +3584,35 @@ function Set-Policy
 
 Function Register-AzResourceProvider1
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Register-AzResourceProvider1" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER subscriptionId
+    Describe parameter -subscriptionId.
+
+    .EXAMPLE
+    Register-AzResourceProvider1 -subscriptionId Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Register-AzResourceProvider1
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   param(
     [Parameter(Mandatory=$True,Position=1)]
     [string]$subscriptionId = ""
@@ -1862,7 +3644,7 @@ Function Get-AzPolicySetDefinitionDetails
   Process{
     ForEach ($PolSet in $AzPolSetDef)
     {
-        Write-Verbose "Processing $($polset.displayName)"
+        Write-Verbose -Message "Processing $($polset.displayName)"
 
         # Get all all PolicyDefintiions included in the PolicySet
         $includedpoldef = ($PolSet.Properties.policyDefinitions).policyDefinitionId
@@ -1980,7 +3762,7 @@ Function New-AADUser
       $PasswordProfile.ForceChangePasswordNextLogin =$ForceChangePasswordNextLogin
       $nick = $UserPrincipalName.Substring(0, $UserPrincipalName.IndexOf('@'))
       $Script:User = New-AzureADUser -UserPrincipalName $UserPrincipalName -DisplayName $DisplayName -AccountEnabled $Enabled -MailNickName $nick -UserType $UserType `
-                    -PasswordProfile $PasswordProfile -ShowInAddressList $ShowInAddressList | Select-Object *
+                    -PasswordProfile $PasswordProfile -ShowInAddressList $ShowInAddressList | Select-Object -Property *
       if($null -ne $Script:User){
         if($PSBoundParameters.ContainsKey('FirstName') -eq $true ){
             Set-AzureADUser -ObjectId $Script:User.ObjectId -GivenName $FirstName
@@ -2006,12 +3788,12 @@ Function New-AADUser
         if($PSBoundParameters.ContainsKey('Department') -eq $true ){
             Set-AzureADUser -ObjectId $Script:User.ObjectId -Department $Department
         }
-        $Script:User = Get-AzureADUser | Where-Object {$_.UserPrincipalName -eq $UserPrincipalName} | Select-Object *
+        $Script:User = Get-AzureADUser | Where-Object {$_.UserPrincipalName -eq $UserPrincipalName} | Select-Object -Property *
         if($SRXEnv) {
             $SRXEnv.ResultMessage = $Script:User
         }
         else{
-            Write-Output $Script:User
+            Write-Output -InputObject $Script:User
         }
       }
       else{
@@ -2129,7 +3911,7 @@ Function New-SPNApp
   $isAzureModulePresent = Get-Module -Name Az.Resources -ListAvailable
   if ([String]::IsNullOrEmpty($isAzureModulePresent) -eq $true)
   {
-    Write-Output "Script reyazyres Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
+    Write-Output -InputObject "Script reyazyres Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
     return
   }
 
@@ -2141,8 +3923,8 @@ Function New-SPNApp
   $id = $azureSubscription.SubscriptionId
 
   # Setup certificate
-  $certPassword = ConvertTo-SecureString $certPlainPassword -AsPlainText -Force
-  $certObject = new-object Security.Cryptography.X509Certificates.X509Certificate2
+  $certPassword = ConvertTo-SecureString -String $certPlainPassword -AsPlainText -Force
+  $certObject = new-object -TypeName Security.Cryptography.X509Certificates.X509Certificate2
   $bytes = [convert]::FromBase64String($certPassword.SecretValueText)
   $certObject.Import($bytes, $null, [Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable -bor [Security.Cryptography.X509Certificates.X509KeyStorageFlags]::PersistKeySet)
 
@@ -2162,15 +3944,15 @@ Function New-SPNApp
   if (![String]::IsNullOrEmpty($app) -eq $true)
   {
     $appId = $app.ApplicationId
-    Write-Output "An Azure AAD Appication with the provided values already exists, skipping the creation of the application..."
+    Write-Output -InputObject "An Azure AAD Appication with the provided values already exists, skipping the creation of the application..."
   }
   else
   {
     # Create a new AD Application, secured by a certificate
-    Write-Output "Creating a new Application in AAD (App URI - $identifierUri)" -Verbose
+    Write-Output -InputObject "Creating a new Application in AAD (App URI - $identifierUri)" -Verbose
     $azureAdApplication = New-AzADApplication -DisplayName $displayName -HomePage $homePage -IdentifierUris $identifierUri -KeyCredentials $keyCredential -Verbose
     $appId = $azureAdApplication.ApplicationId
-    Write-Output "Azure AAD Application creation completed successfully (Application Id: $appId)" -Verbose
+    Write-Output -InputObject "Azure AAD Application creation completed successfully (Application Id: $appId)" -Verbose
   }
 
   # Check if the principal already exists
@@ -2178,44 +3960,44 @@ Function New-SPNApp
 
   if (![String]::IsNullOrEmpty($spn) -eq $true)
   {
-    Write-Output "An Azure AAD Application Principal for the application already exists, skipping the creation of the principal..."
+    Write-Output -InputObject "An Azure AAD Application Principal for the application already exists, skipping the creation of the principal..."
   }
   else
   {
     # Create new SPN
-    Write-Output "Creating a new SPN" -Verbose
+    Write-Output -InputObject "Creating a new SPN" -Verbose
     $spn = New-AzADServicePrincipal -ApplicationId $appId -DisplayName $spnName
     $spnName = $spn.ServicePrincipalNames
-    Write-Output "SPN creation completed successfully (SPN Name: $spnName)" -Verbose
+    Write-Output -InputObject "SPN creation completed successfully (SPN Name: $spnName)" -Verbose
 
-    Write-Output "Waiting for SPN creation to reflect in Directory before Role assignment"
-    Start-Sleep 20
+    Write-Output -InputObject "Waiting for SPN creation to reflect in Directory before Role assignment"
+    Start-Sleep -Seconds 20
   }
 
   if ($grantRoleOnSubscriptionLevel)
   {
     # Assign role to SPN to the whole subscription
-    Write-Output "Assigning role $spnRole to SPN App $appId for subscription $subscriptionName" -Verbose
+    Write-Output -InputObject "Assigning role $spnRole to SPN App $appId for subscription $subscriptionName" -Verbose
     New-AzRoleAssignment -RoleDefinitionName $spnRole -ServicePrincipalName $appId
-    Write-Output "SPN role assignment completed successfully" -Verbose
+    Write-Output -InputObject "SPN role assignment completed successfully" -Verbose
   }
 
   # Print the values
-  Write-Output "`nCopy and Paste below values for Service Connection" -Verbose
-  Write-Output "***************************************************************************"
-  Write-Output "Subscription Id: $id"
-  Write-Output "Subscription Name: $subscriptionName"
-  Write-Output "Service Principal Client (Application) Id: $appId"
-  Write-Output "Certificate password: $certPlainPassword"
-  Write-Output "Certificate: $keyValue"
-  Write-Output "Tenant Id: $tenantId"
-  Write-Output "Service Principal Display Name: $displayName"
-  Write-Output "Service Principal Names:"
+  Write-Output -InputObject "`nCopy and Paste below values for Service Connection" -Verbose
+  Write-Output -InputObject "***************************************************************************"
+  Write-Output -InputObject "Subscription Id: $id"
+  Write-Output -InputObject "Subscription Name: $subscriptionName"
+  Write-Output -InputObject "Service Principal Client (Application) Id: $appId"
+  Write-Output -InputObject "Certificate password: $certPlainPassword"
+  Write-Output -InputObject "Certificate: $keyValue"
+  Write-Output -InputObject "Tenant Id: $tenantId"
+  Write-Output -InputObject "Service Principal Display Name: $displayName"
+  Write-Output -InputObject "Service Principal Names:"
   foreach ($spnname in $spn.ServicePrincipalNames)
   {
-      Write-Output "   *  $spnname"
+      Write-Output -InputObject "   *  $spnname"
   }
-  Write-Output "***************************************************************************"
+  Write-Output -InputObject "***************************************************************************"
 }
 
 function Get-RoleScopes {
@@ -2246,12 +4028,12 @@ function Get-RoleScopes {
 
   # Open the $scopesfile
   try { Set-Content -Path $scopesfile -Value $null }
-  catch { write-output "File $scopesfile is in use. Please close it first then run this again. Exiting."; Return 0}
+  catch { write-output -InputObject "File $scopesfile is in use. Please close it first then run this again. Exiting."; Return 0}
 
   # write the scopes to the $scopesfile
   foreach ($scope in $roledef.AssignableScopes) {Add-Content -Path $scopesfile -Value $scope }
 
-  Write-output """$role""'s scopes have been written to $scopesfile"
+  Write-output -InputObject """$role""'s scopes have been written to $scopesfile"
   Return $roledef
 }
 function Get-RoleActions {
@@ -2283,12 +4065,12 @@ function Get-RoleActions {
 
   # Open the $actionsfile
   try { Set-Content -Path $actionsfile -Value $null }
-  catch { write-output "File $actionsfile is in use. Please close it first then run this again. Exiting."; Return 0}
+  catch { write-output -InputObject "File $actionsfile is in use. Please close it first then run this again. Exiting."; Return 0}
 
   # write the actions to the $actionsfile
   foreach ($action in $roledef.Actions) {Add-Content -Path $actionsfile -Value $action }
 
-  Write-output """$role""'s actions have been written to $actionsfile"
+  Write-output -InputObject """$role""'s actions have been written to $actionsfile"
   Return $roledef
 }
 
@@ -2332,7 +4114,7 @@ function New-Role {
   $roledef.Description = $role
 
   # Load up the AssignableScopes = list of "/subscriptions/<subid>" from the scope
-  If ($scopegroup.ToLower() -notin "all","prd","tst","dev","misc","test1","test4") { Write-Output "Invalid scope Exiting. Use one of the following [all,prd,tst,dev,misc,test1,test4]"; Exit 1}
+  If ($scopegroup.ToLower() -notin "all","prd","tst","dev","misc","test1","test4") { Write-Output -InputObject "Invalid scope Exiting. Use one of the following [all,prd,tst,dev,misc,test1,test4]"; Exit 1}
 
   # update scope from $scope
   $scope = @();
@@ -2355,7 +4137,7 @@ function New-Role {
 
   $roledef = New-AzRoleDefinition -Role $roledef
 
-  Write-output "$role [Id= $($roledef.Id) ] = $created for scope $scope"
+  Write-output -InputObject "$role [Id= $($roledef.Id) ] = $created for scope $scope"
   Return $roledef
 }
 function Export-SubscriptionBlueprints {
@@ -2436,6 +4218,38 @@ function New-BlueprintName(
       [Parameter(Mandatory=$True)][string]$blueprintName,
       [Parameter(Mandatory=$True)][string]$blueprintVersion)
       {
+  <#
+    .SYNOPSIS
+    Describe purpose of "New-BlueprintName" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER blueprintName
+    Describe parameter -blueprintName.
+
+    .PARAMETER blueprintVersion
+    Describe parameter -blueprintVersion.
+
+    .EXAMPLE
+    New-BlueprintName -blueprintName Value -blueprintVersion Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online New-BlueprintName
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     $joined = -join($blueprintName, '-',$blueprintVersion)
     return $joined.Replace(".","")
 }
@@ -2463,6 +4277,38 @@ function New-BlueprintName(
 #>
 function Convert-ToPipelineVariable
 {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Convert-ToPipelineVariable" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ARMOutput
+    Describe parameter -ARMOutput.
+
+    .PARAMETER Rename
+    Describe parameter -Rename.
+
+    .EXAMPLE
+    Convert-ToPipelineVariable -ARMOutput Value -Rename Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Convert-ToPipelineVariable
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   [CmdletBinding()]
   param (
       [Parameter(Mandatory=$true)]
@@ -2476,7 +4322,7 @@ function Convert-ToPipelineVariable
       $JsonVars = $ARMOutput | ConvertFrom-Json
   }
   catch {
-      Write-Debug "Unable to convert ARMOutput to JSON:`n$ARMOutput"
+      Write-Debug -Message "Unable to convert ARMOutput to JSON:`n$ARMOutput"
       throw "Unable to convert ARMOutput to JSON.  Add Debug switch to view ARMOutput."
   }
 
@@ -2491,18 +4337,18 @@ function Convert-ToPipelineVariable
       if ($OutputName -in $Rename.keys) {
           $OldName = $OutputName
           $OutputName = $Rename[$OutputName]
-          Write-Output "Creating VSTS variable $OutputName from $OldName"
+          Write-Output -InputObject "Creating VSTS variable $OutputName from $OldName"
       }
       else {
-          Write-Output "Creating VSTS variable $OutputName"
+          Write-Output -InputObject "Creating VSTS variable $OutputName"
       }
 
       # Set VSTS variable
       if ($OutputType.toLower() -eq 'securestring') {
-          Write-Output "##vso[task.setvariable variable=$OutputName;issecret=true]$OutputValue"
+          Write-Output -InputObject "##vso[task.setvariable variable=$OutputName;issecret=true]$OutputValue"
       }
       else {
-          Write-Output "##vso[task.setvariable variable=$OutputName]$OutputValue"
+          Write-Output -InputObject "##vso[task.setvariable variable=$OutputName]$OutputValue"
       }
   }
 }
@@ -2522,6 +4368,47 @@ function Convert-ToPipelineVariable
 #>
 
 function Import-Runbook ($ResourceGroup,$AutomationAccountName,$RunbookName,$RunbookType,$ScriptPath) {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Import-Runbook" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER ResourceGroup
+    Describe parameter -ResourceGroup.
+
+    .PARAMETER AutomationAccountName
+    Describe parameter -AutomationAccountName.
+
+    .PARAMETER RunbookName
+    Describe parameter -RunbookName.
+
+    .PARAMETER RunbookType
+    Describe parameter -RunbookType.
+
+    .PARAMETER ScriptPath
+    Describe parameter -ScriptPath.
+
+    .EXAMPLE
+    Import-Runbook -ResourceGroup Value -AutomationAccountName Value -RunbookName Value -RunbookType Value -ScriptPath Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Import-Runbook
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
   try
   {
     $rbexists = Get-AzAutomationRunbook -AutomationAccountName $AutomationAccountName -ResourceGroupName $ResourceGroup -Name $RunbookName
@@ -2533,7 +4420,7 @@ function Import-Runbook ($ResourceGroup,$AutomationAccountName,$RunbookName,$Run
   }
   catch
   {
-    Write-Error "An error occurred during Runbook Deployment."
+    Write-Error -Message "An error occurred during Runbook Deployment."
     throw
   }
 }
@@ -2544,13 +4431,42 @@ function Import-Runbook ($ResourceGroup,$AutomationAccountName,$RunbookName,$Run
 
 # A function to break out parameters from an ARM template
 function Get-TemplateResources {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-TemplateResources" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Path
+    Describe parameter -Path.
+
+    .EXAMPLE
+    Get-TemplateResources -Path Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-TemplateResources
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     param (
         [Parameter(Mandatory = $True)]
         [String]$Path
     )
 
     process {
-        $template = Get-Content $Path | ConvertFrom-Json;
+        $template = Get-Content -Path $Path | ConvertFrom-Json;
         foreach ($property in $template.resources.PSObject.Properties) {
             [PSCustomObject]@{
               Name = $property.Name
@@ -2564,13 +4480,42 @@ function Get-TemplateResources {
 
 # A function to break out parameters from an ARM template
 function GetTemplateParameter {
+  <#
+    .SYNOPSIS
+    Describe purpose of "GetTemplateParameter" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Path
+    Describe parameter -Path.
+
+    .EXAMPLE
+    GetTemplateParameter -Path Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online GetTemplateParameter
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     param (
         [Parameter(Mandatory = $True)]
         [String]$Path
     )
 
     process {
-        $template = Get-Content $Path | ConvertFrom-Json;
+        $template = Get-Content -Path $Path | ConvertFrom-Json;
         foreach ($property in $template.parameters.PSObject.Properties) {
             [PSCustomObject]@{
               Name = $property.Name
@@ -2583,13 +4528,42 @@ function GetTemplateParameter {
 }
 # A function to get the parameter values from an ARM template
 function Get-TemplateParameterValues {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-TemplateParameterValues" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Path
+    Describe parameter -Path.
+
+    .EXAMPLE
+    Get-TemplateParameterValues -Path Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-TemplateParameterValues
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     param (
         [Parameter(Mandatory = $True)]
         [String]$Path
     )
 
     process {
-        $template = Get-Content $Path | ConvertFrom-Json;
+        $template = Get-Content -Path $Path | ConvertFrom-Json;
         foreach ($property in $template.parameters.PSObject.Properties) {
             [PSCustomObject]@{
                 Name = $property.Name
@@ -2601,309 +4575,469 @@ function Get-TemplateParameterValues {
 
 # A function to import metadata
 function Get-TemplateMetadata {
+  <#
+    .SYNOPSIS
+    Describe purpose of "Get-TemplateMetadata" in 1-2 sentences.
+
+    .DESCRIPTION
+    Add a more complete description of what the function does.
+
+    .PARAMETER Path
+    Describe parameter -Path.
+
+    .EXAMPLE
+    Get-TemplateMetadata -Path Value
+    Describe what this call does
+
+    .NOTES
+    Place additional notes here.
+
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-TemplateMetadata
+
+    .INPUTS
+    List of input types that are accepted by this function.
+
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
+
+
     param (
         [Parameter(Mandatory = $True)]
         [String]$Path
     )
 
     process {
-        $metadata = Get-Content $Path | ConvertFrom-Json;
+        $metadata = Get-Content -Path $Path | ConvertFrom-Json;
         return $metadata;
     }
 }
 # Helper function for Dynamic Parameters
 Function New-DynamicParameter {
-	[CmdletBinding(PositionalBinding = $false, DefaultParameterSetName = 'DynamicParameter')]
-	Param
-	(
-		[Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateNotNullOrEmpty()]
-		[string]$Name,
+  <#
+    .SYNOPSIS
+    Describe purpose of "New-DynamicParameter" in 1-2 sentences.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[System.Type]$Type = [int],
+    .DESCRIPTION
+    Add a more complete description of what the function does.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[string[]]$Alias,
+    .PARAMETER Name
+    Describe parameter -Name.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$Mandatory,
+    .PARAMETER Type
+    Describe parameter -Type.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[int]$Position,
+    .PARAMETER Alias
+    Describe parameter -Alias.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[string]$HelpMessage,
+    .PARAMETER Mandatory
+    Describe parameter -Mandatory.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$DontShow,
+    .PARAMETER Position
+    Describe parameter -Position.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$ValueFromPipeline,
+    .PARAMETER HelpMessage
+    Describe parameter -HelpMessage.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$ValueFromPipelineByPropertyName,
+    .PARAMETER DontShow
+    Describe parameter -DontShow.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$ValueFromRemainingArguments,
+    .PARAMETER ValueFromPipeline
+    Describe parameter -ValueFromPipeline.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[string]$ParameterSetName = '__AllParameterSets',
+    .PARAMETER ValueFromPipelineByPropertyName
+    Describe parameter -ValueFromPipelineByPropertyName.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$AllowNull,
+    .PARAMETER ValueFromRemainingArguments
+    Describe parameter -ValueFromRemainingArguments.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$AllowEmptyString,
+    .PARAMETER ParameterSetName
+    Describe parameter -ParameterSetName.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$AllowEmptyCollection,
+    .PARAMETER AllowNull
+    Describe parameter -AllowNull.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$ValidateNotNull,
+    .PARAMETER AllowEmptyString
+    Describe parameter -AllowEmptyString.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[switch]$ValidateNotNullOrEmpty,
+    .PARAMETER AllowEmptyCollection
+    Describe parameter -AllowEmptyCollection.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateCount(2,2)]
-		[int[]]$ValidateCount,
+    .PARAMETER ValidateNotNull
+    Describe parameter -ValidateNotNull.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateCount(2,2)]
-		[int[]]$ValidateRange,
+    .PARAMETER ValidateNotNullOrEmpty
+    Describe parameter -ValidateNotNullOrEmpty.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateCount(2,2)]
-		[int[]]$ValidateLength,
+    .PARAMETER ValidateCount
+    Describe parameter -ValidateCount.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateNotNullOrEmpty()]
-		[string]$ValidatePattern,
+    .PARAMETER ValidateRange
+    Describe parameter -ValidateRange.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateNotNullOrEmpty()]
-		[scriptblock]$ValidateScript,
+    .PARAMETER ValidateLength
+    Describe parameter -ValidateLength.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateNotNullOrEmpty()]
-		[string[]]$ValidateSet,
+    .PARAMETER ValidatePattern
+    Describe parameter -ValidatePattern.
 
-		[Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
-		[ValidateNotNullOrEmpty()]
-		[ValidateScript({
-			if(!($_ -is [System.Management.Automation.RuntimeDefinedParameterDictionary]))
-			{
-				Throw 'Dictionary must be a System.Management.Automation.RuntimeDefinedParameterDictionary object'
-			}
-			$true
-		})]
-		$Dictionary = $false,
+    .PARAMETER ValidateScript
+    Describe parameter -ValidateScript.
 
-		[Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = 'CreateVariables')]
-		[switch]$CreateVariables,
+    .PARAMETER ValidateSet
+    Describe parameter -ValidateSet.
 
-		[Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = 'CreateVariables')]
-		[ValidateNotNullOrEmpty()]
-		[ValidateScript({
-			# System.Management.Automation.PSBoundParametersDictionary is an internal sealed class,
-			# so one can't use PowerShell's '-is' operator to validate type.
-			if($_.GetType().Name -ne 'PSBoundParametersDictionary')
-			{
-				Throw 'BoundParameters must be a System.Management.Automation.PSBoundParametersDictionary object'
-			}
-			$true
-		})]
-		$BoundParameters
-	)
+    .PARAMETER Dictionary
+    Describe parameter -Dictionary.
 
-	Begin
-	{
-		Write-Verbose 'Creating new dynamic parameters dictionary'
-		$InternalDictionary = New-Object -TypeName System.Management.Automation.RuntimeDefinedParameterDictionary
+    .PARAMETER CreateVariables
+    Describe parameter -CreateVariables.
 
-		Write-Verbose 'Getting common parameters'
-		function _temp { [CmdletBinding()] Param() }
-		$CommonParameters = (Get-Command _temp).Parameters.Keys
-	}
+    .PARAMETER BoundParameters
+    Describe parameter -BoundParameters.
 
-	Process
-	{
-		if($CreateVariables)
-		{
-			Write-Verbose 'Creating variables from bound parameters'
-			Write-Debug 'Picking out bound parameters that are not in common parameters set'
-			$BoundKeys = $BoundParameters.Keys | Where-Object { $CommonParameters -notcontains $_ }
+    .EXAMPLE
+    New-DynamicParameter -Name Value -Type Value -Alias Value -Mandatory -Position Value -HelpMessage Value -DontShow -ValueFromPipeline -ValueFromPipelineByPropertyName -ValueFromRemainingArguments -ParameterSetName Value -AllowNull -AllowEmptyString -AllowEmptyCollection -ValidateNotNull -ValidateNotNullOrEmpty -ValidateCount Value -ValidateRange Value -ValidateLength Value -ValidatePattern Value -ValidateScript Value -ValidateSet Value -Dictionary Value
+    Describe what this call does
 
-			foreach($Parameter in $BoundKeys)
-			{
-				Write-Debug "Setting existing variable for dynamic parameter '$Parameter' with value '$($BoundParameters.$Parameter)'"
-				Set-Variable -Name $Parameter -Value $BoundParameters.$Parameter -Scope 1 -Force
-			}
-		}
-		else
-		{
-			Write-Verbose 'Looking for cached bound parameters'
-			Write-Debug 'More info: https://beatcracker.wordpress.com/2014/12/18/psboundparameters-pipeline-and-the-valuefrompipelinebypropertyname-parameter-attribute'
-			$StaleKeys = @()
-			$StaleKeys = $PSBoundParameters.GetEnumerator() |
-						ForEach-Object {
-							if($_.Value.PSobject.Methods.Name -match '^Equals$')
-							{
-								# If object has Equals, compare bound key and variable using it
-								if(!$_.Value.Equals((Get-Variable -Name $_.Key -ValueOnly -Scope 0)))
-								{
-									$_.Key
-								}
-							}
-							else
-							{
-								# If object doesn't has Equals (e.g. $null), fallback to the PowerShell's -ne operator
-								if($_.Value -ne (Get-Variable -Name $_.Key -ValueOnly -Scope 0))
-								{
-									$_.Key
-								}
-							}
-						}
-			if($StaleKeys)
-			{
-				[string[]]"Found $($StaleKeys.Count) cached bound parameters:" +  $StaleKeys | Write-Debug
-				Write-Verbose 'Removing cached bound parameters'
-				$StaleKeys | ForEach-Object {[void]$PSBoundParameters.Remove($_)}
-			}
+    .EXAMPLE
+    New-DynamicParameter -CreateVariables -BoundParameters Value
+    Describe what this call does
 
-			# Since we rely solely on $PSBoundParameters, we don't have access to default values for unbound parameters
-			Write-Verbose 'Looking for unbound parameters with default values'
+    .NOTES
+    Place additional notes here.
 
-			Write-Debug 'Getting unbound parameters list'
-			$UnboundParameters = (Get-Command -Name ($PSCmdlet.MyInvocation.InvocationName)).Parameters.GetEnumerator()  |
-										# Find parameters that are belong to the current parameter set
-										Where-Object { $_.Value.ParameterSets.Keys -contains $PsCmdlet.ParameterSetName } |
-											Select-Object -ExpandProperty Key |
-												# Find unbound parameters in the current parameter set
-												Where-Object { $PSBoundParameters.Keys -notcontains $_ }
+    .LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online New-DynamicParameter
 
-			# Even if parameter is not bound, corresponding variable is created with parameter's default value (if specified)
-			Write-Debug 'Trying to get variables with default parameter value and create a new bound parameter''s'
-			$tmp = $null
-			foreach($Parameter in $UnboundParameters)
-			{
-				$DefaultValue = Get-Variable -Name $Parameter -ValueOnly -Scope 0
-				if(!$PSBoundParameters.TryGetValue($Parameter, [ref]$tmp) -and $DefaultValue)
-				{
-					$PSBoundParameters.$Parameter = $DefaultValue
-					Write-Debug "Added new parameter '$Parameter' with value '$DefaultValue'"
-				}
-			}
+    .INPUTS
+    List of input types that are accepted by this function.
 
-			if($Dictionary)
-			{
-				Write-Verbose 'Using external dynamic parameter dictionary'
-				$DPDictionary = $Dictionary
-			}
-			else
-			{
-				Write-Verbose 'Using internal dynamic parameter dictionary'
-				$DPDictionary = $InternalDictionary
-			}
+    .OUTPUTS
+    List of output types produced by this function.
+  #>
 
-			Write-Verbose "Creating new dynamic parameter: $Name"
 
-			# Shortcut for getting local variables
-			$GetVar = {Get-Variable -Name $_ -ValueOnly -Scope 0}
+  [CmdletBinding(PositionalBinding = $false, DefaultParameterSetName = 'DynamicParameter')]
+  Param
+  (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateNotNullOrEmpty()]
+    [string]$Name,
 
-			# Strings to match attributes and validation arguments
-			$AttributeRegex = '^(Mandatory|Position|ParameterSetName|DontShow|HelpMessage|ValueFromPipeline|ValueFromPipelineByPropertyName|ValueFromRemainingArguments)$'
-			$ValidationRegex = '^(AllowNull|AllowEmptyString|AllowEmptyCollection|ValidateCount|ValidateLength|ValidatePattern|ValidateRange|ValidateScript|ValidateSet|ValidateNotNull|ValidateNotNullOrEmpty)$'
-			$AliasRegex = '^Alias$'
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [System.Type]$Type = [int],
 
-			Write-Debug 'Creating new parameter''s attirubutes object'
-			$ParameterAttribute = New-Object -TypeName System.Management.Automation.ParameterAttribute
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [string[]]$Alias,
 
-			Write-Debug 'Looping through the bound parameters, setting attirubutes...'
-			switch -regex ($PSBoundParameters.Keys)
-			{
-				$AttributeRegex
-				{
-					Try
-					{
-						$ParameterAttribute.$_ = . $GetVar
-						Write-Debug "Added new parameter attribute: $_"
-					}
-					Catch
-					{
-						$_
-					}
-					continue
-				}
-			}
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$Mandatory,
 
-			if($DPDictionary.Keys -contains $Name)
-			{
-				Write-Verbose "Dynamic parameter '$Name' already exist, adding another parameter set to it"
-				$DPDictionary.$Name.Attributes.Add($ParameterAttribute)
-			}
-			else
-			{
-				Write-Verbose "Dynamic parameter '$Name' doesn't exist, creating"
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [int]$Position,
 
-				Write-Debug 'Creating new attribute collection object'
-				$AttributeCollection = New-Object -TypeName Collections.ObjectModel.Collection[System.Attribute]
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [string]$HelpMessage,
 
-				Write-Debug 'Looping through bound parameters, adding attributes'
-				switch -regex ($PSBoundParameters.Keys)
-				{
-					$ValidationRegex
-					{
-						Try
-						{
-							$ParameterOptions = New-Object -TypeName "System.Management.Automation.${_}Attribute" -ArgumentList (. $GetVar) -ErrorAction Stop
-							$AttributeCollection.Add($ParameterOptions)
-							Write-Debug "Added attribute: $_"
-						}
-						Catch
-						{
-							$_
-						}
-						continue
-					}
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$DontShow,
 
-					$AliasRegex
-					{
-						Try
-						{
-							$ParameterAlias = New-Object -TypeName System.Management.Automation.AliasAttribute -ArgumentList (. $GetVar) -ErrorAction Stop
-							$AttributeCollection.Add($ParameterAlias)
-							Write-Debug "Added alias: $_"
-							continue
-						}
-						Catch
-						{
-							$_
-						}
-					}
-				}
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$ValueFromPipeline,
 
-				Write-Debug 'Adding attributes to the attribute collection'
-				$AttributeCollection.Add($ParameterAttribute)
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$ValueFromPipelineByPropertyName,
 
-				Write-Debug 'Finishing creation of the new dynamic parameter'
-				$Parameter = New-Object -TypeName System.Management.Automation.RuntimeDefinedParameter -ArgumentList @($Name, $Type, $AttributeCollection)
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$ValueFromRemainingArguments,
 
-				Write-Debug 'Adding dynamic parameter to the dynamic parameter dictionary'
-				$DPDictionary.Add($Name, $Parameter)
-			}
-		}
-	}
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [string]$ParameterSetName = '__AllParameterSets',
 
-	End
-	{
-		if(!$CreateVariables -and !$Dictionary)
-		{
-			Write-Verbose 'Writing dynamic parameter dictionary to the pipeline'
-			$DPDictionary
-		}
-	}
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$AllowNull,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$AllowEmptyString,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$AllowEmptyCollection,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$ValidateNotNull,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [switch]$ValidateNotNullOrEmpty,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateCount(2,2)]
+    [int[]]$ValidateCount,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateCount(2,2)]
+    [int[]]$ValidateRange,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateCount(2,2)]
+    [int[]]$ValidateLength,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateNotNullOrEmpty()]
+    [string]$ValidatePattern,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateNotNullOrEmpty()]
+    [scriptblock]$ValidateScript,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateNotNullOrEmpty()]
+    [string[]]$ValidateSet,
+
+    [Parameter(ValueFromPipelineByPropertyName = $true, ParameterSetName = 'DynamicParameter')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateScript({
+          if(!($_ -is [System.Management.Automation.RuntimeDefinedParameterDictionary]))
+          {
+            Throw 'Dictionary must be a System.Management.Automation.RuntimeDefinedParameterDictionary object'
+          }
+          $true
+    })]
+    $Dictionary = $false,
+
+    [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = 'CreateVariables')]
+    [switch]$CreateVariables,
+
+    [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = 'CreateVariables')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateScript({
+          # System.Management.Automation.PSBoundParametersDictionary is an internal sealed class,
+          # so one can't use PowerShell's '-is' operator to validate type.
+          if($_.GetType().Name -ne 'PSBoundParametersDictionary')
+          {
+            Throw 'BoundParameters must be a System.Management.Automation.PSBoundParametersDictionary object'
+          }
+          $true
+    })]
+    $BoundParameters
+  )
+
+  Begin
+  {
+    Write-Verbose -Message 'Creating new dynamic parameters dictionary'
+    $InternalDictionary = New-Object -TypeName System.Management.Automation.RuntimeDefinedParameterDictionary
+
+    Write-Verbose -Message 'Getting common parameters'
+    function _temp {
+      <#
+        .SYNOPSIS
+        Describe purpose of "_temp" in 1-2 sentences.
+
+        .DESCRIPTION
+        Add a more complete description of what the function does.
+
+        .EXAMPLE
+        _temp
+        Describe what this call does
+
+        .NOTES
+        Place additional notes here.
+
+        .LINK
+        URLs to related sites
+        The first link is opened by Get-Help -Online _temp
+
+        .INPUTS
+        List of input types that are accepted by this function.
+
+        .OUTPUTS
+        List of output types produced by this function.
+      #>
+
+ [CmdletBinding()] Param() }
+    $CommonParameters = (Get-Command -Name _temp).Parameters.Keys
+  }
+
+  Process
+  {
+    if($CreateVariables)
+    {
+      Write-Verbose -Message 'Creating variables from bound parameters'
+      Write-Debug -Message 'Picking out bound parameters that are not in common parameters set'
+      $BoundKeys = $BoundParameters.Keys | Where-Object { $CommonParameters -notcontains $_ }
+
+      foreach($Parameter in $BoundKeys)
+      {
+        Write-Debug -Message "Setting existing variable for dynamic parameter '$Parameter' with value '$($BoundParameters.$Parameter)'"
+        Set-Variable -Name $Parameter -Value $BoundParameters.$Parameter -Scope 1 -Force
+      }
+    }
+    else
+    {
+      Write-Verbose -Message 'Looking for cached bound parameters'
+      Write-Debug -Message 'More info: https://beatcracker.wordpress.com/2014/12/18/psboundparameters-pipeline-and-the-valuefrompipelinebypropertyname-parameter-attribute'
+      $StaleKeys = @()
+      $StaleKeys = $PSBoundParameters.GetEnumerator() |
+            ForEach-Object {
+              if($_.Value.PSobject.Methods.Name -match '^Equals$')
+              {
+                # If object has Equals, compare bound key and variable using it
+                if(!$_.Value.Equals((Get-Variable -Name $_.Key -ValueOnly -Scope 0)))
+                {
+                  $_.Key
+                }
+              }
+              else
+              {
+                # If object doesn't has Equals (e.g. $null), fallback to the PowerShell's -ne operator
+                if($_.Value -ne (Get-Variable -Name $_.Key -ValueOnly -Scope 0))
+                {
+                  $_.Key
+                }
+              }
+            }
+      if($StaleKeys)
+      {
+        [string[]]"Found $($StaleKeys.Count) cached bound parameters:" +  $StaleKeys | Write-Debug
+        Write-Verbose -Message 'Removing cached bound parameters'
+        $StaleKeys | ForEach-Object {[void]$PSBoundParameters.Remove($_)}
+      }
+
+      # Since we rely solely on $PSBoundParameters, we don't have access to default values for unbound parameters
+      Write-Verbose -Message 'Looking for unbound parameters with default values'
+
+      Write-Debug -Message 'Getting unbound parameters list'
+      $UnboundParameters = (Get-Command -Name ($PSCmdlet.MyInvocation.InvocationName)).Parameters.GetEnumerator()  |
+                    # Find parameters that are belong to the current parameter set
+                    Where-Object { $_.Value.ParameterSets.Keys -contains $PsCmdlet.ParameterSetName } |
+                      Select-Object -ExpandProperty Key |
+                        # Find unbound parameters in the current parameter set
+                        Where-Object { $PSBoundParameters.Keys -notcontains $_ }
+
+      # Even if parameter is not bound, corresponding variable is created with parameter's default value (if specified)
+      Write-Debug -Message 'Trying to get variables with default parameter value and create a new bound parameter''s'
+      $tmp = $null
+      foreach($Parameter in $UnboundParameters)
+      {
+        $DefaultValue = Get-Variable -Name $Parameter -ValueOnly -Scope 0
+        if(!$PSBoundParameters.TryGetValue($Parameter, [ref]$tmp) -and $DefaultValue)
+        {
+          $PSBoundParameters.$Parameter = $DefaultValue
+          Write-Debug -Message "Added new parameter '$Parameter' with value '$DefaultValue'"
+        }
+      }
+
+      if($Dictionary)
+      {
+        Write-Verbose -Message 'Using external dynamic parameter dictionary'
+        $DPDictionary = $Dictionary
+      }
+      else
+      {
+        Write-Verbose -Message 'Using internal dynamic parameter dictionary'
+        $DPDictionary = $InternalDictionary
+      }
+
+      Write-Verbose -Message "Creating new dynamic parameter: $Name"
+
+      # Shortcut for getting local variables
+      $GetVar = {Get-Variable -Name $_ -ValueOnly -Scope 0}
+
+      # Strings to match attributes and validation arguments
+      $AttributeRegex = '^(Mandatory|Position|ParameterSetName|DontShow|HelpMessage|ValueFromPipeline|ValueFromPipelineByPropertyName|ValueFromRemainingArguments)$'
+      $ValidationRegex = '^(AllowNull|AllowEmptyString|AllowEmptyCollection|ValidateCount|ValidateLength|ValidatePattern|ValidateRange|ValidateScript|ValidateSet|ValidateNotNull|ValidateNotNullOrEmpty)$'
+      $AliasRegex = '^Alias$'
+
+      Write-Debug -Message 'Creating new parameter''s attirubutes object'
+      $ParameterAttribute = New-Object -TypeName System.Management.Automation.ParameterAttribute
+
+      Write-Debug -Message 'Looping through the bound parameters, setting attirubutes...'
+      switch -regex ($PSBoundParameters.Keys)
+      {
+        $AttributeRegex
+        {
+          Try
+          {
+            $ParameterAttribute.$_ = . $GetVar
+            Write-Debug -Message "Added new parameter attribute: $_"
+          }
+          Catch
+          {
+            $_
+          }
+          continue
+        }
+      }
+
+      if($DPDictionary.Keys -contains $Name)
+      {
+        Write-Verbose -Message "Dynamic parameter '$Name' already exist, adding another parameter set to it"
+        $DPDictionary.$Name.Attributes.Add($ParameterAttribute)
+      }
+      else
+      {
+        Write-Verbose -Message "Dynamic parameter '$Name' doesn't exist, creating"
+
+        Write-Debug -Message 'Creating new attribute collection object'
+        $AttributeCollection = New-Object -TypeName Collections.ObjectModel.Collection[System.Attribute]
+
+        Write-Debug -Message 'Looping through bound parameters, adding attributes'
+        switch -regex ($PSBoundParameters.Keys)
+        {
+          $ValidationRegex
+          {
+            Try
+            {
+              $ParameterOptions = New-Object -TypeName "System.Management.Automation.${_}Attribute" -ArgumentList (. $GetVar) -ErrorAction Stop
+              $AttributeCollection.Add($ParameterOptions)
+              Write-Debug -Message "Added attribute: $_"
+            }
+            Catch
+            {
+              $_
+            }
+            continue
+          }
+
+          $AliasRegex
+          {
+            Try
+            {
+              $ParameterAlias = New-Object -TypeName System.Management.Automation.AliasAttribute -ArgumentList (. $GetVar) -ErrorAction Stop
+              $AttributeCollection.Add($ParameterAlias)
+              Write-Debug -Message "Added alias: $_"
+              continue
+            }
+            Catch
+            {
+              $_
+            }
+          }
+        }
+
+        Write-Debug -Message 'Adding attributes to the attribute collection'
+        $AttributeCollection.Add($ParameterAttribute)
+
+        Write-Debug -Message 'Finishing creation of the new dynamic parameter'
+        $Parameter = New-Object -TypeName System.Management.Automation.RuntimeDefinedParameter -ArgumentList @($Name, $Type, $AttributeCollection)
+
+        Write-Debug -Message 'Adding dynamic parameter to the dynamic parameter dictionary'
+        $DPDictionary.Add($Name, $Parameter)
+      }
+    }
+  }
+
+  End
+  {
+    if(!$CreateVariables -and !$Dictionary)
+    {
+      Write-Verbose -Message 'Writing dynamic parameter dictionary to the pipeline'
+      $DPDictionary
+    }
+  }
 }
 # Export the functions above.
 Export-ModuleMember -Function 'Add-*'

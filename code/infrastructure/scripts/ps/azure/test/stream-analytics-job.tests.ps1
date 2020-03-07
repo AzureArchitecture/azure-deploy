@@ -14,7 +14,7 @@ Describe 'Metadata Test' {
 
 if (Test-Path $TemplateFile){
 Describe "Stream Analytics Job Deployment Tests" -Tag "functional" {
-  Context "When a SQL Server is deployed" {
+  Context "When Stream Analytics is deployed" {
     $TemplateParameters = @{
       streamAnalyticsName = "asaj-yazy-adap-test"
     }
@@ -27,6 +27,9 @@ Describe "Stream Analytics Job Deployment Tests" -Tag "functional" {
     $DebugPreference = 'SilentlyContinue'
     $output = Test-AzResourceGroupDeployment -ResourceGroupName "$ResourceGroupName" -TemplateFile "$TemplateFile" -TemplateParameterFile "$TemplateParameterFile" 5>&1
     write-host $output
+    if ($output) {
+        write-host $output.details.details.message
+    }
     $DebugPreference = 'SilentlyContinue'
 
     It "Should be deployed successfully" {

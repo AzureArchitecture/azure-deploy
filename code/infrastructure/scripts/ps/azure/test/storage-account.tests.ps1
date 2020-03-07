@@ -12,7 +12,7 @@ Describe 'Metadata Test' {
     }
 }
 
-if (Test-Path $TemplateMetadataFile){
+if (Test-Path $TemplateFile){
 Describe "Storage Account Deployment Tests" -Tag "functional" {
   Context "When a storage account deployed" {
     $TemplateParameters = @{
@@ -27,6 +27,9 @@ Describe "Storage Account Deployment Tests" -Tag "functional" {
     $DebugPreference = 'SilentlyContinue'
     $output = Test-AzResourceGroupDeployment -ResourceGroupName "$ResourceGroupName" -TemplateFile "$TemplateFile" -TemplateParameterFile "$TemplateParameterFile" 5>&1
     write-host $output
+    if ($output) {
+        write-host $output.details.details.message
+    }
     $DebugPreference = 'SilentlyContinue'
 
     It "Should be deployed successfully" {

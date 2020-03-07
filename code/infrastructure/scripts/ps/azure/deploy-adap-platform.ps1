@@ -1,6 +1,10 @@
   <#
       .SYNOPSIS
       This script deploys the scaffolding in Azure based on the values in the CMDB spreadsheet.
+      
+      .PARAMETER azureEnvironment 
+      Azure Cloud for deployment. This determines what Azure Cloud to deploy to, which also impacts other assets such as location and what resources are available. 
+      Example: -azureEnvironment AzureCloud
 
       .PARAMETER orgTag 
       Organization string for deployment. This is used to create resources in Azure that are globally unique. 
@@ -85,6 +89,11 @@
 
   #>
   param(
+    # azureEnvironment
+    [Parameter(Mandatory=$True,HelpMessage="Enter the Azure Environment . This is the Azure Cloud type ('AzureCloud','AzureChinaCloud','AzureUSGovernment','AzureGermanyCloud') . Example: -azureEnvironment ''AzureCloud''")]
+    [ValidateLength(1,80)]
+    [validateset('AzureCloud','AzureChinaCloud','AzureUSGovernment','AzureGermanyCloud')]
+    [string]$azureEnvironment,
     # orgTag
     [Parameter(Mandatory=$True,HelpMessage="Enter organization string between 1 and 4 characters. This is used to create resources in Azure that are globally unique. Example: -orgTag ''adw''")]
     [ValidateLength(1,4)]
@@ -95,7 +104,7 @@
     [string]$location,
     # envTag
     [Parameter(Mandatory=$True,HelpMessage="Enter 3 character environment string. This is used to create resources in Azure that are globally unique. Example: -envTag ''dev''")]
-    [ValidateLength(3)]
+    [ValidateLength(3,3)]
     [string]$envTag,
     # suffix
     [Parameter(Mandatory=$True,HelpMessage="Enter resource suffix string between 1 and 4 characters. This is used to create resources in Azure that are globally unique. Example: -suffix ''eus2''")]
@@ -189,10 +198,6 @@
       $config = Get-Configuration
       
       # Set variabls from config file
-      $azureEnvironment = $config.azureEnvironment
-      $orgTagDefault = $config.orgTag
-      $location = $config.primaryLocation
-      $locationName = $config.primaryLocationName
       $adOUPath = $config.adOUPath
       $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
       $tenantDomain = $configurationFile.tenentDomain
@@ -208,6 +213,8 @@
     Write-Information  'No file specified or file {0}\{1} does not exist.' -f $psConfigDirectory, $adapCMDBfile
     Exit
   }
+
+    $locationName = Get-AzSubLocationDisplayName -location $location
      
     $testRG = "rg-test"
     $smokeRG = "rg-smoke"
@@ -321,7 +328,7 @@
   if($adGroups -or $azAll){
     Write-Information '  Starting deployment of Azure Active Directory Groups'
     Set-Location -Path "$psAzureDirectory"
-    .\ad\deploy-azure-ad-groups.ps1 -adapCMDB "$adapCMDB" -action $deployAction -onPremAD
+    .\ad\deploy-azure-ad-groups.ps1 -adapCMDB "$adapCMDB" -action $deployAction
   }
   else
   {

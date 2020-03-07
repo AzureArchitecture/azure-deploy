@@ -170,7 +170,7 @@ try {
   $ENV:PATH="$ENV:PATH;C:\Program Files\Git\bin;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy;"
   Write-Host
 
-
+  $repoCoreDir = "C:\repos"
   cd "$repoCoreDir\github\AzureArchitecture"
   git clone https://github.com/AzureArchitecture/azure-deploy.git
   
