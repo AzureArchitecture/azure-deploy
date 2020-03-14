@@ -187,7 +187,7 @@ catch {
   throw $_
 }
 
-Exit
+
 #
 # End of Chocolatey
 #

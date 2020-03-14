@@ -23,10 +23,10 @@
       "value": "afc-audit-vm-windows-passwords-stored-reversible-encryption"
     },
     "laWorkspaceName": {
-      "value": "la-yazy-dev-pcus"
+      "value": "la-ORG-TAG-dev-pcus"
     },
     "laResourceGroupName": {
-      "value": "rg-yazy-shared-dev-pcus"
+      "value": "rg-ORG-TAG-shared-dev-pcus"
     },
     "alertFrequency": {
       "value": 60

@@ -22,6 +22,14 @@
       Token for deployment. This is used to create resources in Azure that are globally unique. 
       Example: -suffix eus2
 
+      .PARAMETER onPremAD
+      This switch is used to indicate that you want to deploy the Active Directory user and Security Groups to an on-premise Active Directory. 
+      Example: -onPremAD
+
+      .PARAMETER adOUPath
+      "If this is on onpremise Active Directory deployment, you must supply the OU path for the accounts. 
+      Example: -adOUPath ''OU=Azure''"
+      
       .PARAMETER deployAction
       This parameter is used to either create or remove the Azure Resources. 
       Example: -deployAction create
@@ -83,9 +91,9 @@
       Example: -azAlerts
 
       .EXAMPLE
-      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
-      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "remove" -removeRG -azAll
-      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azParameterFiles -azMdFiles
+      .\deploy-adap-platform -azureEnvironment AzureCloud -orgTag "qui" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "dev-adap-cmdb.xlsm" -deployAction "create" -azAll
+      .\deploy-adap-platform -azureEnvironment AzureCloud -orgTag "qui" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "dev-adap-cmdb.xlsm" -deployAction "remove" -removeRG -azAll
+      .\deploy-adap-platform -azureEnvironment AzureCloud -orgTag "qui" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "dev-adap-cmdb.xlsm" -deployAction "create" -azParameterFiles -azMdFiles
 
   #>
   param(
@@ -110,10 +118,16 @@
     [Parameter(Mandatory=$True,HelpMessage="Enter resource suffix string between 1 and 4 characters. This is used to create resources in Azure that are globally unique. Example: -suffix ''eus2''")]
     [ValidateLength(1,4)]
     [string]$suffix,
-    # deployAction
+    # deployAction 
     [Parameter(Mandatory=$True,HelpMessage="Enter deployment action: create or purge. This switch is used to either create or remove the Azure Resources. Example: -deployAction ''create''")]
     [validateset('create','remove')]
     [string]$deployAction,
+    # onPremAD
+    [Parameter(HelpMessage="This switch is used to indicate that you want to deploy the Active Directory user and Security Groups to an on-premise Active Directory.. Example: -onPremAD")]
+    [switch]$onPremAD=$false,
+    # adOUPath
+    [Parameter(Mandatory=$False,HelpMessage="If this is on onpremise Active Directory deployment, you must supply the OU path for the accounts. Example: -adOUPath ''OU=Azure''")]
+    [string]$adOUPath,
     # removeRG
     [Parameter(HelpMessage="This switch is used to indicate that you want to remove the Azure Resource Groups. It is only valid if deployAction -eq remove. Example: -removeRG")]
     [switch]$removeRG=$false,
@@ -159,12 +173,11 @@
   )
 
   Set-Location -Path "$PSScriptRoot"
-  #Clear-Host
   # Set variables
   $VerbosePreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
-  $DebugPreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
+  $DebugPreference = 'Continue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
   $ErrorActionPreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
-  $InformationPreference = 'Continue' # 'Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue'
+  $InformationPreference = 'SilentlyContinue' # 'Stop','Inquire','Ignore','Continue','Suspend','SilentlyContinue'
   $WarningPreference = 'SilentlyContinue' # 'Stop','Inquire','Continue','Suspend','SilentlyContinue'
   $ConfirmPreference = 'None' # 'None','Low','Medium','High'
   $psscriptsRoot = $PSScriptRoot
@@ -183,7 +196,7 @@
   $armRunbookDirectory = "$psscriptsRoot\..\..\..\arm\automation\runbooks"
 
    # Set Excel Spreadsheet
-  $adapCMDB = "$psConfigDirectory\$envTag-$adapCMDBfile"
+  $adapCMDB = "$psConfigDirectory\$adapCMDBfile"
 
   ## Check path to CMDB
   if ( (Test-path -Path $adapCMDB) -and (Test-path ('{0}\azure-common.psm1' -f "$psCommonDirectory")))
@@ -199,6 +212,7 @@
       
       # Set variabls from config file
       $adOUPath = $config.adOUPath
+      $orgTagDefault = $config.orgTag
       $subscriptionIdZero = "00000000-0000-0000-0000-000000000000"
       $tenantDomain = $configurationFile.tenentDomain
     }
@@ -214,8 +228,6 @@
     Exit
   }
 
-    $locationName = Get-AzSubLocationDisplayName -location $location
-     
     $testRG = "rg-test"
     $smokeRG = "rg-smoke"
     $mgmtRG = "rg-$orgTag-mgmt-$envTag-$suffix"
@@ -261,7 +273,7 @@
         Write-Information "Logon to Azure AD"
         $tenantId = $currentAzureContext.Tenant.Id
         $accountId = $currentAzureContext.Account.Id
-        Connect-AzureAD -TenantId $tenantId -AccountId $accountId
+        Connect-AzureAD -TenantId $tenantId -AccountId $accountId -AzureEnvironmentName $azureEnvironment
     }
     catch{
       Write-Host 'Logon to Azure Active Directory Failed'
@@ -270,9 +282,13 @@
     }
     $firstRunCheck = $true
   }
+  $subscriptionId = Get-SubscriptionId
+  $currentAzSubscription = Get-AzSubscription -SubscriptionId $subscriptionId -TenantId $tenantId
+  # Verifies that the location is valid based on the azureEnvironment parameter. AzureUSGovernment will validate against Gov Regions.
+  $locationName = Get-AzSubLocationDisplayName  -Subscription $currentAzSubscription -location $location 
   
   Set-Location -Path "$rootAzuredeploy"
-  exit
+
 
   # update orgTags in yml and json files.
   Write-Information "Pre-Deployment - Updating $orgTagDefault to $orgTag."
@@ -286,7 +302,7 @@
   }
 
   Set-Location -Path "$psscriptsRoot"  
-  $subscriptionId = Get-SubscriptionId
+
        
   # Start Deployment of Azure Assets
   Write-Information 'Starting deployment of Azure Assets'
@@ -306,7 +322,7 @@
   if($azMdFiles -or $azAll){
     Set-Location -Path "$psAzureDirectory"
     Write-Information '  updating arm markdown docs...'
-    .\arm\create-adap-platform-docs.ps1 
+    # .\arm\create-adap-platform-docs.ps1 
   }
   else
   {

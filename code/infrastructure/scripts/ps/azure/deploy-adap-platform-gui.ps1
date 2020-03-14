@@ -6,7 +6,7 @@
 .DESCRIPTION
     This script is used to prepare a Microsoft Azure subscription for the deployment of data and analytics services in the cloud.
 .EXAMPLE
-    .\deploy-adap-platform -orgTag "yazy" -deployAction "audit" -azAll
+    .\deploy-adap-platform -orgTag "ORG-TAG" -deployAction "audit" -azAll
 #>
 
 Add-Type -AssemblyName System.Windows.Forms
@@ -64,7 +64,7 @@ $azureDeploy_form.Controls.Add($deployAction_cbx)
 
 $orgTag_tb                       = New-Object system.Windows.Forms.TextBox
 $orgTag_tb.multiline             = $false
-$orgTag_tb.text                  = "yazy"
+$orgTag_tb.text                  = "ORG-TAG"
 $orgTag_tb.location              = New-Object System.Drawing.Point(160,50)
 $orgTag_tb.Size                  = New-Object System.Drawing.Size(200,20) 
 $orgTag_tb.Font                  = 'Microsoft Sans Serif,10'

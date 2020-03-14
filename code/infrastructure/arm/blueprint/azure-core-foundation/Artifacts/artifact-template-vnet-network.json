@@ -14,7 +14,7 @@
             "displayName": "Enter a tag for your organization name (e.g. con), must be unique",
             "description": "Organization Tag"
           },
-          "defaultValue": "yazy"
+          "defaultValue": "ORG-TAG"
         },
         "suffix": {
           "type": "string",

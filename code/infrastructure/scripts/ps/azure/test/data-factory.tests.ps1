@@ -16,7 +16,7 @@ if (Test-Path $TemplateFile){
 Describe "Data Factory Deployment Tests" -Tag "functional" {
   Context "When a Data Factory is deployed" {
     $TemplateParameters = @{
-      DataFactoryName = "adf-yazy-adap-test"
+      DataFactoryName = "adf-ORG-TAG-adap-test"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

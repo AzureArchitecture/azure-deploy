@@ -3,14 +3,14 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-adap-dev-pcus",
+      "defaultValue": "rg-ORG-TAG-adap-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "streamAnalyticsName": {
-      "defaultValue": "asaj-yazy-adap-dev-pcus-01",
+      "defaultValue": "asaj-ORG-TAG-adap-dev-pcus-01",
       "type": "string",
       "metadata": {
         "description": "The name of the Stream Analytics Job."

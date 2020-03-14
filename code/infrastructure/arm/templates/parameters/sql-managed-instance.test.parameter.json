@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "virtualNetworkName": {
-      "value": "vnet-yazy-dev"
+      "value": "vnet-ORG-TAG-dev"
     },
     "Owner": {
       "value": "owner@company.org"
@@ -15,7 +15,7 @@
       "value": "ADAP"
     },
     "managedInstanceName": {
-      "value": "sqlmi-yazy-adap-tst"
+      "value": "sqlmi-ORG-TAG-adap-tst"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -36,13 +36,13 @@
       "value": "8675-309"
     },
     "subnetName": {
-      "value": "snet-yazy-dev-sqlmi"
+      "value": "snet-ORG-TAG-dev-sqlmi"
     },
     "BusinessUnit": {
       "value": "CORP"
     },
     "virtualNetworkResourceGroupName": {
-      "value": "rg-yazy-network-dev-pcus"
+      "value": "rg-ORG-TAG-network-dev-pcus"
     },
     "ResourceGroupName": {
       "value": "rg-smoke"

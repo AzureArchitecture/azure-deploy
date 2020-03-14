@@ -6,7 +6,7 @@ variables:
 - name: 'location-key'
   value: 'centralus'
 - name: 'org-tag'
-  value: 'yazy'
+  value: 'ORG-TAG'
 - name: 'resource-group'
   value: 'rg-smoke'
 - name: 'sqlServerAdminPassword'

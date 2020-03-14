@@ -45,7 +45,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-yazy-adap-tst"
+      "value": "ehns-ORG-TAG-adap-tst"
     },
     "SkuCapacity": {
       "value": "1"

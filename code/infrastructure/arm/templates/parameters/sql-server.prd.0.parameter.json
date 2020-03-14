@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "sqlServerName":  {
-                                             "value":  "sql-yazy-adap-prd-pcus-01"
+                                             "value":  "sql-ORG-TAG-adap-prd-pcus-01"
                                          },
                        "StartDate":  {
                                          "value":  "1-1-2020"
@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-prd-pcus"
+                                                 "value":  "rg-ORG-TAG-adap-prd-pcus"
                                              },
                        "Env":  {
                                    "value":  "prd"

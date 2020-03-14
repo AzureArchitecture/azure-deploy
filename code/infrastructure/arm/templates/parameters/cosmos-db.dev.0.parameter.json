@@ -33,16 +33,16 @@
                                             "value":  "CORP"
                                         },
                        "sqlServerName":  {
-                                             "value":  "sql-yazy-adap-dev-pcus-01"
+                                             "value":  "sql-ORG-TAG-adap-dev-pcus-01"
                                          },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-pcus"
+                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
                                              },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "CosmosDbAccountName":  {
-                                                   "value":  "cosdb-yazy-adap-dev-pcus-01"
+                                                   "value":  "cosdb-ORG-TAG-adap-dev-pcus-01"
                                                },
                        "BudgetAmount":  {
                                             "value":  "$0-Month"

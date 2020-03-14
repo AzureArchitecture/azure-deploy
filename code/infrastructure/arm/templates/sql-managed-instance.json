@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.1",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-adap-dev-pcus",
+      "defaultValue": "rg-ORG-TAG-adap-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -28,14 +28,14 @@
       }
     },
     "virtualNetworkResourceGroupName": {
-      "defaultValue": "rg-yazy-network-dev-pcus",
+      "defaultValue": "rg-ORG-TAG-network-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network Resource Group name."
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet-yazy-dev",
+      "defaultValue": "vnet-ORG-TAG-dev",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network name."

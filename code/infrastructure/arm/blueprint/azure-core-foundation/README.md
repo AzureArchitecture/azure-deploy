@@ -5,9 +5,9 @@ Last edited: 7-3-19
 # Azure Blueprints
 
 ## Table of Contents
-  - [Prereyazysites](#prereyazysites)
+  - [PrereORG-TAGsites](#prereORG-TAGsites)
   - [How to use this guide](#how-to-use-this-guide)
-  - [yazyckstart](#yazyckstart)
+  - [ORG-TAGckstart](#ORG-TAGckstart)
   - [Structure of blueprint artifacts](#structure-of-blueprint-artifacts)
     - [Blueprint folder](#blueprint-folder)
     - [Functions](#functions)
@@ -21,7 +21,7 @@ Last edited: 7-3-19
   - [Next steps](#next-steps)
   - [Contributing](#contributing)
 
-## Prereyazysites
+## PrereORG-TAGsites
 
 This doc assumes you have a basic understanding of how blueprints work. If you've never used Blueprints before, this will be a little overwhelming. We recommend you build your first blueprint with the UI to understand how everything works. You can try it at [aka.ms/getblueprints](https://aka.ms/getblueprints) and learn more about it in the [docs](https://docs.microsoft.com/en-us/azure/governance/blueprints/overview).
 
@@ -31,7 +31,7 @@ This doc assumes you have a basic understanding of how blueprints work. If you'v
 Install-Module -Name Az.Blueprint
 ```
 
-## yazyckstart
+## ORG-TAGckstart
 Push a sample blueprint definition to Azure:
 ```powershell
 Import-AzBlueprintWithArtifact -Name adap-core-foundation -ManagementGroupId "corp-information-services" -InputPath  ".\arm\blueprint\adap-core-foundation"
@@ -217,7 +217,7 @@ And then you can reference that parameter within the `template` section in `temp
 },
 ```
 
-This shouldn't reyazyre any modification of your arm templates.
+This shouldn't reORG-TAGre any modification of your arm templates.
 
 You can also use the `New-AzBlueprintArtifact` cmdlet to convert a standard ARM template into a blueprint artifact:
 

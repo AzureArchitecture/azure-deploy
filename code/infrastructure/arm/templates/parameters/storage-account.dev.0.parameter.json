@@ -36,10 +36,10 @@
                                             "value":  "CORP"
                                         },
                        "StorageAccountName":  {
-                                                  "value":  "stgyazyadapdeveus01"
+                                                  "value":  "stgORG-TAGadapdeveus01"
                                               },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-pcus"
+                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
                                              },
                        "AccountType":  {
                                            "value":  "Standard_LRS"

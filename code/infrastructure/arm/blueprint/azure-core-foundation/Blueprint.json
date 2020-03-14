@@ -91,14 +91,14 @@
         ]
       },
       "logAnalyticsResourceGroup": {
-        "defaultValue": "rg-yazy-shared-dev-pcus",
+        "defaultValue": "rg-ORG-TAG-shared-dev-pcus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Resource Group Name"
         }
       },
       "logAnalytics": {
-        "defaultValue": "la-yazy-dev-pcus",
+        "defaultValue": "la-ORG-TAG-dev-pcus",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Name"

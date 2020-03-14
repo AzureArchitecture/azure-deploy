@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-adap-dev-pcus",
+      "defaultValue": "rg-ORG-TAG-adap-dev-pcus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -11,14 +11,14 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns-yazy-adap-dev-pcus",
+      "defaultValue": "ehns-ORG-TAG-adap-dev-pcus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }
     },
     "EventHubName": {
       "type": "String",
-      "defaultValue": "eh-yazy-adap-dev-pcus",
+      "defaultValue": "eh-ORG-TAG-adap-dev-pcus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }

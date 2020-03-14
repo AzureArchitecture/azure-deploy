@@ -1,5 +1,5 @@
 $subscriptionId = "323241e8-df5e-434e-b1d4-a45c3576bf80"
-$resourceGroupName = "rg-yazy-shared-dev-pcus"
+$resourceGroupName = "rg-ORG-TAG-shared-dev-pcus"
 
 # Delete policy assignments
 $policies = Get-AzPolicyAssignment -InformationAction Ignore
@@ -32,7 +32,7 @@ foreach ($bp in $bps) {
 }
 
 # loop through each rg in a sub
-$filter = 'yazy'
+$filter = 'ORG-TAG'
 $rgs = Get-AzResourceGroup | Where ResourceGroupName -like *$filter* 
 Get-AzResourceLock | Where Name -NE 'dnd' | Remove-AzResourceLock -Force -ErrorAction Continue
 foreach ($rg in $rgs) {

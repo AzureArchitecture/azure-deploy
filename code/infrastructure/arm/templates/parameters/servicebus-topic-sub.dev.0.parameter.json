@@ -12,7 +12,7 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-yazy-adap-dev-pcus"
+                                                       "value":  "sb-ORG-TAG-adap-dev-pcus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -21,7 +21,7 @@
                                             "value":  "Gold"
                                         },
                        "ServiceBusTopicSubName":  {
-                                                      "value":  "sbts-yazy-adap-dev-pcus"
+                                                      "value":  "sbts-ORG-TAG-adap-dev-pcus"
                                                   },
                        "EndDate":  {
                                        "value":  "12-31-9999"
@@ -36,10 +36,10 @@
                                             "value":  "CORP"
                                         },
                        "ServiceBusTopicName":  {
-                                                   "value":  "sbt-yazy-adap-dev-pcus"
+                                                   "value":  "sbt-ORG-TAG-adap-dev-pcus"
                                                },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-pcus"
+                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
                                              },
                        "Env":  {
                                    "value":  "dev"

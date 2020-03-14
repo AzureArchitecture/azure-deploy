@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-dev-pcus"
+      "value": "rg-ORG-TAG-adap-dev-pcus"
     },
     "ServiceClass": {
       "value": "Gold"
@@ -39,7 +39,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-yazy-adap-dev-pcus"
+      "value": "ehns-ORG-TAG-adap-dev-pcus"
     },
     "SkuCapacity": {
       "value": "1"

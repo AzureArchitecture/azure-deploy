@@ -32,10 +32,6 @@
         },
         "policyDefinitions": [
           { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-account-access-tier')]" },
-          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-advanced-threat-protection')]" },
-          {
-            "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-allowedlocations')]",
-            "parameters": { "allowedLocations": { "value": "[variables('location')]" } }
           },
           { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-https-traffic-only')]" },
           { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-trusted-microsoft-services')]" },

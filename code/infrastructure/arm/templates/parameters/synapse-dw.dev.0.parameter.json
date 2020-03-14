@@ -30,10 +30,10 @@
       "value": "CORP"
     },
     "sqlServerName": {
-      "value": "sql-yazy-adap-dev-pcus-01"
+      "value": "sql-ORG-TAG-adap-dev-pcus-01"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-dev-pcus"
+      "value": "rg-ORG-TAG-adap-dev-pcus"
     },
     "Env": {
       "value": "dev"
@@ -42,7 +42,7 @@
       "value": "requester@company.org"
     },
     "synapseDWName": {
-      "value": "syndwyazyadapdev"
+      "value": "syndwORG-TAGadapdev"
     },
     "BudgetAmount": {
       "value": "$0-Month"

@@ -33,10 +33,10 @@
       "value": "CORP"
     },
     "analysisServicesName": {
-      "value": "aasyazyadapdevcus"
+      "value": "aasORG-TAGadapdevcus"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-dev-pcus"
+      "value": "rg-ORG-TAG-adap-dev-pcus"
     },
     "Env": {
       "value": "dev"

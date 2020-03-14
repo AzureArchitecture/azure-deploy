@@ -18,7 +18,7 @@
       "value": "Gold"
     },
     "DataLakeStoreName": {
-      "value": "adlsyazyadaptst"
+      "value": "adlsORG-TAGadaptst"
     },
     "AccountType": {
       "value": "Standard_LRS"

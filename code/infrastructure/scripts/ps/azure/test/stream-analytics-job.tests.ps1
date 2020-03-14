@@ -16,7 +16,7 @@ if (Test-Path $TemplateFile){
 Describe "Stream Analytics Job Deployment Tests" -Tag "functional" {
   Context "When Stream Analytics is deployed" {
     $TemplateParameters = @{
-      streamAnalyticsName = "asaj-yazy-adap-test"
+      streamAnalyticsName = "asaj-ORG-TAG-adap-test"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

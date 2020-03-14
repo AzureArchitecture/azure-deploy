@@ -84,9 +84,9 @@
       Example: -azAlerts
 
       .EXAMPLE
-      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
-      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "remove" -removeRG -azAll
-      .\deploy-adap-platform -orgTag "yazy" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azParameterFiles -azMdFiles
+      .\deploy-adap-platform -orgTag "ORG-TAG" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azAll
+      .\deploy-adap-platform -orgTag "ORG-TAG" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "remove" -removeRG -azAll
+      .\deploy-adap-platform -orgTag "ORG-TAG" -location "eastus" -envTag "dev" -suffix "eus" -adapCMDBfile "adap-cmdb.xlsm" -deployAction "create" -azParameterFiles -azMdFiles
 
   #>
   param(
