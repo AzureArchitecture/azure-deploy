@@ -6,13 +6,13 @@
                                               "value":  "10"
                                           },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
                                            },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -21,13 +21,13 @@
                                         "value":  "approver@company.org"
                                     },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "DR":  {
                                   "value":  "Mission-Critical"
                               },
                        "EventHubName":  {
-                                            "value":  "eh-ORG-TAG-adap-dev-pcus"
+                                            "value":  "eh-yazy-adap-dev-cus"
                                         },
                        "CostCenter":  {
                                           "value":  "8675-309"
@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "EventHubNamespaceName":  {
-                                                     "value":  "ehns-ORG-TAG-adap-dev-pcus"
+                                                     "value":  "ehns-yazy-adap-dev-cus"
                                                  },
                        "Env":  {
                                    "value":  "dev"
@@ -48,7 +48,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "$200-Month"
+                                            "value":  "150"
                                         },
                        "messageRetentionInDays":  {
                                                       "value":  "1"

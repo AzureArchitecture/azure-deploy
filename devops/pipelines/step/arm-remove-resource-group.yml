@@ -5,6 +5,7 @@ parameters:
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'remove-resource-group'
+  continueOnError: true
   inputs:
     azureSubscription: ${{ parameters.azureSubscription }}
     action: DeleteRG

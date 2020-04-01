@@ -15,7 +15,7 @@
       "value": "approver@company.org"
     },
     "logicAppName": {
-      "value": "log-ORG-TAG-adap-tst"
+      "value": "log-yazy-adap-tst"
     },
     "ServiceClass": {
       "value": "Gold"
@@ -36,7 +36,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-yazy-smoke-usw2"
     },
     "Env": {
       "value": "tst"

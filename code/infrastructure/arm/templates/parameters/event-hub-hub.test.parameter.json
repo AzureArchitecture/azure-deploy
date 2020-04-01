@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-yazy-smoke-usw2"
     },
     "ServiceClass": {
       "value": "Gold"
@@ -30,7 +30,7 @@
       "value": "Mission-Critical"
     },
     "EventHubName": {
-      "value": "eh-ORG-TAG-adap-tst"
+      "value": "eh-yazy-adap-tst"
     },
     "CostCenter": {
       "value": "8675-309"
@@ -42,7 +42,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-ORG-TAG-adap-tst"
+      "value": "ehns-yazy-adap-tst"
     },
     "Env": {
       "value": "tst"

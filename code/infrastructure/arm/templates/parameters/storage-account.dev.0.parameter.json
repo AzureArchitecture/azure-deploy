@@ -6,7 +6,7 @@
                                      "value":  "owner@company.org"
                                  },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
@@ -21,7 +21,7 @@
                                             "value":  "Gold"
                                         },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "DR":  {
                                   "value":  "Mission-Critical"
@@ -36,10 +36,10 @@
                                             "value":  "CORP"
                                         },
                        "StorageAccountName":  {
-                                                  "value":  "stgORG-TAGadapdeveus01"
+                                                  "value":  "stgyazyadapdevcus"
                                               },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "AccountType":  {
                                            "value":  "Standard_LRS"
@@ -51,7 +51,7 @@
                                            "value":  "StorageV2"
                                        },
                        "BudgetAmount":  {
-                                            "value":  "$200-Month"
+                                            "value":  "150"
                                         }
                    }
 }

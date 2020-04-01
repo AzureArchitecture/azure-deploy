@@ -144,6 +144,24 @@ stages:
         resourceGroup: '$(resource-group)'
         ev: '$(ev)'
 
+#    - template: devops/pipelines/step/arm-remove-resource-group.yml
+#      parameters:
+#        azureSubscription: '$(azureSubscription)'
+#        resourceGroup: '$(resource-group)'
+#        condition: always()
+
+# -----------------------------------------------------------------------------
+# Stage 2.1 - Continuous Testing (CT) - Cleanup
+# -----------------------------------------------------------------------------
+- stage: smoketestcleanup
+  condition: eq(variables['deploy-smoke'], true)
+  dependsOn: smoketest
+  variables:
+  - template: devops/pipelines/variables/smoke-variables.yml
+  - template: devops/pipelines/variables/smoke-features.yml
+  jobs:
+  - job: smoketestcleanupjob
+    steps:
     - template: devops/pipelines/step/arm-remove-resource-group.yml
       parameters:
         azureSubscription: '$(azureSubscription)'

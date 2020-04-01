@@ -30,10 +30,10 @@
       "value": "CORP"
     },
     "sqlServerName": {
-      "value": "sql-ORG-TAG-adap-tst"
+      "value": "sql-yazy-adap-tst"
     },
     "ResourceGroupName": {
-      "value": "rg-ORG-TAG-adap-tst"
+      "value": "rg-yazy-adap-tst"
     },
     "Env": {
       "value": "tst"
@@ -42,7 +42,7 @@
       "value": "requester@company.org"
     },
     "synapseDWName": {
-      "value": "syndwORG-TAGadaptst"
+      "value": "syndwyazyadaptst"
     },
     "BudgetAmount": {
       "value": "$0-Month"

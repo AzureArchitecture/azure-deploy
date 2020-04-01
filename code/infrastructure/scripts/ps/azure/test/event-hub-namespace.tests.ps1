@@ -16,7 +16,7 @@ if (Test-Path $TemplateFile){
 Describe "Event Hub Namespace Deployment Tests" -Tag "functional" {
   Context "When an Event Hub Namespace is deployed" {
     $TemplateParameters = @{
-      EventHubNamespaceName = "ehns-chp-adap-test"
+      EventHubNamespaceName = "ehns-yazy-adap-test"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

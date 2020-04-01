@@ -14,9 +14,9 @@ Describe 'Metadata Test' {
 
 if (Test-Path $TemplateFile){
 Describe "Stream Analytics Job Deployment Tests" -Tag "functional" {
-  Context "When Stream Analytics is deployed" {
+  Context "When a SQL Server is deployed" {
     $TemplateParameters = @{
-      streamAnalyticsName = "asaj-ORG-TAG-adap-test"
+      streamAnalyticsName = "asaj-yazy-adap-test"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

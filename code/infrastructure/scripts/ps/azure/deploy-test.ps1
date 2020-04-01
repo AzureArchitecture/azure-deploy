@@ -221,8 +221,8 @@
     Exit
   }
      
-    $testRG = "rg-test"
-    $smokeRG = "rg-smoke"
+    $testRG = "rg-$orgTag-test-$suffix"
+    $smokeRG = "rg-$orgTag-smoke-$suffix"
     $mgmtRG = "rg-$orgTag-mgmt-$envTag-$suffix"
     $networkRG = "rg-$orgTag-network-$envTag-$suffix"
     $sharedRG = "rg-$orgTag-shared-$envTag-$suffix"

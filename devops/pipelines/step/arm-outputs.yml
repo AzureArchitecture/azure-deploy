@@ -5,6 +5,7 @@ parameters:
 steps:
 - task: AzurePowerShell@5
   displayName: 'set arm output variables'
+  continueOnError: true
   inputs:
     azureSubscription: '${{ parameters.AzureSubscription }}'
     ScriptType: 'FilePath'

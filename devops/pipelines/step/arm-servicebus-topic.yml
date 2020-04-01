@@ -9,6 +9,7 @@ parameters:
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-servicebus-topic'
+  continueOnError: true
   inputs:
     AzureSubscription: ${{ parameters.AzureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}

@@ -27,7 +27,7 @@
       }
     },
     "ResourceGroupName": {
-      "defaultValue": "rg-ORG-TAG-adap-dev-pcus",
+      "defaultValue": "rg-yazy-adap-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."

@@ -46,7 +46,7 @@
       "value": "snet-chp-dev-dsvm"
     },
     "virtualNetworkRG": {
-      "value": "rg-chp-network-dev-pcus"
+      "value": "rg-chp-network-dev-usce"
     },
     "adminUsername": {
       "value": "vmAdmin"
@@ -82,7 +82,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-yazy-smoke-usce"
     },
     "Env": {
       "value": "dev"

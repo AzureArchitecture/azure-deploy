@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-ORG-TAG-adap-tst"
+      "value": "sb-yazy-adap-tst"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -36,7 +36,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-yazy-smoke-usw2"
     },
     "Env": {
       "value": "tst"

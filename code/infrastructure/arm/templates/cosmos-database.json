@@ -18,7 +18,7 @@
             "type": "bool",
             "defaultValue": "false",
             "metadata": {
-                "description": "Provisions all the collections to use the shared RU of the database. Database reORG-TAGres at least 100RU per collection"
+                "description": "Provisions all the collections to use the shared RU of the database. Database reyazyres at least 100RU per collection"
             }
         },
         "offerThroughput": {
@@ -58,7 +58,7 @@
             
             "DatabasePropertyOption",
             "This variables purpose is to determine which item from the DatabaseThroughputCreationOption variable to use given the parameters passed in.",
-            "This is an artifact of the azure resources - creating a cosmos database reORG-TAGres a object called 'options' on the resource properties, ",
+            "This is an artifact of the azure resources - creating a cosmos database reyazyres a object called 'options' on the resource properties, ",
             "containing a 'throughput' property,  but it is set via a sub-resource at all other times.",
 
             "DatabaseProperties",

@@ -9,6 +9,7 @@ parameters:
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-sql-managed-instance'
+  continueOnError: true
   inputs:
     azureSubscription: ${{ parameters.azureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}

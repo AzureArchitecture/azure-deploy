@@ -6,7 +6,7 @@
                                      "value":  "owner@company.org"
                                  },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
@@ -18,10 +18,10 @@
                                             "value":  "Gold"
                                         },
                        "ContainerName":  {
-                                             "value":  "container1"
+                                             "value":  "aci-yazy-adap-dev-cus"
                                          },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "PublicAccess":  {
                                             "value":  "None"
@@ -36,10 +36,10 @@
                                             "value":  "CORP"
                                         },
                        "StorageAccountName":  {
-                                                  "value":  "stgORG-TAGadapdeveus01"
+                                                  "value":  "stgyazyadapdevcus"
                                               },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
@@ -48,7 +48,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "$0-Month"
+                                            "value":  "150"
                                         }
                    }
 }

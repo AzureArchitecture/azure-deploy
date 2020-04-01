@@ -218,6 +218,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "variables", "variables", "{
 		..\..\devops\pipelines\variables\production-variables.yml = ..\..\devops\pipelines\variables\production-variables.yml
 		..\..\devops\pipelines\variables\smoke-features.yml = ..\..\devops\pipelines\variables\smoke-features.yml
 		..\..\devops\pipelines\variables\smoke-variables.yml = ..\..\devops\pipelines\variables\smoke-variables.yml
+		..\..\devops\pipelines\variables\qui-smoke-features.yml = ..\..\devops\pipelines\variables\smoke-features.yml
+		..\..\devops\pipelines\variables\qui-smoke-variables.yml = ..\..\devops\pipelines\variables\smoke-variables.yml
 	EndProjectSection
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "arm", "arm\arm.deployproj", "{17A77420-05A5-4E88-AE45-3369067351D0}"

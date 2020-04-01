@@ -1,0 +1,68 @@
+{
+    "Geo": [{
+            "Location": "centralus",
+            "Abbr": "usce",
+            "Region": "Americas"
+        }, {
+            "Location": "eastus",
+            "Abbr": "usea",
+            "Region": "Americas"
+        }, {
+            "Location": "eastus2",
+            "Abbr": "use2",
+            "Region": "Americas"
+        }, {
+            "Location": "westus",
+            "Abbr": "uswe",
+            "Region": "Americas"
+        }, {
+            "Location": "westus2",
+            "Abbr": "usw2",
+            "Region": "Americas"
+        }, {
+            "Location": "canadacentral",
+            "Abbr": "cace",
+            "Region": "Americas"
+        }, {
+            "Location": "canadaeast",
+            "Abbr": "caea",
+            "Region": "Americas"
+        }, {
+            "Location": "mexicocentral",
+            "Abbr": "mxce",
+            "Region": "Americas"
+        }, {
+            "Location": "usdodcentral",
+            "Abbr": "gvce",
+            "Region": "Azure Government"
+        }, {
+            "Location": "usdodeast",
+            "Abbr": "gvea",
+            "Region": "Azure Government"
+        }, {
+            "Location": "usgovarizona",
+            "Abbr": "gvaz",
+            "Region": "Azure Government"
+        }, {
+            "Location": "usgoviowa",
+            "Abbr": "gvia",
+            "Region": "Azure Government"
+        }, {
+            "Location": "usgovtexas",
+            "Abbr": "gvtx",
+            "Region": "Azure Government"
+        }, {
+            "Location": "usgovvirgina",
+            "Abbr": "gvva",
+            "Region": "Azure Government"
+        }, {
+            "Location": "ussecwest",
+            "Abbr": "gswe",
+            "Region": "Azure Government"
+        }, {
+            "Location": "usseceast",
+            "Abbr": "gsea",
+            "Region": "Azure Government"
+        }
+    ]
+}

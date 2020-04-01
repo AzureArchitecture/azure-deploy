@@ -1,0 +1,16 @@
+{
+  "config": {
+    "policyName": {
+      "value": "afc-audit-storage-advanced-threat-protection"
+    },
+    "policyDisplayName": {
+      "value": " [afc] Audit Policy for Storage Account Advanced Threat Protection"
+    },
+    "policyDescription": {
+      "value": "Audit Storage Account Advanced Threat Protection"
+    },
+    "policyCategory": {
+      "value": "{\"category\":\"Storage\"}"
+    }
+  }
+}

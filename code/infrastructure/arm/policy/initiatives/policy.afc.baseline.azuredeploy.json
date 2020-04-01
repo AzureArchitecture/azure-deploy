@@ -32,7 +32,7 @@
         },
         "policyDefinitions": [
           { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-account-access-tier')]" },
-          },
+          { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-advanced-threat-protection')]" },
           { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-https-traffic-only')]" },
           { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-trusted-microsoft-services')]" },
           { "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions/', 'afc-audit-storage-geo-redundant')]" },

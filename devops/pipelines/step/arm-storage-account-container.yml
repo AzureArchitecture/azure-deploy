@@ -10,6 +10,7 @@ parameters:
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-storage-account-container'
+  continueOnError: true
   inputs:
     AzureSubscription: ${{ parameters.AzureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}

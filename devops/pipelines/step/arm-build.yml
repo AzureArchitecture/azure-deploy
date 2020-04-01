@@ -18,6 +18,7 @@ steps:
         platform: '${{ parameters.buildPlatform }}'
         configuration: '${{ parameters.buildConfiguration }}'
         clean: true
+      continueOnError: true
     - task: AzurePowerShell@5
       displayName: 'Run ARM Pester Tests'
       inputs:
@@ -25,16 +26,19 @@ steps:
         ScriptType: 'FilePath'
         ScriptPath: '$(System.DefaultWorkingDirectory)\code\infrastructure\scripts\ps\azure\test\execute-tests.ps1'
         azurePowerShellVersion: 'LatestVersion'
+      continueOnError: true
     - task: PublishTestResults@2
       displayName: 'Publish Test Results **/arm-test*.xml '
       inputs:
         testResultsFormat: NUnit
         testResultsFiles: |
          **/arm-test*.xml
+      continueOnError: true
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Build Artifacts'
       inputs:
         PathtoPublish:
+      continueOnError: true
     - task: CopyFiles@2
       inputs:
         Contents: '**'
@@ -43,3 +47,4 @@ steps:
         ArtifactName: 'drop'
         publishLocation: 'Container'
         OverWrite: true
+        continueOnError: true

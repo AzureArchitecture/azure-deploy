@@ -16,7 +16,7 @@ if (Test-Path $TemplateFile){
 Describe "Storage Account Deployment Tests" -Tag "functional" {
   Context "When a storage account deployed" {
     $TemplateParameters = @{
-      StorageAccountName = "stgadaptest"
+      StorageAccountName = "stgyazyadaptstusw2"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

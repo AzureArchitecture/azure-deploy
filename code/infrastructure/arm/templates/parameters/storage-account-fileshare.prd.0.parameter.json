@@ -1,54 +1,54 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
-                       "fileShareName":  {
-                                             "value":  "public"
-                                         },
-                       "ApplicationName":  {
-                                               "value":  "ADAP"
-                                           },
-                       "Approver":  {
-                                        "value":  "approver@company.org"
-                                    },
-                       "ServiceClass":  {
-                                            "value":  "Gold"
-                                        },
-                       "StartDate":  {
-                                         "value":  "1-1-2020"
-                                     },
-                       "EndDate":  {
-                                       "value":  "12-31-9999"
-                                   },
-                       "publicAccess":  {
-                                            "value":  "None"
-                                        },
-                       "DR":  {
-                                  "value":  "Mission-Critical"
-                              },
-                       "CostCenter":  {
-                                          "value":  "8675-309"
-                                      },
-                       "BusinessUnit":  {
-                                            "value":  "CORP"
-                                        },
-                       "StorageAccountName":  {
-                                                  "value":  "stgORG-TAGadapprdcus01"
-                                              },
-                       "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-prd-pcus"
-                                             },
-                       "Env":  {
-                                   "value":  "prd"
-                               },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
-                       "BudgetAmount":  {
-                                            "value":  "$0-Month"
-                                        }
-                   }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "fileShareName": {
+      "value": "public"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "publicAccess": {
+      "value": "None"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "StorageAccountName": {
+      "value": "stgyazyadapprdcus01"
+    },
+    "ResourceGroupName": {
+      "value": "rg-yazy-adap-prd-usce"
+    },
+    "Env": {
+      "value": "prd"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$0-Month"
+    }
+  }
 }

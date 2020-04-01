@@ -9,6 +9,7 @@ parameters:
   jobs:
   - job: smoketestjob
     displayName: 'deploy smoke test'
+    continueOnError: 'true'  # 'true' if future jobs should run even if this job fails; defaults to 'false'
     steps:
     - template: ../step/arm-storage-account.yml
       parameters:

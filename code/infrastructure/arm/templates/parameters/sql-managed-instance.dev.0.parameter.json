@@ -3,19 +3,19 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "virtualNetworkName":  {
-                                                  "value":  "vnet-ORG-TAG-dev-pcus"
+                                                  "value":  "vnet-yazy-adap-dev-cus"
                                               },
                        "Owner":  {
                                      "value":  "owner@company.org"
                                  },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
                                            },
                        "managedInstanceName":  {
-                                                   "value":  "sqlmi-ORG-TAG-adap-dev-pcus-01"
+                                                   "value":  "sqlmi-yazy-adap-dev-cus"
                                                },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -27,7 +27,7 @@
                                             "value":  "Gold"
                                         },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "DR":  {
                                   "value":  "Mission-Critical"
@@ -36,16 +36,16 @@
                                           "value":  "8675-309"
                                       },
                        "subnetName":  {
-                                          "value":  "snet-ORG-TAG-dev-pcus-sqlmi"
+                                          "value":  "snet-yazy-adap-dev-cus-sqlmi"
                                       },
                        "BusinessUnit":  {
                                             "value":  "CORP"
                                         },
                        "virtualNetworkResourceGroupName":  {
-                                                               "value":  "rg-ORG-TAG-network-dev-pcus"
+                                                               "value":  "rg-yazy-adap-network-dev-cus"
                                                            },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
@@ -57,7 +57,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "$200-Month"
+                                            "value":  "150"
                                         }
                    }
 }

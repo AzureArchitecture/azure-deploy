@@ -3,10 +3,10 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "sqlServerName":  {
-                                             "value":  "sql-ORG-TAG-adap-dev-pcus-01"
+                                             "value":  "sql-yazy-adap-dev-cus"
                                          },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
@@ -24,7 +24,7 @@
                                                       "value":  "sqlAdmin"
                                                   },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "DR":  {
                                   "value":  "Mission-Critical"
@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
@@ -48,7 +48,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "$200-Month"
+                                            "value":  "150"
                                         }
                    }
 }

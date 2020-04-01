@@ -33,7 +33,7 @@
     "type": {
       "type": "string",
       "enum": [
-        "ORG-TAGckStart",
+        "yazyckStart",
         "Application",
         "ManagedApplication",
         "PolicyDefinition",

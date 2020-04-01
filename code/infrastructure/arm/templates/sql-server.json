@@ -3,14 +3,14 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-ORG-TAG-adap-dev-pcus",
+      "defaultValue": "rg-yazy-adap-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "sqlServerName": {
-      "defaultValue": "sql-ORG-TAG-adap-dev-pcus",
+      "defaultValue": "sql-yazy-adap-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Logical SQL Server."

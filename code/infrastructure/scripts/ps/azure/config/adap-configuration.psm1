@@ -27,6 +27,9 @@ function Get-Configuration
       # Do Not change Below
       # ########################################################
       orgTag = "ORG-TAG"
+      suffix = "pcus"
+      location = "LOCATION-NAME"
+      locationDescription = "LOCATION-DESCRIPTION"
     }
   return $configuration
 }

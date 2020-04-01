@@ -69,7 +69,7 @@ function Get-AzSubLocation
 
 			if ($DisplayName)
 			{
-				$ret = Get-AzLocation | Where-Object Location -match "$DisplayName" | Select -Property Location
+				$ret = Get-AzLocation | Where-Object Location -eq "$DisplayName" | Select -Property Location
 			}
 			else
 			{
@@ -159,7 +159,7 @@ function Get-AzSubLocationDisplayName
 
 			if ($Location)
 			{
-				$ret = Get-AzLocation  | Where-Object Location -match $Location | Select -Property DisplayName
+				$ret = Get-AzLocation  | Where-Object Location -eq $Location | Select -Property DisplayName
 			}
 			else
 			{
@@ -765,7 +765,10 @@ function Update-StringInFile
 
 		[Parameter(Mandatory=$true, Position=3)]
 		[validateset('json','ps1','psm1','md', 'yml','xml','*')]
-		[System.String]$fileExtension
+		[System.String]$fileExtension,
+
+		[Parameter(Mandatory=$false, Position=4, HelpMessage="String must be case sensitive (Default=false)")]
+		[switch]$CaseSensitive=$false
 	)
 	
 	# Set working directory to path specified by rootDirectory var
@@ -774,15 +777,25 @@ function Update-StringInFile
 	$searchFiles = Get-ChildItem -Path . -Filter *.$fileExtension -Recurse
 	foreach ($file in $searchFiles)
 	{
-		(Get-Content -Path $file.PSPath -Force -ErrorAction SilentlyContinue) |
-		Foreach-Object { $_ -replace $searchStr, $replaceStr } |
-		Set-Content -Path $file.PSPath
+		if($CaseSensitive)
+		{
+						(Get-Content -Path $file.PSPath -Force -ErrorAction SilentlyContinue) |
+				Foreach-Object { $_ -creplace $searchStr, $replaceStr } |
+				Set-Content -Path $file.PSPath
+				}
+				else
+				{
+						(Get-Content -Path $file.PSPath -Force -ErrorAction SilentlyContinue) |
+				Foreach-Object { $_ -replace $searchStr, $replaceStr } |
+				Set-Content -Path $file.PSPath
+				}
 	}
 }
 <#
 		.SYNOPSIS
 		Checks if a module is loaded and does just that...
 #>
+
 function Load-Module ($m) {
 	<#
 		.SYNOPSIS
@@ -850,7 +863,7 @@ function Initialize-Subscription
 		.DESCRIPTION
 		Add a more complete description of what the function does.
 
-	  .PARAMETER azureEnvironment
+		.PARAMETER azureEnvironment
 		The Azure Cloud Enviornment to logon too. 
 
 		.PARAMETER Force
@@ -879,11 +892,11 @@ function Initialize-Subscription
 
 
 	param(
-		# Force reORG-TAGres the user selects a subscription explicitly
+		# Force reyazyres the user selects a subscription explicitly
 		[parameter(Mandatory=$false,ValueFromPipelinebyPropertyName=$true)]
 		[string]$azureEnvironment,
 
-		# Force reORG-TAGres the user selects a subscription explicitly
+		# Force reyazyres the user selects a subscription explicitly
 		[parameter(Mandatory=$false)]
 		[switch] $Force=$false,
 
@@ -901,7 +914,7 @@ function Initialize-Subscription
 
 			if (!$AzureContext.Account)
 			{
-				# Fall through and reORG-TAGre login
+				# Fall through and reyazyre login
 			}
 			else
 			{
@@ -918,7 +931,7 @@ function Initialize-Subscription
 		}
 		catch
 		{
-			# Fall through and reORG-TAGre login - (Get-AzContext fails with Az. modules < 4.0 if there is no logged in acount)
+			# Fall through and reyazyre login - (Get-AzContext fails with Az. modules < 4.0 if there is no logged in acount)
 		}
 	}
 	else
@@ -1017,6 +1030,54 @@ function Get-SubscriptionId
 	else {
 		Write-Host "No current Azure Context"
 	}
+}
+
+function Get-guidString
+{
+	<#
+			.SYNOPSIS
+			This function returns a new GUID as a string.  There are multiple formats which 
+			can be returned based on the $format parameter
+
+			.DESCRIPTION
+			This function returns a new GUID and is dependent on the incoming $format variable.
+
+			.EXAMPLE
+			Get-guidString -format 'N'
+			94a5feaffa0848668f055fea268be867
+		
+			Get-guidString -format 'D'
+			94a5feaf-fa08-4866-8f05-5fea268be867
+
+			Get-guidString -format 'B'
+			{94a5feaf-fa08-4866-8f05-5fea268be867}
+
+			Get-guidString -format 'P'
+			(94a5feaf-fa08-4866-8f05-5fea268be867)
+
+			.INPUTS
+			Valid input values are: 
+			'N'
+			'D'
+			'B'
+			'P'
+
+			.OUTPUTS
+			Output examples:
+			94a5feaffa0848668f055fea268be867
+			94a5feaf-fa08-4866-8f05-5fea268be867
+			{94a5feaf-fa08-4866-8f05-5fea268be867}
+			(94a5feaf-fa08-4866-8f05-5fea268be867)
+	#>
+
+	Param(
+		[Parameter(
+				Mandatory=$true,
+				HelpMessage='Please provide a value of N, D, B or P')]
+				[string]$format
+	)
+	$guid = [GUID]::NewGuid().ToString($format)
+	return $guid
 }
 
 function Get-SubscriptionName
@@ -1989,7 +2050,7 @@ function Test-Passwords {
 	if ($pw2test.Length -ge $passLength) {
 		$isGood = 1
 				if ($pw2test -match " ") {
-					Write-Verbose -Message "Password does not meet complexity reORG-TAGrements. Password cannot contain spaces."
+					Write-Verbose -Message "Password does not meet complexity reyazyrements. Password cannot contain spaces."
 					checkPasswords -name $name
 					return
 				}
@@ -2000,7 +2061,7 @@ function Test-Passwords {
 					$isGood = 3
 				}
 				else {
-						Write-Verbose -Message "Password does not meet complexity reORG-TAGrements. Password must contain a special character."
+						Write-Verbose -Message "Password does not meet complexity reyazyrements. Password must contain a special character."
 						checkPasswords -name $name
 						return
 				}
@@ -2008,7 +2069,7 @@ function Test-Passwords {
 					$isGood = 4
 				}
 				else {
-						Write-Verbose -Message "Password does not meet complexity reORG-TAGrements. Password must contain a numerical character."
+						Write-Verbose -Message "Password does not meet complexity reyazyrements. Password must contain a numerical character."
 						checkPasswords -name $name
 						return
 				}
@@ -2017,7 +2078,7 @@ function Test-Passwords {
 				}
 				else {
 						Write-Verbose -Message "Password must contain a lowercase letter."
-						Write-Verbose -Message "Password does not meet complexity reORG-TAGrements."
+						Write-Verbose -Message "Password does not meet complexity reyazyrements."
 						checkPasswords -name $name
 						return
 				}
@@ -2026,7 +2087,7 @@ function Test-Passwords {
 				}
 				else {
 						Write-Verbose -Message "Password must contain an uppercase character."
-						Write-Verbose -Message "Password does not meet complexity reORG-TAGrements."
+						Write-Verbose -Message "Password does not meet complexity reyazyrements."
 						checkPasswords -name $name
 				}
 			if ($isGood -ge 6) {
@@ -2034,7 +2095,7 @@ function Test-Passwords {
 						return
 				}
 				else {
-						Write-Verbose -Message "Password does not meet complexity reORG-TAGrements."
+						Write-Verbose -Message "Password does not meet complexity reyazyrements."
 						checkPasswords -name $name
 						return
 				}
@@ -3918,7 +3979,7 @@ Function New-SPNApp
 	$isAzureModulePresent = Get-Module -Name Az.Resources -ListAvailable
 	if ([String]::IsNullOrEmpty($isAzureModulePresent) -eq $true)
 	{
-		Write-Output -InputObject "Script reORG-TAGres Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
+		Write-Output -InputObject "Script reyazyres Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
 		return
 	}
 

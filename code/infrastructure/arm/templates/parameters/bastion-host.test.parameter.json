@@ -3,19 +3,19 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "bastionHostName": {
-      "value": "rg-ORG-TAG-shared-tst-cus"
+      "value": "rg-yazy-shared-tst-cus"
     },
     "SharedResourceGroupName": {
-      "value": "rg-ORG-TAG-shared-dev-pcus"
+      "value": "rg-yazy-shared-dev-usce"
     },
     "NetworkResourceGroupName": {
-      "value": "rg-ORG-TAG-network-dev-pcus"
+      "value": "rg-yazy-network-dev-usce"
     },
     "publicIpAddressName": {
-      "value": "bast-ORG-TAG-network-tst-cus-ip"
+      "value": "bast-yazy-network-tst-cus-ip"
     },
     "virtualNetworkName": {
-      "value": "vnet-ORG-TAG-dev"
+      "value": "vnet-yazy-dev"
     },
     "subnetName": {
       "value": "AzureBastionSubnet"
@@ -48,7 +48,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-yazy-smoke-usw2"
     },
     "Env": {
       "value": "test"

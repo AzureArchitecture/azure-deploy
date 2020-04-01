@@ -23,10 +23,10 @@
       "value": "afc-audit-automationaccount-diagnostic-settings"
     },
     "laWorkspaceName": {
-      "value": "la-ORG-TAG-dev-pcus"
+      "value": "la-yazy-dev-usce"
     },
     "laResourceGroupName": {
-      "value": "rg-ORG-TAG-shared-dev-pcus"
+      "value": "rg-yazy-shared-dev-usce"
     },
     "alertFrequency": {
       "value": 60

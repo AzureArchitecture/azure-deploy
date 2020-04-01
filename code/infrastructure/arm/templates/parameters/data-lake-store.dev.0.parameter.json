@@ -6,7 +6,7 @@
                                      "value":  "owner@company.org"
                                  },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
@@ -18,13 +18,13 @@
                                             "value":  "Gold"
                                         },
                        "DataLakeStoreName":  {
-                                                 "value":  "adlsORG-TAGadapdeveus01"
+                                                 "value":  "adlsyazyadapdevcus"
                                              },
                        "AccountType":  {
                                            "value":  "Standard_LRS"
                                        },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "DR":  {
                                   "value":  "Mission-Critical"
@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "StorageKind":  {
                                            "value":  "StorageV2"
@@ -51,7 +51,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "$200-Month"
+                                            "value":  "150"
                                         }
                    }
 }

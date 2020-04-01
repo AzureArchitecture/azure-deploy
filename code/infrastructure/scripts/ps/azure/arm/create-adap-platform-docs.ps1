@@ -235,6 +235,12 @@ Set-Location -Path "$rootDirectory"
 Invoke-PSDocument -Path $psARMScriptsDirectory/create-arm-template-md.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
 Write-Information "    Creating $templateName.md file."
 
+$templateName = "keyvault"
+$env:ARM_TEMPLATE_CURRENT = $templateName
+Set-Location -Path "$rootDirectory"
+Invoke-PSDocument -Path $psARMScriptsDirectory/create-arm-template-md.ps1 -InstanceName $templateName -OutputPath $armTemplatesMDDirectory
+Write-Information "    Creating $templateName.md file."
+
 $templateName = "logic-app"
 $env:ARM_TEMPLATE_CURRENT = $templateName
 Set-Location -Path "$rootDirectory"

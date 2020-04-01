@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-ORG-TAG-adap-dev-pcus",
+      "defaultValue": "rg-yazy-adap-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -11,7 +11,7 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns-ORG-TAG-adap-tst-cus",
+      "defaultValue": "ehns-yazy-adap-tst-cus",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }

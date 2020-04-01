@@ -6,7 +6,7 @@
                                      "value":  "owner@company.org"
                                  },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
@@ -21,7 +21,7 @@
                                             "value":  "Gold"
                                         },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "DR":  {
                                   "value":  "Mission-Critical"
@@ -33,19 +33,19 @@
                                             "value":  "CORP"
                                         },
                        "sqlServerName":  {
-                                             "value":  "sql-ORG-TAG-adap-dev-pcus-01"
+                                             "value":  "sql-yazy-adap-dev-cus"
                                          },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "CosmosDbAccountName":  {
-                                                   "value":  "cosdb-ORG-TAG-adap-dev-pcus-01"
+                                                   "value":  "cosdb-yazy-adap-dev-cus"
                                                },
                        "BudgetAmount":  {
-                                            "value":  "$0-Month"
+                                            "value":  "150"
                                         }
                    }
 }

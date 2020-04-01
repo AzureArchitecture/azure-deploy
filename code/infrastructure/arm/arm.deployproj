@@ -657,8 +657,15 @@
     <None Include="templates\datafactory-linkedservice-azuresql.json" />
     <None Include="templates\datafactory-linkedservice-cosmosdb.json" />
     <None Include="templates\datafactory-ssis-integration-runtime.json" />
+    <None Include="templates\keyvault.json" />
+    <None Include="templates\keyvault-access-policy.json" />
+    <None Include="templates\keyvault-certificates.json" />
+    <None Include="templates\keyvault-secrets.json" />
     <None Include="templates\logic-app.json" />
     <None Include="templates\logic-app.metadata.json" />
+    <None Include="templates\parameters\keyvault.dev.0.parameter.json" />
+    <None Include="templates\parameters\keyvault.prd.0.parameter.json" />
+    <None Include="templates\parameters\keyvault.test.parameter.json" />
     <None Include="templates\parameters\synapse-dw.dev.0.parameter.json" />
     <None Include="templates\parameters\synapse-dw.prd.0.parameter.json" />
     <None Include="templates\parameters\synapse-dw.test.parameter.json" />

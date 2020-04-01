@@ -1,57 +1,57 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
-                       "StartDate":  {
-                                         "value":  "1-1-2020"
-                                     },
-                       "ApplicationName":  {
-                                               "value":  "ADAP"
-                                           },
-                       "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-ORG-TAG-adap-prd-pcus"
-                                                   },
-                       "Approver":  {
-                                        "value":  "approver@company.org"
-                                    },
-                       "ServiceClass":  {
-                                            "value":  "Gold"
-                                        },
-                       "EndDate":  {
-                                       "value":  "12-31-9999"
-                                   },
-                       "DR":  {
-                                  "value":  "Mission-Critical"
-                              },
-                       "CostCenter":  {
-                                          "value":  "8675-309"
-                                      },
-                       "BusinessUnit":  {
-                                            "value":  "CORP"
-                                        },
-                       "ServiceBusTopicName":  {
-                                                   "value":  "sbt-ORG-TAG-adap-prd-pcus"
-                                               },
-                       "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-prd-pcus"
-                                             },
-                       "Rights":  {
-                                      "value":  "Manage"
-                                  },
-                       "Env":  {
-                                   "value":  "prd"
-                               },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
-                       "BudgetAmount":  {
-                                            "value":  "$200-Month"
-                                        },
-                       "ServiceBusTopicAuthRuleName":  {
-                                                           "value":  "sbtar-ORG-TAG-adap-prd-pcus"
-                                                       }
-                   }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "ServiceBusNamespaceName": {
+      "value": "sb-yazy-adap-prd-usce"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ServiceBusTopicName": {
+      "value": "sbt-yazy-adap-prd-usce"
+    },
+    "ResourceGroupName": {
+      "value": "rg-yazy-adap-prd-usce"
+    },
+    "Rights": {
+      "value": "Manage"
+    },
+    "Env": {
+      "value": "prd"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    },
+    "ServiceBusTopicAuthRuleName": {
+      "value": "sbtar-yazy-adap-prd-usce"
+    }
+  }
 }

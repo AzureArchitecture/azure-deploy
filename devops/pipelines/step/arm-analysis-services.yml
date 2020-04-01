@@ -9,6 +9,7 @@ parameters:
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'deploy-analysis-services'
+  continueOnError: true
   inputs:
     azureSubscription: ${{ parameters.azureSubscription }}
     resourceGroupName: ${{ parameters.resourceGroup }}

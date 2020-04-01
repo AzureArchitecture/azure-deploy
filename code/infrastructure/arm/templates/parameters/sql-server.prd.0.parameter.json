@@ -1,54 +1,54 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "sqlServerName":  {
-                                             "value":  "sql-ORG-TAG-adap-prd-pcus-01"
-                                         },
-                       "StartDate":  {
-                                         "value":  "1-1-2020"
-                                     },
-                       "ApplicationName":  {
-                                               "value":  "ADAP"
-                                           },
-                       "sqlServerAdminPassword":  {
-                                                      "value":  "Z1!xcvbnmnbvcxzz"
-                                                  },
-                       "Approver":  {
-                                        "value":  "approver@company.org"
-                                    },
-                       "ServiceClass":  {
-                                            "value":  "Gold"
-                                        },
-                       "sqlServerAdminUserName":  {
-                                                      "value":  "sqlAdmin"
-                                                  },
-                       "EndDate":  {
-                                       "value":  "12-31-9999"
-                                   },
-                       "DR":  {
-                                  "value":  "Mission-Critical"
-                              },
-                       "CostCenter":  {
-                                          "value":  "8675-309"
-                                      },
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
-                       "BusinessUnit":  {
-                                            "value":  "CORP"
-                                        },
-                       "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-prd-pcus"
-                                             },
-                       "Env":  {
-                                   "value":  "prd"
-                               },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
-                       "BudgetAmount":  {
-                                            "value":  "$200-Month"
-                                        }
-                   }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sqlServerName": {
+      "value": "sql-yazy-adap-prd-usce-01"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "sqlServerAdminPassword": {
+      "value": "Z1!xcvbnmnbvcxzz"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "sqlServerAdminUserName": {
+      "value": "sqlAdmin"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "ResourceGroupName": {
+      "value": "rg-yazy-adap-prd-usce"
+    },
+    "Env": {
+      "value": "prd"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    }
+  }
 }

@@ -6,13 +6,13 @@
                                      "value":  "owner@company.org"
                                  },
                        "StartDate":  {
-                                         "value":  "1-1-2020"
+                                         "value":  "01/01/2020"
                                      },
                        "ApplicationName":  {
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-ORG-TAG-adap-dev-pcus"
+                                                       "value":  "sb-yazy-adap-dev-cus"
                                                    },
                        "Approver":  {
                                         "value":  "approver@company.org"
@@ -21,10 +21,10 @@
                                             "value":  "Gold"
                                         },
                        "ServiceBusTopicSubName":  {
-                                                      "value":  "sbts-ORG-TAG-adap-dev-pcus"
+                                                      "value":  "sbts-yazy-adap-dev-cus"
                                                   },
                        "EndDate":  {
-                                       "value":  "12-31-9999"
+                                       "value":  "12/31/9999"
                                    },
                        "DR":  {
                                   "value":  "Mission-Critical"
@@ -36,10 +36,10 @@
                                             "value":  "CORP"
                                         },
                        "ServiceBusTopicName":  {
-                                                   "value":  "sbt-ORG-TAG-adap-dev-pcus"
+                                                   "value":  "sbt-yazy-adap-dev-cus"
                                                },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-dev-pcus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
@@ -48,7 +48,7 @@
                                          "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "$200-Month"
+                                            "value":  "150"
                                         }
                    }
 }

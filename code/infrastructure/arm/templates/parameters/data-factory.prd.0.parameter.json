@@ -9,7 +9,7 @@
                                                "value":  "ADAP"
                                            },
                        "DataFactoryName":  {
-                                               "value":  "dfa-ORG-TAG-adap-prd-pcus-01"
+                                               "value":  "dfa-yazy-adap-prd-usce-01"
                                            },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -33,7 +33,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-prd-pcus"
+                                                 "value":  "rg-yazy-adap-prd-usce"
                                              },
                        "Env":  {
                                    "value":  "prd"

@@ -1,57 +1,57 @@
 {
-    "$schema":  "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion":  "1.0.0.0",
-    "parameters":  {
-                       "Owner":  {
-                                     "value":  "owner@company.org"
-                                 },
-                       "StartDate":  {
-                                         "value":  "1-1-2020"
-                                     },
-                       "ApplicationName":  {
-                                               "value":  "ADAP"
-                                           },
-                       "ResourceGroupName":  {
-                                                 "value":  "rg-ORG-TAG-adap-prd-pcus"
-                                             },
-                       "ServiceClass":  {
-                                            "value":  "Gold"
-                                        },
-                       "Approver":  {
-                                        "value":  "approver@company.org"
-                                    },
-                       "SkuName":  {
-                                       "value":  "Basic"
-                                   },
-                       "EndDate":  {
-                                       "value":  "12-31-9999"
-                                   },
-                       "DR":  {
-                                  "value":  "Mission-Critical"
-                              },
-                       "Env":  {
-                                   "value":  "prd"
-                               },
-                       "CostCenter":  {
-                                          "value":  "8675-309"
-                                      },
-                       "BusinessUnit":  {
-                                            "value":  "CORP"
-                                        },
-                       "EventHubNamespaceName":  {
-                                                     "value":  "ehns-ORG-TAG-adap-prd-pcus"
-                                                 },
-                       "SkuCapacity":  {
-                                           "value":  "1"
-                                       },
-                       "Requester":  {
-                                         "value":  "requester@company.org"
-                                     },
-                       "BudgetAmount":  {
-                                            "value":  "$200-Month"
-                                        },
-                       "SkuTier":  {
-                                       "value":  "Basic"
-                                   }
-                   }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Owner": {
+      "value": "owner@company.org"
+    },
+    "StartDate": {
+      "value": "1-1-2020"
+    },
+    "ApplicationName": {
+      "value": "ADAP"
+    },
+    "ResourceGroupName": {
+      "value": "rg-yazy-adap-prd-usce"
+    },
+    "ServiceClass": {
+      "value": "Gold"
+    },
+    "Approver": {
+      "value": "approver@company.org"
+    },
+    "SkuName": {
+      "value": "Basic"
+    },
+    "EndDate": {
+      "value": "12-31-9999"
+    },
+    "DR": {
+      "value": "Mission-Critical"
+    },
+    "Env": {
+      "value": "prd"
+    },
+    "CostCenter": {
+      "value": "8675-309"
+    },
+    "BusinessUnit": {
+      "value": "CORP"
+    },
+    "EventHubNamespaceName": {
+      "value": "ehns-yazy-adap-prd-usce"
+    },
+    "SkuCapacity": {
+      "value": "1"
+    },
+    "Requester": {
+      "value": "requester@company.org"
+    },
+    "BudgetAmount": {
+      "value": "$200-Month"
+    },
+    "SkuTier": {
+      "value": "Basic"
+    }
+  }
 }
