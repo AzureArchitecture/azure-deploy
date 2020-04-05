@@ -33,16 +33,16 @@
       "value": "CORP"
     },
     "sqlServerName": {
-      "value": "sql-qqq-adap-prd-usea-01"
+      "value": "sql-yazy-adap-prd-usce-01"
     },
     "ResourceGroupName": {
-      "value": "rg-qqq-adap-prd-usea"
+      "value": "rg-yazy-adap-prd-usce"
     },
     "Env": {
       "value": "prd"
     },
     "CosmosDbAccountName": {
-      "value": "cosdb-qqq-adap-prd-usea-01"
+      "value": "cosdb-yazy-adap-prd-usce-01"
     },
     "BudgetAmount": {
       "value": "$0-Month"

@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-qqq-adap-prd-usea"
+      "value": "sb-yazy-adap-prd-usce"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -39,10 +39,10 @@
       "value": "CORP"
     },
     "ServiceBusTopicName": {
-      "value": "sbt-qqq-adap-prd-usea"
+      "value": "sbt-yazy-adap-prd-usce"
     },
     "ResourceGroupName": {
-      "value": "rg-qqq-adap-prd-usea"
+      "value": "rg-yazy-adap-prd-usce"
     },
     "topicMaxSizeMb": {
       "value": "1024"

@@ -9,7 +9,7 @@
                                                "value":  "ADAP"
                                            },
                        "DataFactoryName":  {
-                                               "value":  "dfa-qqq-adap-prd-usea-01"
+                                               "value":  "dfa-yazy-adap-prd-usce-01"
                                            },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -33,7 +33,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-qqq-adap-prd-usea"
+                                                 "value":  "rg-yazy-adap-prd-usce"
                                              },
                        "Env":  {
                                    "value":  "prd"

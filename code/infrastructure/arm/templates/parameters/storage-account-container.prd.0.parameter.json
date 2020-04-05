@@ -36,10 +36,10 @@
       "value": "CORP"
     },
     "StorageAccountName": {
-      "value": "stgqqqadapprdcus01"
+      "value": "stgyazyadapprdcus01"
     },
     "ResourceGroupName": {
-      "value": "rg-qqq-adap-prd-usea"
+      "value": "rg-yazy-adap-prd-usce"
     },
     "Env": {
       "value": "prd"

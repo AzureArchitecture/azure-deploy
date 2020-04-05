@@ -3,28 +3,28 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "SharedResourceGroupName": {
-      "defaultValue": "rg-qqq-shared-dev-usea",
+      "defaultValue": "rg-yazy-shared-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "NetworkResourceGroupName": {
-      "defaultValue": "rg-qqq-network-dev-usea",
+      "defaultValue": "rg-yazy-network-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet-qqq-dev",
+      "defaultValue": "vnet-yazy-dev",
       "type": "string",
       "metadata": {
         "description": "The name of the virtual network for the Bastion Host."
       }
     },
     "bastionHostName": {
-      "defaultValue": "bast-qqq-shared-dev-usea",
+      "defaultValue": "bast-yazy-shared-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Bastion Host."

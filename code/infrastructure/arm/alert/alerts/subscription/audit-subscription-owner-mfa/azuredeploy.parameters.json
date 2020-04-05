@@ -23,10 +23,10 @@
       "value": "afc-audit-subscription-owner-mfa"
     },
     "laWorkspaceName": {
-      "value": "la-qqq-dev-usea"
+      "value": "la-yazy-dev-usce"
     },
     "laResourceGroupName": {
-      "value": "rg-qqq-shared-dev-usea"
+      "value": "rg-yazy-shared-dev-usce"
     },
     "alertFrequency": {
       "value": 60

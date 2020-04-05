@@ -18,7 +18,7 @@
       "value": "Gold"
     },
     "DataLakeStoreName": {
-      "value": "adlsqqqadapprdcus01"
+      "value": "adlsyazyadapprdcus01"
     },
     "AccountType": {
       "value": "Standard_LRS"
@@ -39,7 +39,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-qqq-adap-prd-usea"
+      "value": "rg-yazy-adap-prd-usce"
     },
     "StorageKind": {
       "value": "StorageV2"

@@ -3,10 +3,10 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "virtualNetworkName":  {
-                                                  "value":  "vnet-qqq-adap-dev-eus"
+                                                  "value":  "vnet-yazy-adap-dev-cus"
                                               },
                        "Owner":  {
-                                     "value":  "bryan.blain@quisitive.com"
+                                     "value":  "owner@company.org"
                                  },
                        "StartDate":  {
                                          "value":  "01/01/2020"
@@ -15,10 +15,10 @@
                                                "value":  "ADAP"
                                            },
                        "managedInstanceName":  {
-                                                   "value":  "sqlmi-qqq-adap-dev-eus"
+                                                   "value":  "sqlmi-yazy-adap-dev-cus"
                                                },
                        "Approver":  {
-                                        "value":  "steven.balusek@quisitive.com"
+                                        "value":  "approver@company.org"
                                     },
                        "administratorLoginPassword":  {
                                                           "value":  "Z1!xcvbnmnbvcxz"
@@ -36,16 +36,16 @@
                                           "value":  "8675-309"
                                       },
                        "subnetName":  {
-                                          "value":  "snet-qqq-adap-dev-eus-sqlmi"
+                                          "value":  "snet-yazy-adap-dev-cus-sqlmi"
                                       },
                        "BusinessUnit":  {
                                             "value":  "CORP"
                                         },
                        "virtualNetworkResourceGroupName":  {
-                                                               "value":  "rg-qqq-adap-network-dev-eus"
+                                                               "value":  "rg-yazy-adap-network-dev-cus"
                                                            },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-qqq-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
@@ -54,10 +54,10 @@
                                                   "value":  "sqlAdmin"
                                               },
                        "Requester":  {
-                                         "value":  "patrick.gallucci@quisitive.com"
+                                         "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "NA"
+                                            "value":  "150"
                                         }
                    }
 }

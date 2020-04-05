@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "Owner":  {
-                                     "value":  "bryan.blain@quisitive.com"
+                                     "value":  "owner@company.org"
                                  },
                        "StartDate":  {
                                          "value":  "01/01/2020"
@@ -12,13 +12,13 @@
                                                "value":  "ADAP"
                                            },
                        "Approver":  {
-                                        "value":  "steven.balusek@quisitive.com"
+                                        "value":  "approver@company.org"
                                     },
                        "ServiceClass":  {
                                             "value":  "Gold"
                                         },
                        "ContainerName":  {
-                                             "value":  "aci-qqq-adap-dev-eus"
+                                             "value":  "aci-yazy-adap-dev-cus"
                                          },
                        "EndDate":  {
                                        "value":  "12/31/9999"
@@ -36,19 +36,19 @@
                                             "value":  "CORP"
                                         },
                        "StorageAccountName":  {
-                                                  "value":  "stgqqqadapdeveus"
+                                                  "value":  "stgyazyadapdevcus"
                                               },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-qqq-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "Requester":  {
-                                         "value":  "patrick.gallucci@quisitive.com"
+                                         "value":  "requester@company.org"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "NA"
+                                            "value":  "150"
                                         }
                    }
 }

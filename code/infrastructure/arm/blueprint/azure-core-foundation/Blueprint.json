@@ -91,14 +91,14 @@
         ]
       },
       "logAnalyticsResourceGroup": {
-        "defaultValue": "rg-qqq-shared-dev-usea",
+        "defaultValue": "rg-yazy-shared-dev-usce",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Resource Group Name"
         }
       },
       "logAnalytics": {
-        "defaultValue": "la-qqq-dev-usea",
+        "defaultValue": "la-yazy-dev-usce",
         "type": "string",
         "metadata": {
           "description": "Log Analytics Name"

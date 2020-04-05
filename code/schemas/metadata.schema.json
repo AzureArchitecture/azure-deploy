@@ -33,7 +33,7 @@
     "type": {
       "type": "string",
       "enum": [
-        "QuickStart",
+        "yazyckStart",
         "Application",
         "ManagedApplication",
         "PolicyDefinition",

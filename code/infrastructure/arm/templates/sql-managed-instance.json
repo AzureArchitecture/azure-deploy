@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.1",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-qqq-adap-dev-usea",
+      "defaultValue": "rg-yazy-adap-dev-usce",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -28,14 +28,14 @@
       }
     },
     "virtualNetworkResourceGroupName": {
-      "defaultValue": "rg-qqq-network-dev-usea",
+      "defaultValue": "rg-yazy-network-dev-usce",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network Resource Group name."
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "vnet-qqq-dev",
+      "defaultValue": "vnet-yazy-dev",
       "type": "string",
       "metadata": {
         "description": "SQL Managed Instance Virtual Network name."

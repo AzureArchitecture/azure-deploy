@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "sqlServerName": {
-      "value": "sql-qqq-adap-tst"
+      "value": "sql-yazy-adap-tst"
     },
     "StartDate": {
       "value": "1-1-2020"
@@ -39,7 +39,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-yazy-smoke-usw2"
     },
     "Env": {
       "value": "tst"

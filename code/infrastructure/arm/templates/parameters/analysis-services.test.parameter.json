@@ -33,10 +33,10 @@
       "value": "CORP"
     },
     "analysisServicesName": {
-      "value": "aasqqqadaptst"
+      "value": "aasyazyadaptst"
     },
     "ResourceGroupName": {
-      "value": "rg-smoke"
+      "value": "rg-yazy-smoke-usw2"
     },
     "Env": {
       "value": "tst"

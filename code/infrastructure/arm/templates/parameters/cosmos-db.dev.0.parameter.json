@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "Owner":  {
-                                     "value":  "bryan.blain@quisitive.com"
+                                     "value":  "owner@company.org"
                                  },
                        "StartDate":  {
                                          "value":  "01/01/2020"
@@ -12,10 +12,10 @@
                                                "value":  "ADAP"
                                            },
                        "Requester":  {
-                                         "value":  "patrick.gallucci@quisitive.com"
+                                         "value":  "requester@company.org"
                                      },
                        "Approver":  {
-                                        "value":  "steven.balusek@quisitive.com"
+                                        "value":  "approver@company.org"
                                     },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -33,19 +33,19 @@
                                             "value":  "CORP"
                                         },
                        "sqlServerName":  {
-                                             "value":  "sql-qqq-adap-dev-eus"
+                                             "value":  "sql-yazy-adap-dev-cus"
                                          },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-qqq-adap-dev-eus"
+                                                 "value":  "rg-yazy-adap-dev-cus"
                                              },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "CosmosDbAccountName":  {
-                                                   "value":  "cosdb-qqq-adap-dev-eus"
+                                                   "value":  "cosdb-yazy-adap-dev-cus"
                                                },
                        "BudgetAmount":  {
-                                            "value":  "NA"
+                                            "value":  "150"
                                         }
                    }
 }

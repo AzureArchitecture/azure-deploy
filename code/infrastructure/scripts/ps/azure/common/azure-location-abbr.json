@@ -1,7 +1,7 @@
 {
     "Geo": [{
             "Location": "centralus",
-            "Abbr": "usea",
+            "Abbr": "usce",
             "Region": "Americas"
         }, {
             "Location": "eastus",
@@ -17,7 +17,7 @@
             "Region": "Americas"
         }, {
             "Location": "westus2",
-            "Abbr": "eus",
+            "Abbr": "usw2",
             "Region": "Americas"
         }, {
             "Location": "canadacentral",
