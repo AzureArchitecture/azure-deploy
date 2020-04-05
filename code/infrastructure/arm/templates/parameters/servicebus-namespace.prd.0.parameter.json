@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-yazy-adap-prd-usce"
+      "value": "sb-qqq-adap-prd-usea"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -36,7 +36,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "Env": {
       "value": "prd"

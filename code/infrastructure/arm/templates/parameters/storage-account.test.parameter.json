@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -36,10 +36,10 @@
       "value": "CORP"
     },
     "StorageAccountName": {
-      "value": "stgyazyadaptstusw2"
+      "value": "stgqqqadaptsteus"
     },
     "ResourceGroupName": {
-      "value": "rg-qui-smoke-usw2"
+      "value": "rg-smoke"
     },
     "AccountType": {
       "value": "Standard_LRS"

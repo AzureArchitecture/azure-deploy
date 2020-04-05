@@ -1,6 +1,6 @@
 variables:
 - name: 'analysis-services-flag'
-  value: 0
+  value: 1
 - name: 'cosmos-db-flag'
   value: 0
 - name: 'data-catalog-flag'
@@ -12,7 +12,7 @@ variables:
 - name: 'event-grid-flag'
   value: 0
 - name: 'event-hub-flag'
-  value: 0
+  value: 1
 - name: 'function-flag'
   value: 0
 - name: 'logic-app-flag'
@@ -22,9 +22,9 @@ variables:
 - name: 'servicebus-flag'
   value: 0
 - name: 'sql-db-flag'
-  value: 0
+  value: 1
 - name: 'sql-server-flag'
-  value: 0
+  value: 1
 - name: 'storage-account-flag'
   value: 0
 - name: 'stream-analytics-job-flag'

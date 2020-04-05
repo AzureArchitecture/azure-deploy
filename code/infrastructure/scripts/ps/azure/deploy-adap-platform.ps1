@@ -320,19 +320,19 @@
   Set-Location -Path "$rootAzuredeploy" 
   
   #update production and development variables for Location
-  Write-Information -MessageData "Pre-Deployment - Updating $locationDefault to $location."
-  If ($locationDefault -ne $location){
-    Update-StringInFile -searchStr $locationDefault -replaceStr $location -rootDirectory $variablesDirectory -fileExtension 'yml' -CaseSensitive
-    Update-StringInFile -searchStr $locationDefault -replaceStr $location -rootDirectory $psConfigDirectory -fileExtension 'psm1' -CaseSensitive
+  Write-Information -MessageData "Pre-Deployment - Updating $locationDefault to $location.DisplayName."
+  If ($locationDefault -ne $location.DisplayName){
+    Update-StringInFile -searchStr $locationDefault -replaceStr $location.DisplayName -rootDirectory $variablesDirectory -fileExtension 'yml' -CaseSensitive
+    Update-StringInFile -searchStr $locationDefault -replaceStr $location.DisplayName -rootDirectory $psConfigDirectory -fileExtension 'psm1' -CaseSensitive
   }
   else {
-    Write-Information -MessageData "Location are the same $locationDefault to $location - no changes needed."
+    Write-Information -MessageData "Location are the same $locationDefault to $locationName.DisplayName - no changes needed."
   }
 
-  Write-Information -MessageData "Pre-Deployment - Updating $locationDescriptionDefault to $locationName."
-  If ($locationDescriptionDefault -ne $locationName){
-    Update-StringInFile -searchStr $locationDescriptionDefault -replaceStr $locationName -rootDirectory $variablesDirectory -fileExtension 'yml' -CaseSensitive
-    Update-StringInFile -searchStr $locationDescriptionDefault -replaceStr $locationName -rootDirectory $psConfigDirectory -fileExtension 'psm1' -CaseSensitive
+  Write-Information -MessageData "Pre-Deployment - Updating $locationDescriptionDefault to $locationName.DisplayName."
+  If ($locationDescriptionDefault -ne $locationName.DisplayName){
+    Update-StringInFile -searchStr $locationDescriptionDefault -replaceStr $locationName.DisplayName -rootDirectory $variablesDirectory -fileExtension 'yml' -CaseSensitive
+    Update-StringInFile -searchStr $locationDescriptionDefault -replaceStr $locationName.DisplayName -rootDirectory $psConfigDirectory -fileExtension 'psm1' -CaseSensitive
   }
   else {
     Write-Information -MessageData "Location are the same $locationDescriptionDefault to $locationName - no changes needed."

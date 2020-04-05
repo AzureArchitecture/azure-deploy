@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "sqlServerName": {
-      "value": "sql-yazy-adap-prd-usce-01"
+      "value": "sql-qqq-adap-prd-usea-01"
     },
     "StartDate": {
       "value": "1-1-2020"
@@ -39,7 +39,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "Env": {
       "value": "prd"

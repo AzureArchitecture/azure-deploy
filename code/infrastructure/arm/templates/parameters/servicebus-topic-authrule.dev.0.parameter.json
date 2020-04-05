@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "Owner":  {
-                                     "value":  "owner@company.org"
+                                     "value":  "bryan.blain@quisitive.com"
                                  },
                        "StartDate":  {
                                          "value":  "01/01/2020"
@@ -12,10 +12,10 @@
                                                "value":  "ADAP"
                                            },
                        "ServiceBusNamespaceName":  {
-                                                       "value":  "sb-yazy-adap-dev-cus"
+                                                       "value":  "sb-qqq-adap-dev-eus"
                                                    },
                        "Approver":  {
-                                        "value":  "approver@company.org"
+                                        "value":  "steven.balusek@quisitive.com"
                                     },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -33,10 +33,10 @@
                                             "value":  "CORP"
                                         },
                        "ServiceBusTopicName":  {
-                                                   "value":  "sbt-yazy-adap-dev-cus"
+                                                   "value":  "sbt-qqq-adap-dev-eus"
                                                },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-cus"
+                                                 "value":  "rg-qqq-adap-dev-eus"
                                              },
                        "Rights":  {
                                       "value":  "Manage"
@@ -45,13 +45,13 @@
                                    "value":  "dev"
                                },
                        "Requester":  {
-                                         "value":  "requester@company.org"
+                                         "value":  "patrick.gallucci@quisitive.com"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "150"
+                                            "value":  "NA"
                                         },
                        "ServiceBusTopicAuthRuleName":  {
-                                                           "value":  "sbtar-yazy-adap-dev-cus"
+                                                           "value":  "sbtar-qqq-adap-dev-eus"
                                                        }
                    }
 }

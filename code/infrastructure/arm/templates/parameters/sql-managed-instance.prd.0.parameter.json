@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "virtualNetworkName": {
-      "value": "vnet-yazy-prd-usce"
+      "value": "vnet-qqq-prd-usea"
     },
     "Owner": {
       "value": "owner@company.org"
@@ -15,7 +15,7 @@
       "value": "ADAP"
     },
     "managedInstanceName": {
-      "value": "sqlmi-yazy-adap-prd-usce-01"
+      "value": "sqlmi-qqq-adap-prd-usea-01"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -36,16 +36,16 @@
       "value": "8675-309"
     },
     "subnetName": {
-      "value": "snet-yazy-prd-usce-sqlmi"
+      "value": "snet-qqq-prd-usea-sqlmi"
     },
     "BusinessUnit": {
       "value": "CORP"
     },
     "virtualNetworkResourceGroupName": {
-      "value": "rg-yazy-network-prd-usce"
+      "value": "rg-qqq-network-prd-usea"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "Env": {
       "value": "prd"

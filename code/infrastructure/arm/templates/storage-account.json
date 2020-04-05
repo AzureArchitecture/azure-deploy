@@ -8,14 +8,14 @@
   },
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-adap-dev-usw2",
+      "defaultValue": "rg-qqq-adap-dev-eus",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "StorageAccountName": {
-      "defaultValue": "stgyazyadaptstusw2",
+      "defaultValue": "stgqqqadaptsteus",
       "type": "string",
       "metadata": {
         "description": "The name of the storage account."

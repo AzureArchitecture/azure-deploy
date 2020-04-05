@@ -26,10 +26,10 @@ function Get-Configuration
     $configuration = @{`
       # Do Not change Below
       # ########################################################
-      orgTag = "ORG-TAG"
-      suffix = "pcus"
-      location = "LOCATION-NAME"
-      locationDescription = "LOCATION-DESCRIPTION"
+      orgTag = "qqq"
+      suffix = "usea"
+      location = "eastus"
+      locationDescription = "East US"
     }
   return $configuration
 }

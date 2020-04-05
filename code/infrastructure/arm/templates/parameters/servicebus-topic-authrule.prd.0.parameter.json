@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-yazy-adap-prd-usce"
+      "value": "sb-qqq-adap-prd-usea"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -33,10 +33,10 @@
       "value": "CORP"
     },
     "ServiceBusTopicName": {
-      "value": "sbt-yazy-adap-prd-usce"
+      "value": "sbt-qqq-adap-prd-usea"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "Rights": {
       "value": "Manage"
@@ -51,7 +51,7 @@
       "value": "$200-Month"
     },
     "ServiceBusTopicAuthRuleName": {
-      "value": "sbtar-yazy-adap-prd-usce"
+      "value": "sbtar-qqq-adap-prd-usea"
     }
   }
 }

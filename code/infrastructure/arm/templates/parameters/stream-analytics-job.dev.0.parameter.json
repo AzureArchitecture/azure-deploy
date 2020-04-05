@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "Owner":  {
-                                     "value":  "owner@company.org"
+                                     "value":  "bryan.blain@quisitive.com"
                                  },
                        "StartDate":  {
                                          "value":  "01/01/2020"
@@ -12,10 +12,10 @@
                                                "value":  "ADAP"
                                            },
                        "streamAnalyticsName":  {
-                                                   "value":  "asaj-yazy-adap-dev-cus"
+                                                   "value":  "asaj-qqq-adap-dev-eus"
                                                },
                        "Approver":  {
-                                        "value":  "approver@company.org"
+                                        "value":  "steven.balusek@quisitive.com"
                                     },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -33,16 +33,16 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-cus"
+                                                 "value":  "rg-qqq-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "Requester":  {
-                                         "value":  "requester@company.org"
+                                         "value":  "patrick.gallucci@quisitive.com"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "150"
+                                            "value":  "NA"
                                         }
                    }
 }

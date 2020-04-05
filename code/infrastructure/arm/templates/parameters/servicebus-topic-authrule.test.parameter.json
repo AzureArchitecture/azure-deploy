@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-yazy-adap-tst"
+      "value": "sb-qqq-adap-tst"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -42,7 +42,7 @@
       "value": "sbar-adap-message-manage"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-smoke-usw2"
+      "value": "rg-smoke"
     },
     "Rights": {
       "value": [ "Manage" ]

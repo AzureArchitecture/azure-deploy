@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "streamAnalyticsName": {
-      "value": "asaj-yazy-adap-prd-usce-01"
+      "value": "asaj-qqq-adap-prd-usea-01"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -33,7 +33,7 @@
       "value": "CORP"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "Env": {
       "value": "prd"

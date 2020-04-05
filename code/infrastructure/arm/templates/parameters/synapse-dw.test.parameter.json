@@ -30,10 +30,10 @@
       "value": "CORP"
     },
     "sqlServerName": {
-      "value": "sql-yazy-adap-tst"
+      "value": "sql-qqq-adap-tst"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-tst"
+      "value": "rg-qqq-adap-tst"
     },
     "Env": {
       "value": "tst"
@@ -42,7 +42,7 @@
       "value": "requester@company.org"
     },
     "synapseDWName": {
-      "value": "syndwyazyadaptst"
+      "value": "syndwqqqadaptst"
     },
     "BudgetAmount": {
       "value": "$0-Month"

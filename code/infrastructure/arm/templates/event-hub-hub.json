@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-adap-dev-usce",
+      "defaultValue": "rg-qqq-adap-dev-usea",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
@@ -11,14 +11,14 @@
     },
     "EventHubNamespaceName": {
       "type": "String",
-      "defaultValue": "ehns-yazy-adap-dev-usce",
+      "defaultValue": "ehns-qqq-adap-dev-usea",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }
     },
     "EventHubName": {
       "type": "String",
-      "defaultValue": "eh-yazy-adap-dev-usce",
+      "defaultValue": "eh-qqq-adap-dev-usea",
       "metadata": {
         "description": "The name of the Event Hub Namespace."
       }

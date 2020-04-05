@@ -892,11 +892,11 @@ function Initialize-Subscription
 
 
 	param(
-		# Force reyazyres the user selects a subscription explicitly
-		[parameter(Mandatory=$false,ValueFromPipelinebyPropertyName=$true)]
+		# azureEnvironment that the user is going to logon too.
+		[parameter(Mandatory=$true,ValueFromPipelinebyPropertyName=$true)]
 		[string]$azureEnvironment,
 
-		# Force reyazyres the user selects a subscription explicitly
+		# Force requires the user selects a subscription explicitly
 		[parameter(Mandatory=$false)]
 		[switch] $Force=$false,
 
@@ -914,7 +914,7 @@ function Initialize-Subscription
 
 			if (!$AzureContext.Account)
 			{
-				# Fall through and reyazyre login
+				# Fall through and require login
 			}
 			else
 			{
@@ -931,7 +931,7 @@ function Initialize-Subscription
 		}
 		catch
 		{
-			# Fall through and reyazyre login - (Get-AzContext fails with Az. modules < 4.0 if there is no logged in acount)
+			# Fall through and require login - (Get-AzContext fails with Az. modules < 4.0 if there is no logged in acount)
 		}
 	}
 	else
@@ -2050,7 +2050,7 @@ function Test-Passwords {
 	if ($pw2test.Length -ge $passLength) {
 		$isGood = 1
 				if ($pw2test -match " ") {
-					Write-Verbose -Message "Password does not meet complexity reyazyrements. Password cannot contain spaces."
+					Write-Verbose -Message "Password does not meet complexity requirements. Password cannot contain spaces."
 					checkPasswords -name $name
 					return
 				}
@@ -2061,7 +2061,7 @@ function Test-Passwords {
 					$isGood = 3
 				}
 				else {
-						Write-Verbose -Message "Password does not meet complexity reyazyrements. Password must contain a special character."
+						Write-Verbose -Message "Password does not meet complexity requirements. Password must contain a special character."
 						checkPasswords -name $name
 						return
 				}
@@ -2069,7 +2069,7 @@ function Test-Passwords {
 					$isGood = 4
 				}
 				else {
-						Write-Verbose -Message "Password does not meet complexity reyazyrements. Password must contain a numerical character."
+						Write-Verbose -Message "Password does not meet complexity requirements. Password must contain a numerical character."
 						checkPasswords -name $name
 						return
 				}
@@ -2078,7 +2078,7 @@ function Test-Passwords {
 				}
 				else {
 						Write-Verbose -Message "Password must contain a lowercase letter."
-						Write-Verbose -Message "Password does not meet complexity reyazyrements."
+						Write-Verbose -Message "Password does not meet complexity requirements."
 						checkPasswords -name $name
 						return
 				}
@@ -2087,7 +2087,7 @@ function Test-Passwords {
 				}
 				else {
 						Write-Verbose -Message "Password must contain an uppercase character."
-						Write-Verbose -Message "Password does not meet complexity reyazyrements."
+						Write-Verbose -Message "Password does not meet complexity requirements."
 						checkPasswords -name $name
 				}
 			if ($isGood -ge 6) {
@@ -2095,7 +2095,7 @@ function Test-Passwords {
 						return
 				}
 				else {
-						Write-Verbose -Message "Password does not meet complexity reyazyrements."
+						Write-Verbose -Message "Password does not meet complexity requirements."
 						checkPasswords -name $name
 						return
 				}
@@ -3979,7 +3979,7 @@ Function New-SPNApp
 	$isAzureModulePresent = Get-Module -Name Az.Resources -ListAvailable
 	if ([String]::IsNullOrEmpty($isAzureModulePresent) -eq $true)
 	{
-		Write-Output -InputObject "Script reyazyres Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
+		Write-Output -InputObject "Script requires Az modules to be present. Obtain Az from https://github.com/Azure/azure-powershell/releases. Please refer https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployAzureResourceGroup/README.md for recommended Az versions." -Verbose
 		return
 	}
 

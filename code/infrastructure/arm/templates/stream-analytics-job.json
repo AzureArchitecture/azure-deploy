@@ -3,14 +3,14 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "defaultValue": "rg-yazy-adap-dev-usce",
+      "defaultValue": "rg-qqq-adap-dev-usea",
       "type": "string",
       "metadata": {
         "description": "The name of the Resource Group."
       }
     },
     "streamAnalyticsName": {
-      "defaultValue": "asaj-yazy-adap-dev-usce-01",
+      "defaultValue": "asaj-qqq-adap-dev-usea-01",
       "type": "string",
       "metadata": {
         "description": "The name of the Stream Analytics Job."

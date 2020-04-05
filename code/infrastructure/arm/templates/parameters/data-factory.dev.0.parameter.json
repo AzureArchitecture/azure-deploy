@@ -9,13 +9,13 @@
                                                "value":  "ADAP"
                                            },
                        "DataFactoryName":  {
-                                               "value":  "dfa-yazy-adap-dev-cus"
+                                               "value":  "dfa-qqq-adap-dev-eus"
                                            },
                        "ServiceClass":  {
                                             "value":  "Gold"
                                         },
                        "Approver":  {
-                                        "value":  "approver@company.org"
+                                        "value":  "steven.balusek@quisitive.com"
                                     },
                        "EndDate":  {
                                        "value":  "12/31/9999"
@@ -24,7 +24,7 @@
                                   "value":  "Mission-Critical"
                               },
                        "Owner":  {
-                                     "value":  "owner@company.org"
+                                     "value":  "bryan.blain@quisitive.com"
                                  },
                        "CostCenter":  {
                                           "value":  "8675-309"
@@ -33,16 +33,16 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-cus"
+                                                 "value":  "rg-qqq-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "Requester":  {
-                                         "value":  "requester@company.org"
+                                         "value":  "patrick.gallucci@quisitive.com"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "150"
+                                            "value":  "NA"
                                         }
                    }
 }

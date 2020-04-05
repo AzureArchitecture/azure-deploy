@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ServiceBusNamespaceName": {
-      "value": "sb-yazy-adap-prd-usce"
+      "value": "sb-qqq-adap-prd-usea"
     },
     "Approver": {
       "value": "approver@company.org"
@@ -21,7 +21,7 @@
       "value": "Gold"
     },
     "ServiceBusTopicSubName": {
-      "value": "sbts-yazy-adap-prd-usce"
+      "value": "sbts-qqq-adap-prd-usea"
     },
     "EndDate": {
       "value": "12-31-9999"
@@ -36,10 +36,10 @@
       "value": "CORP"
     },
     "ServiceBusTopicName": {
-      "value": "sbt-yazy-adap-prd-usce"
+      "value": "sbt-qqq-adap-prd-usea"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "Env": {
       "value": "prd"

@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "Owner":  {
-                                     "value":  "owner@company.org"
+                                     "value":  "bryan.blain@quisitive.com"
                                  },
                        "StartDate":  {
                                          "value":  "01/01/2020"
@@ -12,13 +12,13 @@
                                                "value":  "ADAP"
                                            },
                        "Approver":  {
-                                        "value":  "approver@company.org"
+                                        "value":  "steven.balusek@quisitive.com"
                                     },
                        "ServiceClass":  {
                                             "value":  "Gold"
                                         },
                        "DataLakeStoreName":  {
-                                                 "value":  "adlsyazyadapdevcus"
+                                                 "value":  "adlsqqqadapdeveus"
                                              },
                        "AccountType":  {
                                            "value":  "Standard_LRS"
@@ -39,7 +39,7 @@
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-cus"
+                                                 "value":  "rg-qqq-adap-dev-eus"
                                              },
                        "StorageKind":  {
                                            "value":  "StorageV2"
@@ -48,10 +48,10 @@
                                    "value":  "dev"
                                },
                        "Requester":  {
-                                         "value":  "requester@company.org"
+                                         "value":  "patrick.gallucci@quisitive.com"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "150"
+                                            "value":  "NA"
                                         }
                    }
 }

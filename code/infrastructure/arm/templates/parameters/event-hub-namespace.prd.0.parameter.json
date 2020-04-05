@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "ServiceClass": {
       "value": "Gold"
@@ -39,7 +39,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-yazy-adap-prd-usce"
+      "value": "ehns-qqq-adap-prd-usea"
     },
     "SkuCapacity": {
       "value": "1"

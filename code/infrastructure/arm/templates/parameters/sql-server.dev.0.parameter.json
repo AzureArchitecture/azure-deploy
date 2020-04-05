@@ -3,7 +3,7 @@
     "contentVersion":  "1.0.0.0",
     "parameters":  {
                        "sqlServerName":  {
-                                             "value":  "sql-yazy-adap-dev-cus"
+                                             "value":  "sql-qqq-adap-dev-eus"
                                          },
                        "StartDate":  {
                                          "value":  "01/01/2020"
@@ -15,7 +15,7 @@
                                                       "value":  "Z1!xcvbnmnbvcxzz"
                                                   },
                        "Approver":  {
-                                        "value":  "approver@company.org"
+                                        "value":  "steven.balusek@quisitive.com"
                                     },
                        "ServiceClass":  {
                                             "value":  "Gold"
@@ -33,22 +33,22 @@
                                           "value":  "8675-309"
                                       },
                        "Owner":  {
-                                     "value":  "owner@company.org"
+                                     "value":  "bryan.blain@quisitive.com"
                                  },
                        "BusinessUnit":  {
                                             "value":  "CORP"
                                         },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-cus"
+                                                 "value":  "rg-qqq-adap-dev-eus"
                                              },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "Requester":  {
-                                         "value":  "requester@company.org"
+                                         "value":  "patrick.gallucci@quisitive.com"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "150"
+                                            "value":  "NA"
                                         }
                    }
 }

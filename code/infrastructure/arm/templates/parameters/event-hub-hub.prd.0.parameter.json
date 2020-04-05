@@ -12,7 +12,7 @@
       "value": "ADAP"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-adap-prd-usce"
+      "value": "rg-qqq-adap-prd-usea"
     },
     "ServiceClass": {
       "value": "Gold"
@@ -27,7 +27,7 @@
       "value": "Mission-Critical"
     },
     "EventHubName": {
-      "value": "eh-yazy-adap-prd-usce"
+      "value": "eh-qqq-adap-prd-usea"
     },
     "CostCenter": {
       "value": "8675-309"
@@ -39,7 +39,7 @@
       "value": "CORP"
     },
     "EventHubNamespaceName": {
-      "value": "ehns-yazy-adap-prd-usce"
+      "value": "ehns-qqq-adap-prd-usea"
     },
     "Env": {
       "value": "prd"

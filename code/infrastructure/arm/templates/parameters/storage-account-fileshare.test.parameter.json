@@ -36,10 +36,10 @@
       "value": "CORP"
     },
     "StorageAccountName": {
-      "value": "stgyazyfsadaptstusce"
+      "value": "stgqqqfsadaptstusea"
     },
     "ResourceGroupName": {
-      "value": "rg-yazy-smoke-usw2"
+      "value": "rg-smoke"
     },
     "Env": {
       "value": "tst"

@@ -12,13 +12,13 @@
                                                "value":  "ADAP"
                                            },
                        "ResourceGroupName":  {
-                                                 "value":  "rg-yazy-adap-dev-cus"
+                                                 "value":  "rg-qqq-adap-dev-eus"
                                              },
                        "ServiceClass":  {
                                             "value":  "Gold"
                                         },
                        "Approver":  {
-                                        "value":  "approver@company.org"
+                                        "value":  "steven.balusek@quisitive.com"
                                     },
                        "EndDate":  {
                                        "value":  "12/31/9999"
@@ -27,28 +27,28 @@
                                   "value":  "Mission-Critical"
                               },
                        "EventHubName":  {
-                                            "value":  "eh-yazy-adap-dev-cus"
+                                            "value":  "eh-qqq-adap-dev-eus"
                                         },
                        "CostCenter":  {
                                           "value":  "8675-309"
                                       },
                        "Owner":  {
-                                     "value":  "owner@company.org"
+                                     "value":  "bryan.blain@quisitive.com"
                                  },
                        "BusinessUnit":  {
                                             "value":  "CORP"
                                         },
                        "EventHubNamespaceName":  {
-                                                     "value":  "ehns-yazy-adap-dev-cus"
+                                                     "value":  "ehns-qqq-adap-dev-eus"
                                                  },
                        "Env":  {
                                    "value":  "dev"
                                },
                        "Requester":  {
-                                         "value":  "requester@company.org"
+                                         "value":  "patrick.gallucci@quisitive.com"
                                      },
                        "BudgetAmount":  {
-                                            "value":  "150"
+                                            "value":  "NA"
                                         },
                        "messageRetentionInDays":  {
                                                       "value":  "1"

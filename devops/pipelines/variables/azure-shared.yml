@@ -8,6 +8,6 @@ variables:
   deploymentAdminName: 'patrick@gallucci.us'
   smokeVariables: 'Quisitive'
   deploy-build: true
-  deploy-development: false
+  deploy-development: true
   deploy-production: false
   deploy-smoke: true
