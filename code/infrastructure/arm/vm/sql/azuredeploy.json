@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmName": {
@@ -117,8 +117,28 @@
     },
     "sqlVersion": {
       "type": "string",
-      "defaultValue": "SQL Server 2019 Developer (free) on Windows Server 2019",
+      "defaultValue": "SQL Server 2017 Developer (free) on Windows Server 2016",
       "allowedValues": [
+        "SQL Server 2012 SP3 Enterprise on Windows Server 2012 R2",
+        "SQL Server 2012 SP3 Enterprise (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2012 SP3 Standard on Windows Server 2012 R2",
+        "SQL Server 2012 SP3 Standard (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2012 SP3 Web on Windows Server 2012 R2",
+        "SQL Server 2012 SP3 Express on Windows Server 2012 R2",
+        "SQL Server 2012 SP4 Enterprise on Windows Server 2012 R2",
+        "SQL Server 2012 SP4 Enterprise (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2012 SP4 Standard on Windows Server 2012 R2",
+        "SQL Server 2012 SP4 Standard (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2012 SP4 Web on Windows Server 2012 R2",
+        "SQL Server 2012 SP4 Express on Windows Server 2012 R2",
+        "SQL Server 2014 SP1 Enterprise (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2014 SP1 Standard (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2014 SP2 Enterprise on Windows Server 2012 R2",
+        "SQL Server 2014 SP2 Enterprise (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2014 SP2 Standard on Windows Server 2012 R2",
+        "SQL Server 2014 SP2 Standard (BYOL) on Windows Server 2012 R2",
+        "SQL Server 2014 SP2 Web on Windows Server 2012 R2",
+        "SQL Server 2014 SP2 Express on Windows Server 2012 R2",
         "SQL Server 2016 Enterprise (BYOL) on Windows Server 2012 R2",
         "SQL Server 2016 Standard (BYOL) on Windows Server 2012 R2",
         "SQL Server 2016 Developer (free) on Windows Server 2012 R2",
@@ -156,13 +176,8 @@
         "SQL Server 2017 Standard (BYOL) on Windows Server 2019",
         "SQL Server 2017 Web on Windows Server 2019",
         "SQL Server 2017 Express (free) on Windows Server 2019",
-        "SQL Server 2019 Enterprise on Windows Server 2019",
-        "SQL Server 2019 Enterprise (BYOL) on Windows Server 2019",
-        "SQL Server 2019 Standard on Windows Server 2019",
-        "SQL Server 2019 Standard (BYOL) on Windows Server 2019",
-        "SQL Server 2019 Web on Windows Server 2019",
-        "SQL Server 2019 Developer (free) on Windows Server 2019",
-        "SQL Server 2019 Express (free) on Windows Server 2019"
+        "SQL Server 2017 Developer (free) on Windows Server 2019",
+        "(RC1) SQL Server 2019 on Windows Server 2016"
       ],
       "metadata": {
         "description": "The SQL Server version you want to deploy"
@@ -469,21 +484,21 @@
         "(UTC+13:00) Samoa",
         "(UTC+14:00) Kiritimati Island"
       ],
-      "defaultValue": "(UTC-06:00) Central Time (US & Canada)",
+      "defaultValue": "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
       "metadata": {
         "description": "Choose the time zone for the virtual machine"
       }
     },
     "osDiskSuffix": {
       "type": "string",
-      "defaultValue": "osdisk",
+      "defaultValue": "OsDisk",
       "metadata": {
         "description": "Suffix that will be used to compose OS disk name"
       }
     },
     "AdditionalDiskSuffix": {
       "type": "string",
-      "defaultValue": "datadisk",
+      "defaultValue": "DataDisk",
       "metadata": {
         "description": "Suffix that will be used to compose additional disk name"
       }
@@ -795,6 +810,86 @@
       "(UTC+14:00) Kiritimati Island": { "id": "Line Islands Standard Time" }
     },
     "sqlVersionObj": {
+      "SQL Server 2012 SP3 Enterprise on Windows Server 2012 R2": {
+        "offer": "SQL2012SP3-WS2012R2",
+        "sku": "Enterprise"
+      },
+      "SQL Server 2012 SP3 Enterprise (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2012SP3-WS2012R2-BYOL",
+        "sku": "Enterprise"
+      },
+      "SQL Server 2012 SP3 Standard on Windows Server 2012 R2": {
+        "offer": "SQL2012SP3-WS2012R2",
+        "sku": "Standard"
+      },
+      "SQL Server 2012 SP3 Standard (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2012SP3-WS2012R2-BYOL",
+        "sku": "Standard"
+      },
+      "SQL Server 2012 SP3 Web on Windows Server 2012 R2": {
+        "offer": "SQL2012SP3-WS2012R2",
+        "sku": "Web"
+      },
+      "SQL Server 2012 SP3 Express on Windows Server 2012 R2": {
+        "offer": "SQL2012SP3-WS2012R2",
+        "sku": "Express"
+      },
+      "SQL Server 2012 SP4 Enterprise on Windows Server 2012 R2": {
+        "offer": "SQL2012SP4-WS2012R2",
+        "sku": "Enterprise"
+      },
+      "SQL Server 2012 SP4 Enterprise (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2012SP4-WS2012R2-BYOL",
+        "sku": "Enterprise"
+      },
+      "SQL Server 2012 SP4 Standard on Windows Server 2012 R2": {
+        "offer": "SQL2012SP4-WS2012R2",
+        "sku": "Standard"
+      },
+      "SQL Server 2012 SP4 Standard (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2012SP4-WS2012R2-BYOL",
+        "sku": "Standard"
+      },
+      "SQL Server 2012 SP4 Web on Windows Server 2012 R2": {
+        "offer": "SQL2012SP4-WS2012R2",
+        "sku": "Web"
+      },
+      "SQL Server 2012 SP4 Express on Windows Server 2012 R2": {
+        "offer": "SQL2012SP4-WS2012R2",
+        "sku": "Express"
+      },
+      "SQL Server 2014 SP1 Enterprise (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2014SP1-WS2012R2-BYOL",
+        "sku": "Enterprise"
+      },
+      "SQL Server 2014 SP1 Standard (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2014SP1-WS2012R2-BYOL",
+        "sku": "Standard"
+      },
+      "SQL Server 2014 SP2 Enterprise on Windows Server 2012 R2": {
+        "offer": "SQL2014SP2-WS2012R2",
+        "sku": "Enterprise"
+      },
+      "SQL Server 2014 SP2 Enterprise (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2014SP2-WS2012R2-BYOL",
+        "sku": "Enterprise"
+      },
+      "SQL Server 2014 SP2 Standard on Windows Server 2012 R2": {
+        "offer": "SQL2014SP2-WS2012R2",
+        "sku": "Standard"
+      },
+      "SQL Server 2014 SP2 Standard (BYOL) on Windows Server 2012 R2": {
+        "offer": "SQL2014SP2-WS2012R2-BYOL",
+        "sku": "Standard"
+      },
+      "SQL Server 2014 SP2 Web on Windows Server 2012 R2": {
+        "offer": "SQL2014SP2-WS2012R2",
+        "sku": "Web"
+      },
+      "SQL Server 2014 SP2 Express on Windows Server 2012 R2": {
+        "offer": "SQL2014SP2-WS2012R2",
+        "sku": "Express"
+      },
       "SQL Server 2016 Enterprise (BYOL) on Windows Server 2012 R2": {
         "offer": "SQL2016-WS2012R2-BYOL",
         "sku": "Enterprise"
@@ -947,37 +1042,12 @@
         "offer": "SQL2017-WS2019",
         "sku": "SQLDEV"
       },
-      "SQL Server 2019 Enterprise on Windows Server 2019": {
-        "offer": "SQL2019-WS2019",
-        "sku": "Enterprise"
-      },
-      "SQL Server 2019 Enterprise (BYOL) on Windows Server 2019": {
-        "offer": "SQL2019-WS2019-BYOL",
-        "sku": "Enterprise"
-      },
-      "SQL Server 2019 Standard on Windows Server 2019": {
-        "offer": "SQL2019-WS2019",
-        "sku": "Standard"
-      },
-      "SQL Server 2019 Standard (BYOL) on Windows Server 2019": {
-        "offer": "SQL2019-WS2019-BYOL",
-        "sku": "Standard"
-      },
-      "SQL Server 2019 Web on Windows Server 2019": {
-        "offer": "SQL2019-WS2019",
-        "sku": "Web"
-      },
-      "SQL Server 2019 Developer (free) on Windows Server 2019": {
-        "offer": "sql2019-ws2019",
-        "sku": "sqldev"
-      },
-      "SQL Server 2019 Express (free) on Windows Server 2019": {
-        "offer": "SQL2019-WS2019",
-        "sku": "Express"
+      "(RC1) SQL Server 2019 on Windows Server 2016": {
+        "offer": "SQL2019-WS2016",
+        "sku": "SQLDEV"
       }
-
     },
-    "_artifactsLocation": "https://raw.githubusercontent.com/AzureArchitecture/azure-deploy/master/code/infrastructure/arm/vm/sql",
+    "_artifactsLocation": "https://raw.githubusercontent.com/OmegaMadLab/OptimizedSqlVm/master",
     "SqlDscConfigArchiveFolder": "DSC",
     "SqlDscConfigArchiveFileName": "SqlDscConfig.zip",
     "SqlDscConfigScript": "SqlDscConfig.ps1",
